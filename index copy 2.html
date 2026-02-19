@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loader Prototype (True Cutout Mask Reveal)</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+
+      --square: 96px;
+      --gap: 8px;
+      --rectW: 170px;
+      --rectH: 96px;
+
+      --ovalW: 110px;
+      --ovalInset: 0px;
+      --ease: cubic-bezier(.22,.9,.18,1);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    /* ✅ Screen white from the beginning */
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow:auto; /* will be locked by JS during loader */
+    }
+
+    /* --------------------------
+       Real page content (scrollable)
+    -------------------------- */
+    #site{
+      min-height: 260vh; /* ✅ scroll test */
+      padding: 64px clamp(18px, 5vw, 80px);
+      position: relative;
+      z-index: 0;
+    }
+    .hero{
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 56px 0 28px;
+    }
+    .hero h1{
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero p{
+      margin: 0 0 20px;
+      font-size: 18px;
+      opacity: .78;
+      max-width: 65ch;
+    }
+    .card-row{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .card{
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(0,0,0,.02);
+      min-height: 120px;
+    }
+    .spacer{
+      height: 120vh;
+      max-width: 1000px;
+      margin: 24px auto;
+      border-radius: 18px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
+      border: 1px dashed rgba(0,0,0,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(0,0,0,.55);
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    @media (max-width: 900px){
+      .card-row{ grid-template-columns: 1fr; }
+    }
+
+    /* --------------------------
+       Loader overlay
+       ✅ stays fixed; SVG draws white cover + mask hole
+       ✅ cover is sized immediately in JS
+    -------------------------- */
+    #loader{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: transparent; /* svg cover supplies white */
+    }
+
+    /* ✅ fullscreen svg cover */
+    .mask-svg{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9997;
+      pointer-events: none;
+    }
+
+    /* side half-ovals */
+    .side-oval{
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: var(--ovalW);
+      background: var(--ink);
+      z-index: 9998;
+      opacity: 1;
+      transform-origin: top;
+      will-change: transform;
+    }
+    .side-oval.left{
+      left: var(--ovalInset);
+      border-top-right-radius: 999px;
+      border-bottom-right-radius: 999px;
+      transform: translateX(-130%) scaleY(0);
+    }
+    .side-oval.right{
+      right: var(--ovalInset);
+      border-top-left-radius: 999px;
+      border-bottom-left-radius: 999px;
+      transform: translateX(130%) scaleY(0);
+    }
+
+    /* center stage group */
+    .stage{
+      position: relative;
+      z-index: 10000;
+      width: calc(var(--square) + var(--gap) + var(--rectW));
+      height: max(var(--square), var(--rectH));
+      pointer-events:none;
+    }
+
+    /* square is dead center initially */
+    .square-wrap{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(var(--square) + var(--gap) + var(--rectW));
+      height: var(--square);
+    }
+
+    .square{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--square);
+      height: var(--square);
+      border: 2px solid var(--ink);
+      background: transparent;
+      overflow: hidden;
+      transform: translateX(0);
+      transition: transform 900ms var(--ease);
+      will-change: transform;
+    }
+    .square .fill{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 0%;
+      background: var(--ink);
+    }
+
+    /* rectangle behind square (masked) */
+    .behind-clip{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(var(--square) + var(--gap) + var(--rectW));
+      height: var(--square);
+      overflow: hidden;
+      pointer-events:none;
+    }
+    .rect{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--rectW);
+      height: var(--rectH);
+      border: 2px solid var(--ink);
+      background: transparent;
+      transform: translateX(calc(-1 * var(--rectW)));
+      transition: transform 900ms var(--ease);
+      will-change: transform;
+    }
+
+    /* stage 2: square left, rect out, ovals in */
+    #loader.stage2 .square{
+      transform: translateX(calc(-1 * (var(--rectW) + var(--gap))));
+    }
+    #loader.stage2 .rect{
+      transform: translateX(calc(var(--square) + var(--gap)));
+    }
+    #loader.stage2 .side-oval.left{
+      transform: translateX(0) scaleY(1);
+      transition: transform 1100ms var(--ease);
+    }
+    #loader.stage2 .side-oval.right{
+      transform: translateX(0) scaleY(1);
+      transition: transform 1100ms var(--ease);
+    }
+
+    .hint{
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      font-size: 12px;
+      opacity: .35;
+      z-index: 10001;
+      user-select: none;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .square, .rect, .side-oval { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Real page behind the loader -->
+  <main id="site">
+    <section class="hero">
+      <h1>Your Website</h1>
+      <p>
+        During the loader you shouldn’t be able to scroll. After the loader is gone,
+        scrolling should work (this page is intentionally tall).
+      </p>
+
+      <div class="card-row">
+        <div class="card"><strong>Card 1</strong><br/>Some content…</div>
+        <div class="card"><strong>Card 2</strong><br/>Some content…</div>
+        <div class="card"><strong>Card 3</strong><br/>Some content…</div>
+      </div>
+    </section>
+
+    <div class="spacer">SCROLL TEST ZONE</div>
+    <div class="spacer">MORE SCROLL TEST</div>
+  </main>
+
+  <!-- Loader overlay -->
+  <div id="loader" role="dialog" aria-modal="true" aria-label="Loading">
+
+    <!-- ✅ FULLSCREEN SVG COVER + CUTOUT -->
+    <svg id="maskSvg" class="mask-svg" aria-hidden="true">
+      <defs>
+        <mask id="revealMask" maskUnits="userSpaceOnUse">
+          <!-- white = keep cover -->
+          <rect id="maskBase" x="0" y="0" width="0" height="0" fill="white"></rect>
+          <!-- black = hole/window -->
+          <rect id="maskWindow" x="0" y="0" width="0" height="0" fill="black"></rect>
+        </mask>
+      </defs>
+
+      <!-- white cover that gets a hole punched -->
+      <rect id="coverRect" x="0" y="0" width="0" height="0" fill="#ffffff" mask="url(#revealMask)"></rect>
+    </svg>
+
+    <div class="side-oval left" aria-hidden="true"></div>
+    <div class="side-oval right" aria-hidden="true"></div>
+
+    <div class="stage">
+      <div class="square-wrap">
+        <div class="behind-clip" aria-hidden="true">
+          <div class="rect"></div>
+        </div>
+
+        <div class="square" aria-hidden="true">
+          <div class="fill" id="fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint">Loader = white cover, CUTOUT window reveals site</div>
+  </div>
+
+  <script>
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+    function lockScroll(){
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.dataset.scrollY = String(y);
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+    }
+
+    function unlockScroll(){
+      const y = parseInt(document.body.dataset.scrollY || "0", 10);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.removeAttribute("data-scroll-y");
+      window.scrollTo(0, y);
+    }
+
+    function animateFill(el, duration = 1400) {
+      return new Promise(resolve => {
+        const anim = el.animate(
+          [{ height: "0%" }, { height: "100%" }],
+          { duration, easing: "linear", fill: "forwards" }
+        );
+        anim.onfinish = resolve;
+      });
+    }
+
+    function sizeMaskToViewport() {
+      const svg   = document.getElementById("maskSvg");
+      const base  = document.getElementById("maskBase");
+      const cover = document.getElementById("coverRect");
+
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      // coordinate system = pixels
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+      // base + cover sizes
+      base.setAttribute("x", 0);
+      base.setAttribute("y", 0);
+      base.setAttribute("width", w);
+      base.setAttribute("height", h);
+
+      cover.setAttribute("x", 0);
+      cover.setAttribute("y", 0);
+      cover.setAttribute("width", w);
+      cover.setAttribute("height", h);
+
+      return { w, h };
+    }
+
+    function animateWindowPx(rectEl, from, to, duration = 950, ease = (t)=>1-Math.pow(1-t,3)) {
+      return new Promise(resolve => {
+        const t0 = performance.now();
+
+        function frame(now){
+          const t = Math.min(1, (now - t0) / duration);
+          const e = ease(t);
+
+          const x = from.x + (to.x - from.x) * e;
+          const y = from.y + (to.y - from.y) * e;
+          const w = from.w + (to.w - from.w) * e;
+          const h = from.h + (to.h - from.h) * e;
+
+          rectEl.setAttribute("x", x);
+          rectEl.setAttribute("y", y);
+          rectEl.setAttribute("width", w);
+          rectEl.setAttribute("height", h);
+
+          if (t < 1) requestAnimationFrame(frame);
+          else resolve();
+        }
+
+        requestAnimationFrame(frame);
+      });
+    }
+
+    (async function runLoader() {
+      const loader = document.getElementById("loader");
+      const fill   = document.getElementById("fill");
+      const maskWindow = document.getElementById("maskWindow");
+
+      lockScroll();
+
+      // ✅ COVER FULLSCREEN FROM FRAME 1 (so you can't see site early)
+      let { w, h } = sizeMaskToViewport();
+      const onResize = () => { ({ w, h } = sizeMaskToViewport()); };
+      window.addEventListener("resize", onResize, { passive: true });
+
+      // ensure: no hole at start
+      maskWindow.setAttribute("x", 0);
+      maskWindow.setAttribute("y", 0);
+      maskWindow.setAttribute("width", 0);
+      maskWindow.setAttribute("height", 0);
+
+      // 1) square fill bottom -> top
+      await animateFill(fill, 1400);
+      await sleep(120);
+
+      // 2) rectangle + square move, 3) side ovals come in
+      loader.classList.add("stage2");
+      await sleep(1200);
+
+      // hold a beat
+      await sleep(700);
+
+      // 4) ✅ REAL CUTOUT reveal (NO fading, just mask expands then loader removes)
+      const startSize = 16; // set to 96 to start at square-ish size
+      const from = {
+        x: (w - startSize) / 2,
+        y: (h - startSize) / 2,
+        w: startSize,
+        h: startSize
+      };
+
+      const to = { x: 0, y: 0, w, h };
+      await animateWindowPx(maskWindow, from, to, 950);
+
+      window.removeEventListener("resize", onResize);
+
+      // cleanup
+      loader.remove();
+      unlockScroll();
+    })();
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loader Prototype (True Mask Reveal)</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+
+      --square: 96px;
+      --gap: 8px;
+      --rectW: 170px;
+      --rectH: 96px;
+
+      --ovalW: 110px;
+      --ovalInset: 0px;
+      --ease: cubic-bezier(.22,.9,.18,1);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+
+    /* ✅ 1) screen white from the beginning */
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow:auto; /* will be locked by #loader */
+    }
+
+    /* --------------------------
+       Real page content (scrollable)
+    -------------------------- */
+    #site{
+      min-height: 260vh; /* ✅ scroll test */
+      padding: 64px clamp(18px, 5vw, 80px);
+      position: relative;
+      z-index: 0;
+    }
+    .hero{
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 56px 0 28px;
+    }
+    .hero h1{
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero p{
+      margin: 0 0 20px;
+      font-size: 18px;
+      opacity: .78;
+      max-width: 65ch;
+    }
+    .card-row{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .card{
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(0,0,0,.02);
+      min-height: 120px;
+    }
+    .spacer{
+      height: 120vh;
+      max-width: 1000px;
+      margin: 24px auto;
+      border-radius: 18px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
+      border: 1px dashed rgba(0,0,0,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(0,0,0,.55);
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    @media (max-width: 900px){
+      .card-row{ grid-template-columns: 1fr; }
+    }
+
+    /* --------------------------
+       Loader overlay (white screen)
+       ✅ 2) Loader itself is the white “cover” that we will mask through
+    -------------------------- */
+    #loader{
+      position: fixed;
+      inset: 0;
+      background: var(--bg);     /* ✅ white from start */
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* ✅ THIS is the actual reveal: we clip the loader away to show the site behind it */
+    #loader{
+      /* start: nothing revealed (full cover) */
+      clip-path: inset(0 0 0 0);
+      transition: clip-path 900ms var(--ease);
+      will-change: clip-path;
+    }
+    /* center block “window” reveals site */
+    #loader.reveal-block{
+      clip-path: inset(42% 10% 42% 10%);
+    }
+    /* full reveal (loader clipped away completely) */
+    #loader.reveal-full{
+      clip-path: inset(0 0 100% 0); /* effectively disappears upward */
+    }
+
+    /* side half-ovals */
+    .side-oval{
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: var(--ovalW);
+      background: var(--ink);
+      z-index: 9998;
+      opacity: 1;
+      transform-origin: top;
+    }
+    .side-oval.left{
+      left: var(--ovalInset);
+      border-top-right-radius: 999px;
+      border-bottom-right-radius: 999px;
+      transform: translateX(-130%) scaleY(0);
+    }
+    .side-oval.right{
+      right: var(--ovalInset);
+      border-top-left-radius: 999px;
+      border-bottom-left-radius: 999px;
+      transform: translateX(130%) scaleY(0);
+    }
+
+    /* center stage group */
+    .stage{
+      position: relative;
+      z-index: 10000;
+      width: calc(var(--square) + var(--gap) + var(--rectW));
+      height: max(var(--square), var(--rectH));
+      pointer-events:none;
+    }
+
+    /* square is dead center initially */
+    .square-wrap{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(var(--square) + var(--gap) + var(--rectW));
+      height: var(--square);
+    }
+
+    .square{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--square);
+      height: var(--square);
+      border: 2px solid var(--ink);
+      background: transparent;
+      overflow: hidden;
+      transform: translateX(0);
+      transition: transform 900ms var(--ease);
+    }
+    .square .fill{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 0%;
+      background: var(--ink);
+    }
+
+    /* rectangle behind square (masked) */
+    .behind-clip{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(var(--square) + var(--gap) + var(--rectW));
+      height: var(--square);
+      overflow: hidden;
+      pointer-events:none;
+    }
+    .rect{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--rectW);
+      height: var(--rectH);
+      border: 2px solid var(--ink);
+      background: transparent;
+      transform: translateX(calc(-1 * var(--rectW)));
+      transition: transform 900ms var(--ease);
+    }
+
+    /* stage 2: square left, rect out, ovals in */
+    #loader.stage2 .square{
+      transform: translateX(calc(-1 * (var(--rectW) + var(--gap))));
+    }
+    #loader.stage2 .rect{
+      transform: translateX(calc(var(--square) + var(--gap)));
+    }
+    #loader.stage2 .side-oval.left{
+      transform: translateX(0) scaleY(1);
+      transition: transform 1100ms var(--ease);
+    }
+    #loader.stage2 .side-oval.right{
+      transform: translateX(0) scaleY(1);
+      transition: transform 1100ms var(--ease);
+    }
+
+    /* optional debug */
+    .hint{
+      position: fixed;
+      left: 14px;
+      bottom: 12px;
+      font-size: 12px;
+      opacity: .35;
+      z-index: 10001;
+      user-select: none;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      #loader, .square, .rect, .side-oval { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Real page behind the loader -->
+  <main id="site">
+    <section class="hero">
+      <h1>Your Website</h1>
+      <p>
+        During the loader you shouldn’t be able to scroll. After the loader is gone,
+        scrolling should work (this page is intentionally tall).
+      </p>
+
+      <div class="card-row">
+        <div class="card"><strong>Card 1</strong><br/>Some content…</div>
+        <div class="card"><strong>Card 2</strong><br/>Some content…</div>
+        <div class="card"><strong>Card 3</strong><br/>Some content…</div>
+      </div>
+    </section>
+
+    <div class="spacer">SCROLL TEST ZONE</div>
+    <div class="spacer">MORE SCROLL TEST</div>
+  </main>
+
+  <!-- Loader overlay -->
+  <div id="loader" role="dialog" aria-modal="true" aria-label="Loading">
+    <div class="side-oval left" aria-hidden="true"></div>
+    <div class="side-oval right" aria-hidden="true"></div>
+
+    <div class="stage">
+      <div class="square-wrap">
+        <div class="behind-clip" aria-hidden="true">
+          <div class="rect"></div>
+        </div>
+
+        <div class="square" aria-hidden="true">
+          <div class="fill" id="fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint">Loader = white cover, clipped away to reveal site</div>
+  </div>
+
+  <script>
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+    function lockScroll(){
+      // ✅ reliable scroll lock (keeps current position)
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.dataset.scrollY = String(y);
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${y}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+    }
+
+    function unlockScroll(){
+      // ✅ restore scroll and allow page to move again
+      const y = parseInt(document.body.dataset.scrollY || "0", 10);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.removeAttribute("data-scroll-y");
+      window.scrollTo(0, y);
+    }
+
+    function animateFill(el, duration = 1400) {
+      return new Promise(resolve => {
+        const anim = el.animate(
+          [{ height: "0%" }, { height: "100%" }],
+          { duration, easing: "linear", fill: "forwards" }
+        );
+        anim.onfinish = resolve;
+      });
+    }
+
+    (async function runLoader() {
+      const loader = document.getElementById("loader");
+      const fill   = document.getElementById("fill");
+
+      // ✅ lock scroll until loader exits (this fixes the “scroll not working after” issue)
+      lockScroll();
+
+      // 1) square fill bottom -> top
+      await animateFill(fill, 1400);
+      await sleep(120);
+
+      // 2) rectangle + square move, 3) side ovals come in
+      loader.classList.add("stage2");
+      await sleep(1200);
+
+      // hold a beat
+      await sleep(700);
+
+      // 4) ✅ TRUE mask into site: clip the LOADER away to reveal what's behind
+      loader.classList.add("reveal-block");
+      await sleep(800);   // show the center block for a moment
+
+      loader.classList.remove("reveal-block");
+      loader.classList.add("reveal-full");
+      await sleep(950);
+
+      // cleanup
+      loader.remove();
+      unlockScroll();
+    })();
+  </script>
+</body>
+</html>
