@@ -3,249 +3,496 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Loader Prototype (True Mask Reveal)</title>
+  <title>Loader – Center Square + Mask-Up Text Reveal + 2-Phase Window</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#ffffff;
       --ink:#111111;
 
-      --square: 96px;
-      --gap: 8px;
-      --rectW: 170px;
-      --rectH: 96px;
+      --square: 96;   /* px */
+      --gap: 8;       /* px */
+      --rectW: 254;   /* px */
+      --rectH: 96;    /* px */
 
-      --ovalW: 110px;
-      --ovalInset: 0px;
-      --ease: cubic-bezier(.22,.9,.18,1);
+      --ovalW: 800;   /* wider side images */
     }
+    
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
 
-    /* ✅ 1) screen white from the beginning */
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--ink);
-      overflow:auto; /* will be locked by #loader */
+      overflow:auto;
     }
 
-    /* --------------------------
-       Real page content (scrollable)
-    -------------------------- */
+    /* ===================== NAVBAR ===================== */
+    .navbar{
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, calc(100% - 28px));
+      height: 84px;
+      border-radius: 25px;
+      background: rgba(85,85,85,0.45);
+      border: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 140px;
+    }
+
+    .nav-logo img{
+      height: 48px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      transform: translateY(-3px);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 12px;
+      text-decoration:none;
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      border: 1px solid rgba(255,255,255,0.0);
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover{
+      color:rgb(201, 201, 201);
+    }
+
+    .nav-link--contact{
+      background: rgba(255,255,255,0.95);
+      color: #111;
+      border: 1px solid rgba(255,255,255,0.65);
+      padding: 0 16px;
+      
+    }
+    .nav-link--contact:hover{
+      background: rgba(255,255,255,1);
+      border-color: rgba(255,255,255,0.9);
+    }
+
+    @media (max-width: 560px){
+      .nav-link--hide-sm{ display:none; }
+    }
+
+    .nav-link--has-chevron{
+      gap: 3px;
+    }
+
+    .nav-chevron{
+      width: 16px;
+      height: 16px;
+      display: block;
+      transform: translateY(0px); /* tiny optical alignment */
+      opacity: 0.9;
+    }
+
+    .nav-link:hover .nav-chevron{
+      opacity: 1;
+    }
+    .nav-link--has-chevron .nav-chevron path{
+      stroke: #90ff30; /* army green */
+    }
+
+    /* ---------- Site (behind loader) ---------- */
     #site{
-      min-height: 260vh; /* ✅ scroll test */
-      padding: 64px clamp(18px, 5vw, 80px);
-      position: relative;
-      z-index: 0;
+      min-height: 260vh;
+      padding: 0;
     }
+
     .hero{
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 56px 0 28px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      background: url("images/Green bg.jpg") center center / cover no-repeat;
+      position: relative;
+
+      padding-top: 96px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
+
+    .hero::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.012);
+    }
+
+    .hero > *{
+      position: relative;
+      z-index: 2;
+      color: white;
+    }
+
     .hero h1{
-      font-size: clamp(34px, 4vw, 56px);
-      line-height: 1.05;
-      margin: 0 0 12px;
-      letter-spacing: -0.02em;
+      font-size: clamp(34px, 7vw, 76px);
+      line-height:1.05;
+      margin:0 0 12px;
+      letter-spacing:-0.02em;
+      
     }
     .hero p{
-      margin: 0 0 20px;
-      font-size: 18px;
-      opacity: .78;
-      max-width: 65ch;
+      margin:0 0 20px;
+      font-size:18px;
+      opacity:.78;
+      max-width:65ch;
     }
+
     .card-row{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 28px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:16px;
+      margin-top:28px;
+      width: min(1000px, 100%);
     }
     .card{
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 16px;
-      padding: 16px;
-      background: rgba(0,0,0,.02);
-      min-height: 120px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:16px;
+      padding:16px;
+      background:rgba(0,0,0,.18);
+      min-height:120px;
+      color: rgba(255,255,255,0.92);
     }
+
     .spacer{
-      height: 120vh;
-      max-width: 1000px;
-      margin: 24px auto;
-      border-radius: 18px;
+      height:120vh;
+      max-width:1000px;
+      margin:24px auto;
+      border-radius:18px;
       background: linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
-      border: 1px dashed rgba(0,0,0,.18);
+      border:1px dashed rgba(0,0,0,.18);
       display:flex;
       align-items:center;
       justify-content:center;
       color: rgba(0,0,0,.55);
-      font-weight: 600;
-      letter-spacing: .02em;
+      font-weight:600;
+      letter-spacing:.02em;
     }
+
     @media (max-width: 900px){
       .card-row{ grid-template-columns: 1fr; }
     }
 
-    /* --------------------------
-       Loader overlay (white screen)
-       ✅ 2) Loader itself is the white “cover” that we will mask through
-    -------------------------- */
-    #loader{
-      position: fixed;
-      inset: 0;
-      background: var(--bg);     /* ✅ white from start */
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-
-    /* ✅ THIS is the actual reveal: we clip the loader away to show the site behind it */
-    #loader{
-      /* start: nothing revealed (full cover) */
-      clip-path: inset(0 0 0 0);
-      transition: clip-path 900ms var(--ease);
-      will-change: clip-path;
-    }
-    /* center block “window” reveals site */
-    #loader.reveal-block{
-      clip-path: inset(42% 10% 42% 10%);
-    }
-    /* full reveal (loader clipped away completely) */
-    #loader.reveal-full{
-      clip-path: inset(0 0 100% 0); /* effectively disappears upward */
-    }
-
-    /* side half-ovals */
-    .side-oval{
-      position: fixed;
-      top: 0;
-      height: 100vh;
-      width: var(--ovalW);
-      background: var(--ink);
-      z-index: 9998;
-      opacity: 1;
-      transform-origin: top;
-    }
-    .side-oval.left{
-      left: var(--ovalInset);
-      border-top-right-radius: 999px;
-      border-bottom-right-radius: 999px;
-      transform: translateX(-130%) scaleY(0);
-    }
-    .side-oval.right{
-      right: var(--ovalInset);
-      border-top-left-radius: 999px;
-      border-bottom-left-radius: 999px;
-      transform: translateX(130%) scaleY(0);
-    }
-
-    /* center stage group */
-    .stage{
-      position: relative;
-      z-index: 10000;
-      width: calc(var(--square) + var(--gap) + var(--rectW));
-      height: max(var(--square), var(--rectH));
+    /* ---------- SVG Loader Overlay ---------- */
+    #loaderSvg{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:9999;
+      display:block;
       pointer-events:none;
-    }
-
-    /* square is dead center initially */
-    .square-wrap{
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: calc(var(--square) + var(--gap) + var(--rectW));
-      height: var(--square);
-    }
-
-    .square{
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: var(--square);
-      height: var(--square);
-      border: 2px solid var(--ink);
-      background: transparent;
-      overflow: hidden;
-      transform: translateX(0);
-      transition: transform 900ms var(--ease);
-    }
-    .square .fill{
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 0%;
-      background: var(--ink);
-    }
-
-    /* rectangle behind square (masked) */
-    .behind-clip{
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: calc(var(--square) + var(--gap) + var(--rectW));
-      height: var(--square);
-      overflow: hidden;
-      pointer-events:none;
-    }
-    .rect{
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: var(--rectW);
-      height: var(--rectH);
-      border: 2px solid var(--ink);
-      background: transparent;
-      transform: translateX(calc(-1 * var(--rectW)));
-      transition: transform 900ms var(--ease);
-    }
-
-    /* stage 2: square left, rect out, ovals in */
-    #loader.stage2 .square{
-      transform: translateX(calc(-1 * (var(--rectW) + var(--gap))));
-    }
-    #loader.stage2 .rect{
-      transform: translateX(calc(var(--square) + var(--gap)));
-    }
-    #loader.stage2 .side-oval.left{
-      transform: translateX(0) scaleY(1);
-      transition: transform 1100ms var(--ease);
-    }
-    #loader.stage2 .side-oval.right{
-      transform: translateX(0) scaleY(1);
-      transition: transform 1100ms var(--ease);
-    }
-
-    /* optional debug */
-    .hint{
-      position: fixed;
-      left: 14px;
-      bottom: 12px;
-      font-size: 12px;
-      opacity: .35;
-      z-index: 10001;
-      user-select: none;
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      #loader, .square, .rect, .side-oval { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Real page behind the loader -->
+
+  <!-- ✅ Fixed Navbar -->
+  <header class="navbar" aria-label="Primary">
+    <div class="nav-logo">
+      <img src="images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+    </div>
+
+    <nav class="nav-links">
+      <a class="nav-link nav-link--hide-sm" href="#about">About</a>
+  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#services" data-dropdown="services">
+  <span class="nav-link__label">Consulting</span>
+  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+<a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#news" data-dropdown="news">
+  <span class="nav-link__label">Advising</span>
+  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+      
+      <a class="nav-link" href="#home">News</a>
+      <a class="nav-link nav-link--contact" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ✅ Navbar Dropdown (Services / News) -->
+<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
+  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
+    <!-- LEFT COLUMN -->
+    <div class="nav-dd-left" id="navDdLeft">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="nav-dd-right" id="navDdRight">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ===================== NAV DROPDOWN ===================== */
+.nav-dropdown-wrap{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(18px + 84px + 10px); /* navbar top + height + gap */
+  width: min(900px, calc(100% - 28px));
+  z-index: 49; /* under navbar (navbar is 50) */
+  pointer-events: none; /* only clickable when open */
+}
+
+.nav-dropdown{
+  border-radius: 25px;
+  background: rgba(85,85,85,0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+
+  padding: 16px;
+
+  /* animation */
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .18s ease, transform .18s ease;
+
+  /* optional subtle border */
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-dropdown-wrap.is-open{
+  pointer-events: auto;
+}
+.nav-dropdown-wrap.is-open .nav-dropdown{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LEFT */
+.nav-dd-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-dd-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 10px 14px;
+  border-radius: 16px;
+
+  background: rgba(33, 33, 33, 0.943);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.nav-dd-item:hover{
+  transform: translateY(-1px);
+  background: rgba(33, 33, 33, 0.943);
+  border-color: rgba(255,255,255,0.18);
+  color:#90ff30;
+}
+
+.nav-dd-item .dd-arrow{
+  width: 18px;
+  height: 18px;
+  opacity: 0.95;
+}
+.nav-dd-item .dd-arrow path{
+  stroke: rgba(255,255,255,0.92);
+}
+.nav-dd-item:hover .dd-arrow path{
+  stroke: #90ff30;
+}
+
+
+/* RIGHT */
+.nav-dd-right{
+  padding: 6px 4px 6px 2px;
+  color: rgba(255,255,255,0.92);
+}
+
+.nav-dd-title{
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.nav-dd-desc{
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.78;
+  max-width: 48ch;
+}
+
+.nav-dd-links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.nav-dd-greenlink{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #90ff30;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.nav-dd-greenlink:hover{
+  text-decoration: underline;
+}
+
+.nav-dd-greenlink svg{
+  width: 16px;
+  height: 16px;
+}
+.nav-dd-greenlink svg path{
+  stroke: #90ff30;
+}
+
+/* Mobile stacking */
+@media (max-width: 720px){
+  .nav-dropdown{
+    grid-template-columns: 1fr;
+  }
+}
+
+.text-highlight {
+  background: linear-gradient(90deg, #52b000 0%, #90ff30 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.hero-scroll-indicator{
+  margin-top: 0px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero-chevron{
+  width: 116px;
+  height: 116px;
+}
+
+.hero-chevron path{
+  stroke: #ffffff; /* army green */
+}
+.hero{
+  position: relative;
+  overflow: hidden; /* keeps canvas clean inside hero */
+}
+
+/* ✅ Canvas overlay: above background, below content */
+#heroGrid{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;            /* sits above background */
+  pointer-events: none;  /* doesn't block clicks */
+}
+
+/* your overlay tint stays above canvas */
+.hero::before{
+  z-index: 2;
+}
+
+/* content stays above everything */
+.hero > *{
+  position: relative;
+  z-index: 3;
+}
+</style>
+
   <main id="site">
-    <section class="hero">
-      <h1>Your Website</h1>
-      <p>
-        During the loader you shouldn’t be able to scroll. After the loader is gone,
-        scrolling should work (this page is intentionally tall).
-      </p>
+    <section class="hero" id="home">
+        <canvas id="heroGrid" aria-hidden="true"></canvas>
+      <h1><span class="text-highlight">Technology</span> that <br>stands up to scruitiny.</h1>
+
+      <div class="hero-scroll-indicator">
+        <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+          <path
+            d="M128 192 L256 320 L384 192"
+            fill="none"
+            stroke-width="64"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+
+      <p>During loader you shouldn’t be able to scroll. After loader is gone, scrolling should work.</p>
 
       <div class="card-row">
         <div class="card"><strong>Card 1</strong><br/>Some content…</div>
@@ -254,35 +501,69 @@
       </div>
     </section>
 
-    <div class="spacer">SCROLL TEST ZONE</div>
-    <div class="spacer">MORE SCROLL TEST</div>
+    <div class="spacer" id="services">SCROLL TEST ZONE</div>
+    <div class="spacer" id="news">MORE SCROLL TEST</div>
+    <div class="spacer" id="about">ABOUT SECTION PLACEHOLDER</div>
+    <div class="spacer" id="contact">CONTACT SECTION PLACEHOLDER</div>
   </main>
 
-  <!-- Loader overlay -->
-  <div id="loader" role="dialog" aria-modal="true" aria-label="Loading">
-    <div class="side-oval left" aria-hidden="true"></div>
-    <div class="side-oval right" aria-hidden="true"></div>
+  <!-- ✅ One SVG "sheet" (white + loader content) that gets cut out by expanding window -->
+  <svg id="loaderSvg" aria-hidden="true">
+    <defs>
+      <!-- Window mask: white = keep sheet, black = hole -->
+      <mask id="revealMask" maskUnits="userSpaceOnUse">
+        <rect id="maskBase" x="0" y="0" width="1" height="1" fill="white"></rect>
+        <rect id="maskWindow" x="0" y="0" width="0" height="0" fill="black"></rect>
+      </mask>
 
-    <div class="stage">
-      <div class="square-wrap">
-        <div class="behind-clip" aria-hidden="true">
-          <div class="rect"></div>
-        </div>
+      <!-- Clip for square reveal (bottom -> top) -->
+      <clipPath id="squareClip">
+        <rect id="squareClipRect" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
 
-        <div class="square" aria-hidden="true">
-          <div class="fill" id="fill"></div>
-        </div>
-      </div>
-    </div>
+      <!-- ✅ Clip for text reveal (bottom -> top) -->
+      <clipPath id="rectRevealClip">
+        <rect id="rectRevealRect" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
+    </defs>
 
-    <div class="hint">Loader = white cover, clipped away to reveal site</div>
-  </div>
+    <g id="sheet" mask="url(#revealMask)">
+      <!-- White background sheet -->
+      <rect id="cover" x="0" y="0" width="1" height="1" fill="#ffffff"></rect>
+
+      <!-- Side ovals as images -->
+      <image id="ovalLImg" href="images/img3.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
+      <image id="ovalRImg" href="images/img4.png" x="0" y="0" width="180" height="1" preserveAspectRatio="none"></image>
+
+      <!-- Center stage -->
+      <g id="stage">
+        <!-- ✅ Text/logo reveals upward from behind a mask -->
+        <g clip-path="url(#rectRevealClip)">
+          <image id="rectImg" href="images/Griffin Logo TextGreen.png" x="0" y="0" width="400" height="96" preserveAspectRatio="none"></image>
+        </g>
+
+        <!-- Square reveals bottom->top via clipPath -->
+        <image id="squareImg" href="images/Griffin IconGreen.jpg"
+               x="0" y="0" width="96" height="96"
+               preserveAspectRatio="none"
+               clip-path="url(#squareClip)"></image>
+      </g>
+    </g>
+  </svg>
 
   <script>
     const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
+    const easeInOutCubic = (t) =>
+  t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+
+    // Easing helpers (no overshoot)
+    const easeLinear   = (t) => t;
+    const easeSoftOut  = (t) => 1 - Math.pow(1 - t, 4.5);
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    const easeOutQuint = (t) => 1 - Math.pow(1 - t, 6);
 
     function lockScroll(){
-      // ✅ reliable scroll lock (keeps current position)
       const y = window.scrollY || document.documentElement.scrollTop || 0;
       document.body.dataset.scrollY = String(y);
       document.body.style.position = "fixed";
@@ -291,9 +572,7 @@
       document.body.style.right = "0";
       document.body.style.width = "100%";
     }
-
     function unlockScroll(){
-      // ✅ restore scroll and allow page to move again
       const y = parseInt(document.body.dataset.scrollY || "0", 10);
       document.body.style.position = "";
       document.body.style.top = "";
@@ -304,46 +583,648 @@
       window.scrollTo(0, y);
     }
 
-    function animateFill(el, duration = 1400) {
-      return new Promise(resolve => {
-        const anim = el.animate(
-          [{ height: "0%" }, { height: "100%" }],
-          { duration, easing: "linear", fill: "forwards" }
-        );
-        anim.onfinish = resolve;
+    function animateAttrs(el, from, to, duration, easeFn = (x)=>x){
+      return new Promise(resolve=>{
+        const t0 = performance.now();
+        function frame(now){
+          const t = Math.min(1, (now - t0)/duration);
+          const e = easeFn(t);
+
+          if ("x" in from) el.setAttribute("x", from.x + (to.x - from.x)*e);
+          if ("y" in from) el.setAttribute("y", from.y + (to.y - from.y)*e);
+          if ("w" in from) el.setAttribute("width",  from.w + (to.w - from.w)*e);
+          if ("h" in from) el.setAttribute("height", from.h + (to.h - from.h)*e);
+
+          if ("tx" in from || "sx" in from || "sy" in from || "tx" in to || "sx" in to || "sy" in to){
+            const tx = (from.tx ?? 0) + ((to.tx ?? 0) - (from.tx ?? 0))*e;
+            const hasScale = ("sx" in from) || ("sy" in from) || ("sx" in to) || ("sy" in to);
+            if (hasScale){
+              const sx = (from.sx ?? 1) + ((to.sx ?? 1) - (from.sx ?? 1))*e;
+              const sy = (from.sy ?? 1) + ((to.sy ?? 1) - (from.sy ?? 1))*e;
+              el.setAttribute("transform", `translate(${tx},0) scale(${sx},${sy})`);
+            } else {
+              el.setAttribute("transform", `translate(${tx},0)`);
+            }
+          }
+
+          if ("op" in from){
+            const op = from.op + (to.op - from.op)*e;
+            el.setAttribute("opacity", op);
+          }
+
+          if(t < 1) requestAnimationFrame(frame);
+          else resolve();
+        }
+        requestAnimationFrame(frame);
       });
     }
 
-    (async function runLoader() {
-      const loader = document.getElementById("loader");
-      const fill   = document.getElementById("fill");
+    function sizeScene(){
+      const svg = document.getElementById("loaderSvg");
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
 
-      // ✅ lock scroll until loader exits (this fixes the “scroll not working after” issue)
+      const root = getComputedStyle(document.documentElement);
+      const sq    = parseFloat(root.getPropertyValue("--square")) || 96;
+      const gap   = parseFloat(root.getPropertyValue("--gap")) || 8;
+      const rectW = parseFloat(root.getPropertyValue("--rectW")) || 254;
+      const rectH = parseFloat(root.getPropertyValue("--rectH")) || 96;
+      const ovalW = parseFloat(root.getPropertyValue("--ovalW")) || 800;
+
+      // base mask + cover
+      const maskBase = document.getElementById("maskBase");
+      const cover = document.getElementById("cover");
+      maskBase.setAttribute("width", w);
+      maskBase.setAttribute("height", h);
+      cover.setAttribute("width", w);
+      cover.setAttribute("height", h);
+
+      // Stage 1: square alone centered
+      const sqX = (w - sq)/2;
+      const sqY = (h - sq)/2;
+
+      // Stage 2: centered group (square + gap + rect)
+      const groupW  = sq + gap + rectW;
+      const groupH  = Math.max(sq, rectH);
+      const gxGroup = (w - groupW)/2;
+      const gyGroup = (h - groupH)/2;
+
+      // rect pinned to square: start + final
+      const rectStartX = sqX + sq + gap;
+      const rectStartY = sqY + (sq - rectH) / 2;
+
+      const rectFinalX = gxGroup + sq + gap;
+      const rectFinalY = gyGroup + (sq - rectH) / 2;
+
+      const squareImg = document.getElementById("squareImg");
+      squareImg.setAttribute("x", sqX);
+      squareImg.setAttribute("y", sqY);
+      squareImg.setAttribute("width", sq);
+      squareImg.setAttribute("height", sq);
+      squareImg.setAttribute("opacity", 1);
+
+      const squareClipRect = document.getElementById("squareClipRect");
+      squareClipRect.setAttribute("x", sqX);
+      squareClipRect.setAttribute("y", sqY + sq);
+      squareClipRect.setAttribute("width", sq);
+      squareClipRect.setAttribute("height", 0);
+
+      const rectImg = document.getElementById("rectImg");
+      rectImg.setAttribute("width", rectW);
+      rectImg.setAttribute("height", rectH);
+      rectImg.setAttribute("x", rectStartX);
+      rectImg.setAttribute("y", rectStartY);
+      rectImg.setAttribute("opacity", 1);
+
+      const rectRevealRect = document.getElementById("rectRevealRect");
+      rectRevealRect.setAttribute("x", rectStartX);
+      rectRevealRect.setAttribute("y", rectStartY + rectH);
+      rectRevealRect.setAttribute("width", rectW);
+      rectRevealRect.setAttribute("height", 0);
+
+      const ovalLImg = document.getElementById("ovalLImg");
+      const ovalRImg = document.getElementById("ovalRImg");
+      ovalLImg.setAttribute("width", ovalW);
+      ovalLImg.setAttribute("height", h);
+      ovalLImg.setAttribute("x", 0);
+      ovalLImg.setAttribute("y", 0);
+
+      ovalRImg.setAttribute("width", ovalW);
+      ovalRImg.setAttribute("height", h);
+      ovalRImg.setAttribute("x", w - ovalW);
+      ovalRImg.setAttribute("y", 0);
+
+      return { w, h, sq, gap, rectW, rectH, ovalW, sqX, sqY, gxGroup, gyGroup, rectStartX, rectStartY, rectFinalX, rectFinalY };
+    }
+
+    (async function run(){
       lockScroll();
 
-      // 1) square fill bottom -> top
-      await animateFill(fill, 1400);
+      let S = sizeScene();
+      const onResize = () => { S = sizeScene(); };
+      window.addEventListener("resize", onResize, { passive:true });
+
+      const maskWindow = document.getElementById("maskWindow");
+      maskWindow.setAttribute("x", 0);
+      maskWindow.setAttribute("y", 0);
+      maskWindow.setAttribute("width", 0);
+      maskWindow.setAttribute("height", 0);
+
+      const squareImg      = document.getElementById("squareImg");
+      const squareClipRect = document.getElementById("squareClipRect");
+      const rectImg        = document.getElementById("rectImg");
+      const rectRevealRect = document.getElementById("rectRevealRect");
+      const ovalLImg       = document.getElementById("ovalLImg");
+      const ovalRImg       = document.getElementById("ovalRImg");
+
+      // ovals start offscreen
+      ovalLImg.setAttribute("transform", `translate(${-S.ovalW},0)`);
+      ovalRImg.setAttribute("transform", `translate(${ S.ovalW},0)`);
+
+      // square reveal starts bottom -> top
+      squareClipRect.setAttribute("x", S.sqX);
+      squareClipRect.setAttribute("y", S.sqY + S.sq);
+      squareClipRect.setAttribute("width", S.sq);
+      squareClipRect.setAttribute("height", 0);
+
+      // rect reveal starts closed at bottom (pinned start)
+      rectRevealRect.setAttribute("x", S.rectStartX);
+      rectRevealRect.setAttribute("y", S.rectStartY + S.rectH);
+      rectRevealRect.setAttribute("width", S.rectW);
+      rectRevealRect.setAttribute("height", 0);
+
+      // 1) reveal square (BOTTOM -> TOP)
+      await animateAttrs(
+        squareClipRect,
+        { x: S.sqX, y: S.sqY + S.sq, w: S.sq, h: 0 },
+        { x: S.sqX, y: S.sqY,        w: S.sq, h: S.sq },
+        1400,
+        easeLinear
+      );
+
       await sleep(120);
 
-      // 2) rectangle + square move, 3) side ovals come in
-      loader.classList.add("stage2");
-      await sleep(1200);
+      // 2) move into centered pair
+      const sqToX = S.gxGroup;
+      const moveDuration = 900;
 
-      // hold a beat
-      await sleep(700);
+      const moveSquare = Promise.all([
+        animateAttrs(
+          squareImg,
+          { x:S.sqX, y:S.sqY, w:S.sq, h:S.sq },
+          { x:sqToX, y:S.gyGroup, w:S.sq, h:S.sq },
+          moveDuration,
+          easeInOutCubic
+        ),
+        animateAttrs(
+          squareClipRect,
+          { x:S.sqX, y:S.sqY, w:S.sq, h:S.sq },
+          { x:sqToX, y:S.gyGroup, w:S.sq, h:S.sq },
+          moveDuration,
+          easeInOutCubic
+        )
+      ]);
 
-      // 4) ✅ TRUE mask into site: clip the LOADER away to reveal what's behind
-      loader.classList.add("reveal-block");
-      await sleep(800);   // show the center block for a moment
+      const moveTextWithSquare = animateAttrs(
+        rectImg,
+        { x:S.rectStartX, y:S.rectStartY, w:S.rectW, h:S.rectH },
+        { x:S.rectFinalX, y:S.rectFinalY, w:S.rectW, h:S.rectH },
+        moveDuration,
+        easeInOutCubic
+      );
 
-      loader.classList.remove("reveal-block");
-      loader.classList.add("reveal-full");
-      await sleep(950);
+      const revealTextPinned = animateAttrs(
+        rectRevealRect,
+        { x:S.rectStartX, y:S.rectStartY + S.rectH, w:S.rectW, h:0 },
+        { x:S.rectFinalX, y:S.rectFinalY,           w:S.rectW, h:S.rectH },
+        moveDuration,
+        easeInOutCubic
+      );
 
-      // cleanup
-      loader.remove();
+      const ovalsIn = Promise.all([
+        animateAttrs(ovalLImg, { tx:-S.ovalW }, { tx:0 }, 1100, easeOut),
+        animateAttrs(ovalRImg, { tx: S.ovalW }, { tx:0 }, 1100, easeOut),
+      ]);
+
+      await Promise.all([moveSquare, moveTextWithSquare, revealTextPinned, ovalsIn]);
+
+      // ✅ FADE OUT LOGO + ICON right before mask starts
+      await Promise.all([
+        animateAttrs(squareImg, { op: 1 }, { op: 0 }, 220, easeOutCubic),
+        animateAttrs(rectImg,   { op: 1 }, { op: 0 }, 220, easeOutCubic),
+      ]);
+
+      // 4) MASK: 2 phases
+      const startSize = 16;
+
+      const maskPhase1 = {
+        vw: 0.99,
+        vh: 0.005,
+        duration: 750,
+        ease: easeSoftOut,
+        hold: 120
+      };
+
+      const maskPhase2 = {
+        duration: 950,
+        ease: easeOutQuint
+      };
+
+      const midW = S.w * maskPhase1.vw;
+      const midH = S.h * maskPhase1.vh;
+      const midX = (S.w - midW) / 2;
+      const midY = (S.h - midH) / 2;
+
+      await animateAttrs(
+        maskWindow,
+        { x:(S.w-startSize)/2, y:(S.h-startSize)/2, w:startSize, h:startSize },
+        { x:midX, y:midY, w:midW, h:midH },
+        maskPhase1.duration,
+        maskPhase1.ease
+      );
+
+      if ((maskPhase1.hold ?? 0) > 0) await sleep(maskPhase1.hold);
+
+      await animateAttrs(
+        maskWindow,
+        { x:midX, y:midY, w:midW, h:midH },
+        { x:0, y:0, w:S.w, h:S.h },
+        maskPhase2.duration,
+        maskPhase2.ease
+      );
+
+      window.removeEventListener("resize", onResize);
+      document.getElementById("loaderSvg").remove();
       unlockScroll();
     })();
   </script>
+
+  <script>
+  // ===== SVG icons for dropdown rows =====
+  const ICON_RIGHT_ARROW = `
+    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  const ICON_UPRIGHT = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M7 17L17 7M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  // ===== Content models =====
+  const DROPDOWN_DATA = {
+    services: {
+      left: [
+        { label: "Mergers & Acquisition Support", href: "#services" },
+        { label: "Talent Acquisition & Assessment", href: "#services" },
+        { label: "Corporate Development & Strategic Planning", href: "#services" },
+        { label: "Business Development & Client Strategies", href: "#services" },
+        { label: "Capital Acquisition", href: "#services" },
+      ],
+      right: {
+        title: "General Consulting",
+        desc: "Explore how Griffin supports complex projects—bringing technical clarity, compliance support, and specialized expertise when you need it most.",
+        links: [
+          { label: "View Service Areas", href: "#services" },
+          { label: "Talk to an Expert", href: "#contact" },
+          { label: "Download Capability Sheet", href: "#contact" },
+        ]
+      }
+    },
+    news: {
+      left: [
+        { label: "NDT Level III Consulting & Support", href: "#news" },
+        { label: "Advanced NDT Subject Matter Experts", href: "#news" },
+        { label: "NDT Written Practice Review and Development", href: "#news" },
+        { label: "Next Level Advanced NDT Training Programs", href: "#news" },
+        { label: "Advanced NDT Technology Programs and Procedures", href: "#news" },
+        { label: "Automation, Robotics, and Advanced Imaging Systems", href: "#news" },
+      ],
+      right: {
+        title: "NDT Technical Advising",
+        desc: "Announcements, field insights, and updates from the Griffin team—plus highlights from the industries we serve.",
+        links: [
+          { label: "Read Recent Posts", href: "#news" },
+          { label: "Subscribe for Updates", href: "#contact" },
+          { label: "Media Inquiries", href: "#contact" },
+        ]
+      }
+    }
+  };
+
+  const dropdownWrap = document.getElementById("navDropdown");
+  const ddLeft = document.getElementById("navDdLeft");
+  const ddRight = document.getElementById("navDdRight");
+
+  let activeKey = null;
+
+  function renderDropdown(key){
+    const data = DROPDOWN_DATA[key];
+    if (!data) return;
+
+    // left buttons
+    ddLeft.innerHTML = data.left.map(item => `
+      <a class="nav-dd-item" href="${item.href}" data-dd-close>
+        <span>${item.label}</span>
+        ${ICON_RIGHT_ARROW}
+      </a>
+    `).join("");
+
+    // right content
+    ddRight.innerHTML = `
+      <div class="nav-dd-title">${data.right.title}</div>
+      <p class="nav-dd-desc">${data.right.desc}</p>
+      <div class="nav-dd-links">
+        ${data.right.links.map(l => `
+          <a class="nav-dd-greenlink" href="${l.href}" data-dd-close>
+            <span>${l.label}</span>
+            ${ICON_UPRIGHT}
+          </a>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  function openDropdown(key){
+    if (activeKey === key && dropdownWrap.classList.contains("is-open")) return;
+    activeKey = key;
+    renderDropdown(key);
+    dropdownWrap.classList.add("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDropdown(){
+    activeKey = null;
+    dropdownWrap.classList.remove("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "true");
+  }
+
+  // Open on click for the two triggers
+  document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
+    link.addEventListener("click", (e) => {
+      // prevent normal anchor jump when using dropdown
+      e.preventDefault();
+      const key = link.getAttribute("data-dropdown");
+      const isOpenSame = dropdownWrap.classList.contains("is-open") && activeKey === key;
+      if (isOpenSame) closeDropdown();
+      else openDropdown(key);
+    });
+  });
+
+  // Close when clicking outside navbar + dropdown
+  document.addEventListener("click", (e) => {
+    const navbar = document.querySelector(".navbar");
+    if (!dropdownWrap.classList.contains("is-open")) return;
+
+    const clickedInside =
+      dropdownWrap.contains(e.target) || (navbar && navbar.contains(e.target));
+
+    if (!clickedInside) closeDropdown();
+  });
+
+  // Close on Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
+  });
+
+  // Close when clicking dropdown items (so it navigates cleanly)
+  dropdownWrap.addEventListener("click", (e) => {
+    const closeEl = e.target.closest("[data-dd-close]");
+    if (closeEl) closeDropdown();
+  });
+
+  // Close dropdown when clicking non-dropdown nav links (Home/About/Contact)
+  document.querySelectorAll(".nav-link:not([data-dropdown])").forEach(link => {
+    link.addEventListener("click", () => closeDropdown());
+  });
+</script>
+<script>
+(() => {
+  const canvas = document.getElementById("heroGrid");
+  const hero = document.querySelector(".hero");
+  if (!canvas || !hero) return;
+
+  const ctx = canvas.getContext("2d");
+
+  // --------- Grid ---------
+  const GRID = { cell: 56, background: "rgba(0,0,0,0)" }; // transparent over hero bg
+  const TRACE_COLOR = "#90ff30";
+
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const rand = (a, b) => a + Math.random() * (b - a);
+
+  function hexToRgba(hex, a) {
+    const num = parseInt(hex.replace("#",""), 16);
+    const r = (num >> 16) & 255;
+    const g = (num >> 8) & 255;
+    const b = num & 255;
+    return `rgba(${r},${g},${b},${a})`;
+  }
+
+  function resize() {
+    // size to hero (not full window)
+    const r = hero.getBoundingClientRect();
+    const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+
+    canvas.width  = Math.floor(r.width * dpr);
+    canvas.height = Math.floor(r.height * dpr);
+    canvas.style.width  = r.width + "px";
+    canvas.style.height = r.height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  function gp(gx, gy) {
+    return { x: gx * GRID.cell, y: gy * GRID.cell };
+  }
+
+  function computeRegions() {
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+    const cols = Math.ceil(w / GRID.cell);
+    const rows = Math.ceil(h / GRID.cell);
+    const pad = 2;
+
+    return [{
+      x0: pad,
+      y0: pad,
+      x1: cols - pad,
+      y1: rows - pad
+    }];
+  }
+
+  let REGIONS = computeRegions();
+  window.addEventListener("resize", () => { REGIONS = computeRegions(); });
+
+  function makePathInRegion(region) {
+    const { x0, y0, x1, y1 } = region;
+    let x = Math.floor(rand(x0, x1));
+    let y = Math.floor(rand(y0, y1));
+
+    const pts = [[x, y]];
+    const steps = Math.floor(rand(7, 12));
+
+    for (let i = 0; i < steps; i++) {
+      const horiz = Math.random() > 0.5;
+      if (horiz) {
+        const nx = Math.floor(rand(x0, x1));
+        pts.push([nx, y]);
+        x = nx;
+      } else {
+        const ny = Math.floor(rand(y0, y1));
+        pts.push([x, ny]);
+        y = ny;
+      }
+    }
+
+    const sx = pts[0][0], sy = pts[0][1];
+    pts.push([sx, y]);
+    pts.push([sx, sy]);
+
+    return pts;
+  }
+
+  function buildPath(points) {
+    const segs = [];
+    let total = 0;
+
+    for (let i = 0; i < points.length - 1; i++) {
+      const a = points[i];
+      const b = points[i + 1];
+      const len = Math.abs(b[0] - a[0]) + Math.abs(b[1] - a[1]);
+      segs.push({ a, b, len, start: total, end: total + len });
+      total += len;
+    }
+    if (total < 1) total = 1;
+    return { segs, total };
+  }
+
+  function posOnPath(pathObj, dCells) {
+    const { segs, total } = pathObj;
+    let d = ((dCells % total) + total) % total;
+
+    for (const s of segs) {
+      if (d >= s.start && d <= s.end) {
+        const t = (s.len === 0) ? 0 : (d - s.start) / s.len;
+        const ax = s.a[0], ay = s.a[1];
+        const bx = s.b[0], by = s.b[1];
+        return gp(ax + (bx - ax) * t, ay + (by - ay) * t);
+      }
+    }
+    return gp(segs[0].a[0], segs[0].a[1]);
+  }
+
+  function drawGrid() {
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+
+    // transparent clear (don't paint a background)
+    ctx.clearRect(0, 0, w, h);
+
+    const cols = Math.ceil(w / GRID.cell);
+    const rows = Math.ceil(h / GRID.cell);
+
+    ctx.strokeStyle = "rgba(200,200,200,0.04)";
+    ctx.lineWidth = 1;
+
+    for (let x = 0; x <= cols; x++) {
+      ctx.beginPath();
+      ctx.moveTo(x * GRID.cell + 0.5, 0);
+      ctx.lineTo(x * GRID.cell + 0.5, h);
+      ctx.stroke();
+    }
+
+    for (let y = 0; y <= rows; y++) {
+      ctx.beginPath();
+      ctx.moveTo(0, y * GRID.cell + 0.5);
+      ctx.lineTo(w, y * GRID.cell + 0.5);
+      ctx.stroke();
+    }
+  }
+
+  function spawnTrace() {
+    const region = REGIONS[0];
+    const points = makePathInRegion(region);
+    const path = buildPath(points);
+
+    return {
+      width: rand(2.5, 3.6),
+      glow: rand(10, 18),
+      speed: rand(1.4, 2.8),
+      headCells: rand(1.0, 1.6),
+      tailCells: rand(4.5, 8.5),
+      age: 0,
+      life: rand(4.5, 8.5),
+      p: rand(0, path.total),
+      path
+    };
+  }
+
+  const TRACES_MAX = 5;
+  let traces = Array.from({ length: TRACES_MAX }, () => spawnTrace());
+
+  function drawTrace(t) {
+    const lifeProgress = clamp(t.age / t.life, 0, 1);
+
+    const fadeInDuration = 0.18;
+    const fadeOutStart = 0.75;
+
+    let fade = 1;
+
+    if (lifeProgress < fadeInDuration) {
+      fade = lifeProgress / fadeInDuration;
+    } else if (lifeProgress > fadeOutStart) {
+      fade = 1 - (lifeProgress - fadeOutStart) / (1 - fadeOutStart);
+    }
+
+    fade = clamp(fade, 0, 1);
+
+    const tail = t.p - t.tailCells;
+    const totalLen = t.tailCells + t.headCells;
+    const steps = Math.max(30, Math.floor(totalLen * 10));
+    let prev = null;
+
+    ctx.save();
+    ctx.shadowColor = TRACE_COLOR;
+    ctx.shadowBlur = t.glow;
+
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = t.width;
+
+    for (let i = 0; i <= steps; i++) {
+      const u = i / steps;
+      const d = tail + u * totalLen;
+      const pt = posOnPath(t.path, d);
+
+      let alpha = Math.pow(u, 1.6) * fade;
+      ctx.strokeStyle = hexToRgba(TRACE_COLOR, alpha);
+
+      if (prev) {
+        ctx.beginPath();
+        ctx.moveTo(prev.x, prev.y);
+        ctx.lineTo(pt.x, pt.y);
+        ctx.stroke();
+      }
+      prev = pt;
+    }
+
+    ctx.restore();
+  }
+
+  let last = performance.now();
+  function tick(now) {
+    const dt = (now - last) / 1000;
+    last = now;
+
+    // If hero size changed due to fonts/layout, keep it accurate.
+    // (cheap check)
+    if (canvas.style.width !== hero.clientWidth + "px" || canvas.style.height !== hero.clientHeight + "px") {
+      resize();
+      REGIONS = computeRegions();
+    }
+
+    drawGrid();
+
+    for (let i = 0; i < traces.length; i++) {
+      const t = traces[i];
+      t.age += dt;
+      t.p += t.speed * dt;
+      drawTrace(t);
+
+      if (t.age >= t.life) traces[i] = spawnTrace();
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>

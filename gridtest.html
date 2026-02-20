@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Large Grid + Fading Green Traces</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { background:#0b0d10; overflow:hidden; }
+    canvas { display:block; width:100vw; height:100vh; }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <script>
+    const canvas = document.getElementById("c");
+    const ctx = canvas.getContext("2d");
+
+    // --------- Grid ---------
+    const GRID = {
+      cell: 56,
+      background: "#0b0d10"
+    };
+
+    // Single green for traces
+    const TRACE_COLOR = "#00ff88";
+
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+    const rand = (a, b) => a + Math.random() * (b - a);
+
+    function resize() {
+      const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
+      canvas.width  = Math.floor(innerWidth  * dpr);
+      canvas.height = Math.floor(innerHeight * dpr);
+      canvas.style.width  = innerWidth + "px";
+      canvas.style.height = innerHeight + "px";
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    function gp(gx, gy) {
+      return { x: gx * GRID.cell, y: gy * GRID.cell };
+    }
+
+    function makePathInRegion(region) {
+      const { x0, y0, x1, y1 } = region;
+      let x = Math.floor(rand(x0, x1));
+      let y = Math.floor(rand(y0, y1));
+
+      const pts = [[x, y]];
+      const steps = Math.floor(rand(7, 12));
+
+      for (let i = 0; i < steps; i++) {
+        const horiz = Math.random() > 0.5;
+
+        if (horiz) {
+          const nx = Math.floor(rand(x0, x1));
+          pts.push([nx, y]);
+          x = nx;
+        } else {
+          const ny = Math.floor(rand(y0, y1));
+          pts.push([x, ny]);
+          y = ny;
+        }
+      }
+
+      const sx = pts[0][0], sy = pts[0][1];
+      pts.push([sx, y]);
+      pts.push([sx, sy]);
+
+      return pts;
+    }
+
+    function buildPath(points) {
+      const segs = [];
+      let total = 0;
+
+      for (let i = 0; i < points.length - 1; i++) {
+        const a = points[i];
+        const b = points[i + 1];
+        const len = Math.abs(b[0] - a[0]) + Math.abs(b[1] - a[1]);
+        segs.push({ a, b, len, start: total, end: total + len });
+        total += len;
+      }
+
+      if (total < 1) total = 1;
+      return { segs, total };
+    }
+
+    function posOnPath(pathObj, dCells) {
+      const { segs, total } = pathObj;
+      let d = ((dCells % total) + total) % total;
+
+      for (const s of segs) {
+        if (d >= s.start && d <= s.end) {
+          const t = (s.len === 0) ? 0 : (d - s.start) / s.len;
+          const ax = s.a[0], ay = s.a[1];
+          const bx = s.b[0], by = s.b[1];
+          return gp(
+            ax + (bx - ax) * t,
+            ay + (by - ay) * t
+          );
+        }
+      }
+
+      return gp(segs[0].a[0], segs[0].a[1]);
+    }
+
+    function hexToRgba(hex, a) {
+      const num = parseInt(hex.replace("#",""), 16);
+      const r = (num >> 16) & 255;
+      const g = (num >> 8) & 255;
+      const b = num & 255;
+      return `rgba(${r},${g},${b},${a})`;
+    }
+
+    function drawGrid() {
+      const w = innerWidth, h = innerHeight;
+      ctx.fillStyle = GRID.background;
+      ctx.fillRect(0, 0, w, h);
+
+      const cols = Math.ceil(w / GRID.cell);
+      const rows = Math.ceil(h / GRID.cell);
+
+      ctx.strokeStyle = "rgba(200,200,200,0.18)"; // gray grid
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x <= cols; x++) {
+        ctx.beginPath();
+        ctx.moveTo(x * GRID.cell + 0.5, 0);
+        ctx.lineTo(x * GRID.cell + 0.5, h);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y <= rows; y++) {
+        ctx.beginPath();
+        ctx.moveTo(0, y * GRID.cell + 0.5);
+        ctx.lineTo(w, y * GRID.cell + 0.5);
+        ctx.stroke();
+      }
+    }
+
+    function computeRegions() {
+      const cols = Math.ceil(innerWidth / GRID.cell);
+      const rows = Math.ceil(innerHeight / GRID.cell);
+      const pad = 2;
+
+      return [{
+        x0: pad,
+        y0: pad,
+        x1: cols - pad,
+        y1: rows - pad
+      }];
+    }
+
+    let REGIONS = computeRegions();
+    window.addEventListener("resize", () => { REGIONS = computeRegions(); });
+
+    function spawnTrace() {
+      const region = REGIONS[0];
+      const points = makePathInRegion(region);
+      const path = buildPath(points);
+
+      return {
+        width: rand(2.5, 3.6),
+        glow: rand(10, 18),
+        speed: rand(1.4, 2.8),
+        headCells: rand(1.0, 1.6),
+        tailCells: rand(4.5, 8.5),
+        age: 0,
+        life: rand(4.5, 8.5),
+        p: rand(0, path.total),
+        path
+      };
+    }
+
+    const TRACES_MAX = 5;
+    let traces = Array.from({ length: TRACES_MAX }, () => spawnTrace());
+
+    function drawTrace(t) {
+  const lifeProgress = clamp(t.age / t.life, 0, 1);
+
+  const fadeInDuration = 0.18;
+  const fadeOutStart = 0.75;
+
+  let fade = 1;
+
+  if (lifeProgress < fadeInDuration) {
+    fade = lifeProgress / fadeInDuration;
+  } else if (lifeProgress > fadeOutStart) {
+    fade = 1 - (lifeProgress - fadeOutStart) / (1 - fadeOutStart);
+  }
+
+  fade = clamp(fade, 0, 1);
+
+  const tail = t.p - t.tailCells;
+  const totalLen = t.tailCells + t.headCells;
+  const steps = Math.max(30, Math.floor(totalLen * 10));
+  let prev = null;
+
+  ctx.save();
+  ctx.shadowColor = TRACE_COLOR;
+  ctx.shadowBlur = t.glow;
+
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = t.width;
+
+  for (let i = 0; i <= steps; i++) {
+    const u = i / steps;
+    const d = tail + u * totalLen;
+    const pt = posOnPath(t.path, d);
+
+    let alpha = Math.pow(u, 1.6) * fade;
+    ctx.strokeStyle = hexToRgba(TRACE_COLOR, alpha);
+
+    if (prev) {
+      ctx.beginPath();
+      ctx.moveTo(prev.x, prev.y);
+      ctx.lineTo(pt.x, pt.y);
+      ctx.stroke();
+    }
+    prev = pt;
+  }
+
+  ctx.restore();
+}
+
+    let last = performance.now();
+    function tick(now) {
+      const dt = (now - last) / 1000;
+      last = now;
+
+      drawGrid();
+
+      for (let i = 0; i < traces.length; i++) {
+        const t = traces[i];
+        t.age += dt;
+        t.p += t.speed * dt;
+        drawTrace(t);
+
+        if (t.age >= t.life) {
+          traces[i] = spawnTrace();
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
