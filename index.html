@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      --bg:#ffffff;
+      --bg:#000000;
       --ink:#111111;
 
       --square: 96;   /* px */
@@ -44,7 +44,7 @@
       width: min(900px, calc(100% - 28px));
       height: 84px;
       border-radius: 25px;
-      background: rgba(85,85,85,0.45);
+      background: #00202e70;
       border: none;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -101,7 +101,16 @@
     .nav-link:hover{
       color:rgb(201, 201, 201);
     }
+    /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
+.nav-link[data-dropdown].is-active,
+.nav-link[data-dropdown].is-active:hover {
+  color: #F00303; /* drives text + chevron because SVG uses currentColor */
+}
 
+.nav-link[data-dropdown].is-active .nav-chevron{
+  transform: rotate(180deg);
+  opacity: 1;
+}
     .nav-link--contact{
       background: rgba(255,255,255,0.95);
       color: #111;
@@ -133,9 +142,20 @@
     .nav-link:hover .nav-chevron{
       opacity: 1;
     }
-    .nav-link--has-chevron .nav-chevron path{
-      stroke: #90ff30; /* army green */
-    }
+    /* Default arrow color (white) */
+.nav-link--has-chevron{
+  color: rgba(255,255,255,0.92);
+}
+
+/* Selected dropdown trigger */
+.nav-link[data-dropdown].is-active,
+.nav-link[data-dropdown].is-active:hover{
+  color: #F00303;
+}
+
+.nav-link[data-dropdown].is-active .nav-chevron{
+  transform: rotate(180deg);
+}
 
     /* ---------- Site (behind loader) ---------- */
     #site{
@@ -151,7 +171,7 @@
       align-items: center;
       text-align: center;
 
-      background: url("images/Green bg.jpg") center center / cover no-repeat;
+      background: url("images/Bluebg2.png") center center / cover no-repeat;
       position: relative;
 
       justify-content: flex-start;          /* ✅ top align content */
@@ -244,23 +264,23 @@
     </div>
 
     <nav class="nav-links">
-      <a class="nav-link nav-link--hide-sm" href="#about">About</a>
-  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#services" data-dropdown="services">
+      <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="services">
   <span class="nav-link__label">Consulting</span>
   <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
     <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </a>
 
-<a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#news" data-dropdown="news">
-  <span class="nav-link__label">Advising</span>
+<a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="news">
+  <span class="nav-link__label">Services</span>
   <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
     <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </a>
       
       <a class="nav-link" href="#home">News</a>
-      <a class="nav-link nav-link--contact" href="#contact">Contact</a>
+      <a class="nav-link nav-link--contact" href="#home">Contact</a>
     </nav>
   </header>
 
@@ -293,7 +313,7 @@
 
 .nav-dropdown{
   border-radius: 25px;
-  background: rgba(85,85,85,0.45);
+  background: #00202ec5;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   overflow: hidden;
@@ -337,8 +357,8 @@
   padding: 10px 14px;
   border-radius: 16px;
 
-  background: rgba(33, 33, 33, 0.943);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(33, 33, 33, 0);
+  border: none;
 
   color: rgba(255,255,255,0.92);
   text-decoration: none;
@@ -350,9 +370,9 @@
 
 .nav-dd-item:hover{
   transform: translateY(-1px);
-  background: rgba(33, 33, 33, 0.943);
+  background: #5677851b;
   border-color: rgba(255,255,255,0.18);
-  color:#90ff30;
+  color:#ffffff;
 }
 
 .nav-dd-item .dd-arrow{
@@ -364,7 +384,7 @@
   stroke: rgba(255,255,255,0.92);
 }
 .nav-dd-item:hover .dd-arrow path{
-  stroke: #90ff30;
+  stroke: #ffffff;
 }
 
 
@@ -401,7 +421,7 @@
   align-items: center;
   gap: 8px;
 
-  color: #90ff30;
+  color: #F00303;
   text-decoration: none;
   font-weight: 700;
   font-size: 13px;
@@ -417,7 +437,7 @@
   height: 16px;
 }
 .nav-dd-greenlink svg path{
-  stroke: #90ff30;
+  stroke: #ffffff;
 }
 
 /* Mobile stacking */
@@ -428,7 +448,7 @@
 }
 
 .text-highlight {
-  background: linear-gradient(90deg, #52b000 0%, #90ff30 100%);
+  background: linear-gradient(90deg, #F00303 0%,#567785 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -489,9 +509,9 @@
 
   <main id="site">
     <section class="hero" id="home">
-        <canvas id="heroGrid" aria-hidden="true"></canvas>
+      <!--<canvas id="heroGrid" aria-hidden="true"></canvas>-->
        
-      <h1><span class="text-highlight">Technology</span> that <br>stands up to scruitiny.</h1>
+      <h1><span class="text-highlight">Solutions</span> that <br>stand up to scruitiny.</h1>
 
       <div class="hero-scroll-indicator">
         <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
@@ -546,11 +566,11 @@
       <g id="stage">
         <!-- ✅ Text/logo reveals upward from behind a mask -->
         <g clip-path="url(#rectRevealClip)">
-          <image id="rectImg" href="images/Griffin Logo TextGreen.png" x="0" y="0" width="400" height="96" preserveAspectRatio="none"></image>
+          <image id="rectImg" href="images/GriffinText.png" x="0" y="0" width="400" height="96" preserveAspectRatio="none"></image>
         </g>
 
         <!-- Square reveals bottom->top via clipPath -->
-        <image id="squareImg" href="images/Griffin IconGreen.jpg"
+        <image id="squareImg" href="images/GriffinIcon.png"
                x="0" y="0" width="96" height="96"
                preserveAspectRatio="none"
                clip-path="url(#squareClip)"></image>
@@ -885,8 +905,8 @@
         { label: "Capital Acquisition", href: "#services" },
       ],
       right: {
-        title: "General Consulting",
-        desc: "Explore how Griffin supports complex projects—bringing technical clarity, compliance support, and specialized expertise when you need it most.",
+        title: "Technical Consulting",
+        desc: "Griffin delivers specialized technical consulting for complex industrial environments - providing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise. When precision and accountability matter most, our team integrates seamlessly with yours to move projects forward with confidence.",
         links: [
           { label: "View Service Areas", href: "#services" },
           { label: "Talk to an Expert", href: "#contact" },
@@ -904,8 +924,8 @@
         { label: "Automation, Robotics, and Advanced Imaging Systems", href: "#news" },
       ],
       right: {
-        title: "NDT Technical Advising",
-        desc: "Announcements, field insights, and updates from the Griffin team—plus highlights from the industries we serve.",
+        title: "Advisory Services",
+        desc: "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions that align with industry codes, client specifications, and operational realities.",
         links: [
           { label: "Read Recent Posts", href: "#news" },
           { label: "Subscribe for Updates", href: "#contact" },
@@ -948,19 +968,31 @@
     `;
   }
 
-  function openDropdown(key){
-    if (activeKey === key && dropdownWrap.classList.contains("is-open")) return;
-    activeKey = key;
-    renderDropdown(key);
-    dropdownWrap.classList.add("is-open");
-    dropdownWrap.setAttribute("aria-hidden", "false");
-  }
+function clearActiveTriggers(){
+  document
+    .querySelectorAll('.nav-link[data-dropdown].is-active')
+    .forEach(el => el.classList.remove('is-active'));
+}
 
-  function closeDropdown(){
-    activeKey = null;
-    dropdownWrap.classList.remove("is-open");
-    dropdownWrap.setAttribute("aria-hidden", "true");
-  }
+function openDropdown(key){
+  activeKey = key;
+  renderDropdown(key);
+
+  // ✅ mark selected trigger
+  clearActiveTriggers();
+  const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
+  if (trigger) trigger.classList.add("is-active");
+
+  dropdownWrap.classList.add("is-open");
+  dropdownWrap.setAttribute("aria-hidden", "false");
+}
+
+function closeDropdown(){
+  activeKey = null;
+  dropdownWrap.classList.remove("is-open");
+  dropdownWrap.setAttribute("aria-hidden", "true");
+  clearActiveTriggers();
+}
 
   // Open on click for the two triggers
   document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
@@ -1011,7 +1043,7 @@
 
   // --------- Grid ---------
   const GRID = { cell: 56 }; // transparent over hero bg
-  const TRACE_COLOR = "#90ff30";
+  const TRACE_COLOR = "#B3B3B3";
 
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const rand = (a, b) => a + Math.random() * (b - a);
