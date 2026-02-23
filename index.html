@@ -10,251 +10,387 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#000000;
-      --ink:#111111;
-
-      --square: 96;   /* px */
-      --gap: 8;       /* px */
-      --rectW: 254;   /* px */
-      --rectH: 96;    /* px */
-
-      --ovalW: 800;   /* wider side images */
-    }
-    
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-
-    body{
-      margin:0;
-      font-family: 'Zalando Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      overflow:auto;
-    }
-
-    /* ===================== NAVBAR ===================== */
-    .navbar{
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(900px, calc(100% - 28px));
-      height: 84px;
-      border-radius: 25px;
-      background: #00202e70;
-      border: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 50;
-
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
-    .nav-logo{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 140px;
-    }
-
-    .nav-logo img{
-      height: 48px;
-      width: auto;
-      display:block;
-      object-fit: contain;
-      transform: translateY(-3px);
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      text-transform: uppercase;
-    }
-
-    .nav-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height: 42px;
-      padding: 0 14px;
-      border-radius: 12px;
-      text-decoration:none;
-      color: rgba(255,255,255,0.92);
-      font-weight: 600;
-      font-size: 14px;
-      letter-spacing: 0.01em;
-      border: 1px solid rgba(255,255,255,0.0);
-      transition: background .2s ease, border-color .2s ease, transform .2s ease;
-      white-space: nowrap;
-    }
-
-    .nav-link:hover{
-      color:#F00303;
-    }
-    /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
-.nav-link[data-dropdown].is-active,
-.nav-link[data-dropdown].is-active:hover {
-  color: #F00303; /* drives text + chevron because SVG uses currentColor */
-}
-
-.nav-link[data-dropdown].is-active .nav-chevron{
-  transform: rotate(180deg);
-  opacity: 1;
-}
-    .nav-link--contact{
-      background: rgba(255,255,255,0.95);
-      color: #111;
-      border: 1px solid rgba(255,255,255,0.65);
-      padding: 0 16px;
-      
-    }
-    .nav-link--contact:hover{
-      background: rgba(255,255,255,1);
-      border-color: rgba(255,255,255,0.9);
-    }
-
-    @media (max-width: 560px){
-      .nav-link--hide-sm{ display:none; }
-    }
-
-    .nav-link--has-chevron{
-      gap: 3px;
-    }
-
-    .nav-chevron{
-      width: 16px;
-      height: 16px;
-      display: block;
-      transform: translateY(0px); /* tiny optical alignment */
-      opacity: 0.9;
-    }
-
-    .nav-link:hover .nav-chevron{
-      opacity: 1;
-    }
-    /* Default arrow color (white) */
-.nav-link--has-chevron{
-  color: rgba(255,255,255,0.92);
-}
-
-/* Selected dropdown trigger */
-.nav-link[data-dropdown].is-active,
-.nav-link[data-dropdown].is-active:hover{
-  color: #F00303;
-}
-
-.nav-link[data-dropdown].is-active .nav-chevron{
-  transform: rotate(180deg);
-}
-
-    /* ---------- Site (behind loader) ---------- */
-    #site{
-      min-height: 260vh;
-      padding: 0;
-    }
-
-    .hero{
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      
-      align-items: center;
-      text-align: center;
-
-      background: url("images/Bluebg2.png") center center / cover no-repeat;
-      position: relative;
-
-      justify-content: flex-start;          /* ✅ top align content */
-      padding-top: 200px;                  /* ✅ space under navbar (tweak) */
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .hero::before{
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.012);
-    }
-
-    .hero > *{
-      position: relative;
-      z-index: 2;
-      color: white;
-    }
-
-    .hero h1{
-      font-size: clamp(34px, 7vw, 76px);
-      line-height:1.05;
-      margin:0 0 12px;
-      letter-spacing:-0.02em;
-      
-    }
-    .hero p{
-      margin:0 0 20px;
-      font-size:18px;
-      opacity:.78;
-      max-width:65ch;
-    }
-
-    .card-row{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:16px;
-      margin-top:28px;
-      width: min(1000px, 100%);
-    }
-    .card{
-      border:1px solid rgba(255,255,255,.22);
-      border-radius:16px;
-      padding:16px;
-      background:rgba(0,0,0,.18);
-      min-height:120px;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .spacer{
-      height:120vh;
-      max-width:1000px;
-      margin:24px auto;
-      border-radius:18px;
-      background: linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,0));
-      border:1px dashed rgba(0,0,0,.18);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: rgba(0,0,0,.55);
-      font-weight:600;
-      letter-spacing:.02em;
-    }
-
-    @media (max-width: 900px){
-      .card-row{ grid-template-columns: 1fr; }
-    }
-
-    /* ---------- SVG Loader Overlay ---------- */
-    #loaderSvg{
-      position:fixed;
-      inset:0;
-      width:100%;
-      height:100%;
-      z-index:9999;
-      display:block;
-      pointer-events:none;
-    }
-  </style>
+  
 </head>
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#111111;
 
+    --square: 96;   /* px */
+    --gap: 8;       /* px */
+    --rectW: 254;   /* px */
+    --rectH: 96;    /* px */
+
+    --ovalW: 800;   /* wider side images */
+    --beamY: 0px; /* ✅ driven by JS */
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+
+  body{
+    margin:0;
+    font-family: 'Zalando Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow:auto;
+  }
+
+  /* ===================== NAVBAR ===================== */
+  .navbar{
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, calc(100% - 28px));
+    height: 84px;
+    border-radius: 25px;
+    background: #00202e70;
+    border: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 50;
+
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    min-width: 140px;
+  }
+
+  .nav-logo img{
+    height: 48px;
+    width: auto;
+    display:block;
+    object-fit: contain;
+    transform: translateY(-3px);
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    text-transform: uppercase;
+  }
+
+  .nav-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 12px;
+    text-decoration:none;
+    color: rgba(255,255,255,0.92);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    border: 1px solid rgba(255,255,255,0.0);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover{ color:#F00303; }
+
+  /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
+  .nav-link[data-dropdown].is-active,
+  .nav-link[data-dropdown].is-active:hover {
+    color: #F00303; /* drives text + chevron because SVG uses currentColor */
+  }
+
+  .nav-link[data-dropdown].is-active .nav-chevron{
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .nav-link--contact{
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    border: 1px solid rgba(255,255,255,0.65);
+    padding: 0 16px;
+  }
+  .nav-link--contact:hover{
+    background: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,0.9);
+    color:#111;
+  }
+
+  @media (max-width: 560px){
+    .nav-link--hide-sm{ display:none; }
+  }
+
+  .nav-link--has-chevron{ gap: 3px; }
+
+  .nav-chevron{
+    width: 16px;
+    height: 16px;
+    display: block;
+    transform: translateY(0px);
+    opacity: 0.9;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-link:hover .nav-chevron{ opacity: 1; }
+
+  /* ---------- Site ---------- */
+  #site{
+    min-height: 260vh;
+    padding: 0;
+  }
+
+  /* =========================================================
+     ✅ NEW: 200vh BACKGROUND WRAP (Hero + next section)
+     - black base for 200vh
+     - diagonal "radial-ish" blue band limited to ~20%–70% height
+     - wave indent into next WHITE section
+     ========================================================= */
+.intro-wrap{
+  position: relative;
+  min-height: 200vh;
+  overflow: hidden;
+  background:#000;
+}
+
+/* ONE full-width diagonal beam */
+/* ONE full-width diagonal beam (guaranteed to reach across any screen) */
+
+/* ONE full-width diagonal beam (guaranteed to reach across any screen) */
+.intro-wrap::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+
+  width: 520vmax;
+  height: 520vmax;
+
+  left: 50%;
+  top: 50%;
+
+  /* ✅ add var offset (moves beam up/down smoothly) */
+  transform: translate(-45%, calc(-55% + var(--beamY))) rotate(-115deg);
+  transform-origin: center;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(26, 92, 145, 0.229) 48%,
+    rgba(33, 94, 144, 0.323)  50%,
+    rgba(19, 78, 126, 0.221) 52%,
+    transparent 56%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 18%,
+    black 22%,
+    black 70%,
+    transparent 74%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 18%,
+    black 22%,
+    black 70%,
+    transparent 74%,
+    transparent 100%
+  );
+
+  pointer-events:none;
+}
+
+/* side images (img3/img4) responsive: narrower + more inset on small screens */
+.side-img{
+  position:absolute;
+  top:0;
+
+  /* ✅ height responds to WIDTH (vw) but is capped by viewport height (vh) */
+  height: clamp(140vh, 95vw, 150vh);
+
+  /* ✅ width already responds to width; make it a bit more aggressive */
+  width: clamp(850px, 45vw, 900px);
+
+  object-fit: cover;
+  opacity: 0.95;
+  z-index: 1;
+  pointer-events:none;
+
+  /* ✅ keep your inset logic */
+  --edgeInset: clamp(0px, (900px - 100vw) * 0.18, 160px);
+}
+
+/* push inward from edges */
+/* Move images toward center instead of edges */
+/* ============================= */
+/* Default: 1600px and wider */
+/* Stick to sides (no offset) */
+/* ============================= */
+
+.side-img--left{
+  left: 0;
+  transform: none;
+  transform: translateX(-10%);
+}
+
+.side-img--right{
+  right: 0;
+  left: auto;
+  transform: none;
+  transform: translateX(10%);
+}
+
+/* ============================= */
+/* Under 1600px: center-style */
+/* ============================= */
+
+@media (max-width: 1599px){
+  .side-img--left{
+    left: 50%;
+    right: auto;
+    transform: translateX(-120%);
+  }
+
+  .side-img--right{
+    left: 50%;
+    right: auto;
+    transform: translateX(20%);
+  }
+}
+
+  /* wave indent (white) into next section */
+  .wave-divider{
+    position:absolute;
+    left:0;
+    bottom:-1px;
+    width:100%;
+    height: 180px;
+    z-index: 3;
+    pointer-events:none;
+  }
+  .wave-divider path{ fill:#fff; }
+
+  /* ---------- HERO (no more 200vh ::after background) ---------- */
+  .hero{
+    min-height: 100vh;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    padding-top: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: none;
+  }
+
+  /* optional subtle tint over the bg (keep it light) */
+/* ✅ ONE overlay for the entire 200vh area (prevents the seam) */
+.intro-wrap::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.12);
+  z-index: 1;
+  pointer-events:none;
+}
+  .hero > *{
+    position: relative;
+    z-index: 2;
+    color: white;
+  }
+
+  .hero h1{
+    font-size: clamp(34px, 7vw, 76px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-0.02em;
+  }
+
+  .hero p{
+    margin:0 0 20px;
+    font-size:18px;
+    opacity:.78;
+    max-width:65ch;
+  }
+
+  .card-row{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap:16px;
+    margin-top:28px;
+    width: min(1000px, 100%);
+  }
+  .card{
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:16px;
+    padding:16px;
+   
+    min-height:120px;
+    color: rgba(255,255,255,0.92);
+  }
+
+  /* first spacer INSIDE the 200vh wrap (dark) */
+.spacer--dark{
+  height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: none;
+
+  display: flex;
+  flex-direction: column;    /* ✅ helps keep heading perfectly centered */
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10rem;
+  text-align: center;        /* ✅ center text */
+  padding: 0 20px;           /* ✅ prevents edge clipping on small screens */
+
+  color: #fff;
+}
+
+  /* white sections AFTER the wave */
+  .spacer--white{
+    height:120vh;
+    max-width:1000px;
+    margin:24px auto;
+    border-radius:18px;
+    background:#fff;
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: rgba(0,0,0,0.65);
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+
+  @media (max-width: 900px){
+    .card-row{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- SVG Loader Overlay ---------- */
+  #loaderSvg{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:9999;
+    display:block;
+    pointer-events:none;
+  }
+</style>
 <body>
 
   <!-- ✅ Fixed Navbar -->
@@ -559,34 +695,64 @@
   pointer-events: none;
   opacity: 0;
 }
+.display-heading{
+  font-size: clamp(34px, 7vw, 76px);
+  line-height: 1.05;
+  margin: 0;                 /* ✅ was 0 0 12px */
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
 </style>
 
   <main id="site">
+  <section class="intro-wrap">
     <section class="hero" id="home">
-      <!--<canvas id="heroGrid" aria-hidden="true"></canvas>-->
-       
       <h1><span class="text-highlight">Solutions</span> that <br>stand up to scruitiny.</h1>
 
       <div class="hero-scroll-indicator">
         <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-          <path
-            d="M128 192 L256 320 L384 192"
-            fill="none"
-            stroke-width="64"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+          <path d="M128 192 L256 320 L384 192" fill="none" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-
-     
     </section>
 
-    <div class="spacer" id="services">SCROLL TEST ZONE</div>
-    <div class="spacer" id="news">MORE SCROLL TEST</div>
-    <div class="spacer" id="about">ABOUT SECTION PLACEHOLDER</div>
-    <div class="spacer" id="contact">CONTACT SECTION PLACEHOLDER</div>
-  </main>
+    <!-- wave divider at bottom of the 200vh area -->
+    <!-- wave divider at bottom of the 200vh area -->
+<svg class="wave-divider" 
+     viewBox="0 0 1440 180" 
+     preserveAspectRatio="none" 
+     aria-hidden="true">
+
+  <!-- Sides high, center dips down -->
+  <path 
+    d="
+      M0,60
+      C240,60 480,140 720,140
+      C960,140 1200,60 1440,60
+      L1440,180
+      L0,180
+      Z
+    "
+    fill="#ffffff">
+  </path>
+
+</svg>
+<section class="spacer spacer--dark">
+  <h2 class="display-heading">
+    Built for <span class="text-highlight">Critical</span> Environments.
+  </h2>
+</section>
+ 
+    <!-- side images -->
+    <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
+    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
+  </section>
+
+  <!-- next section is white -->
+  <section class="spacer spacer--white" id="news">MORE SCROLL TEST</section>
+  <section class="spacer spacer--white" id="about">ABOUT SECTION PLACEHOLDER</section>
+  <section class="spacer spacer--white" id="contact">CONTACT SECTION PLACEHOLDER</section>
+</main>
 
   <!-- ✅ One SVG "sheet" (white + loader content) that gets cut out by expanding window -->
   <svg id="loaderSvg" aria-hidden="true">
@@ -1242,6 +1408,57 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(0, 0);
     window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
   }
+</script>
+
+<script>
+(() => {
+  const wrap = document.querySelector(".intro-wrap");
+  if (!wrap) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  let current = 0;
+  let rafId = null;
+
+  function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+  function lerp(a,b,t){ return a + (b-a)*t; }
+
+  function computeTarget() {
+    const rect = wrap.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    const total = rect.height - vh;
+    if (total <= 0) return 0;
+
+    const passed = -rect.top;               // how far into the wrap
+    const progress = clamp(passed / total, 0, 1);
+
+    const maxShift = vh * 0.28;             // tune travel amount
+    return lerp(0, -maxShift, progress);    // scroll down => beam moves up
+  }
+
+  function tick(){
+    const target = computeTarget();
+
+    // ✅ Smooth follow (no bounce)
+    // higher = follows quicker, lower = more "glide"
+    const follow = 0.085; // try 0.06–0.12
+    current += (target - current) * follow;
+
+    // deadzone to prevent micro jitter at rest
+    if (Math.abs(target - current) < 0.02) current = target;
+
+    document.documentElement.style.setProperty("--beamY", `${current}px`);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  rafId = requestAnimationFrame(tick);
+
+  window.addEventListener("resize", () => {
+    // no special handling needed; computeTarget uses latest vh/rect
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Loader – Center Square + Mask-Up Text Reveal + 2-Phase Window</title>
+  <title>Griffin Integrity Solutions</title>
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#ffffff;
+      --bg:#000000;
       --ink:#111111;
 
       --square: 96;   /* px */
@@ -29,7 +29,7 @@
 
     body{
       margin:0;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Zalando Sans', sans-serif;
       background: var(--bg);
       color: var(--ink);
       overflow:auto;
@@ -44,7 +44,7 @@
       width: min(900px, calc(100% - 28px));
       height: 84px;
       border-radius: 25px;
-      background: rgba(85,85,85,0.45);
+      background: #00202e70;
       border: none;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -99,9 +99,18 @@
     }
 
     .nav-link:hover{
-      color:rgb(201, 201, 201);
+      color:#F00303;
     }
+    /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
+.nav-link[data-dropdown].is-active,
+.nav-link[data-dropdown].is-active:hover {
+  color: #F00303; /* drives text + chevron because SVG uses currentColor */
+}
 
+.nav-link[data-dropdown].is-active .nav-chevron{
+  transform: rotate(180deg);
+  opacity: 1;
+}
     .nav-link--contact{
       background: rgba(255,255,255,0.95);
       color: #111;
@@ -133,9 +142,20 @@
     .nav-link:hover .nav-chevron{
       opacity: 1;
     }
-    .nav-link--has-chevron .nav-chevron path{
-      stroke: #90ff30; /* army green */
-    }
+    /* Default arrow color (white) */
+.nav-link--has-chevron{
+  color: rgba(255,255,255,0.92);
+}
+
+/* Selected dropdown trigger */
+.nav-link[data-dropdown].is-active,
+.nav-link[data-dropdown].is-active:hover{
+  color: #F00303;
+}
+
+.nav-link[data-dropdown].is-active .nav-chevron{
+  transform: rotate(180deg);
+}
 
     /* ---------- Site (behind loader) ---------- */
     #site{
@@ -147,14 +167,15 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      
       align-items: center;
       text-align: center;
 
-      background: url("images/Green bg.jpg") center center / cover no-repeat;
+      background: url("images/Bluebg2.png") center center / cover no-repeat;
       position: relative;
 
-      padding-top: 96px;
+      justify-content: flex-start;          /* ✅ top align content */
+      padding-top: 200px;                  /* ✅ space under navbar (tweak) */
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -243,23 +264,16 @@
     </div>
 
     <nav class="nav-links">
-      <a class="nav-link nav-link--hide-sm" href="#about">About</a>
-  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#services" data-dropdown="services">
-  <span class="nav-link__label">Consulting</span>
-  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</a>
-
-<a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#news" data-dropdown="news">
-  <span class="nav-link__label">Advising</span>
+      <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="capabilities">
+  <span class="nav-link__label">Capabilities</span>
   <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
     <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </a>
       
       <a class="nav-link" href="#home">News</a>
-      <a class="nav-link nav-link--contact" href="#contact">Contact</a>
+      <a class="nav-link nav-link--contact" href="#home">Contact</a>
     </nav>
   </header>
 
@@ -279,6 +293,19 @@
 </div>
 
 <style>
+  /* --- Left column tabs (Capabilities) --- */
+.nav-dd-item.is-tab{
+  cursor: pointer;
+}
+
+.nav-dd-item.is-tab.is-selected{
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+}
+
+.nav-dd-item.is-tab.is-selected .dd-arrow path{
+  stroke: #F00303;
+}
   /* ===================== NAV DROPDOWN ===================== */
 .nav-dropdown-wrap{
   position: fixed;
@@ -292,7 +319,7 @@
 
 .nav-dropdown{
   border-radius: 25px;
-  background: rgba(85,85,85,0.45);
+  background: #00202ec5;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   overflow: hidden;
@@ -309,7 +336,7 @@
   transition: opacity .18s ease, transform .18s ease;
 
   /* optional subtle border */
-  border: 1px solid rgba(255,255,255,0.08);
+  /*border: 1px solid rgba(255,255,255,0.08);*/
 }
 
 .nav-dropdown-wrap.is-open{
@@ -336,8 +363,8 @@
   padding: 10px 14px;
   border-radius: 16px;
 
-  background: rgba(33, 33, 33, 0.943);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(33, 33, 33, 0);
+  border: none;
 
   color: rgba(255,255,255,0.92);
   text-decoration: none;
@@ -349,9 +376,9 @@
 
 .nav-dd-item:hover{
   transform: translateY(-1px);
-  background: rgba(33, 33, 33, 0.943);
+  background: #5677851b;
   border-color: rgba(255,255,255,0.18);
-  color:#90ff30;
+  color:#ffffff;
 }
 
 .nav-dd-item .dd-arrow{
@@ -363,7 +390,7 @@
   stroke: rgba(255,255,255,0.92);
 }
 .nav-dd-item:hover .dd-arrow path{
-  stroke: #90ff30;
+  stroke: #ffffff;
 }
 
 
@@ -400,15 +427,52 @@
   align-items: center;
   gap: 8px;
 
-  color: #90ff30;
+  color: #F00303;
   text-decoration: none;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.01em;
 }
 
+/* ✅ Animated underline for right-side links */
+.nav-dd-greenlink{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;                 /* underline matches text width */
+  text-decoration: none;              /* we’ll draw our own underline */
+  line-height: 1.2;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-dd-greenlink::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;                       /* underline offset */
+  height: 1px;
+  background: currentColor;           /* uses your red (#F00303) */
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.95;
+  transition: transform 180ms cubic-bezier(.22,1,.36,1);
+}
+
+/* hover/focus animates underline in */
+.nav-dd-greenlink:hover::after,
+.nav-dd-greenlink:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* optional: tiny nudge on hover so it feels “alive” */
 .nav-dd-greenlink:hover{
-  text-decoration: underline;
+  transform: translateY(-1px);
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
+}
+.nav-dd-greenlink{
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
 }
 
 .nav-dd-greenlink svg{
@@ -416,7 +480,7 @@
   height: 16px;
 }
 .nav-dd-greenlink svg path{
-  stroke: #90ff30;
+  stroke: #ffffff;
 }
 
 /* Mobile stacking */
@@ -427,7 +491,7 @@
 }
 
 .text-highlight {
-  background: linear-gradient(90deg, #52b000 0%, #90ff30 100%);
+  background: linear-gradient(90deg, #F00303 0%,rgb(19, 75, 99) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -473,12 +537,24 @@
   position: relative;
   z-index: 3;
 }
+#heroDropIcon{
+  position: absolute;
+  left: 50%;
+  bottom: 0px;                 /* final resting position */
+  transform: translate(-50%, -140%);
+  width: clamp(120px, 50vh, 480px);            /* adjust size */
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+}
 </style>
 
   <main id="site">
     <section class="hero" id="home">
-        <canvas id="heroGrid" aria-hidden="true"></canvas>
-      <h1><span class="text-highlight">Technology</span> that <br>stands up to scruitiny.</h1>
+      <!--<canvas id="heroGrid" aria-hidden="true"></canvas>-->
+       
+      <h1><span class="text-highlight">Solutions</span> that <br>stand up to scruitiny.</h1>
 
       <div class="hero-scroll-indicator">
         <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
@@ -492,13 +568,7 @@
         </svg>
       </div>
 
-      <p>During loader you shouldn’t be able to scroll. After loader is gone, scrolling should work.</p>
-
-      <div class="card-row">
-        <div class="card"><strong>Card 1</strong><br/>Some content…</div>
-        <div class="card"><strong>Card 2</strong><br/>Some content…</div>
-        <div class="card"><strong>Card 3</strong><br/>Some content…</div>
-      </div>
+     
     </section>
 
     <div class="spacer" id="services">SCROLL TEST ZONE</div>
@@ -539,11 +609,11 @@
       <g id="stage">
         <!-- ✅ Text/logo reveals upward from behind a mask -->
         <g clip-path="url(#rectRevealClip)">
-          <image id="rectImg" href="images/Griffin Logo TextGreen.png" x="0" y="0" width="400" height="96" preserveAspectRatio="none"></image>
+          <image id="rectImg" href="images/GriffinText.png" x="0" y="0" width="400" height="96" preserveAspectRatio="none"></image>
         </g>
 
         <!-- Square reveals bottom->top via clipPath -->
-        <image id="squareImg" href="images/Griffin IconGreen.jpg"
+        <image id="squareImg" href="images/GriffinIcon.png"
                x="0" y="0" width="96" height="96"
                preserveAspectRatio="none"
                clip-path="url(#squareClip)"></image>
@@ -552,375 +622,444 @@
   </svg>
 
   <script>
-    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-    const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
-    const easeInOutCubic = (t) =>
-  t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+  const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
+  const easeInOutCubic = (t) =>
+    t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
 
-    // Easing helpers (no overshoot)
-    const easeLinear   = (t) => t;
-    const easeSoftOut  = (t) => 1 - Math.pow(1 - t, 4.5);
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-    const easeOutQuint = (t) => 1 - Math.pow(1 - t, 6);
+  // Easing helpers (no overshoot)
+  const easeLinear   = (t) => t;
+  const easeSoftOut  = (t) => 1 - Math.pow(1 - t, 4.5);
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+  const easeOutQuint = (t) => 1 - Math.pow(1 - t, 6);
 
-    function lockScroll(){
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      document.body.dataset.scrollY = String(y);
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${y}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
-    }
-    function unlockScroll(){
-      const y = parseInt(document.body.dataset.scrollY || "0", 10);
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.removeAttribute("data-scroll-y");
-      window.scrollTo(0, y);
-    }
+  // ✅ ONLY CHANGE: make the square icon a bit narrower (width only)
+  const SQUARE_WIDTH_SCALE = 0.90; // 0.95 = slight, 0.9 = noticeable
 
-    function animateAttrs(el, from, to, duration, easeFn = (x)=>x){
-      return new Promise(resolve=>{
-        const t0 = performance.now();
-        function frame(now){
-          const t = Math.min(1, (now - t0)/duration);
-          const e = easeFn(t);
+  function lockScroll(){
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.dataset.scrollY = String(y);
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${y}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+  function unlockScroll(){
+    const y = parseInt(document.body.dataset.scrollY || "0", 10);
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    document.body.removeAttribute("data-scroll-y");
+    window.scrollTo(0, y);
+  }
 
-          if ("x" in from) el.setAttribute("x", from.x + (to.x - from.x)*e);
-          if ("y" in from) el.setAttribute("y", from.y + (to.y - from.y)*e);
-          if ("w" in from) el.setAttribute("width",  from.w + (to.w - from.w)*e);
-          if ("h" in from) el.setAttribute("height", from.h + (to.h - from.h)*e);
+  function animateAttrs(el, from, to, duration, easeFn = (x)=>x){
+    return new Promise(resolve=>{
+      const t0 = performance.now();
+      function frame(now){
+        const t = Math.min(1, (now - t0)/duration);
+        const e = easeFn(t);
 
-          if ("tx" in from || "sx" in from || "sy" in from || "tx" in to || "sx" in to || "sy" in to){
-            const tx = (from.tx ?? 0) + ((to.tx ?? 0) - (from.tx ?? 0))*e;
-            const hasScale = ("sx" in from) || ("sy" in from) || ("sx" in to) || ("sy" in to);
-            if (hasScale){
-              const sx = (from.sx ?? 1) + ((to.sx ?? 1) - (from.sx ?? 1))*e;
-              const sy = (from.sy ?? 1) + ((to.sy ?? 1) - (from.sy ?? 1))*e;
-              el.setAttribute("transform", `translate(${tx},0) scale(${sx},${sy})`);
-            } else {
-              el.setAttribute("transform", `translate(${tx},0)`);
-            }
+        if ("x" in from) el.setAttribute("x", from.x + (to.x - from.x)*e);
+        if ("y" in from) el.setAttribute("y", from.y + (to.y - from.y)*e);
+        if ("w" in from) el.setAttribute("width",  from.w + (to.w - from.w)*e);
+        if ("h" in from) el.setAttribute("height", from.h + (to.h - from.h)*e);
+
+        if ("tx" in from || "sx" in from || "sy" in from || "tx" in to || "sx" in to || "sy" in to){
+          const tx = (from.tx ?? 0) + ((to.tx ?? 0) - (from.tx ?? 0))*e;
+          const hasScale = ("sx" in from) || ("sy" in from) || ("sx" in to) || ("sy" in to);
+          if (hasScale){
+            const sx = (from.sx ?? 1) + ((to.sx ?? 1) - (from.sx ?? 1))*e;
+            const sy = (from.sy ?? 1) + ((to.sy ?? 1) - (from.sy ?? 1))*e;
+            el.setAttribute("transform", `translate(${tx},0) scale(${sx},${sy})`);
+          } else {
+            el.setAttribute("transform", `translate(${tx},0)`);
           }
-
-          if ("op" in from){
-            const op = from.op + (to.op - from.op)*e;
-            el.setAttribute("opacity", op);
-          }
-
-          if(t < 1) requestAnimationFrame(frame);
-          else resolve();
         }
-        requestAnimationFrame(frame);
+
+        if ("op" in from){
+          const op = from.op + (to.op - from.op)*e;
+          el.setAttribute("opacity", op);
+        }
+
+        if(t < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  function sizeScene(){
+    const svg = document.getElementById("loaderSvg");
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+    const root = getComputedStyle(document.documentElement);
+    const sq    = parseFloat(root.getPropertyValue("--square")) || 96;
+    const gap   = parseFloat(root.getPropertyValue("--gap")) || 8;
+    const rectW = parseFloat(root.getPropertyValue("--rectW")) || 254;
+    const rectH = parseFloat(root.getPropertyValue("--rectH")) || 96;
+    const ovalW = parseFloat(root.getPropertyValue("--ovalW")) || 800;
+
+    // ✅ derived width for the square only
+    const sqW = sq * SQUARE_WIDTH_SCALE;
+    const sqOffsetX = (sq - sqW) / 2; // keeps the narrower icon centered
+
+    // base mask + cover
+    const maskBase = document.getElementById("maskBase");
+    const cover = document.getElementById("cover");
+    maskBase.setAttribute("width", w);
+    maskBase.setAttribute("height", h);
+    cover.setAttribute("width", w);
+    cover.setAttribute("height", h);
+
+    // Stage 1: square alone centered (using base square for layout)
+    const sqX = (w - sq)/2;
+    const sqY = (h - sq)/2;
+
+    // Stage 2: centered group (layout uses sq so overall spacing/centering stays identical)
+    const groupW  = sq + gap + rectW;
+    const groupH  = Math.max(sq, rectH);
+    const gxGroup = (w - groupW)/2;
+    const gyGroup = (h - groupH)/2;
+
+    // rect pinned to square: start + final (layout uses sq)
+    const rectStartX = sqX + sq + gap;
+    const rectStartY = sqY + (sq - rectH) / 2;
+
+    const rectFinalX = gxGroup + sq + gap;
+    const rectFinalY = gyGroup + (sq - rectH) / 2;
+
+    // --- square image (ONLY width scaled) ---
+    const squareImg = document.getElementById("squareImg");
+    squareImg.setAttribute("x", sqX + sqOffsetX);
+    squareImg.setAttribute("y", sqY);
+    squareImg.setAttribute("width", sqW);
+    squareImg.setAttribute("height", sq);
+    squareImg.setAttribute("opacity", 1);
+
+    // clip rect must match the same width & x
+    const squareClipRect = document.getElementById("squareClipRect");
+    squareClipRect.setAttribute("x", sqX + sqOffsetX);
+    squareClipRect.setAttribute("y", sqY + sq);
+    squareClipRect.setAttribute("width", sqW);
+    squareClipRect.setAttribute("height", 0);
+
+    // rect logo
+    const rectImg = document.getElementById("rectImg");
+    rectImg.setAttribute("width", rectW);
+    rectImg.setAttribute("height", rectH);
+    rectImg.setAttribute("x", rectStartX);
+    rectImg.setAttribute("y", rectStartY);
+    rectImg.setAttribute("opacity", 1);
+
+    const rectRevealRect = document.getElementById("rectRevealRect");
+    rectRevealRect.setAttribute("x", rectStartX);
+    rectRevealRect.setAttribute("y", rectStartY + rectH);
+    rectRevealRect.setAttribute("width", rectW);
+    rectRevealRect.setAttribute("height", 0);
+
+    // ovals
+    const ovalLImg = document.getElementById("ovalLImg");
+    const ovalRImg = document.getElementById("ovalRImg");
+    ovalLImg.setAttribute("width", ovalW);
+    ovalLImg.setAttribute("height", h);
+    ovalLImg.setAttribute("x", 0);
+    ovalLImg.setAttribute("y", 0);
+
+    ovalRImg.setAttribute("width", ovalW);
+    ovalRImg.setAttribute("height", h);
+    ovalRImg.setAttribute("x", w - ovalW);
+    ovalRImg.setAttribute("y", 0);
+
+    return {
+      w, h,
+      sq, sqW, sqOffsetX,
+      gap, rectW, rectH, ovalW,
+      sqX, sqY, gxGroup, gyGroup,
+      rectStartX, rectStartY, rectFinalX, rectFinalY
+    };
+  }
+
+  (async function run(){
+    lockScroll();
+
+    let S = sizeScene();
+    const onResize = () => { S = sizeScene(); };
+    window.addEventListener("resize", onResize, { passive:true });
+
+    const maskWindow = document.getElementById("maskWindow");
+    maskWindow.setAttribute("x", 0);
+    maskWindow.setAttribute("y", 0);
+    maskWindow.setAttribute("width", 0);
+    maskWindow.setAttribute("height", 0);
+
+    const squareImg      = document.getElementById("squareImg");
+    const squareClipRect = document.getElementById("squareClipRect");
+    const rectImg        = document.getElementById("rectImg");
+    const rectRevealRect = document.getElementById("rectRevealRect");
+    const ovalLImg       = document.getElementById("ovalLImg");
+    const ovalRImg       = document.getElementById("ovalRImg");
+
+    // ovals start offscreen
+    ovalLImg.setAttribute("transform", `translate(${-S.ovalW},0)`);
+    ovalRImg.setAttribute("transform", `translate(${ S.ovalW},0)`);
+
+    // square reveal starts bottom -> top (use sqW + offset)
+    squareClipRect.setAttribute("x", S.sqX + S.sqOffsetX);
+    squareClipRect.setAttribute("y", S.sqY + S.sq);
+    squareClipRect.setAttribute("width", S.sqW);
+    squareClipRect.setAttribute("height", 0);
+
+    // rect reveal starts closed at bottom (pinned start)
+    rectRevealRect.setAttribute("x", S.rectStartX);
+    rectRevealRect.setAttribute("y", S.rectStartY + S.rectH);
+    rectRevealRect.setAttribute("width", S.rectW);
+    rectRevealRect.setAttribute("height", 0);
+
+    // 1) reveal square (BOTTOM -> TOP) (width = sqW, height = sq)
+    await animateAttrs(
+      squareClipRect,
+      { x: S.sqX + S.sqOffsetX, y: S.sqY + S.sq, w: S.sqW, h: 0 },
+      { x: S.sqX + S.sqOffsetX, y: S.sqY,        w: S.sqW, h: S.sq },
+      1400,
+      easeLinear
+    );
+
+    await sleep(120);
+
+    // 2) move into centered pair (layout still uses sqX/gxGroup, but we keep offset consistent)
+    const sqToX = S.gxGroup;
+    const moveDuration = 900;
+
+    const moveSquare = Promise.all([
+      animateAttrs(
+        squareImg,
+        { x:S.sqX + S.sqOffsetX, y:S.sqY,     w:S.sqW, h:S.sq },
+        { x:sqToX + S.sqOffsetX, y:S.gyGroup, w:S.sqW, h:S.sq },
+        moveDuration,
+        easeInOutCubic
+      ),
+      animateAttrs(
+        squareClipRect,
+        { x:S.sqX + S.sqOffsetX, y:S.sqY,     w:S.sqW, h:S.sq },
+        { x:sqToX + S.sqOffsetX, y:S.gyGroup, w:S.sqW, h:S.sq },
+        moveDuration,
+        easeInOutCubic
+      )
+    ]);
+
+    const moveTextWithSquare = animateAttrs(
+      rectImg,
+      { x:S.rectStartX, y:S.rectStartY, w:S.rectW, h:S.rectH },
+      { x:S.rectFinalX, y:S.rectFinalY, w:S.rectW, h:S.rectH },
+      moveDuration,
+      easeInOutCubic
+    );
+
+    const revealTextPinned = animateAttrs(
+      rectRevealRect,
+      { x:S.rectStartX, y:S.rectStartY + S.rectH, w:S.rectW, h:0 },
+      { x:S.rectFinalX, y:S.rectFinalY,           w:S.rectW, h:S.rectH },
+      moveDuration,
+      easeInOutCubic
+    );
+
+    const ovalsIn = Promise.all([
+      animateAttrs(ovalLImg, { tx:-S.ovalW }, { tx:0 }, 1100, easeOut),
+      animateAttrs(ovalRImg, { tx: S.ovalW }, { tx:0 }, 1100, easeOut),
+    ]);
+
+    await Promise.all([moveSquare, moveTextWithSquare, revealTextPinned, ovalsIn]);
+
+    // fade out logo + icon
+    await Promise.all([
+      animateAttrs(squareImg, { op: 1 }, { op: 0 }, 220, easeOutCubic),
+      animateAttrs(rectImg,   { op: 1 }, { op: 0 }, 220, easeOutCubic),
+    ]);
+
+    // 4) MASK: 2 phases
+    const startSize = 16;
+
+    const maskPhase1 = {
+      vw: 0.99,
+      vh: 0.005,
+      duration: 750,
+      ease: easeSoftOut,
+      hold: 120
+    };
+
+    const maskPhase2 = {
+      duration: 950,
+      ease: easeOutQuint
+    };
+
+    const midW = S.w * maskPhase1.vw;
+    const midH = S.h * maskPhase1.vh;
+    const midX = (S.w - midW) / 2;
+    const midY = (S.h - midH) / 2;
+
+    await animateAttrs(
+      maskWindow,
+      { x:(S.w-startSize)/2, y:(S.h-startSize)/2, w:startSize, h:startSize },
+      { x:midX, y:midY, w:midW, h:midH },
+      maskPhase1.duration,
+      maskPhase1.ease
+    );
+
+    if ((maskPhase1.hold ?? 0) > 0) await sleep(maskPhase1.hold);
+
+    await animateAttrs(
+      maskWindow,
+      { x:midX, y:midY, w:midW, h:midH },
+      { x:0, y:0, w:S.w, h:S.h },
+      maskPhase2.duration,
+      maskPhase2.ease
+    );
+
+    window.removeEventListener("resize", onResize);
+    document.getElementById("loaderSvg").remove();
+    unlockScroll();
+
+    const heroIcon = document.getElementById("heroDropIcon");
+    if (heroIcon) {
+      heroIcon.style.transition =
+        "transform 1400ms cubic-bezier(.22,1,.36,1), opacity 500ms ease";
+      heroIcon.style.opacity = "1";
+      requestAnimationFrame(() => {
+        heroIcon.style.transform = "translate(-50%, 0) scale(1)";
       });
     }
+  })();
+</script>
 
-    function sizeScene(){
-      const svg = document.getElementById("loaderSvg");
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+ 
+<!-- ✅ REPLACE your Capabilities dropdown script with this full version
+     (same behavior as you have now, but adds fade in/out when switching tabs) -->
 
-      const root = getComputedStyle(document.documentElement);
-      const sq    = parseFloat(root.getPropertyValue("--square")) || 96;
-      const gap   = parseFloat(root.getPropertyValue("--gap")) || 8;
-      const rectW = parseFloat(root.getPropertyValue("--rectW")) || 254;
-      const rectH = parseFloat(root.getPropertyValue("--rectH")) || 96;
-      const ovalW = parseFloat(root.getPropertyValue("--ovalW")) || 800;
-
-      // base mask + cover
-      const maskBase = document.getElementById("maskBase");
-      const cover = document.getElementById("cover");
-      maskBase.setAttribute("width", w);
-      maskBase.setAttribute("height", h);
-      cover.setAttribute("width", w);
-      cover.setAttribute("height", h);
-
-      // Stage 1: square alone centered
-      const sqX = (w - sq)/2;
-      const sqY = (h - sq)/2;
-
-      // Stage 2: centered group (square + gap + rect)
-      const groupW  = sq + gap + rectW;
-      const groupH  = Math.max(sq, rectH);
-      const gxGroup = (w - groupW)/2;
-      const gyGroup = (h - groupH)/2;
-
-      // rect pinned to square: start + final
-      const rectStartX = sqX + sq + gap;
-      const rectStartY = sqY + (sq - rectH) / 2;
-
-      const rectFinalX = gxGroup + sq + gap;
-      const rectFinalY = gyGroup + (sq - rectH) / 2;
-
-      const squareImg = document.getElementById("squareImg");
-      squareImg.setAttribute("x", sqX);
-      squareImg.setAttribute("y", sqY);
-      squareImg.setAttribute("width", sq);
-      squareImg.setAttribute("height", sq);
-      squareImg.setAttribute("opacity", 1);
-
-      const squareClipRect = document.getElementById("squareClipRect");
-      squareClipRect.setAttribute("x", sqX);
-      squareClipRect.setAttribute("y", sqY + sq);
-      squareClipRect.setAttribute("width", sq);
-      squareClipRect.setAttribute("height", 0);
-
-      const rectImg = document.getElementById("rectImg");
-      rectImg.setAttribute("width", rectW);
-      rectImg.setAttribute("height", rectH);
-      rectImg.setAttribute("x", rectStartX);
-      rectImg.setAttribute("y", rectStartY);
-      rectImg.setAttribute("opacity", 1);
-
-      const rectRevealRect = document.getElementById("rectRevealRect");
-      rectRevealRect.setAttribute("x", rectStartX);
-      rectRevealRect.setAttribute("y", rectStartY + rectH);
-      rectRevealRect.setAttribute("width", rectW);
-      rectRevealRect.setAttribute("height", 0);
-
-      const ovalLImg = document.getElementById("ovalLImg");
-      const ovalRImg = document.getElementById("ovalRImg");
-      ovalLImg.setAttribute("width", ovalW);
-      ovalLImg.setAttribute("height", h);
-      ovalLImg.setAttribute("x", 0);
-      ovalLImg.setAttribute("y", 0);
-
-      ovalRImg.setAttribute("width", ovalW);
-      ovalRImg.setAttribute("height", h);
-      ovalRImg.setAttribute("x", w - ovalW);
-      ovalRImg.setAttribute("y", 0);
-
-      return { w, h, sq, gap, rectW, rectH, ovalW, sqX, sqY, gxGroup, gyGroup, rectStartX, rectStartY, rectFinalX, rectFinalY };
-    }
-
-    (async function run(){
-      lockScroll();
-
-      let S = sizeScene();
-      const onResize = () => { S = sizeScene(); };
-      window.addEventListener("resize", onResize, { passive:true });
-
-      const maskWindow = document.getElementById("maskWindow");
-      maskWindow.setAttribute("x", 0);
-      maskWindow.setAttribute("y", 0);
-      maskWindow.setAttribute("width", 0);
-      maskWindow.setAttribute("height", 0);
-
-      const squareImg      = document.getElementById("squareImg");
-      const squareClipRect = document.getElementById("squareClipRect");
-      const rectImg        = document.getElementById("rectImg");
-      const rectRevealRect = document.getElementById("rectRevealRect");
-      const ovalLImg       = document.getElementById("ovalLImg");
-      const ovalRImg       = document.getElementById("ovalRImg");
-
-      // ovals start offscreen
-      ovalLImg.setAttribute("transform", `translate(${-S.ovalW},0)`);
-      ovalRImg.setAttribute("transform", `translate(${ S.ovalW},0)`);
-
-      // square reveal starts bottom -> top
-      squareClipRect.setAttribute("x", S.sqX);
-      squareClipRect.setAttribute("y", S.sqY + S.sq);
-      squareClipRect.setAttribute("width", S.sq);
-      squareClipRect.setAttribute("height", 0);
-
-      // rect reveal starts closed at bottom (pinned start)
-      rectRevealRect.setAttribute("x", S.rectStartX);
-      rectRevealRect.setAttribute("y", S.rectStartY + S.rectH);
-      rectRevealRect.setAttribute("width", S.rectW);
-      rectRevealRect.setAttribute("height", 0);
-
-      // 1) reveal square (BOTTOM -> TOP)
-      await animateAttrs(
-        squareClipRect,
-        { x: S.sqX, y: S.sqY + S.sq, w: S.sq, h: 0 },
-        { x: S.sqX, y: S.sqY,        w: S.sq, h: S.sq },
-        1400,
-        easeLinear
-      );
-
-      await sleep(120);
-
-      // 2) move into centered pair
-      const sqToX = S.gxGroup;
-      const moveDuration = 900;
-
-      const moveSquare = Promise.all([
-        animateAttrs(
-          squareImg,
-          { x:S.sqX, y:S.sqY, w:S.sq, h:S.sq },
-          { x:sqToX, y:S.gyGroup, w:S.sq, h:S.sq },
-          moveDuration,
-          easeInOutCubic
-        ),
-        animateAttrs(
-          squareClipRect,
-          { x:S.sqX, y:S.sqY, w:S.sq, h:S.sq },
-          { x:sqToX, y:S.gyGroup, w:S.sq, h:S.sq },
-          moveDuration,
-          easeInOutCubic
-        )
-      ]);
-
-      const moveTextWithSquare = animateAttrs(
-        rectImg,
-        { x:S.rectStartX, y:S.rectStartY, w:S.rectW, h:S.rectH },
-        { x:S.rectFinalX, y:S.rectFinalY, w:S.rectW, h:S.rectH },
-        moveDuration,
-        easeInOutCubic
-      );
-
-      const revealTextPinned = animateAttrs(
-        rectRevealRect,
-        { x:S.rectStartX, y:S.rectStartY + S.rectH, w:S.rectW, h:0 },
-        { x:S.rectFinalX, y:S.rectFinalY,           w:S.rectW, h:S.rectH },
-        moveDuration,
-        easeInOutCubic
-      );
-
-      const ovalsIn = Promise.all([
-        animateAttrs(ovalLImg, { tx:-S.ovalW }, { tx:0 }, 1100, easeOut),
-        animateAttrs(ovalRImg, { tx: S.ovalW }, { tx:0 }, 1100, easeOut),
-      ]);
-
-      await Promise.all([moveSquare, moveTextWithSquare, revealTextPinned, ovalsIn]);
-
-      // ✅ FADE OUT LOGO + ICON right before mask starts
-      await Promise.all([
-        animateAttrs(squareImg, { op: 1 }, { op: 0 }, 220, easeOutCubic),
-        animateAttrs(rectImg,   { op: 1 }, { op: 0 }, 220, easeOutCubic),
-      ]);
-
-      // 4) MASK: 2 phases
-      const startSize = 16;
-
-      const maskPhase1 = {
-        vw: 0.99,
-        vh: 0.005,
-        duration: 750,
-        ease: easeSoftOut,
-        hold: 120
-      };
-
-      const maskPhase2 = {
-        duration: 950,
-        ease: easeOutQuint
-      };
-
-      const midW = S.w * maskPhase1.vw;
-      const midH = S.h * maskPhase1.vh;
-      const midX = (S.w - midW) / 2;
-      const midY = (S.h - midH) / 2;
-
-      await animateAttrs(
-        maskWindow,
-        { x:(S.w-startSize)/2, y:(S.h-startSize)/2, w:startSize, h:startSize },
-        { x:midX, y:midY, w:midW, h:midH },
-        maskPhase1.duration,
-        maskPhase1.ease
-      );
-
-      if ((maskPhase1.hold ?? 0) > 0) await sleep(maskPhase1.hold);
-
-      await animateAttrs(
-        maskWindow,
-        { x:midX, y:midY, w:midW, h:midH },
-        { x:0, y:0, w:S.w, h:S.h },
-        maskPhase2.duration,
-        maskPhase2.ease
-      );
-
-      window.removeEventListener("resize", onResize);
-      document.getElementById("loaderSvg").remove();
-      unlockScroll();
-    })();
-  </script>
-
-  <script>
-  // ===== SVG icons for dropdown rows =====
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* ===================== ICONS ===================== */
   const ICON_RIGHT_ARROW = `
-    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
     </svg>
   `;
 
   const ICON_UPRIGHT = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M7 17L17 7M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17L17 7M10 7h7v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
     </svg>
   `;
 
-  // ===== Content models =====
-  const DROPDOWN_DATA = {
-    services: {
-      left: [
-        { label: "Mergers & Acquisition Support", href: "#services" },
-        { label: "Talent Acquisition & Assessment", href: "#services" },
-        { label: "Corporate Development & Strategic Planning", href: "#services" },
-        { label: "Business Development & Client Strategies", href: "#services" },
-        { label: "Capital Acquisition", href: "#services" },
-      ],
-      right: {
-        title: "General Consulting",
-        desc: "Explore how Griffin supports complex projects—bringing technical clarity, compliance support, and specialized expertise when you need it most.",
-        links: [
-          { label: "View Service Areas", href: "#services" },
-          { label: "Talk to an Expert", href: "#contact" },
-          { label: "Download Capability Sheet", href: "#contact" },
-        ]
-      }
-    },
-    news: {
-      left: [
-        { label: "NDT Level III Consulting & Support", href: "#news" },
-        { label: "Advanced NDT Subject Matter Experts", href: "#news" },
-        { label: "NDT Written Practice Review and Development", href: "#news" },
-        { label: "Next Level Advanced NDT Training Programs", href: "#news" },
-        { label: "Advanced NDT Technology Programs and Procedures", href: "#news" },
-        { label: "Automation, Robotics, and Advanced Imaging Systems", href: "#news" },
-      ],
-      right: {
-        title: "NDT Technical Advising",
-        desc: "Announcements, field insights, and updates from the Griffin team—plus highlights from the industries we serve.",
-        links: [
-          { label: "Read Recent Posts", href: "#news" },
-          { label: "Subscribe for Updates", href: "#contact" },
-          { label: "Media Inquiries", href: "#contact" },
-        ]
-      }
-    }
+  /* ===================== CONTENT ===================== */
+  const CAPABILITIES = {
+    tabs: [
+      {
+        key: "technical",
+        label: "Technical Consulting",
+        title: "Technical Consulting",
+        desc:
+          "Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.",
+        items: [
+          "Mergers & Acquisition Support",
+          "Talent Acquisition & Assessment",
+          "Corporate Development & Strategic Planning",
+          "Business Development & Client Strategies",
+          "Capital Acquisition",
+        ],
+      },
+      {
+        key: "advisory",
+        label: "Advisory Services",
+        title: "Advisory Services",
+        desc:
+          "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.",
+        items: [
+          "NDT Level III Consulting & Support",
+          "Advanced NDT Subject Matter Experts",
+          "NDT Written Practice Review and Development",
+          "Next Level Advanced NDT Training Programs",
+          "Advanced NDT Technology Programs and Procedures",
+          "Automation, Robotics, and Advanced Imaging Systems",
+        ],
+      },
+      {
+        key: "affiliate",
+        label: "Affiliate Organizations",
+        title: "Affiliate Organizations",
+        desc:
+          "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+        items: [
+          "Top Notch EDM Services",
+          "Sound NDT Solutions",
+          "ATCO Automated Scanning Systems",
+          "Halo NDT Technologies",
+        ],
+      },
+    ],
   };
 
+  /* ===================== DOM ===================== */
   const dropdownWrap = document.getElementById("navDropdown");
   const ddLeft = document.getElementById("navDdLeft");
   const ddRight = document.getElementById("navDdRight");
+  const navbar = document.querySelector(".navbar");
 
-  let activeKey = null;
+  if (!dropdownWrap || !ddLeft || !ddRight) return;
 
-  function renderDropdown(key){
-    const data = DROPDOWN_DATA[key];
-    if (!data) return;
+  /* ===================== STATE ===================== */
+  let activeKey = null;               // only "capabilities" in your case
+  let activeCapTab = "technical";     // default tab
+  let isAnimatingRight = false;
 
-    // left buttons
-    ddLeft.innerHTML = data.left.map(item => `
-      <a class="nav-dd-item" href="${item.href}" data-dd-close>
-        <span>${item.label}</span>
+  /* ===================== HELPERS ===================== */
+  function clearActiveTriggers() {
+    document
+      .querySelectorAll('.nav-link[data-dropdown].is-active')
+      .forEach(el => el.classList.remove("is-active"));
+  }
+
+  function getTab(key) {
+    return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
+  }
+
+  function renderLeft(tabKey) {
+    ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
+      <a
+        class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
+        href="#"
+        data-cap-tab="${t.key}"
+      >
+        <span>${t.label}</span>
         ${ICON_RIGHT_ARROW}
       </a>
     `).join("");
+  }
 
-    // right content
+  function renderRight(tab) {
     ddRight.innerHTML = `
-      <div class="nav-dd-title">${data.right.title}</div>
-      <p class="nav-dd-desc">${data.right.desc}</p>
+      <div class="nav-dd-title">${tab.title}</div>
+      <p class="nav-dd-desc">${tab.desc}</p>
+
       <div class="nav-dd-links">
-        ${data.right.links.map(l => `
-          <a class="nav-dd-greenlink" href="${l.href}" data-dd-close>
-            <span>${l.label}</span>
+        ${tab.items.map(item => `
+          <a class="nav-dd-greenlink" href="#services" data-dd-close>
+            <span>${item}</span>
             ${ICON_UPRIGHT}
           </a>
         `).join("")}
@@ -928,303 +1067,176 @@
     `;
   }
 
-  function openDropdown(key){
-    if (activeKey === key && dropdownWrap.classList.contains("is-open")) return;
+  // Small RAF tween helper
+  function tween(dur, onUpdate) {
+    return new Promise(resolve => {
+      const t0 = performance.now();
+      function frame(now) {
+        const t = Math.min(1, (now - t0) / dur);
+        onUpdate(t);
+        if (t < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  // Easing: quick-out (feels snappy)
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3.2);
+
+  // ✅ Your preferred behavior:
+  // 1) fade OUT quickly
+  // 2) swap content
+  // 3) fade IN quickly + move up slightly
+  async function swapRightQuick(nextTabKey) {
+    if (isAnimatingRight) return;
+    if (nextTabKey === activeCapTab) return;
+
+    isAnimatingRight = true;
+
+    const nextTab = getTab(nextTabKey);
+
+    // Keep dropdown open and prevent accidental clicks mid-animation
+    ddRight.style.pointerEvents = "none";
+    ddRight.style.willChange = "opacity, transform";
+
+    // --- OUT (quick) ---
+    const OUT_DUR = 95; // quick
+    await tween(OUT_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(1 - e);
+      ddRight.style.transform = `translateY(${0 + (2 * e)}px)`; // tiny sink
+    });
+
+    // --- SWAP (hidden) ---
+    renderRight(nextTab);
+
+    // reset for IN
+    ddRight.style.opacity = "0";
+    ddRight.style.transform = "translateY(8px)"; // start slightly lower
+
+    // --- IN (quick + up) ---
+    const IN_DUR = 140; // slightly longer than OUT, still quick
+    await tween(IN_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(e);
+      ddRight.style.transform = `translateY(${8 - (8 * e)}px)`; // rise into place
+    });
+
+    // cleanup
+    ddRight.style.opacity = "";
+    ddRight.style.transform = "";
+    ddRight.style.willChange = "";
+    ddRight.style.pointerEvents = "";
+
+    // update state + left selection
+    activeCapTab = nextTabKey;
+    renderLeft(activeCapTab);
+
+    isAnimatingRight = false;
+  }
+
+  /* ===================== OPEN/CLOSE ===================== */
+  function openDropdown(key) {
     activeKey = key;
-    renderDropdown(key);
+
+    clearActiveTriggers();
+    const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
+    if (trigger) trigger.classList.add("is-active");
+
+    if (key === "capabilities") {
+      renderLeft(activeCapTab);
+      renderRight(getTab(activeCapTab));
+
+      // ensure right is visible and not transformed
+      ddRight.style.opacity = "";
+      ddRight.style.transform = "";
+    }
+
     dropdownWrap.classList.add("is-open");
     dropdownWrap.setAttribute("aria-hidden", "false");
   }
 
-  function closeDropdown(){
+  function closeDropdown() {
     activeKey = null;
     dropdownWrap.classList.remove("is-open");
     dropdownWrap.setAttribute("aria-hidden", "true");
+    clearActiveTriggers();
   }
 
-  // Open on click for the two triggers
+  /* ===================== EVENTS ===================== */
+
+  // Trigger click (Capabilities)
   document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
     link.addEventListener("click", (e) => {
-      // prevent normal anchor jump when using dropdown
       e.preventDefault();
+      e.stopPropagation();
+
       const key = link.getAttribute("data-dropdown");
-      const isOpenSame = dropdownWrap.classList.contains("is-open") && activeKey === key;
-      if (isOpenSame) closeDropdown();
+      const isSame =
+        dropdownWrap.classList.contains("is-open") && activeKey === key;
+
+      if (isSame) closeDropdown();
       else openDropdown(key);
     });
   });
 
-  // Close when clicking outside navbar + dropdown
-  document.addEventListener("click", (e) => {
-    const navbar = document.querySelector(".navbar");
-    if (!dropdownWrap.classList.contains("is-open")) return;
-
-    const clickedInside =
-      dropdownWrap.contains(e.target) || (navbar && navbar.contains(e.target));
-
-    if (!clickedInside) closeDropdown();
-  });
-
-  // Close on Esc
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDropdown();
-  });
-
-  // Close when clicking dropdown items (so it navigates cleanly)
+  // Inside dropdown: left tabs + right links
   dropdownWrap.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    // Left tab click
+    const tabEl = e.target.closest("[data-cap-tab]");
+    if (tabEl) {
+      e.preventDefault();
+      swapRightQuick(tabEl.getAttribute("data-cap-tab"));
+      return;
+    }
+
+    // Right-side links close (you have data-dd-close on them)
     const closeEl = e.target.closest("[data-dd-close]");
     if (closeEl) closeDropdown();
   });
 
-  // Close dropdown when clicking non-dropdown nav links (Home/About/Contact)
-  document.querySelectorAll(".nav-link:not([data-dropdown])").forEach(link => {
-    link.addEventListener("click", () => closeDropdown());
+  // Outside click closes
+  document.addEventListener("click", (e) => {
+    if (!dropdownWrap.classList.contains("is-open")) return;
+
+    const clickedInside =
+      dropdownWrap.contains(e.target) ||
+      (navbar && navbar.contains(e.target));
+
+    if (!clickedInside) closeDropdown();
   });
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
+  });
+
+  // Close dropdown when clicking non-dropdown nav links
+  document.querySelectorAll(".nav-link:not([data-dropdown])")
+    .forEach(link => link.addEventListener("click", () => closeDropdown()));
+});
 </script>
+
+
 <script>
-(() => {
-  const canvas = document.getElementById("heroGrid");
-  const hero = document.querySelector(".hero");
-  if (!canvas || !hero) return;
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-  const ctx = canvas.getContext("2d");
+  const nav = performance.getEntriesByType("navigation")[0];
+  const isReload = nav && nav.type === "reload";
 
-  // --------- Grid ---------
-  const GRID = { cell: 56, background: "rgba(0,0,0,0)" }; // transparent over hero bg
-  const TRACE_COLOR = "#90ff30";
-
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-  const rand = (a, b) => a + Math.random() * (b - a);
-
-  function hexToRgba(hex, a) {
-    const num = parseInt(hex.replace("#",""), 16);
-    const r = (num >> 16) & 255;
-    const g = (num >> 8) & 255;
-    const b = num & 255;
-    return `rgba(${r},${g},${b},${a})`;
+  if (isReload) {
+    window.scrollTo(0, 0);
+    window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
   }
-
-  function resize() {
-    // size to hero (not full window)
-    const r = hero.getBoundingClientRect();
-    const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
-
-    canvas.width  = Math.floor(r.width * dpr);
-    canvas.height = Math.floor(r.height * dpr);
-    canvas.style.width  = r.width + "px";
-    canvas.style.height = r.height + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  window.addEventListener("resize", resize);
-  resize();
-
-  function gp(gx, gy) {
-    return { x: gx * GRID.cell, y: gy * GRID.cell };
-  }
-
-  function computeRegions() {
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
-    const cols = Math.ceil(w / GRID.cell);
-    const rows = Math.ceil(h / GRID.cell);
-    const pad = 2;
-
-    return [{
-      x0: pad,
-      y0: pad,
-      x1: cols - pad,
-      y1: rows - pad
-    }];
-  }
-
-  let REGIONS = computeRegions();
-  window.addEventListener("resize", () => { REGIONS = computeRegions(); });
-
-  function makePathInRegion(region) {
-    const { x0, y0, x1, y1 } = region;
-    let x = Math.floor(rand(x0, x1));
-    let y = Math.floor(rand(y0, y1));
-
-    const pts = [[x, y]];
-    const steps = Math.floor(rand(7, 12));
-
-    for (let i = 0; i < steps; i++) {
-      const horiz = Math.random() > 0.5;
-      if (horiz) {
-        const nx = Math.floor(rand(x0, x1));
-        pts.push([nx, y]);
-        x = nx;
-      } else {
-        const ny = Math.floor(rand(y0, y1));
-        pts.push([x, ny]);
-        y = ny;
-      }
-    }
-
-    const sx = pts[0][0], sy = pts[0][1];
-    pts.push([sx, y]);
-    pts.push([sx, sy]);
-
-    return pts;
-  }
-
-  function buildPath(points) {
-    const segs = [];
-    let total = 0;
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const a = points[i];
-      const b = points[i + 1];
-      const len = Math.abs(b[0] - a[0]) + Math.abs(b[1] - a[1]);
-      segs.push({ a, b, len, start: total, end: total + len });
-      total += len;
-    }
-    if (total < 1) total = 1;
-    return { segs, total };
-  }
-
-  function posOnPath(pathObj, dCells) {
-    const { segs, total } = pathObj;
-    let d = ((dCells % total) + total) % total;
-
-    for (const s of segs) {
-      if (d >= s.start && d <= s.end) {
-        const t = (s.len === 0) ? 0 : (d - s.start) / s.len;
-        const ax = s.a[0], ay = s.a[1];
-        const bx = s.b[0], by = s.b[1];
-        return gp(ax + (bx - ax) * t, ay + (by - ay) * t);
-      }
-    }
-    return gp(segs[0].a[0], segs[0].a[1]);
-  }
-
-  function drawGrid() {
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
-
-    // transparent clear (don't paint a background)
-    ctx.clearRect(0, 0, w, h);
-
-    const cols = Math.ceil(w / GRID.cell);
-    const rows = Math.ceil(h / GRID.cell);
-
-    ctx.strokeStyle = "rgba(200,200,200,0.04)";
-    ctx.lineWidth = 1;
-
-    for (let x = 0; x <= cols; x++) {
-      ctx.beginPath();
-      ctx.moveTo(x * GRID.cell + 0.5, 0);
-      ctx.lineTo(x * GRID.cell + 0.5, h);
-      ctx.stroke();
-    }
-
-    for (let y = 0; y <= rows; y++) {
-      ctx.beginPath();
-      ctx.moveTo(0, y * GRID.cell + 0.5);
-      ctx.lineTo(w, y * GRID.cell + 0.5);
-      ctx.stroke();
-    }
-  }
-
-  function spawnTrace() {
-    const region = REGIONS[0];
-    const points = makePathInRegion(region);
-    const path = buildPath(points);
-
-    return {
-      width: rand(2.5, 3.6),
-      glow: rand(10, 18),
-      speed: rand(1.4, 2.8),
-      headCells: rand(1.0, 1.6),
-      tailCells: rand(4.5, 8.5),
-      age: 0,
-      life: rand(4.5, 8.5),
-      p: rand(0, path.total),
-      path
-    };
-  }
-
-  const TRACES_MAX = 5;
-  let traces = Array.from({ length: TRACES_MAX }, () => spawnTrace());
-
-  function drawTrace(t) {
-    const lifeProgress = clamp(t.age / t.life, 0, 1);
-
-    const fadeInDuration = 0.18;
-    const fadeOutStart = 0.75;
-
-    let fade = 1;
-
-    if (lifeProgress < fadeInDuration) {
-      fade = lifeProgress / fadeInDuration;
-    } else if (lifeProgress > fadeOutStart) {
-      fade = 1 - (lifeProgress - fadeOutStart) / (1 - fadeOutStart);
-    }
-
-    fade = clamp(fade, 0, 1);
-
-    const tail = t.p - t.tailCells;
-    const totalLen = t.tailCells + t.headCells;
-    const steps = Math.max(30, Math.floor(totalLen * 10));
-    let prev = null;
-
-    ctx.save();
-    ctx.shadowColor = TRACE_COLOR;
-    ctx.shadowBlur = t.glow;
-
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.lineWidth = t.width;
-
-    for (let i = 0; i <= steps; i++) {
-      const u = i / steps;
-      const d = tail + u * totalLen;
-      const pt = posOnPath(t.path, d);
-
-      let alpha = Math.pow(u, 1.6) * fade;
-      ctx.strokeStyle = hexToRgba(TRACE_COLOR, alpha);
-
-      if (prev) {
-        ctx.beginPath();
-        ctx.moveTo(prev.x, prev.y);
-        ctx.lineTo(pt.x, pt.y);
-        ctx.stroke();
-      }
-      prev = pt;
-    }
-
-    ctx.restore();
-  }
-
-  let last = performance.now();
-  function tick(now) {
-    const dt = (now - last) / 1000;
-    last = now;
-
-    // If hero size changed due to fonts/layout, keep it accurate.
-    // (cheap check)
-    if (canvas.style.width !== hero.clientWidth + "px" || canvas.style.height !== hero.clientHeight + "px") {
-      resize();
-      REGIONS = computeRegions();
-    }
-
-    drawGrid();
-
-    for (let i = 0; i < traces.length; i++) {
-      const t = traces[i];
-      t.age += dt;
-      t.p += t.speed * dt;
-      drawTrace(t);
-
-      if (t.age >= t.life) traces[i] = spawnTrace();
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
 </script>
 </body>
 </html>
+
+
+
+
+
+
