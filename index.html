@@ -422,65 +422,76 @@
   margin-top: 8px;
 }
 
-.nav-dd-greenlink{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+/* ===================== RIGHT COLUMN LINKS ===================== */
 
-  color: #F00303;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.01em;
-}
-
-/* ✅ Animated underline for right-side links */
 .nav-dd-greenlink{
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  width: fit-content;                 /* underline matches text width */
-  text-decoration: none;              /* we’ll draw our own underline */
+  width: fit-content;
+
+  color: #F00303;              /* red text default */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
   line-height: 1.2;
   -webkit-tap-highlight-color: transparent;
+
+  transition: 
+    color 170ms cubic-bezier(.22,1,.36,1),
+    transform 160ms cubic-bezier(.22,1,.36,1);
 }
 
+/* ===== Animated underline (always red) ===== */
 .nav-dd-greenlink::after{
   content:"";
   position:absolute;
   left: 0;
   right: 0;
-  bottom: -3px;                       /* underline offset */
+  bottom: -3px;
   height: 1px;
-  background: currentColor;           /* uses your red (#F00303) */
+  background: #F00303;                 /* stays red */
   transform: scaleX(0);
   transform-origin: left;
   opacity: 0.95;
   transition: transform 180ms cubic-bezier(.22,1,.36,1);
 }
 
-/* hover/focus animates underline in */
+/* underline animates in */
 .nav-dd-greenlink:hover::after,
 .nav-dd-greenlink:focus-visible::after{
   transform: scaleX(1);
 }
 
-/* optional: tiny nudge on hover so it feels “alive” */
-.nav-dd-greenlink:hover{
-  transform: translateY(-1px);
-  transition: transform 160ms cubic-bezier(.22,1,.36,1);
-}
-.nav-dd-greenlink{
-  transition: transform 160ms cubic-bezier(.22,1,.36,1);
-}
-
+/* ===== Arrow default state ===== */
 .nav-dd-greenlink svg{
   width: 16px;
   height: 16px;
+  transform: translateY(0);
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
 }
+
 .nav-dd-greenlink svg path{
-  stroke: #ffffff;
+  stroke: #ffffff;                     /* white arrow default */
+  transition: stroke 170ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Hover state ===== */
+.nav-dd-greenlink:hover,
+.nav-dd-greenlink:focus-visible{
+  color: #ffffff;                      /* text fades to white */
+}
+
+.nav-dd-greenlink:hover svg,
+.nav-dd-greenlink:focus-visible svg{
+  transform: translateY(-1px);          /* arrow moves up 1px */
+}
+
+.nav-dd-greenlink:hover svg path,
+.nav-dd-greenlink:focus-visible svg path{
+  stroke: #F00303;                      /* arrow turns red */
 }
 
 /* Mobile stacking */
