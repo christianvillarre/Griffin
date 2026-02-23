@@ -434,8 +434,45 @@
   letter-spacing: 0.01em;
 }
 
+/* ✅ Animated underline for right-side links */
+.nav-dd-greenlink{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;                 /* underline matches text width */
+  text-decoration: none;              /* we’ll draw our own underline */
+  line-height: 1.2;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-dd-greenlink::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;                       /* underline offset */
+  height: 1px;
+  background: currentColor;           /* uses your red (#F00303) */
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.95;
+  transition: transform 180ms cubic-bezier(.22,1,.36,1);
+}
+
+/* hover/focus animates underline in */
+.nav-dd-greenlink:hover::after,
+.nav-dd-greenlink:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* optional: tiny nudge on hover so it feels “alive” */
 .nav-dd-greenlink:hover{
-  text-decoration: underline;
+  transform: translateY(-1px);
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
+}
+.nav-dd-greenlink{
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
 }
 
 .nav-dd-greenlink svg{
