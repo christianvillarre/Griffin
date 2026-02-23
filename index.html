@@ -99,7 +99,7 @@
     }
 
     .nav-link:hover{
-      color:rgb(201, 201, 201);
+      color:#F00303;
     }
     /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
 .nav-link[data-dropdown].is-active,
@@ -901,12 +901,12 @@
 </script>
 
  
+<!-- ✅ REPLACE your Capabilities dropdown script with this full version
+     (same behavior as you have now, but adds fade in/out when switching tabs) -->
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
   /* ===================== ICONS ===================== */
-
-  // Left column arrow (→)
   const ICON_RIGHT_ARROW = `
     <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M9 6l6 6-6 6"
@@ -918,7 +918,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </svg>
   `;
 
-  // Right column upward arrow (↗)
   const ICON_UPRIGHT = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M7 17L17 7M10 7h7v7"
@@ -931,7 +930,6 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
 
   /* ===================== CONTENT ===================== */
-
   const CAPABILITIES = {
     tabs: [
       {
@@ -980,7 +978,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ===================== DOM ===================== */
-
   const dropdownWrap = document.getElementById("navDropdown");
   const ddLeft = document.getElementById("navDdLeft");
   const ddRight = document.getElementById("navDdRight");
@@ -988,11 +985,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!dropdownWrap || !ddLeft || !ddRight) return;
 
-  let activeKey = null;
-  let activeCapTab = "technical";
+  /* ===================== STATE ===================== */
+  let activeKey = null;               // only "capabilities" in your case
+  let activeCapTab = "technical";     // default tab
+  let isAnimatingRight = false;
 
   /* ===================== HELPERS ===================== */
-
   function clearActiveTriggers() {
     document
       .querySelectorAll('.nav-link[data-dropdown].is-active')
@@ -1003,14 +1001,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
   }
 
-  function renderCapabilities(tabKey = activeCapTab) {
-    const tab = getTab(tabKey);
-    activeCapTab = tab.key;
-
-    /* ---------- LEFT SIDE (RIGHT ARROW) ---------- */
+  function renderLeft(tabKey) {
     ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
       <a
-        class="nav-dd-item is-tab ${t.key === activeCapTab ? "is-selected" : ""}"
+        class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
         href="#"
         data-cap-tab="${t.key}"
       >
@@ -1018,8 +1012,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ${ICON_RIGHT_ARROW}
       </a>
     `).join("");
+  }
 
-    /* ---------- RIGHT SIDE (UPWARD ARROW) ---------- */
+  function renderRight(tab) {
     ddRight.innerHTML = `
       <div class="nav-dd-title">${tab.title}</div>
       <p class="nav-dd-desc">${tab.desc}</p>
@@ -1035,6 +1030,76 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  // Small RAF tween helper
+  function tween(dur, onUpdate) {
+    return new Promise(resolve => {
+      const t0 = performance.now();
+      function frame(now) {
+        const t = Math.min(1, (now - t0) / dur);
+        onUpdate(t);
+        if (t < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  // Easing: quick-out (feels snappy)
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3.2);
+
+  // ✅ Your preferred behavior:
+  // 1) fade OUT quickly
+  // 2) swap content
+  // 3) fade IN quickly + move up slightly
+  async function swapRightQuick(nextTabKey) {
+    if (isAnimatingRight) return;
+    if (nextTabKey === activeCapTab) return;
+
+    isAnimatingRight = true;
+
+    const nextTab = getTab(nextTabKey);
+
+    // Keep dropdown open and prevent accidental clicks mid-animation
+    ddRight.style.pointerEvents = "none";
+    ddRight.style.willChange = "opacity, transform";
+
+    // --- OUT (quick) ---
+    const OUT_DUR = 95; // quick
+    await tween(OUT_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(1 - e);
+      ddRight.style.transform = `translateY(${0 + (2 * e)}px)`; // tiny sink
+    });
+
+    // --- SWAP (hidden) ---
+    renderRight(nextTab);
+
+    // reset for IN
+    ddRight.style.opacity = "0";
+    ddRight.style.transform = "translateY(8px)"; // start slightly lower
+
+    // --- IN (quick + up) ---
+    const IN_DUR = 140; // slightly longer than OUT, still quick
+    await tween(IN_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(e);
+      ddRight.style.transform = `translateY(${8 - (8 * e)}px)`; // rise into place
+    });
+
+    // cleanup
+    ddRight.style.opacity = "";
+    ddRight.style.transform = "";
+    ddRight.style.willChange = "";
+    ddRight.style.pointerEvents = "";
+
+    // update state + left selection
+    activeCapTab = nextTabKey;
+    renderLeft(activeCapTab);
+
+    isAnimatingRight = false;
+  }
+
+  /* ===================== OPEN/CLOSE ===================== */
   function openDropdown(key) {
     activeKey = key;
 
@@ -1043,7 +1108,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (trigger) trigger.classList.add("is-active");
 
     if (key === "capabilities") {
-      renderCapabilities(activeCapTab);
+      renderLeft(activeCapTab);
+      renderRight(getTab(activeCapTab));
+
+      // ensure right is visible and not transformed
+      ddRight.style.opacity = "";
+      ddRight.style.transform = "";
     }
 
     dropdownWrap.classList.add("is-open");
@@ -1059,7 +1129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===================== EVENTS ===================== */
 
-  // Trigger click
+  // Trigger click (Capabilities)
   document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -1074,22 +1144,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Inside dropdown
+  // Inside dropdown: left tabs + right links
   dropdownWrap.addEventListener("click", (e) => {
     e.stopPropagation();
 
+    // Left tab click
     const tabEl = e.target.closest("[data-cap-tab]");
     if (tabEl) {
       e.preventDefault();
-      renderCapabilities(tabEl.getAttribute("data-cap-tab"));
+      swapRightQuick(tabEl.getAttribute("data-cap-tab"));
       return;
     }
 
+    // Right-side links close (you have data-dd-close on them)
     const closeEl = e.target.closest("[data-dd-close]");
     if (closeEl) closeDropdown();
   });
 
-  // Outside click
+  // Outside click closes
   document.addEventListener("click", (e) => {
     if (!dropdownWrap.classList.contains("is-open")) return;
 
@@ -1100,17 +1172,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!clickedInside) closeDropdown();
   });
 
-  // ESC key
+  // ESC closes
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeDropdown();
   });
 
-  // Close when clicking non-dropdown nav links
+  // Close dropdown when clicking non-dropdown nav links
   document.querySelectorAll(".nav-link:not([data-dropdown])")
-    .forEach(link => {
-      link.addEventListener("click", () => closeDropdown());
-    });
-
+    .forEach(link => link.addEventListener("click", () => closeDropdown()));
 });
 </script>
 
