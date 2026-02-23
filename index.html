@@ -265,15 +265,8 @@
 
     <nav class="nav-links">
       <a class="nav-link nav-link--hide-sm" href="#home">About</a>
-  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="services">
-  <span class="nav-link__label">Consulting</span>
-  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</a>
-
-<a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="news">
-  <span class="nav-link__label">Services</span>
+  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="capabilities">
+  <span class="nav-link__label">Capabilities</span>
   <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
     <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
@@ -300,6 +293,19 @@
 </div>
 
 <style>
+  /* --- Left column tabs (Capabilities) --- */
+.nav-dd-item.is-tab{
+  cursor: pointer;
+}
+
+.nav-dd-item.is-tab.is-selected{
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+}
+
+.nav-dd-item.is-tab.is-selected .dd-arrow path{
+  stroke: #F00303;
+}
   /* ===================== NAV DROPDOWN ===================== */
 .nav-dropdown-wrap{
   position: fixed;
@@ -894,87 +900,134 @@
   })();
 </script>
 
-  <script>
-  // ===== SVG icons for dropdown rows =====
+ 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===================== ICONS ===================== */
+
+  // Left column arrow (→)
   const ICON_RIGHT_ARROW = `
-    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
     </svg>
   `;
 
+  // Right column upward arrow (↗)
   const ICON_UPRIGHT = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M7 17L17 7M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17L17 7M10 7h7v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
     </svg>
   `;
 
-  // ===== Content models =====
-  const DROPDOWN_DATA = {
-    services: {
-      left: [
-        { label: "Mergers & Acquisition Support", href: "#services" },
-        { label: "Talent Acquisition & Assessment", href: "#services" },
-        { label: "Corporate Development & Strategic Planning", href: "#services" },
-        { label: "Business Development & Client Strategies", href: "#services" },
-        { label: "Capital Acquisition", href: "#services" },
-      ],
-      right: {
+  /* ===================== CONTENT ===================== */
+
+  const CAPABILITIES = {
+    tabs: [
+      {
+        key: "technical",
+        label: "Technical Consulting",
         title: "Technical Consulting",
-        desc: "Griffin delivers specialized technical consulting for complex industrial environments - providing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise. When precision and accountability matter most, our team integrates seamlessly with yours to move projects forward with confidence.",
-        links: [
-          { label: "View Service Areas", href: "#services" },
-          { label: "Talk to an Expert", href: "#contact" },
-          { label: "Download Capability Sheet", href: "#contact" },
-        ]
-      }
-    },
-    news: {
-      left: [
-        { label: "NDT Level III Consulting & Support", href: "#news" },
-        { label: "Advanced NDT Subject Matter Experts", href: "#news" },
-        { label: "NDT Written Practice Review and Development", href: "#news" },
-        { label: "Next Level Advanced NDT Training Programs", href: "#news" },
-        { label: "Advanced NDT Technology Programs and Procedures", href: "#news" },
-        { label: "Automation, Robotics, and Advanced Imaging Systems", href: "#news" },
-      ],
-      right: {
+        desc:
+          "Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.",
+        items: [
+          "Mergers & Acquisition Support",
+          "Talent Acquisition & Assessment",
+          "Corporate Development & Strategic Planning",
+          "Business Development & Client Strategies",
+          "Capital Acquisition",
+        ],
+      },
+      {
+        key: "advisory",
+        label: "Advisory Services",
         title: "Advisory Services",
-        desc: "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions that align with industry codes, client specifications, and operational realities.",
-        links: [
-          { label: "Read Recent Posts", href: "#news" },
-          { label: "Subscribe for Updates", href: "#contact" },
-          { label: "Media Inquiries", href: "#contact" },
-        ]
-      }
-    }
+        desc:
+          "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.",
+        items: [
+          "NDT Level III Consulting & Support",
+          "Advanced NDT Subject Matter Experts",
+          "NDT Written Practice Review and Development",
+          "Next Level Advanced NDT Training Programs",
+          "Advanced NDT Technology Programs and Procedures",
+          "Automation, Robotics, and Advanced Imaging Systems",
+        ],
+      },
+      {
+        key: "affiliate",
+        label: "Affiliate Organizations",
+        title: "Affiliate Organizations",
+        desc:
+          "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+        items: [
+          "Top Notch EDM Services",
+          "Sound NDT Solutions",
+          "ATCO Automated Scanning Systems",
+          "Halo NDT Technologies",
+        ],
+      },
+    ],
   };
+
+  /* ===================== DOM ===================== */
 
   const dropdownWrap = document.getElementById("navDropdown");
   const ddLeft = document.getElementById("navDdLeft");
   const ddRight = document.getElementById("navDdRight");
+  const navbar = document.querySelector(".navbar");
+
+  if (!dropdownWrap || !ddLeft || !ddRight) return;
 
   let activeKey = null;
+  let activeCapTab = "technical";
 
-  function renderDropdown(key){
-    const data = DROPDOWN_DATA[key];
-    if (!data) return;
+  /* ===================== HELPERS ===================== */
 
-    // left buttons
-    ddLeft.innerHTML = data.left.map(item => `
-      <a class="nav-dd-item" href="${item.href}" data-dd-close>
-        <span>${item.label}</span>
+  function clearActiveTriggers() {
+    document
+      .querySelectorAll('.nav-link[data-dropdown].is-active')
+      .forEach(el => el.classList.remove("is-active"));
+  }
+
+  function getTab(key) {
+    return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
+  }
+
+  function renderCapabilities(tabKey = activeCapTab) {
+    const tab = getTab(tabKey);
+    activeCapTab = tab.key;
+
+    /* ---------- LEFT SIDE (RIGHT ARROW) ---------- */
+    ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
+      <a
+        class="nav-dd-item is-tab ${t.key === activeCapTab ? "is-selected" : ""}"
+        href="#"
+        data-cap-tab="${t.key}"
+      >
+        <span>${t.label}</span>
         ${ICON_RIGHT_ARROW}
       </a>
     `).join("");
 
-    // right content
+    /* ---------- RIGHT SIDE (UPWARD ARROW) ---------- */
     ddRight.innerHTML = `
-      <div class="nav-dd-title">${data.right.title}</div>
-      <p class="nav-dd-desc">${data.right.desc}</p>
+      <div class="nav-dd-title">${tab.title}</div>
+      <p class="nav-dd-desc">${tab.desc}</p>
+
       <div class="nav-dd-links">
-        ${data.right.links.map(l => `
-          <a class="nav-dd-greenlink" href="${l.href}" data-dd-close>
-            <span>${l.label}</span>
+        ${tab.items.map(item => `
+          <a class="nav-dd-greenlink" href="#services" data-dd-close>
+            <span>${item}</span>
             ${ICON_UPRIGHT}
           </a>
         `).join("")}
@@ -982,382 +1035,85 @@
     `;
   }
 
-function clearActiveTriggers(){
-  document
-    .querySelectorAll('.nav-link[data-dropdown].is-active')
-    .forEach(el => el.classList.remove('is-active'));
-}
+  function openDropdown(key) {
+    activeKey = key;
 
-function openDropdown(key){
-  activeKey = key;
-  renderDropdown(key);
+    clearActiveTriggers();
+    const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
+    if (trigger) trigger.classList.add("is-active");
 
-  // ✅ mark selected trigger
-  clearActiveTriggers();
-  const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
-  if (trigger) trigger.classList.add("is-active");
+    if (key === "capabilities") {
+      renderCapabilities(activeCapTab);
+    }
 
-  dropdownWrap.classList.add("is-open");
-  dropdownWrap.setAttribute("aria-hidden", "false");
-}
+    dropdownWrap.classList.add("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "false");
+  }
 
-function closeDropdown(){
-  activeKey = null;
-  dropdownWrap.classList.remove("is-open");
-  dropdownWrap.setAttribute("aria-hidden", "true");
-  clearActiveTriggers();
-}
+  function closeDropdown() {
+    activeKey = null;
+    dropdownWrap.classList.remove("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "true");
+    clearActiveTriggers();
+  }
 
-  // Open on click for the two triggers
+  /* ===================== EVENTS ===================== */
+
+  // Trigger click
   document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
     link.addEventListener("click", (e) => {
-      // prevent normal anchor jump when using dropdown
       e.preventDefault();
+      e.stopPropagation();
+
       const key = link.getAttribute("data-dropdown");
-      const isOpenSame = dropdownWrap.classList.contains("is-open") && activeKey === key;
-      if (isOpenSame) closeDropdown();
+      const isSame =
+        dropdownWrap.classList.contains("is-open") && activeKey === key;
+
+      if (isSame) closeDropdown();
       else openDropdown(key);
     });
   });
 
-  // Close when clicking outside navbar + dropdown
-  document.addEventListener("click", (e) => {
-    const navbar = document.querySelector(".navbar");
-    if (!dropdownWrap.classList.contains("is-open")) return;
-
-    const clickedInside =
-      dropdownWrap.contains(e.target) || (navbar && navbar.contains(e.target));
-
-    if (!clickedInside) closeDropdown();
-  });
-
-  // Close on Esc
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDropdown();
-  });
-
-  // Close when clicking dropdown items (so it navigates cleanly)
+  // Inside dropdown
   dropdownWrap.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const tabEl = e.target.closest("[data-cap-tab]");
+    if (tabEl) {
+      e.preventDefault();
+      renderCapabilities(tabEl.getAttribute("data-cap-tab"));
+      return;
+    }
+
     const closeEl = e.target.closest("[data-dd-close]");
     if (closeEl) closeDropdown();
   });
 
-  // Close dropdown when clicking non-dropdown nav links (Home/About/Contact)
-  document.querySelectorAll(".nav-link:not([data-dropdown])").forEach(link => {
-    link.addEventListener("click", () => closeDropdown());
+  // Outside click
+  document.addEventListener("click", (e) => {
+    if (!dropdownWrap.classList.contains("is-open")) return;
+
+    const clickedInside =
+      dropdownWrap.contains(e.target) ||
+      (navbar && navbar.contains(e.target));
+
+    if (!clickedInside) closeDropdown();
   });
+
+  // ESC key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
+  });
+
+  // Close when clicking non-dropdown nav links
+  document.querySelectorAll(".nav-link:not([data-dropdown])")
+    .forEach(link => {
+      link.addEventListener("click", () => closeDropdown());
+    });
+
+});
 </script>
-<script>
-(() => {
-  const canvas = document.getElementById("heroGrid");
-  const hero = document.querySelector(".hero");
-  if (!canvas || !hero) return;
 
-  const ctx = canvas.getContext("2d", { alpha: true });
-
-  // --------- Grid ---------
-  const GRID = { cell: 56 }; // transparent over hero bg
-  const TRACE_COLOR = "#B3B3B3";
-
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-  const rand = (a, b) => a + Math.random() * (b - a);
-
-  function hexToRgba(hex, a) {
-    const num = parseInt(hex.replace("#",""), 16);
-    const r = (num >> 16) & 255;
-    const g = (num >> 8) & 255;
-    const b = num & 255;
-    return `rgba(${r},${g},${b},${a})`;
-  }
-
-  function resize() {
-    const r = hero.getBoundingClientRect();
-    const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
-
-    canvas.width  = Math.floor(r.width * dpr);
-    canvas.height = Math.floor(r.height * dpr);
-    canvas.style.width  = r.width + "px";
-    canvas.style.height = r.height + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  window.addEventListener("resize", resize);
-  resize();
-
-  // --- Grid helpers ---
-  function gp(gx, gy) { return { x: gx * GRID.cell, y: gy * GRID.cell }; }
-
-  function computeRegion() {
-    const cols = Math.ceil(hero.clientWidth / GRID.cell);
-    const rows = Math.ceil(hero.clientHeight / GRID.cell);
-    const pad = 2;
-    return { x0: pad, y0: pad, x1: cols - pad, y1: rows - pad };
-  }
-
-  let REGION = computeRegion();
-  window.addEventListener("resize", () => { REGION = computeRegion(); });
-
-  function drawGrid() {
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
-
-    ctx.clearRect(0, 0, w, h);
-
-    const cols = Math.ceil(w / GRID.cell);
-    const rows = Math.ceil(h / GRID.cell);
-
-    ctx.strokeStyle = "rgba(200,200,200,0.01)";
-    ctx.lineWidth = 1;
-
-    for (let x = 0; x <= cols; x++) {
-      ctx.beginPath();
-      ctx.moveTo(x * GRID.cell + 0.5, 0);
-      ctx.lineTo(x * GRID.cell + 0.5, h);
-      ctx.stroke();
-    }
-
-    for (let y = 0; y <= rows; y++) {
-      ctx.beginPath();
-      ctx.moveTo(0, y * GRID.cell + 0.5);
-      ctx.lineTo(w, y * GRID.cell + 0.5);
-      ctx.stroke();
-    }
-  }
-
-  // --- Build a path that NEVER goes back (no loops, no reversals) ---
-  // We create an ordered polyline where each segment moves only +x or +y.
-  function makeMonotonePath(region) {
-    const { x0, y0, x1, y1 } = region;
-
-    // pick start, then ensure end is down-right from start
-    let sx = Math.floor(rand(x0, x1 - 4));
-    let sy = Math.floor(rand(y0, y1 - 4));
-    let ex = Math.floor(rand(sx + 3, x1));
-    let ey = Math.floor(rand(sy + 3, y1));
-
-    const pts = [[sx, sy]];
-
-    const steps = Math.floor(rand(6, 10));
-    let cx = sx, cy = sy;
-
-    // add "turns" that only increase x or y, never decrease
-    for (let i = 0; i < steps; i++) {
-      const goX = Math.random() > 0.5;
-
-      if (goX) {
-        // move to a new x between current and end
-        const nx = Math.floor(rand(cx, ex + 1));
-        if (nx > cx) {
-          pts.push([nx, cy]);
-          cx = nx;
-        }
-      } else {
-        // move to a new y between current and end
-        const ny = Math.floor(rand(cy, ey + 1));
-        if (ny > cy) {
-          pts.push([cx, ny]);
-          cy = ny;
-        }
-      }
-    }
-
-    // ensure we finish exactly at end (only +x / +y)
-    if (cx !== ex) pts.push([ex, cy]);
-    if (cy !== ey) pts.push([ex, ey]);
-
-    // de-dupe any accidental repeats
-    const cleaned = [pts[0]];
-    for (let i = 1; i < pts.length; i++) {
-      const a = cleaned[cleaned.length - 1];
-      const b = pts[i];
-      if (a[0] !== b[0] || a[1] !== b[1]) cleaned.push(b);
-    }
-
-    // guarantee at least 2 points
-    if (cleaned.length < 2) cleaned.push([sx + 1, sy]);
-
-    return cleaned;
-  }
-
-  function buildPath(points) {
-    const segs = [];
-    let total = 0;
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const a = points[i];
-      const b = points[i + 1];
-
-      // len in "grid-cells" (Manhattan)
-      const len = Math.abs(b[0] - a[0]) + Math.abs(b[1] - a[1]);
-
-      // skip zero-length segments
-      if (len <= 0) continue;
-
-      segs.push({ a, b, len, start: total, end: total + len });
-      total += len;
-    }
-
-    if (segs.length === 0) {
-      // fallback tiny segment
-      const a = points[0];
-      const b = [a[0] + 1, a[1]];
-      segs.push({ a, b, len: 1, start: 0, end: 1 });
-      total = 1;
-    }
-
-    return { segs, total };
-  }
-
-  function posOnPath(pathObj, dCells) {
-    const { segs, total } = pathObj;
-
-    // IMPORTANT: no wrapping. clamp to [0, total]
-    const d = clamp(dCells, 0, total);
-
-    for (const s of segs) {
-      if (d >= s.start && d <= s.end) {
-        const t = (s.len === 0) ? 0 : (d - s.start) / s.len;
-        const ax = s.a[0], ay = s.a[1];
-        const bx = s.b[0], by = s.b[1];
-        return gp(ax + (bx - ax) * t, ay + (by - ay) * t);
-      }
-    }
-
-    const last = segs[segs.length - 1];
-    return gp(last.b[0], last.b[1]);
-  }
-
-  function spawnTrace() {
-    const points = makeMonotonePath(REGION);
-    const path = buildPath(points);
-
-    // make sure the tail never goes "negative" (so it won't clamp into a dot at the start)
-    const startP = rand(0.25 * path.total, 0.55 * path.total);
-
-    return {
-      width: rand(2.6, 3.4),
-      glow: rand(10, 16),
-      speed: rand(0.26, 0.48),        // ✅ slower
-      tailCells: rand(8.0, 13.0),     // ✅ long tail
-      age: 0,
-      life: rand(6.5, 10.5),          // ✅ longer life
-      p: startP,                      // ✅ starts away from very beginning
-      path
-    };
-  }
-
-  // ✅ only 1–2 at a time, with occasional gap
-  const TRACES_MAX = 2;
-  let traces = Array.from({ length: TRACES_MAX }, () => spawnTrace());
-  if (Math.random() < 0.5) traces[1] = null; // sometimes start with just one
-
-  function drawTrace(t) {
-  const lifeProgress = clamp(t.age / t.life, 0, 1);
-
-  const fadeInDuration = 0.18;
-  const fadeOutStart = 0.78;
-
-  let fade = 1;
-  if (lifeProgress < fadeInDuration) fade = lifeProgress / fadeInDuration;
-  else if (lifeProgress > fadeOutStart) fade = 1 - (lifeProgress - fadeOutStart) / (1 - fadeOutStart);
-  fade = clamp(fade, 0, 1);
-
-  const head = t.p;
-  const tail = head - t.tailCells;
-
-  const totalLen = t.tailCells;
-
-  // ✅ more samples = smoother (less "beads")
-  const steps = Math.max(140, Math.floor(totalLen * 28));
-
-  // Collect points once
-  const pts = [];
-  for (let i = 0; i <= steps; i++) {
-    const u = i / steps;
-    const d = tail + u * totalLen;
-    pts.push({ u, pt: posOnPath(t.path, d) });
-  }
-
-  ctx.save();
-
-  // ========= PASS 1: core line (NO shadow) =========
-  ctx.shadowBlur = 0;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  ctx.lineWidth = t.width;
-
-  for (let i = 1; i < pts.length; i++) {
-    const a = pts[i - 1].pt;
-    const b = pts[i].pt;
-    const u = pts[i].u;
-
-    // tail -> head fade (smooth)
-    const alpha = Math.pow(u, 2.3) * fade * 0.45;
-    ctx.strokeStyle = hexToRgba(TRACE_COLOR, alpha);
-
-    ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    ctx.lineTo(b.x, b.y);
-    ctx.stroke();
-  }
-
-  // ========= PASS 2: glow (ONE stroke so it’s continuous) =========
-  ctx.shadowColor = TRACE_COLOR;
-  ctx.shadowBlur = t.glow;
-
-  ctx.globalCompositeOperation = "lighter"; // optional: makes glow nicer
-  ctx.strokeStyle = hexToRgba(TRACE_COLOR, fade * 0.22);
-  ctx.lineWidth = t.width;
-
-  ctx.beginPath();
-  ctx.moveTo(pts[0].pt.x, pts[0].pt.y);
-  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].pt.x, pts[i].pt.y);
-  ctx.stroke();
-
-  ctx.restore();
-}
-
-  let last = performance.now();
-  function tick(now) {
-    const dt = (now - last) / 1000;
-    last = now;
-
-    // keep sizing accurate if layout shifts
-    if (canvas.style.width !== hero.clientWidth + "px" || canvas.style.height !== hero.clientHeight + "px") {
-      resize();
-      REGION = computeRegion();
-    }
-
-    drawGrid();
-
-    for (let i = 0; i < traces.length; i++) {
-      let t = traces[i];
-
-      // if empty, occasionally spawn
-      if (!t) {
-        if (Math.random() < 0.012) traces[i] = spawnTrace();
-        continue;
-      }
-
-      t.age += dt;
-
-      // move forward only
-      t.p += t.speed * dt;
-
-      drawTrace(t);
-
-      // end when head reaches end OR life ends
-      if (t.age >= t.life || t.p >= t.path.total) {
-        // leave a gap sometimes
-        traces[i] = (Math.random() < 0.55) ? null : spawnTrace();
-      }
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
-</script>
 
 <script>
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
