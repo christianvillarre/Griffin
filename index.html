@@ -312,7 +312,7 @@
   }
 
   .hero h1{
-    font-size: clamp(34px, 5vw, 66px);
+    font-size: clamp(34px, 5vw, 86px);
     line-height:1.05;
     margin:0 0 12px;
     letter-spacing:-0.02em;
@@ -702,7 +702,7 @@
   font-weight: 700;
 }
 </style>
-  <main id="site">
+  <main id="site" >
   <section class="intro-wrap">
     <section class="hero" id="home">
       <h1><span class="text-highlight">Technology-based</span> Asset Integrity<br> Solutions for the Energy Industry</h1>
@@ -1693,7 +1693,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const passed = -rect.top;               // how far into the wrap
     const progress = clamp(passed / total, 0, 1);
 
-    const maxShift = vh * 0.28;             // tune travel amount
+    const maxShift = vh * 0.48;             // tune travel amount
     return lerp(0, -maxShift, progress);    // scroll down => beam moves up
   }
 
