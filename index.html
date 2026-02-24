@@ -153,7 +153,7 @@
 .intro-wrap{
   position: relative;
   min-height: 200vh;
-  overflow: hidden;
+  overflow: visible;
   background:#000;
 }
 
@@ -213,6 +213,7 @@
 .side-img{
   position:absolute;
   top:0;
+  overflow: visible;
 
   /* ✅ height responds to WIDTH (vw) but is capped by viewport height (vh) */
   height: clamp(140vh, 95vw, 150vh);
@@ -236,25 +237,23 @@
 /* Stick to sides (no offset) */
 /* ============================= */
 
-/* ✅ Wing offset that becomes 0 on very large screens */
-:root{
-  --wingShift: clamp(0px, 2.2vw, 44px); /* tweak the 2.2vw / 44px as needed */
-}
-
-/* base */
 .side-img--left{
   left: 0;
-  right: auto;
-  transform: translateX(calc(-1 * var(--wingShift)));
+  transform: none;
+  transform: translateX(-10%);
 }
 
 .side-img--right{
   right: 0;
   left: auto;
-  transform: translateX(var(--wingShift));
+  transform: none;
+  transform: translateX(10%);
 }
 
-/* ✅ Under 1600px keep your center-style behavior (unchanged) */
+/* ============================= */
+/* Under 1600px: center-style */
+/* ============================= */
+
 @media (max-width: 1599px){
   .side-img--left{
     left: 50%;
@@ -268,6 +267,7 @@
     transform: translateX(20%);
   }
 }
+
   /* wave indent (white) into next section */
   .wave-divider{
     position:absolute;
