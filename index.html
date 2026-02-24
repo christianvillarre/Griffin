@@ -312,7 +312,7 @@
   }
 
   .hero h1{
-    font-size: clamp(34px, 7vw, 76px);
+    font-size: clamp(34px, 5vw, 66px);
     line-height:1.05;
     margin:0 0 12px;
     letter-spacing:-0.02em;
@@ -352,8 +352,8 @@
   display: flex;
   flex-direction: column;    /* ✅ helps keep heading perfectly centered */
   align-items: center;
-  justify-content: flex-start;
-  margin-top: 10rem;
+  justify-content: center;
+ 
   text-align: center;        /* ✅ center text */
   padding: 0 20px;           /* ✅ prevents edge clipping on small screens */
 
@@ -455,24 +455,21 @@
 
 .nav-dropdown{
   border-radius: 25px;
-  background: #00202ec5;
+
+  /* ✅ match navbar exactly */
+  background: #00202e70;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  overflow: hidden;
 
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1.35fr;
   gap: 14px;
-
   padding: 16px;
 
-  /* animation */
   opacity: 0;
   transform: translateY(-8px);
   transition: opacity .18s ease, transform .18s ease;
-
-  /* optional subtle border */
-  /*border: 1px solid rgba(255,255,255,0.08);*/
 }
 
 .nav-dropdown-wrap.is-open{
@@ -703,11 +700,10 @@
   font-weight: 700;
 }
 </style>
-
   <main id="site">
   <section class="intro-wrap">
     <section class="hero" id="home">
-      <h1><span class="text-highlight">Solutions</span> that <br>stand up to scruitiny.</h1>
+      <h1><span class="text-highlight">Technology-based</span> Asset Integrity<br> Solutions for the Energy Industry</h1>
 
       <div class="hero-scroll-indicator">
         <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
@@ -749,8 +745,269 @@
   </section>
 
   <!-- next section is white -->
-  <section class="spacer spacer--white" id="news">MORE SCROLL TEST</section>
-  <section class="spacer spacer--white" id="about">ABOUT SECTION PLACEHOLDER</section>
+  <section class="feature-split" id="news">
+  <div class="feature-inner">
+
+    <!-- LEFT 40% -->
+    <div class="feature-left">
+      <!-- 10rem spacer column -->
+      
+
+      <!-- icon column -->
+      <div class="feature-iconWrap">
+        <img class="feature-icon" src="images/InfoIcon.png" alt="Icon">
+      </div>
+
+      <!-- content column -->
+      <div class="feature-content">
+        <h2 class="feature-heading">
+          Technical Consulting and NDT Advisory Services
+        </h2>
+
+        <div class="feature-block">
+          <div class="feature-title">Designed for <span class="text-highlight">High-Consequence</span> Environments</div>
+          <p class="feature-text">
+            In industries where failure carries significant financial, operational, and safety implications, Griffin brings insight and expertise to complex technical decisions. 
+            Our consulting and advisory services combine advanced NDT subject matter expertise with strategic business insight to support compliance alignment, technology implementation, 
+            workforce development, and effective risk mitigation. We partner closely with leadership teams and technical departments to strengthen 
+            internal capability, improve reliability outcomes, and ensure that every solution aligns with both regulatory demands and long-term operational performance.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT image (bleeds) -->
+    <div class="feature-right">
+      <img class="feature-image" src="images/WingPicFram_RT.png" alt="Project photo">
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ===================== FEATURE SPLIT SECTION ===================== */
+.feature-split{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;            /* ✅ ensures we have room */
+  background: #fff;
+  color: #111;
+  overflow: visible;
+  padding: clamp(48px, 6vw, 90px) 0;
+  margin-top: 5rem;
+}
+
+:root{
+  --navW: 900px;
+  --navPad: 28px; /* matches calc(100% - 28px) */
+}
+
+/* Make the text block align to the same centered 900px container as navbar */
+.feature-inner{
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;                 /* remove the old padding here */
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* ✅ This is the key: give the LEFT column the same container logic as navbar */
+.feature-left{
+  width: min(var(--navW), calc(100% - var(--navPad)));
+  margin: 0 auto;             /* centers it exactly like navbar */
+  padding-left: 0;            /* remove extra left padding */
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  column-gap: 28px;
+  max-width: none;            /* remove the 720 cap so it can align perfectly */
+}
+/* 10rem spacer */
+.feature-gutter{
+  width: 10rem;
+}
+
+/* icon wrapper keeps it pinned to the top */
+.feature-iconWrap{
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: flex-start; /* ✅ top */
+  justify-content: center;
+}
+
+/* icon image: no stretch */
+.feature-icon{
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;   /* ✅ fits without stretching */
+  display: block;
+}
+
+/* heading aligned with icon top */
+.feature-content{
+  padding-top: 0; /* keep flush with icon top */
+}
+
+.feature-heading{
+ font-weight: 400;
+  font-size: 18px;
+  margin: 0 0 22px;
+  color:#555555;
+}
+
+/* bold title + paragraph block */
+/* ✅ remove the artificial width cap so it can get wider */
+.feature-block{
+  max-width: 62ch; /* or remove this line entirely */
+}
+.feature-title{
+  
+   font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.05;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: #555555;
+}
+
+.feature-text{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* RIGHT SIDE (60%) */
+.feature-right{
+  position: absolute;
+  top: 0;
+
+  /* ✅ anchor to actual viewport edge */
+  right: 0;
+
+  height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+
+  pointer-events: none;
+
+  /* ✅ remove any layout influence */
+  width: auto;
+}
+.feature-image{
+  display: block;
+
+  height: auto;
+  max-height: 100vh;
+
+  /* ✅ make sure it touches the edge */
+  width: clamp(520px, 45vw, 1100px);
+
+  object-fit: contain;
+  object-position: top right;   /* important */
+
+  border-radius: 24px 0 0 24px;
+}
+/* ===================================================== */
+/* Under 1400px → stick text to left side */
+/* ===================================================== */
+@media (max-width: 1399px){
+
+  .feature-left{
+    width: 100%;
+    margin: 0;          /* remove centering */
+    padding-left: 0;    /* ✅ NO space */
+    padding-right: 0;   /* optional */
+  }
+
+  .feature-inner{
+    padding: 0;   /* ✅ removes container inset */
+  }
+
+
+}
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 980px){
+  .feature-inner{
+    grid-template-columns: 1fr;
+  }
+
+  .feature-left{
+    grid-template-columns: 2rem 6rem 1fr; /* tighter on mobile */
+    column-gap: 16px;
+  }
+
+  .feature-gutter{ width: 2rem; }
+
+  .feature-iconWrap,
+  .feature-icon{
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .feature-right{
+    min-height: auto;
+    padding-top: 12px;
+  }
+
+  .feature-image{
+    height: 60vh;
+    width: 100%;
+    transform: none; /* no bleed on mobile */
+    border-radius: 18px;
+  }
+}
+</style>
+  <section class="blue-cta">
+  <h2 class="display-heading">
+    Precision That <span class="text-highlight">Performs</span>.
+  </h2>
+</section>
+
+
+<style>
+  /* ===================== BLUE SECTION ===================== */
+.blue-cta{
+  height: 80vh;
+  min-height: 600px; /* optional: prevents it getting too short on small screens */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 0 20px;
+
+  background-image: url("images/bluebg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* optional subtle dark overlay for readability */
+.blue-cta::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.25); /* adjust darkness */
+  z-index:0;
+}
+
+.blue-cta > *{
+  position: relative;
+  z-index:1;
+  color: #ffffff;
+}
+</style>
+
+
+
   <section class="spacer spacer--white" id="contact">CONTACT SECTION PLACEHOLDER</section>
 </main>
 
