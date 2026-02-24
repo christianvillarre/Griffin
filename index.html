@@ -1014,6 +1014,263 @@
 
 
 
+<section class="contact-section">
+
+  <div class="contact-header">
+    <h2>
+      <span class="text-highlight">Contact</span> Us
+    </h2>
+    <div class="contact-divider"></div>
+  </div>
+
+  <div class="contact-grid">
+
+    <!-- LEFT SIDE -->
+    <div class="contact-left">
+      <h3>Reach Out to Learn More About Griffin Integrity Solutions</h3>
+      <p>
+        If you’d like to learn more about Griffin Integrity Solutions,
+        our advanced NDT expertise, consulting capabilities, or how we
+        can support your organization’s compliance and technical initiatives,
+        we’d be glad to connect. Our team is ready to provide clarity,
+        guidance, and practical solutions tailored to your needs.
+      </p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="contact-right">
+      <h3>Tell Us a Bit About You</h3>
+
+      <form class="contact-form">
+
+        <label>
+          Full Name
+          <input type="text" name="name" placeholder="John Doe" required>
+        </label>
+
+        <label>
+          Phone Number
+          <input type="tel" name="phone" placeholder="(555) 123-4567">
+        </label>
+
+        <label>
+          Email Address
+          <input type="email" name="email" placeholder="john@company.com" required>
+        </label>
+
+        <label>
+          Company Name
+          <input type="text" name="company" placeholder="Your Company Name">
+        </label>
+
+        <label>
+          How Can We Help?
+          <textarea name="message" rows="5" placeholder="Tell us more about your project or needs..."></textarea>
+        </label>
+
+        <button type="submit" class="contact-btn">
+          Submit Inquiry
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<style>
+/* ============================
+   CONTACT SECTION (WHITE) — Bigger Type + Underline Inputs
+============================ */
+/* ====== FORCE FULL-WIDTH BREAKOUT (works inside max-width parents) ====== */
+.contact-section{
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+
+  /* keep it flush, no accidental overflow from browser rounding */
+  overflow-x: clip;
+
+  background: #ffffff;
+  padding: clamp(90px, 10vw, 160px) clamp(24px, 4vw, 60px);
+}
+
+/* safety: prevent any global max-width rules from affecting it */
+.contact-section{
+  max-width: none !important;
+}
+
+/* also prevent horizontal scrolling if something else overflows */
+html, body{
+  overflow-x: clip;
+}
+
+/* HEADER */
+.contact-header{
+  text-align:center;
+  margin-bottom: clamp(44px, 5vw, 80px);
+  
+}
+
+.contact-header h2{
+  font-size: clamp(44px, 10vw, 142px);   /* ✅ bigger */
+  margin:0;
+  font-weight:750;
+  letter-spacing:-0.03em;
+  color:#111;
+}
+
+.text-highlight{
+  color:#1a5c91;
+}
+
+.contact-divider{
+  width: 100%;
+  height:1px;
+  background:#a9a9a9;
+  margin:22px auto 0;
+  border-radius:999px;
+}
+
+/* GRID */
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(44px, 6vw, 120px);
+  
+  margin:0 auto;
+  align-items:start;
+}
+
+/* LEFT */
+.contact-left {
+  border-left: 10px solid red;
+  padding-left: 2rem;
+}
+.contact-left h3{
+  font-size: clamp(24px, 3.4vw, 54px);  /* ✅ bigger */
+  margin:0 0 18px;
+  color:#111;
+  letter-spacing:-0.01em;
+  font-weight: 200;
+}
+
+.contact-left p{
+  font-size: clamp(17px, 1.2vw, 20px);  /* ✅ bigger */
+  line-height:1.75;
+  color:#555;
+  max-width:60ch;
+}
+
+/* RIGHT */
+.contact-right h3{
+  font-size: clamp(24px, 3.4vw, 54px);  /* ✅ bigger */
+  margin:0 0 22px;
+  color:#111;
+  letter-spacing:-0.01em;
+  font-weight: 200;
+}
+
+/* FORM */
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap: 20px;
+}
+
+/* label text bigger */
+.contact-form label{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  
+  letter-spacing:.06em;
+  font-size: 18px;          /* ✅ bigger */
+  font-weight:400;
+  color:#333;
+}
+
+/* ✅ Underline-only inputs */
+.contact-form input,
+.contact-form textarea{
+  background: transparent;     /* no box bg */
+  border: none;                /* remove all borders */
+  border-bottom: 1px solid #d5d9de;  /* ✅ underline */
+  border-radius: 0;
+  padding: 8px 0px 12px;      /* top/right/bottom feel good */
+  font-size: 18px;             /* ✅ bigger input text */
+  color:#111;
+  outline:none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+/* Force form fields to use site font */
+.contact-form input,
+.contact-form textarea,
+.contact-form select,
+.contact-form button {
+  font-family: 'Zalando Sans', sans-serif;
+}
+
+/* keep textarea neat */
+.contact-form textarea{
+  resize: vertical;
+  min-height: 140px;
+  padding-top: 10px;
+}
+
+/* focus state */
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-bottom-color: #ff0505;
+  
+}
+
+/* placeholders */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color:#9aa3ad;
+}
+
+/* BUTTON (slightly bigger) */
+.contact-btn{
+  margin-top:14px;
+  background:#ffffff;
+  color:#000000;
+  border: 1px solid;
+  padding:16px 22px;
+  border-radius:0px;
+  font-size:22px;
+  font-weight:200;
+  letter-spacing:.05em;
+  cursor:pointer;
+  transition: transform .2s ease, opacity .2s ease;
+  width: fit-content;      /* nice “CTA” feel */
+}
+
+.contact-btn:hover{
+  transform: translateY(-2px);
+  opacity:.92;
+}
+
+/* MOBILE */
+@media (max-width: 900px){
+  .contact-grid{
+    grid-template-columns: 1fr;
+  }
+  .contact-left p{
+    max-width:100%;
+  }
+  .contact-btn{
+    width:100%;
+    text-align:center;
+  }
+}
+</style>
+
   <section class="spacer spacer--white" id="contact">CONTACT SECTION PLACEHOLDER</section>
 </main>
 
