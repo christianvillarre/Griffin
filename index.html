@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-
+<!-- in <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
   
 </head>
 <style>
@@ -28,7 +29,10 @@
 
   *{ box-sizing:border-box; }
   html,body{ height:100%; }
-
+html{
+  scroll-behavior: auto; /* Locomotive handles smoothness */
+  scroll-padding-top: var(--nav-offset);
+}
   body{
     margin:0;
     font-family: 'Zalando Sans', sans-serif;
@@ -702,7 +706,8 @@
   font-weight: 700;
 }
 </style>
-  <main id="site" >
+ <div id="scroll-container" data-scroll-container>
+ <main id="site">
   <section class="intro-wrap">
     <section class="hero" id="home">
       <h1><span class="text-highlight">Technology-based</span> Asset Integrity<br> Solutions for the Energy Industry</h1>
@@ -714,77 +719,56 @@
       </div>
     </section>
 
-    <!-- wave divider at bottom of the 200vh area -->
-    <!-- wave divider at bottom of the 200vh area -->
-<svg class="wave-divider" 
-     viewBox="0 0 1440 180" 
-     preserveAspectRatio="none" 
-     aria-hidden="true">
+    <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0,60 C240,60 480,140 720,140 C960,140 1200,60 1440,60 L1440,180 L0,180 Z"
+        fill="#ffffff">
+      </path>
+    </svg>
 
-  <!-- Sides high, center dips down -->
-  <path 
-    d="
-      M0,60
-      C240,60 480,140 720,140
-      C960,140 1200,60 1440,60
-      L1440,180
-      L0,180
-      Z
-    "
-    fill="#ffffff">
-  </path>
+    <section class="spacer spacer--dark">
+      <h2 class="display-heading">
+        Built for <span class="text-highlight">Critical</span> Environments.
+      </h2>
+    </section>
 
-</svg>
-<section class="spacer spacer--dark">
-  <h2 class="display-heading">
-    Built for <span class="text-highlight">Critical</span> Environments.
-  </h2>
-</section>
- 
-    <!-- side images -->
     <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
     <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
-  </section>
+  </section> <!-- ✅ CLOSE intro-wrap -->
 
-  <!-- next section is white -->
+  <!-- ✅ now this is a sibling, not nested -->
   <section class="feature-split" id="news">
-  <div class="feature-inner">
+    <div class="feature-inner">
+      <div class="feature-left">
+        <div class="feature-iconWrap">
+          <img class="feature-icon" src="images/InfoIcon.png" alt="Icon">
+        </div>
 
-    <!-- LEFT 40% -->
-    <div class="feature-left">
-      <!-- 10rem spacer column -->
-      
+        <div class="feature-content">
+          <h2 class="feature-heading">Technical Consulting and NDT Advisory Services</h2>
 
-      <!-- icon column -->
-      <div class="feature-iconWrap">
-        <img class="feature-icon" src="images/InfoIcon.png" alt="Icon">
-      </div>
-
-      <!-- content column -->
-      <div class="feature-content">
-        <h2 class="feature-heading">
-          Technical Consulting and NDT Advisory Services
-        </h2>
-
-        <div class="feature-block">
-          <div class="feature-title">Designed for <span class="text-highlight">High-Consequence</span> Environments</div>
-          <p class="feature-text">
-            In industries where failure carries significant financial, operational, and safety implications, Griffin brings insight and expertise to complex technical decisions. 
-            Our consulting and advisory services combine advanced NDT subject matter expertise with strategic business insight to support compliance alignment, technology implementation, 
-            workforce development, and effective risk mitigation. We partner closely with leadership teams and technical departments to strengthen 
-            internal capability, improve reliability outcomes, and ensure that every solution aligns with both regulatory demands and long-term operational performance.
-          </p>
+          <div class="feature-block">
+            <div class="feature-title">
+              Designed for <span class="text-highlight">High-Consequence</span> Environments
+            </div>
+            <p class="feature-text">
+              In industries where failure carries significant financial, operational, and safety implications, 
+              Griffin brings insight and expertise to complex technical decisions. Our consulting and advisory services 
+              combine advanced NDT subject matter expertise with strategic business insight to support compliance alignment, 
+              technology implementation, workforce development, and effective risk mitigation. We partner closely with leadership 
+              teams and technical departments to strengthen internal capability, improve reliability outcomes, and ensure that 
+              every solution aligns with both regulatory demands and long-term operational performance.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- RIGHT image (bleeds) -->
-    <div class="feature-right">
-      <img class="feature-image" src="images/WingPicFram_RT.png" alt="Project photo">
+      <div class="feature-right">
+        <img class="feature-image" src="images/WingPicFram_RT.png" alt="Project photo">
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
 
 <style>
   /* ===================== FEATURE SPLIT SECTION ===================== */
@@ -796,7 +780,8 @@
   color: #111;
   overflow: visible;
   padding: clamp(48px, 6vw, 90px) 0;
-  margin-top: 5rem;
+    margin-top: -2px;   /* pull it up slightly */
+
 }
 
 :root{
@@ -1337,32 +1322,43 @@ html, body{
 
 </footer>
 
-
+</main></div>
 <style>
   /* ===================== FOOTER ===================== */
 .site-footer{
   position: relative;
-  background-image: url("images/bluebg.png"); /* change filename */
+
+  /* ✅ full-bleed breakout */
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+
+  background-image: url("images/bluebg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   color:#fff;
-  padding: clamp(60px, 8vw, 100px) 20px 30px;
+  padding: clamp(60px, 8vw, 100px) clamp(18px, 4vw, 70px) 30px;
+
   margin-top: 100px;
   min-height: 50vh;
+
+  overflow-x: clip; /* prevents rounding overflow */
 }
 
 /* Top grid */
 .footer-inner{
-  width: min(1200px, 100%);
-  margin: 0 auto;
-
   display:grid;
-  grid-template-columns: 4fr 2fr 1fr 1fr; /* logo = 50% */
-  gap: 60px;
+  grid-template-columns: 4fr 2fr 1fr 1fr;
+  gap: clamp(24px, 4vw, 80px);
 }
-
+.footer-inner,
+.footer-bottom{
+  width: 100%;
+  max-width: none;         /* ✅ remove 1200px cap */
+  margin: 0 auto;
+}
 /* Logo column */
 .footer-col--logo{
   display:flex;
@@ -1434,9 +1430,7 @@ html, body{
 
 /* Bottom row */
 .footer-bottom{
-  width: min(1200px, 100%);
-  margin: 60px auto 0;
-
+  margin-top: clamp(36px, 5vw, 70px);
   display:flex;
   justify-content: space-between;
   align-items:center;
@@ -1447,7 +1441,6 @@ html, body{
   font-size:16px;
   color:#ffffff99;
 }
-
 .footer-credit a{
   color:#ffffffcc;
   text-decoration:none;
@@ -2193,5 +2186,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
 })();
 </script>
+<script>
+let loco = null;
+
+function initLoco(){
+  const container = document.querySelector("#scroll-container");
+  if (!container || !window.LocomotiveScroll) return;
+
+  loco = new LocomotiveScroll({
+    el: container,
+    smooth: true,
+    lerp: 0.08,           // smaller = smoother / more float
+    smartphone: { smooth: false }, // usually better off on mobile
+    tablet: { smooth: false }
+  });
+
+  // ✅ anchor clicks (navbar links)
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+
+    const hash = a.getAttribute("href");
+    if (!hash || hash === "#") return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    e.preventDefault();
+
+    // close dropdown if you want
+    if (typeof window.__closeNavDropdown === "function") window.__closeNavDropdown();
+
+    const navOffset = 120; // tune if needed
+    loco.scrollTo(target, {
+      offset: -navOffset,
+      duration: 900,
+      easing: [0.22, 1, 0.36, 1]
+    });
+
+    history.pushState(null, "", hash);
+  });
+
+  // ✅ if you load with a hash
+  window.addEventListener("load", () => {
+    if (!location.hash) return;
+    const target = document.querySelector(location.hash);
+    if (!target) return;
+    loco.scrollTo(target, { offset: -120, duration: 0 });
+  }, { once: true });
+}
+
+document.addEventListener("DOMContentLoaded", initLoco);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
 </body>
 </html>
