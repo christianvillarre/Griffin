@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 <!-- in <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
   
 </head>
 <style>
@@ -33,6 +33,14 @@ html{
   scroll-behavior: auto; /* Locomotive handles smoothness */
   scroll-padding-top: var(--nav-offset);
 }
+ html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
   body{
     margin:0;
     font-family: 'Zalando Sans', sans-serif;
@@ -706,11 +714,11 @@ html{
   font-weight: 700;
 }
 </style>
- <div id="scroll-container" data-scroll-container>
+ <div id="scroll-container">
  <main id="site">
   <section class="intro-wrap">
     <section class="hero" id="home">
-      <h1><span class="text-highlight">Technology-based</span> Asset Integrity<br> Solutions for the Energy Industry</h1>
+      <h1 id="heroTitle"><span class="text-highlight">Technology-based</span> Asset Integrity<br> Solutions for the Energy Industry</h1>
 
       <div class="hero-scroll-indicator">
         <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
@@ -727,7 +735,7 @@ html{
     </svg>
 
     <section class="spacer spacer--dark">
-      <h2 class="display-heading">
+      <h2 id="criticalTitle" class="display-heading">
         Built for <span class="text-highlight">Critical</span> Environments.
       </h2>
     </section>
@@ -800,13 +808,15 @@ html{
 
 /* ✅ This is the key: give the LEFT column the same container logic as navbar */
 .feature-left{
-  width: min(var(--navW), calc(100% - var(--navPad)));
-  margin: 0 auto;             /* centers it exactly like navbar */
-  padding-left: 0;            /* remove extra left padding */
+  width: 100%;
+  padding-left: none;
+  padding-right: clamp(24px, 6vw, 90px);
+
   display: grid;
   grid-template-columns: 4rem 1fr;
-  column-gap: 28px;
-  max-width: none;            /* remove the 720 cap so it can align perfectly */
+  column-gap: 32px;
+
+  align-items: start;
 }
 /* 10rem spacer */
 .feature-gutter{
@@ -832,7 +842,8 @@ html{
 
 /* heading aligned with icon top */
 .feature-content{
-  padding-top: 0; /* keep flush with icon top */
+  padding-top: 0;
+  padding-left: clamp(0.5rem, 2vw, 4rem);
 }
 
 .feature-heading{
@@ -845,21 +856,22 @@ html{
 /* bold title + paragraph block */
 /* ✅ remove the artificial width cap so it can get wider */
 .feature-block{
-  max-width: 62ch; /* or remove this line entirely */
+  max-width: 50vw;
 }
 .feature-title{
   
-   font-size: clamp(28px, 3.2vw, 46px);
-  line-height: 1.05;
-  margin: 0 0 20px;
-  letter-spacing: -0.02em;
-  font-weight: 600;
-  color: #555555;
+   font-size: clamp(24px, 3.4vw, 54px);  /* ✅ bigger */
+  margin:0 0 18px;
+  color:#111;
+  letter-spacing:-0.01em;
+  font-weight: 200;
+  line-height: 0.9;
+  padding-bottom: 2rem;
 }
 
 .feature-text{
   margin: 0;
-  font-size: 16px;
+  font-size: clamp(14px, 1.4vw, 24px);  /* ✅ bigger */
   line-height: 1.6;
   opacity: 0.85;
 }
@@ -971,7 +983,7 @@ html{
   position: relative;
   overflow: hidden;
 
-  background-image: url("images/bluebg.png");
+  background-image: url("images/bluebg3.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1333,7 +1345,7 @@ html, body{
   left: 50%;
   margin-left: -50vw;
 
-  background-image: url("images/bluebg.png");
+  background-image: url("images/bluebg3.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1342,7 +1354,7 @@ html, body{
   padding: clamp(60px, 8vw, 100px) clamp(18px, 4vw, 70px) 30px;
 
   margin-top: 100px;
-  min-height: 50vh;
+  
 
   overflow-x: clip; /* prevents rounding overflow */
 }
@@ -1523,7 +1535,7 @@ html, body{
       </g>
     </g>
   </svg>
-
+<!-- LOAD SCREEN SCRIPT
   <script>
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
   const easeOut = (t) => 1 - Math.pow(1 - t, 4.5);
@@ -1838,7 +1850,7 @@ html, body{
       });
     }
   })();
-</script>
+</script>-->
 
  
 <!-- ✅ REPLACE your Capabilities dropdown script with this full version
@@ -2186,59 +2198,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
 })();
 </script>
+
+<script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
 <script>
-let loco = null;
-
-function initLoco(){
-  const container = document.querySelector("#scroll-container");
-  if (!container || !window.LocomotiveScroll) return;
-
-  loco = new LocomotiveScroll({
-    el: container,
-    smooth: true,
-    lerp: 0.08,           // smaller = smoother / more float
-    smartphone: { smooth: false }, // usually better off on mobile
-    tablet: { smooth: false }
-  });
-
-  // ✅ anchor clicks (navbar links)
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-
-    const hash = a.getAttribute("href");
-    if (!hash || hash === "#") return;
-
-    const target = document.querySelector(hash);
-    if (!target) return;
-
-    e.preventDefault();
-
-    // close dropdown if you want
-    if (typeof window.__closeNavDropdown === "function") window.__closeNavDropdown();
-
-    const navOffset = 120; // tune if needed
-    loco.scrollTo(target, {
-      offset: -navOffset,
-      duration: 900,
-      easing: [0.22, 1, 0.36, 1]
+  (() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+      smoothWheel: true,
+      syncTouch: false,
+      lerp: 0.1,
+      anchors: {
+        offset: 110
+      }
     });
 
-    history.pushState(null, "", hash);
-  });
-
-  // ✅ if you load with a hash
-  window.addEventListener("load", () => {
-    if (!location.hash) return;
-    const target = document.querySelector(location.hash);
-    if (!target) return;
-    loco.scrollTo(target, { offset: -120, duration: 0 });
-  }, { once: true });
-}
-
-document.addEventListener("DOMContentLoaded", initLoco);
+    window.lenis = lenis;
+  })();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
 </body>
 </html>
