@@ -967,8 +967,31 @@ html{
 <div class="image-scroller-eyebrow">Latest News</div>
 
 <div class="image-scroller-controls">
-<button class="scroller-arrow scroller-prev">‹</button>
-<button class="scroller-arrow scroller-next">›</button>
+<button class="scroller-arrow scroller-prev is-disabled" aria-label="Previous">
+
+<svg viewBox="0 0 24 24">
+<path d="M15 6l-6 6 6 6"
+fill="none"
+stroke="currentColor"
+stroke-width="2.6"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+</svg>
+
+</button>
+
+<button class="scroller-arrow scroller-next is-active" aria-label="Next">
+
+<svg viewBox="0 0 24 24">
+<path d="M9 6l6 6-6 6"
+fill="none"
+stroke="currentColor"
+stroke-width="2.6"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+</svg>
+
+</button>
 </div>
 </div>
 
@@ -1079,18 +1102,53 @@ display:flex;
 gap:.75rem;
 }
 
+/* CONTROLS */
+/* CONTROLS */
 .scroller-arrow{
-width:58px;
-height:58px;
-border-radius:999px;
-border:1px solid #ddd;
-background:#fff;
-cursor:pointer;
-font-size:28px;
+width:64px;
+height:64px;
+
+border-radius:14px;
+border:1px solid #d6d6d6;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
+cursor:pointer;
+
+background:#fff;
+
+transition:
+background .25s ease,
+color .25s ease,
+border-color .25s ease,
+transform .15s ease;
 }
+
+/* SVG arrow */
+.scroller-arrow svg{
+width:26px;
+height:26px;
+display:block;
+}
+
+/* inactive */
+.scroller-arrow.is-disabled{
+background:#e6e6e6;
+color:#ffffff;
+border-color:#e6e6e6;
+cursor:default;
+}
+
+/* active */
+.scroller-arrow.is-active{
+background:#0F3D51;
+color:#ffffff;
+border-color:#0F3D51;
+}
+
+
 
 .image-scroller-viewport{
 overflow:hidden;
@@ -2179,33 +2237,72 @@ html, body{
     return clamp(Math.round(Math.abs(currentX) / cardStep), 0, getPages() - 1);
   }
 
+  function updateArrowState() {
+    if (!prevBtn || !nextBtn) return;
+
+    const atStart = Math.abs(currentX) < 2;
+    const atEnd = Math.abs(Math.abs(currentX) - maxX) < 2 || maxX === 0;
+
+    if (atStart) {
+      prevBtn.classList.add("is-disabled");
+      prevBtn.classList.remove("is-active");
+      prevBtn.setAttribute("aria-disabled", "true");
+    } else {
+      prevBtn.classList.remove("is-disabled");
+      prevBtn.classList.add("is-active");
+      prevBtn.setAttribute("aria-disabled", "false");
+    }
+
+    if (atEnd) {
+      nextBtn.classList.add("is-disabled");
+      nextBtn.classList.remove("is-active");
+      nextBtn.setAttribute("aria-disabled", "true");
+    } else {
+      nextBtn.classList.remove("is-disabled");
+      nextBtn.classList.add("is-active");
+      nextBtn.setAttribute("aria-disabled", "false");
+    }
+  }
+
   function updateProgress() {
-    if (!progressBar) return;
-    const progress = maxX > 0 ? Math.abs(currentX) / maxX : 0;
-    const width = clamp(progress * 100, 5, 100);
-    progressBar.style.width = width + "%";
+    if (progressBar) {
+      const progress = maxX > 0 ? Math.abs(currentX) / maxX : 0;
+      const width = clamp(progress * 100, 5, 100);
+      progressBar.style.width = width + "%";
+    }
+
+    updateArrowState();
   }
 
   function animateToPage(index, duration = 0.75) {
-    const page = clamp(index, 0, getPages() - 1);
-    const targetX = -(page * cardStep);
+  const lastPage = getPages() - 1;
+  const page = clamp(index, 0, lastPage);
 
-    gsap.killTweensOf(track);
+  let targetX = -(page * cardStep);
 
-    gsap.to(track, {
-      x: targetX,
-      duration,
-      ease: "back.out(1.15)",
-      onUpdate: () => {
-        currentX = gsap.getProperty(track, "x");
-        updateProgress();
-      },
-      onComplete: () => {
-        currentX = gsap.getProperty(track, "x");
-        updateProgress();
-      }
-    });
+  /* ✅ force final page to the true end, even with right padding */
+  if (page === lastPage) {
+    targetX = -maxX;
+  } else {
+    targetX = Math.max(targetX, -maxX);
   }
+
+  gsap.killTweensOf(track);
+
+  gsap.to(track, {
+    x: targetX,
+    duration,
+    ease: "back.out(1.15)",
+    onUpdate: () => {
+      currentX = Number(gsap.getProperty(track, "x"));
+      updateProgress();
+    },
+    onComplete: () => {
+      currentX = Number(gsap.getProperty(track, "x"));
+      updateProgress();
+    }
+  });
+}
 
   function refresh() {
     cardStep = getCardStep();
@@ -2220,11 +2317,13 @@ html, body{
   }
 
   prevBtn?.addEventListener("click", () => {
+    if (prevBtn.classList.contains("is-disabled")) return;
     beginScrollerInteraction(900);
     animateToPage(getNearestPage() - 1);
   });
 
   nextBtn?.addEventListener("click", () => {
+    if (nextBtn.classList.contains("is-disabled")) return;
     beginScrollerInteraction(900);
     animateToPage(getNearestPage() + 1);
   });
@@ -2281,7 +2380,11 @@ html, body{
         duration: 0.55,
         ease: "power3.out",
         onUpdate: () => {
-          currentX = gsap.getProperty(track, "x");
+          currentX = Number(gsap.getProperty(track, "x"));
+          updateProgress();
+        },
+        onComplete: () => {
+          currentX = Number(gsap.getProperty(track, "x"));
           updateProgress();
         }
       });
@@ -2294,7 +2397,11 @@ html, body{
         duration: 0.55,
         ease: "power3.out",
         onUpdate: () => {
-          currentX = gsap.getProperty(track, "x");
+          currentX = Number(gsap.getProperty(track, "x"));
+          updateProgress();
+        },
+        onComplete: () => {
+          currentX = Number(gsap.getProperty(track, "x"));
           updateProgress();
         }
       });
@@ -2347,7 +2454,11 @@ html, body{
         duration: 0.55,
         ease: "power3.out",
         onUpdate: () => {
-          currentX = gsap.getProperty(track, "x");
+          currentX = Number(gsap.getProperty(track, "x"));
+          updateProgress();
+        },
+        onComplete: () => {
+          currentX = Number(gsap.getProperty(track, "x"));
           updateProgress();
         }
       });
@@ -2360,7 +2471,11 @@ html, body{
         duration: 0.55,
         ease: "power3.out",
         onUpdate: () => {
-          currentX = gsap.getProperty(track, "x");
+          currentX = Number(gsap.getProperty(track, "x"));
+          updateProgress();
+        },
+        onComplete: () => {
+          currentX = Number(gsap.getProperty(track, "x"));
           updateProgress();
         }
       });
@@ -2383,7 +2498,6 @@ html, body{
 
     const delta = scrollY - lastScrollY;
 
-    /* only bring navbar back on meaningful vertical scroll */
     if (Math.abs(delta) > 2) {
       showNavbar();
     }
