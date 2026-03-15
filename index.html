@@ -1305,6 +1305,11 @@ background:#000;
 
   /* ✅ makes the image stay “locked” while content scrolls */
   background-attachment: fixed;
+  will-change: background-position;
+}
+#heroTitle,
+#criticalTitle{
+  will-change: transform;
 }
 
 /* overlay for readability */
@@ -1323,7 +1328,253 @@ background:#000;
 }
 </style>
 
+<section class="white-cta">
+  <h2 class="display-heading">
+  <span class="text-highlight">Safety, Integrity, and Performance</span><br> Through Proven Evaluation.
+  </h2>
+</section>
 
+<style>
+  .white-cta{
+  height: 80vh;
+  min-height: 600px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  padding: 0 20px;
+
+  position: relative;
+  overflow: hidden;
+
+  background:#ffffff;
+}
+
+.white-cta > *{
+  position: relative;
+  z-index:1;
+  color:#111;
+}
+
+/* accent word 
+.text-accent{
+  position: relative;
+  display: inline-block;
+}
+
+.text-accent::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0.12em;
+  width:100%;
+  height:0.35em;
+  background:#3b82f6; /* same blue vibe as your other section 
+  z-index:-1;
+  transform: skewX(-8deg);
+}*/
+</style>
+
+<section class="ndt-grid-section">
+
+  <h2 class="display-heading ndt-grid-title">
+    Precision Built on Proven <span class="text-accent">Inspection</span>.
+  </h2>
+
+  <div class="ndt-box-row">
+
+    <div class="ndt-box">
+      <span class="fade-right"></span>
+      <div class="box-logo">LOGO</div>
+    </div>
+
+    <div class="ndt-box">
+      <div class="box-logo">LOGO</div>
+    </div>
+
+    <div class="ndt-box">
+      <div class="box-logo">LOGO</div>
+    </div>
+
+    <div class="ndt-box">
+      <div class="box-logo">LOGO</div>
+    </div>
+
+    <div class="ndt-box">
+      <div class="box-logo">LOGO</div>
+    </div>
+
+    <div class="ndt-box">
+      <span class="fade-right"></span>
+      <span class="right-edge"></span>
+      <div class="box-logo">LOGO</div>
+    </div>
+
+    <!-- top intersection dots -->
+    <span class="dot" style="--x:0%; --y:0%;"></span>
+    <span class="dot" style="--x:16.6667%; --y:0%;"></span>
+    <span class="dot" style="--x:33.3333%; --y:0%;"></span>
+    <span class="dot" style="--x:50%; --y:0%;"></span>
+    <span class="dot" style="--x:66.6667%; --y:0%;"></span>
+    <span class="dot" style="--x:83.3333%; --y:0%;"></span>
+    <span class="dot" style="--x:100%; --y:0%;"></span>
+
+    <!-- bottom intersection dots -->
+    <span class="dot" style="--x:0%; --y:100%;"></span>
+    <span class="dot" style="--x:16.6667%; --y:100%;"></span>
+    <span class="dot" style="--x:33.3333%; --y:100%;"></span>
+    <span class="dot" style="--x:50%; --y:100%;"></span>
+    <span class="dot" style="--x:66.6667%; --y:100%;"></span>
+    <span class="dot" style="--x:83.3333%; --y:100%;"></span>
+    <span class="dot" style="--x:100%; --y:100%;"></span>
+
+  </div>
+
+</section>
+
+<style>
+.ndt-grid-section{
+  background:#fff;
+  padding:120px 24px;
+}
+
+.ndt-grid-title{
+  text-align:center;
+  color:#111;
+  max-width:1000px;
+  margin:0 auto 170px;
+  line-height:1.15;
+}
+
+.text-accent{
+  position:relative;
+  display:inline-block;
+}
+
+.text-accent::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0.08em;
+  height:0.34em;
+  background:#8fd3ff;
+  transform:skewX(-8deg);
+  z-index:-1;
+}
+
+.ndt-box-row{
+  --line:2px;
+  --dot:10px;
+  --box-h:180px;
+  --fade-h:130px;
+  --ink:#111;
+
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  position:relative;
+}
+
+/* base box style */
+.ndt-box{
+  position:relative;
+  height:var(--box-h);
+  border-top:var(--line) solid var(--ink);
+  border-bottom:var(--line) solid var(--ink);
+  border-left:var(--line) solid var(--ink);
+}
+
+/* left-side ghost verticals */
+.ndt-box::before{
+  content:"";
+  position:absolute;
+  left:calc(var(--line) * -1);
+  top:calc(var(--fade-h) * -1);
+  width:var(--line);
+  height:var(--fade-h);
+  background:linear-gradient(to top, rgba(17,17,17,0.95), rgba(17,17,17,0));
+}
+
+.ndt-box::after{
+  content:"";
+  position:absolute;
+  left:calc(var(--line) * -1);
+  bottom:calc(var(--fade-h) * -1);
+  width:var(--line);
+  height:var(--fade-h);
+  background:linear-gradient(to bottom, rgba(17,17,17,0.95), rgba(17,17,17,0));
+}
+
+/* right-side ghost verticals */
+.fade-right{
+  position:absolute;
+  inset:0;
+}
+
+.fade-right::before{
+  content:"";
+  position:absolute;
+  right:calc(var(--line) * -1);
+  top:calc(var(--fade-h) * -1);
+  width:var(--line);
+  height:var(--fade-h);
+  background:linear-gradient(to top, rgba(17,17,17,0.95), rgba(17,17,17,0));
+}
+
+.fade-right::after{
+  content:"";
+  position:absolute;
+  right:calc(var(--line) * -1);
+  bottom:calc(var(--fade-h) * -1);
+  width:var(--line);
+  height:var(--fade-h);
+  background:linear-gradient(to bottom, rgba(17,17,17,0.95), rgba(17,17,17,0));
+}
+
+/* visible right edge for last box */
+.right-edge{
+  position:absolute;
+  top:0;
+  right:0;
+  width:var(--line);
+  height:100%;
+  background:var(--ink);
+  z-index:5;
+}
+
+/* centered placeholder/logo area */
+.box-logo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  z-index:6;
+
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:0.08em;
+  color:#111;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* dots */
+.dot{
+  position:absolute;
+  width:var(--dot);
+  height:var(--dot);
+  border-radius:50%;
+  background:var(--ink);
+  left:var(--x);
+  top:var(--y);
+  transform:translate(-50%, -50%);
+  z-index:10;
+}
+</style>
 
 <section class="contact-section">
 
@@ -2240,8 +2491,9 @@ html, body{
   function updateArrowState() {
     if (!prevBtn || !nextBtn) return;
 
-    const atStart = Math.abs(currentX) < 2;
-    const atEnd = Math.abs(Math.abs(currentX) - maxX) < 2 || maxX === 0;
+    const edgeTolerance = 12;
+    const atStart = Math.abs(currentX) <= edgeTolerance;
+    const atEnd = maxX === 0 || Math.abs(currentX) >= (maxX - edgeTolerance);
 
     if (atStart) {
       prevBtn.classList.add("is-disabled");
@@ -2280,7 +2532,6 @@ html, body{
 
   let targetX = -(page * cardStep);
 
-  /* ✅ force final page to the true end, even with right padding */
   if (page === lastPage) {
     targetX = -maxX;
   } else {
@@ -2298,7 +2549,8 @@ html, body{
       updateProgress();
     },
     onComplete: () => {
-      currentX = Number(gsap.getProperty(track, "x"));
+      currentX = targetX;         // force exact final value
+      gsap.set(track, { x: currentX });
       updateProgress();
     }
   });
@@ -2865,6 +3117,70 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     // no special handling needed; computeTarget uses latest vh/rect
   }, { passive: true });
+})();
+</script>
+
+<script>
+(() => {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  const heroTitle = document.getElementById("heroTitle");
+  const criticalTitle = document.getElementById("criticalTitle");
+  const blueCta = document.querySelector(".blue-cta");
+
+  if (heroTitle) {
+    gsap.to(heroTitle, {
+      y: -140,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".intro-wrap",
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.35
+      }
+    });
+  }
+
+  if (criticalTitle) {
+    gsap.fromTo(
+      criticalTitle,
+      { y: 90 },
+      {
+        y: -150,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".spacer--dark",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.35
+        }
+      }
+    );
+  }
+
+  if (blueCta) {
+    gsap.fromTo(
+      blueCta,
+      { backgroundPosition: "50% 50%" },
+      {
+        backgroundPosition: "50% 120%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: blueCta,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.45
+        }
+      }
+    );
+  }
+
+  ScrollTrigger.refresh();
 })();
 </script>
 
