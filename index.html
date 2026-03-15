@@ -960,6 +960,264 @@ html{
 }
 </style>
 
+<section class="image-scroller-section">
+<div class="container">
+
+<div class="image-scroller-head">
+<div class="image-scroller-eyebrow">Latest News</div>
+
+<div class="image-scroller-controls">
+<button class="scroller-arrow scroller-prev">‹</button>
+<button class="scroller-arrow scroller-next">›</button>
+</div>
+</div>
+
+<div class="image-scroller-viewport" id="projectScroller">
+<div class="image-scroller-track">
+
+<article class="scroller-card scroller-card--red">
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>NDT Level III Consulting</span><span>01</span></div>
+
+<p>Certified Level III expertise supporting inspection programs, procedure development, compliance strategies, and technical decision-making. Our consultants work directly with your teams to ensure inspections meet industry standards while improving reliability, documentation, and operational confidence.</p>
+</div>
+</article>
+
+<article class="scroller-card scroller-card--image">
+<div class="scroller-image-wrap">
+<img src="images/stock2.jpeg">
+</div>
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>Advanced NDT Experts</span><span>02</span></div>
+
+<p>Experienced NDT subject matter experts providing guidance on advanced inspection technologies, complex inspection challenges, and system implementation. We help organizations improve inspection performance, reduce uncertainty, and build stronger technical capabilities.</p>
+</div>
+</article>
+
+<article class="scroller-card scroller-card--red">
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>NDT Written Practice</span><span>03</span></div>
+<!--<h3>NDT Written Practice</h3>-->
+<p>Comprehensive review and development of written practices designed to meet industry standards and regulatory requirements. Our team ensures documentation is clear, compliant, and aligned with your operational workflows and inspection programs.</p>
+</div>
+</article>
+
+<article class="scroller-card scroller-card--image">
+<div class="scroller-image-wrap">
+<img src="images/stock4.jpeg">
+</div>
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>Advanced NDT Training</span><span>04</span></div>
+
+<p>Structured training programs designed to advance technician knowledge and practical capability in modern inspection methods. Our courses combine technical theory with real-world application to strengthen both individual expertise and organizational competency.</p>
+</div>
+</article>
+
+<article class="scroller-card scroller-card--red">
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>NDT Technology Programs</span><span>05</span></div>
+<p>Implementation and optimization of advanced nondestructive testing technologies and procedures. We help organizations integrate modern inspection tools that improve detection capability, increase efficiency, and strengthen the reliability of inspection results.</p>
+</div>
+</article>
+
+<article class="scroller-card scroller-card--image">
+<div class="scroller-image-wrap">
+<img src="images/stock3.jpeg">
+</div>
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>Automation & Robotics</span><span>06</span></div>
+<p>Development and integration of robotic and automated inspection systems that enhance safety, repeatability, and productivity. These systems reduce manual risk while enabling consistent, high-precision inspection across complex assets and environments.</p>
+</div>
+</article>
+
+<article class="scroller-card scroller-card--red">
+<div class="scroller-copy">
+<div class="card-eyebrow"><span>Advanced Imaging Systems</span><span>07</span></div>
+
+<p>Deployment of high-resolution imaging and advanced inspection visualization systems that improve defect detection and analysis. These technologies provide clearer inspection data and support more confident decision-making during asset evaluation and maintenance planning.</p>
+</div>
+</article>
+
+</div>
+</div>
+
+<div class="scroller-progress">
+<div class="scroller-progress-bar"></div>
+</div>
+
+</div>
+</section>
+
+<style>
+
+.image-scroller-section{
+background:#fff;
+color:#ffffff;
+padding:6rem 0 7rem;
+overflow:hidden;
+}
+
+.image-scroller-head{
+position:relative;
+display:flex;
+align-items:center;
+justify-content:flex-start;
+margin-bottom:2rem;
+padding:0 3rem;
+}
+
+.image-scroller-eyebrow{
+font-size:clamp(24px,3.4vw,54px);
+font-weight:200;
+color: black;
+}
+
+.image-scroller-controls{
+position:absolute;
+right:3rem;
+display:flex;
+gap:.75rem;
+}
+
+.scroller-arrow{
+width:58px;
+height:58px;
+border-radius:999px;
+border:1px solid #ddd;
+background:#fff;
+cursor:pointer;
+font-size:28px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.image-scroller-viewport{
+overflow:hidden;
+cursor:grab;
+}
+
+.image-scroller-track{
+display:flex;
+gap:2.4rem;
+padding-left:3rem;
+padding-right:5rem;
+}
+
+.image-scroller-track::after{
+content:"";
+flex:0 0 5rem;
+}
+
+.scroller-card{
+  position:relative;
+  flex:0 0 clamp(340px, 28vw, 450px);
+  aspect-ratio: 360 / 420;   /* same proportions as before */
+  border-radius:22px;
+  overflow:hidden;
+}
+.scroller-card--red{
+background:#f00303;
+color:white;
+}
+
+.scroller-card--image{
+background:black;
+}
+
+.scroller-image-wrap{
+position:absolute;
+inset:0;
+}
+
+.scroller-image-wrap img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.scroller-image-wrap::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.25);
+}
+
+.scroller-copy{
+position:absolute;
+inset:0;
+padding:1.4rem;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+z-index:2;
+}
+
+.card-eyebrow{
+display:flex;
+justify-content:space-between;
+margin-top: .3rem;
+margin-bottom:clamp(.8rem,1.2vw,1.4rem);
+font-size:11px;
+font-size:clamp(11px,0.9vw,15px);
+letter-spacing:.14em;
+text-transform:uppercase;
+font-weight:700;
+opacity:.9;
+}
+
+.card-eyebrow span:last-child{
+opacity:.6;
+}
+
+.scroller-copy h3{
+margin:0 0 .6rem;
+font-size:clamp(18px,1.6vw,24px);
+font-weight:500;
+line-height:1.3;
+}
+
+.scroller-copy p{
+margin:0;
+font-size:clamp(18px,1.6vw,24px);
+line-height:1.45;
+max-width:28ch;
+}
+
+.scroller-progress{
+width:calc(100% - 6rem);
+height:2px;
+background:#eee;
+margin:3rem auto 0;
+}
+
+.scroller-progress-bar{
+width:8%;
+height:100%;
+background:#000;
+}
+
+.navbar{
+  transition:
+    transform .35s cubic-bezier(.22,1,.36,1),
+    opacity .25s ease,
+    background .2s ease;
+}
+
+.navbar.navbar--hidden{
+  transform: translateX(-50%) translateY(calc(-100% - 18px));
+  opacity: 0.98;
+}
+
+</style>
+
+
+
+
+
+
+
+
   <section class="blue-cta">
   <h2 class="display-heading">
     Precision That <span class="text-highlight">Performs</span>.
@@ -1851,6 +2109,304 @@ html, body{
   })();
 </script>-->
 
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+(function () {
+  const viewport = document.getElementById("projectScroller");
+  if (!viewport || typeof gsap === "undefined") return;
+
+  const navbar = document.querySelector(".navbar");
+  const track = viewport.querySelector(".image-scroller-track");
+  const cards = Array.from(track.querySelectorAll(".scroller-card"));
+  const prevBtn = document.querySelector(".scroller-prev");
+  const nextBtn = document.querySelector(".scroller-next");
+  const progressBar = document.querySelector(".scroller-progress-bar");
+  const lenis = window.lenis || null;
+
+  if (!track || !cards.length) return;
+
+  let currentX = 0;
+  let maxX = 0;
+  let cardStep = 0;
+  let dragStartX = 0;
+  let startTrackX = 0;
+  let isDragging = false;
+
+  let navHiddenByScroller = false;
+  let navLockUntil = 0;
+  let lastScrollY = window.scrollY || 0;
+
+  function now() {
+    return performance.now();
+  }
+
+  function hideNavbar(lockMs = 700) {
+    if (!navbar) return;
+    navbar.classList.add("navbar--hidden");
+    navHiddenByScroller = true;
+    navLockUntil = now() + lockMs;
+  }
+
+  function showNavbar() {
+    if (!navbar) return;
+    navbar.classList.remove("navbar--hidden");
+    navHiddenByScroller = false;
+  }
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function getCardStep() {
+    if (cards.length < 2) return cards[0].offsetWidth;
+    return cards[1].offsetLeft - cards[0].offsetLeft;
+  }
+
+  function getMaxX() {
+    return Math.max(0, track.scrollWidth - viewport.clientWidth);
+  }
+
+  function getPages() {
+    if (!cardStep) return 1;
+    return Math.max(1, Math.round(maxX / cardStep) + 1);
+  }
+
+  function getNearestPage() {
+    if (!cardStep) return 0;
+    return clamp(Math.round(Math.abs(currentX) / cardStep), 0, getPages() - 1);
+  }
+
+  function updateProgress() {
+    if (!progressBar) return;
+    const progress = maxX > 0 ? Math.abs(currentX) / maxX : 0;
+    const width = clamp(progress * 100, 5, 100);
+    progressBar.style.width = width + "%";
+  }
+
+  function animateToPage(index, duration = 0.75) {
+    const page = clamp(index, 0, getPages() - 1);
+    const targetX = -(page * cardStep);
+
+    gsap.killTweensOf(track);
+
+    gsap.to(track, {
+      x: targetX,
+      duration,
+      ease: "back.out(1.15)",
+      onUpdate: () => {
+        currentX = gsap.getProperty(track, "x");
+        updateProgress();
+      },
+      onComplete: () => {
+        currentX = gsap.getProperty(track, "x");
+        updateProgress();
+      }
+    });
+  }
+
+  function refresh() {
+    cardStep = getCardStep();
+    maxX = getMaxX();
+    currentX = -clamp(Math.abs(currentX), 0, maxX);
+    gsap.set(track, { x: currentX });
+    updateProgress();
+  }
+
+  function beginScrollerInteraction(lockMs = 900) {
+    hideNavbar(lockMs);
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    beginScrollerInteraction(900);
+    animateToPage(getNearestPage() - 1);
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    beginScrollerInteraction(900);
+    animateToPage(getNearestPage() + 1);
+  });
+
+  viewport.addEventListener("dragstart", (e) => e.preventDefault());
+
+  cards.forEach((card) => {
+    const img = card.querySelector("img");
+    if (img) img.addEventListener("dragstart", (e) => e.preventDefault());
+  });
+
+  viewport.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    dragStartX = e.clientX;
+    startTrackX = currentX;
+
+    beginScrollerInteraction(1200);
+
+    viewport.classList.add("is-dragging");
+    gsap.killTweensOf(track);
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    const delta = e.clientX - dragStartX;
+    let nextX = startTrackX + delta * 1.15;
+
+    if (nextX > 0) nextX = nextX * 0.22;
+
+    if (nextX < -maxX) {
+      const over = nextX + maxX;
+      nextX = -maxX + over * 0.22;
+    }
+
+    currentX = nextX;
+    gsap.set(track, { x: currentX });
+    updateProgress();
+
+    e.preventDefault();
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+
+    isDragging = false;
+    viewport.classList.remove("is-dragging");
+
+    navLockUntil = now() + 700;
+
+    if (currentX > 0) {
+      gsap.to(track, {
+        x: 0,
+        duration: 0.55,
+        ease: "power3.out",
+        onUpdate: () => {
+          currentX = gsap.getProperty(track, "x");
+          updateProgress();
+        }
+      });
+      return;
+    }
+
+    if (currentX < -maxX) {
+      gsap.to(track, {
+        x: -maxX,
+        duration: 0.55,
+        ease: "power3.out",
+        onUpdate: () => {
+          currentX = gsap.getProperty(track, "x");
+          updateProgress();
+        }
+      });
+      return;
+    }
+
+    animateToPage(getNearestPage(), 0.72);
+  });
+
+  viewport.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    startTrackX = currentX;
+
+    beginScrollerInteraction(1200);
+
+    viewport.classList.add("is-dragging");
+    gsap.killTweensOf(track);
+  }, { passive: true });
+
+  viewport.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    const delta = e.touches[0].clientX - dragStartX;
+    let nextX = startTrackX + delta;
+
+    if (nextX > 0) nextX = nextX * 0.22;
+
+    if (nextX < -maxX) {
+      const over = nextX + maxX;
+      nextX = -maxX + over * 0.22;
+    }
+
+    currentX = nextX;
+    gsap.set(track, { x: currentX });
+    updateProgress();
+  }, { passive: true });
+
+  viewport.addEventListener("touchend", () => {
+    if (!isDragging) return;
+
+    isDragging = false;
+    viewport.classList.remove("is-dragging");
+
+    navLockUntil = now() + 700;
+
+    if (currentX > 0) {
+      gsap.to(track, {
+        x: 0,
+        duration: 0.55,
+        ease: "power3.out",
+        onUpdate: () => {
+          currentX = gsap.getProperty(track, "x");
+          updateProgress();
+        }
+      });
+      return;
+    }
+
+    if (currentX < -maxX) {
+      gsap.to(track, {
+        x: -maxX,
+        duration: 0.55,
+        ease: "power3.out",
+        onUpdate: () => {
+          currentX = gsap.getProperty(track, "x");
+          updateProgress();
+        }
+      });
+      return;
+    }
+
+    animateToPage(getNearestPage(), 0.72);
+  }, { passive: true });
+
+  function maybeRestoreNavbar(scrollY) {
+    if (!navHiddenByScroller) {
+      lastScrollY = scrollY;
+      return;
+    }
+
+    if (now() < navLockUntil) {
+      lastScrollY = scrollY;
+      return;
+    }
+
+    const delta = scrollY - lastScrollY;
+
+    /* only bring navbar back on meaningful vertical scroll */
+    if (Math.abs(delta) > 2) {
+      showNavbar();
+    }
+
+    lastScrollY = scrollY;
+  }
+
+  if (lenis && typeof lenis.on === "function") {
+    lenis.on("scroll", ({ animatedScroll }) => {
+      maybeRestoreNavbar(animatedScroll);
+    });
+  } else {
+    window.addEventListener("scroll", () => {
+      maybeRestoreNavbar(window.scrollY || window.pageYOffset || 0);
+    }, { passive: true });
+  }
+
+  window.addEventListener("resize", refresh);
+  window.addEventListener("load", refresh);
+
+  refresh();
+})();
+</script>
  
 <!-- ✅ REPLACE your Capabilities dropdown script with this full version
      (same behavior as you have now, but adds fade in/out when switching tabs) -->
