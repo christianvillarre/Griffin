@@ -46,7 +46,7 @@ html{
     font-family: 'Zalando Sans', sans-serif;
     background: var(--bg);
     color: var(--ink);
-    overflow:auto;
+  
   }
 
   /* ===================== NAVBAR ===================== */
@@ -779,185 +779,181 @@ html{
 
 <style>
   /* ===================== FEATURE SPLIT SECTION ===================== */
-.feature-split{
-  position: relative;
-  width: 100%;
-  min-height: 100vh;            /* ✅ ensures we have room */
-  background: #fff;
-  color: #111;
-  overflow: visible;
-  padding: clamp(48px, 6vw, 90px) 0;
-    margin-top: -2px;   /* pull it up slightly */
+  :root{
+    --navW: 900px;
+    --navPad: 28px;
+  }
 
-}
+  .feature-split{
+    position: relative;
+    width: 100%;
+    background: #fff;
+    color: #111;
+    overflow: visible;
+    padding: clamp(48px, 6vw, 90px) 0 0rem; /* 2rem gap before next section */
+    margin-top: 0px;
+  }
 
-:root{
-  --navW: 900px;
-  --navPad: 28px; /* matches calc(100% - 28px) */
-}
+  /* two-column layout so image sets section height naturally */
+  .feature-inner{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: clamp(24px, 3vw, 48px);
+  }
 
-/* Make the text block align to the same centered 900px container as navbar */
-.feature-inner{
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;                 /* remove the old padding here */
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-/* ✅ This is the key: give the LEFT column the same container logic as navbar */
 .feature-left{
   width: 100%;
-  padding-left: none;
+  padding-left: 0;
   padding-right: clamp(24px, 6vw, 90px);
 
   display: grid;
   grid-template-columns: 4rem 1fr;
-  column-gap: 32px;
 
+  column-gap: clamp(12px, 4vw, 320px);
   align-items: start;
 }
-/* 10rem spacer */
-.feature-gutter{
-  width: 10rem;
-}
-
-/* icon wrapper keeps it pinned to the top */
-.feature-iconWrap{
-  width: 4rem;
-  height: 4rem;
-  display: flex;
-  align-items: flex-start; /* ✅ top */
-  justify-content: center;
-}
-
-/* icon image: no stretch */
-.feature-icon{
-  width: 4rem;
-  height: 4rem;
-  object-fit: contain;   /* ✅ fits without stretching */
-  display: block;
-}
-
-/* heading aligned with icon top */
-.feature-content{
-  padding-top: 0;
-  padding-left: clamp(0.5rem, 2vw, 4rem);
-}
-
-.feature-heading{
- font-weight: 400;
-  font-size: 18px;
-  margin: 0 0 22px;
-  color:#555555;
-}
-
-/* bold title + paragraph block */
-/* ✅ remove the artificial width cap so it can get wider */
-.feature-block{
-  max-width: 50vw;
-}
-.feature-title{
-  
-   font-size: clamp(24px, 3.4vw, 54px);  /* ✅ bigger */
-  margin:0 0 18px;
-  color:#111;
-  letter-spacing:-0.01em;
-  font-weight: 200;
-  line-height: 0.9;
-  padding-bottom: 2rem;
-}
-
-.feature-text{
-  margin: 0;
-  font-size: clamp(14px, 1.4vw, 24px);  /* ✅ bigger */
-  line-height: 1.6;
-  opacity: 0.85;
-}
-
-/* RIGHT SIDE (60%) */
-.feature-right{
-  position: absolute;
-  top: 0;
-
-  /* ✅ anchor to actual viewport edge */
-  right: 0;
-
-  height: 100%;
-  min-height: 100vh;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-
-  pointer-events: none;
-
-  /* ✅ remove any layout influence */
-  width: auto;
-}
-.feature-image{
-  display: block;
-
-  height: auto;
-  max-height: 100vh;
-
-  /* ✅ make sure it touches the edge */
-  width: clamp(520px, 45vw, 1100px);
-
-  object-fit: contain;
-  object-position: top right;   /* important */
-
-  border-radius: 24px 0 0 24px;
-}
-/* ===================================================== */
-/* Under 1400px → stick text to left side */
-/* ===================================================== */
-@media (max-width: 1399px){
-
-  .feature-left{
-    width: 100%;
-    margin: 0;          /* remove centering */
-    padding-left: 0;    /* ✅ NO space */
-    padding-right: 0;   /* optional */
+  .feature-gutter{
+    width: 10rem;
   }
 
-  .feature-inner{
-    padding: 0;   /* ✅ removes container inset */
+  .feature-iconWrap{
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
   }
 
-
-}
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 980px){
-  .feature-inner{
-    grid-template-columns: 1fr;
-  }
-
-  .feature-left{
-    grid-template-columns: 2rem 6rem 1fr; /* tighter on mobile */
-    column-gap: 16px;
-  }
-
-  .feature-gutter{ width: 2rem; }
-
-  .feature-iconWrap,
   .feature-icon{
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+    display: block;
   }
 
+  .feature-content{
+    padding-top: 0;
+    padding-left: clamp(0.5rem, 2vw, 4rem);
+  }
+
+  .feature-heading{
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0 0 22px;
+    color: #555555;
+  }
+
+  .feature-block{
+    max-width: 50vw;
+  }
+
+  .feature-title{
+    font-size: clamp(24px, 3.4vw, 54px);
+    margin: 0 0 18px;
+    color: #111;
+    letter-spacing: -0.01em;
+    font-weight: 200;
+    line-height: 0.9;
+    padding-bottom: 2rem;
+  }
+
+  .feature-text{
+    margin: 0;
+    font-size: clamp(14px, 1.4vw, 24px);
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  /* RIGHT SIDE */
   .feature-right{
-    min-height: auto;
-    padding-top: 12px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    pointer-events: none;
+    align-self: start;
   }
 
   .feature-image{
-    height: 60vh;
-    width: 100%;
-    transform: none; /* no bleed on mobile */
-    border-radius: 18px;
+    display: block;
+    width: clamp(220px, 30vw, 500px);
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: top right;
+    border-radius: 24px 0 0 24px;
+    margin-top: -8rem;
+    z-index: 4;
   }
-}
+
+  /* ===================================================== */
+  /* Under 1400px */
+  /* ===================================================== */
+  @media (max-width: 1399px){
+    .feature-left{
+      width: 100%;
+      margin: 0;
+      padding-left: 0;
+      padding-right: clamp(16px, 3vw, 24px);
+    }
+
+    .feature-inner{
+      padding: 0;
+      column-gap: 24px;
+    }
+
+    .feature-block{
+      max-width: 56vw;
+    }
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 980px){
+    .feature-inner{
+      grid-template-columns: 1fr;
+      row-gap: 20px;
+    }
+
+    .feature-left{
+      grid-template-columns: 2rem 6rem 1fr;
+      column-gap: 16px;
+      padding-right: 0;
+    }
+
+    .feature-gutter{
+      width: 2rem;
+    }
+
+    .feature-iconWrap,
+    .feature-icon{
+      width: 6rem;
+      height: 6rem;
+    }
+
+    .feature-content{
+      padding-left: 0;
+    }
+
+    .feature-block{
+      max-width: 100%;
+    }
+
+    .feature-right{
+      width: 100%;
+      padding-top: 12px;
+      justify-content: flex-end;
+    }
+
+    .feature-image{
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+    }
+  }
 </style>
 
 <section class="image-scroller-section">
@@ -1380,7 +1376,7 @@ background:#000;
 <section class="ndt-grid-section">
 
   <h2 class="display-heading ndt-grid-title">
-    Precision Built on Proven <span class="text-accent">Inspection</span>.
+    Precision Built on Proven Inspection.
   </h2>
 
   <div class="ndt-box-row">
@@ -1972,7 +1968,7 @@ html, body{
   <!-- Bottom Row -->
   <div class="footer-bottom">
     <div class="footer-copy">
-      © 2026 Griffin Integrity Solutions
+      © 2026 Griffin Integrity Solutions, LLC. All Rights Reserved
     </div>
 
     <div class="footer-credit">
@@ -2855,7 +2851,93 @@ html, body{
   refresh();
 })();
 </script>
- 
+
+ <script>
+(() => {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  // Navbar fades in as one unit on load
+  
+  // Everything else animates once when entering view
+  const riseTargets = gsap.utils.toArray([
+  "#heroTitle",
+  ".hero-scroll-indicator",
+  "#criticalTitle",
+  ".feature-heading",
+  ".feature-title",
+  ".feature-text",
+  ".image-scroller-eyebrow",
+  ".scroller-copy .card-eyebrow",
+  ".scroller-copy p",
+  ".blue-cta .display-heading",
+  ".white-cta .display-heading",
+  ".ndt-grid-title",
+  ".contact-header h2",
+  ".contact-left h3",
+  ".contact-left p",
+  ".contact-right h3",
+  ".contact-form label",
+  ".contact-btn"
+]);
+
+const fadeOnlyTargets = gsap.utils.toArray([
+  ".footer-logo",
+  ".footer-title",
+  ".footer-links li",
+  ".footer-socials a",/*
+  ".footer-copy",
+  ".footer-credit"*/
+]);
+
+riseTargets.forEach((el) => {
+  gsap.fromTo(
+    el,
+    {
+      autoAlpha: 0,
+      y: 36
+    },
+    {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.85,
+      ease: "power3.out",
+      clearProps: "transform,opacity,visibility",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        once: true
+      }
+    }
+  );
+});
+
+fadeOnlyTargets.forEach((el) => {
+  gsap.fromTo(
+    el,
+    {
+      autoAlpha: 0
+    },
+    {
+      autoAlpha: 1,
+      duration: 0.85,
+      ease: "power3.out",
+      clearProps: "opacity,visibility",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 92%",
+        once: true
+      }
+    }
+  );
+});
+  ScrollTrigger.refresh();
+})();
+</script>
 <!-- ✅ REPLACE your Capabilities dropdown script with this full version
      (same behavior as you have now, but adds fade in/out when switching tabs) -->
 
@@ -3214,7 +3296,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroTitle = document.getElementById("heroTitle");
   const criticalTitle = document.getElementById("criticalTitle");
   const blueCta = document.querySelector(".blue-cta");
-
+/*
   if (heroTitle) {
     gsap.to(heroTitle, {
       y: -140,
@@ -3226,7 +3308,7 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: 0.35
       }
     });
-  }
+  }*/
 
   if (criticalTitle) {
     gsap.fromTo(
