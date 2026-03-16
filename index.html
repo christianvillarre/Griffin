@@ -2851,8 +2851,7 @@ html, body{
   refresh();
 })();
 </script>
-
- <script>
+<script>
 (() => {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
@@ -2861,80 +2860,99 @@ html, body{
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
-  // Navbar fades in as one unit on load
-  
-  // Everything else animates once when entering view
   const riseTargets = gsap.utils.toArray([
-  "#heroTitle",
-  ".hero-scroll-indicator",
-  "#criticalTitle",
-  ".feature-heading",
-  ".feature-title",
-  ".feature-text",
-  ".image-scroller-eyebrow",
-  ".scroller-copy .card-eyebrow",
-  ".scroller-copy p",
-  ".blue-cta .display-heading",
-  ".white-cta .display-heading",
-  ".ndt-grid-title",
-  ".contact-header h2",
-  ".contact-left h3",
-  ".contact-left p",
-  ".contact-right h3",
-  ".contact-form label",
-  ".contact-btn"
-]);
+    "#heroTitle",
+    ".hero-scroll-indicator",
+    "#criticalTitle",
+    ".feature-heading",
+    ".feature-title",
+    ".feature-text",
+    ".image-scroller-eyebrow",
+    ".scroller-copy .card-eyebrow",
+    ".scroller-copy p",
+    ".blue-cta .display-heading",
+    ".white-cta .display-heading",
+    ".ndt-grid-title",
+    ".contact-header h2",
+    ".contact-left h3",
+    ".contact-left p",
+    ".contact-right h3",
+    ".contact-form label",
+    ".contact-btn"
+  ]);
 
-const fadeOnlyTargets = gsap.utils.toArray([
-  ".footer-logo",
-  ".footer-title",
-  ".footer-links li",
-  ".footer-socials a",/*
-  ".footer-copy",
-  ".footer-credit"*/
-]);
+  const footerTitleTargets = gsap.utils.toArray([
+    ".footer-title"
+  ]);
 
-riseTargets.forEach((el) => {
-  gsap.fromTo(
-    el,
-    {
-      autoAlpha: 0,
-      y: 36
-    },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.85,
-      ease: "power3.out",
-      clearProps: "transform,opacity,visibility",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 88%",
-        once: true
+  const fadeOnlyTargets = gsap.utils.toArray([
+    ".footer-logo",
+    ".footer-links li",
+    ".footer-socials a"
+  ]);
+
+  riseTargets.forEach((el) => {
+    gsap.fromTo(
+      el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
       }
-    }
-  );
-});
+    );
+  });
 
-fadeOnlyTargets.forEach((el) => {
-  gsap.fromTo(
-    el,
-    {
-      autoAlpha: 0
-    },
-    {
-      autoAlpha: 1,
-      duration: 0.85,
-      ease: "power3.out",
-      clearProps: "opacity,visibility",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 92%",
-        once: true
+  footerTitleTargets.forEach((el) => {
+    gsap.fromTo(
+      el,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 0.5,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "opacity",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true
+        }
       }
-    }
-  );
-});
+    );
+  });
+
+  fadeOnlyTargets.forEach((el) => {
+    gsap.fromTo(
+      el,
+      {
+        autoAlpha: 0
+      },
+      {
+        autoAlpha: 1,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true
+        }
+      }
+    );
+  });
+
   ScrollTrigger.refresh();
 })();
 </script>
