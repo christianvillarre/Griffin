@@ -1381,15 +1381,31 @@ background:#000;
 
   <div class="ndt-box-row">
 
-    <div class="ndt-box"><span class="fade-right"></span></div>
-    <div class="ndt-box"></div>
-    <div class="ndt-box"></div>
-    <div class="ndt-box"></div>
-    <div class="ndt-box"></div>
+    <div class="ndt-box">
+      <span class="fade-right"></span>
+      <img src="images/partner-logo1.png" alt="Partner Logo 1" class="partner-logo is-blur">
+    </div>
+
+    <div class="ndt-box">
+      <img src="images/partner-logo2.png" alt="Partner Logo 2" class="partner-logo is-blur">
+    </div>
+
+    <div class="ndt-box">
+      <img src="images/partner-logo1.png" alt="Partner Logo 1" class="partner-logo">
+    </div>
+
+    <div class="ndt-box">
+      <img src="images/partner-logo2.png" alt="Partner Logo 2" class="partner-logo">
+    </div>
+
+    <div class="ndt-box">
+      <img src="images/partner-logo1.png" alt="Partner Logo 1" class="partner-logo is-blur">
+    </div>
 
     <div class="ndt-box">
       <span class="fade-right"></span>
       <span class="right-edge"></span>
+      <img src="images/partner-logo2.png" alt="Partner Logo 2" class="partner-logo is-blur">
     </div>
 
     <!-- top intersection dots -->
@@ -1494,6 +1510,26 @@ background:#000;
   border-bottom:var(--line) solid var(--ink);
   border-left:var(--line) solid var(--ink);
   background:none;
+}
+
+/* logos: centered without affecting box layout */
+.partner-logo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:auto;
+  height:auto;
+  max-width:62%;
+  max-height:62px;
+  object-fit:contain;
+  z-index:1;
+  pointer-events:none;
+}
+
+.partner-logo.is-blur{
+  filter:blur(4px);
+  opacity:0.7;
 }
 
 /* left-side ghost verticals */
@@ -1612,12 +1648,12 @@ background:#000;
 /* RIGHT SIDE */
 /* RIGHT SIDE — exact mirror, clearly visible */
 .ndt-box:last-of-type{
-  border-top: none !important;
-  border-bottom: none !important;
-  border-right: none !important;
+  border-top:none !important;
+  border-bottom:none !important;
+  border-right:none !important;
 
   background-image:
-    linear-gradient(to left, #1111113d 0px, #111  25vw),
+    linear-gradient(to left, #1111113d 0px, #111 25vw),
     linear-gradient(to left, #1111113d 0px, #111 25vw) !important;
   background-position:
     top right,
@@ -1647,7 +1683,6 @@ background:#000;
     rgba(17,17,17,0) 100%
   ) !important;
 }
-
 
 .ndt-box:last-of-type .right-edge{
   background:#1111113d !important;

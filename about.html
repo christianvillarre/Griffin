@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Griffin Integrity Solutions — About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --muted:#5b5b5b;
+      --line:#d8d8d8;
+      --brand-red:#F00303;
+      --brand-blue:#0F3D51;
+      --brand-blue-soft:#1a5c91;
+      --page-pad:clamp(22px,4vw,56px);
+      --content-max:1400px;
+      --radius:24px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:clip;
+    }
+
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; }
+
+    .text-highlight {
+      background: linear-gradient(90deg, var(--brand-red) 0%, rgb(19, 75, 99) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .display-heading{
+      font-size: clamp(34px, 7vw, 76px);
+      line-height: 1.02;
+      margin: 0;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      font-size:13px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:700;
+      color:var(--brand-blue-soft);
+    }
+
+    .section-shell{
+      width:min(var(--content-max), calc(100% - (var(--page-pad) * 2)));
+      margin:0 auto;
+    }
+
+    /* ===================== NAV ===================== */
+    .navbar{
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, calc(100% - 28px));
+      height: 84px;
+      border-radius: 25px;
+      background: #00202e70;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 50;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:140px;
+    }
+
+    .nav-logo img{
+      height:48px;
+      width:auto;
+      object-fit:contain;
+      transform:translateY(-3px);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-transform:uppercase;
+    }
+
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:42px;
+      padding:0 14px;
+      border-radius:12px;
+      text-decoration:none;
+      color:rgba(255,255,255,0.92);
+      font-weight:600;
+      font-size:14px;
+      transition:color .2s ease;
+      white-space:nowrap;
+    }
+
+    .nav-link:hover{ color:var(--brand-red); }
+
+    .nav-link--contact{
+      background: rgba(255,255,255,0.95);
+      color:#111;
+      border:1px solid rgba(255,255,255,0.65);
+      padding:0 16px;
+    }
+
+    .nav-link--contact:hover{
+      color:#111;
+      background:#fff;
+    }
+
+    @media (max-width: 560px){
+      .nav-link--hide-sm{ display:none; }
+    }
+
+    /* ===================== HERO ===================== */
+    .about-hero{
+      min-height: 88vh;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: clamp(140px, 18vw, 220px) 20px clamp(90px, 10vw, 120px);
+      position:relative;
+    }
+
+    .about-hero__inner{
+      max-width: 1100px;
+      margin:0 auto;
+    }
+
+    .about-hero__body{
+      margin: 26px auto 0;
+      max-width: 760px;
+      font-size: clamp(18px, 1.45vw, 24px);
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ===================== FEATURE SPLIT ===================== */
+    .feature-split{
+      position:relative;
+      background:#fff;
+      padding: clamp(36px, 5vw, 72px) 0 clamp(70px, 7vw, 110px);
+    }
+
+    .feature-inner{
+      width:100%;
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items:start;
+      column-gap: clamp(24px, 3vw, 48px);
+    }
+
+    .feature-left{
+      width:100%;
+      padding-right: clamp(24px, 6vw, 90px);
+      display:grid;
+      grid-template-columns: 4rem 1fr;
+      column-gap: clamp(12px, 4vw, 180px);
+      align-items:start;
+    }
+
+    .feature-iconWrap{
+      width:4rem;
+      height:4rem;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .feature-icon{
+      width:4rem;
+      height:4rem;
+      object-fit:contain;
+    }
+
+    .feature-content{ padding-left: clamp(.5rem, 2vw, 3rem); }
+
+    .feature-heading{
+      font-weight:400;
+      font-size:18px;
+      margin:0 0 22px;
+      color:#555555;
+    }
+
+    .feature-block{ max-width: 52vw; }
+
+    .feature-title{
+      font-size: clamp(24px, 3.4vw, 54px);
+      margin: 0 0 18px;
+      color:#111;
+      letter-spacing:-0.01em;
+      font-weight:200;
+      line-height:.94;
+      padding-bottom:1.5rem;
+    }
+
+    .feature-text{
+      margin:0;
+      font-size: clamp(14px, 1.3vw, 22px);
+      line-height:1.7;
+      opacity:.86;
+      color:#333;
+    }
+
+    .feature-right{
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-end;
+    }
+
+    .feature-image{
+      width: clamp(240px, 31vw, 520px);
+      height:auto;
+      object-fit:contain;
+      object-position: top right;
+      border-radius: 26px 0 0 26px;
+      margin-top:-5rem;
+    }
+
+    /* ===================== TWO COLUMN TEXT ===================== */
+    .about-columns{
+      background:#fff;
+      padding: clamp(70px, 8vw, 120px) 0;
+    }
+
+    .about-columns__header{
+      max-width: 980px;
+      margin-bottom: clamp(34px, 4vw, 56px);
+    }
+
+    .about-columns__grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(22px, 3vw, 48px);
+      align-items:start;
+    }
+
+    .about-columns__grid p{
+      margin:0;
+      font-size: clamp(17px, 1.18vw, 20px);
+      line-height:1.82;
+      color:#4f4f4f;
+    }
+
+    /* ===================== 2x2 BOX GRID ===================== */
+    .about-grid{
+      background:#fff;
+      padding: clamp(10px, 2vw, 20px) 0 clamp(90px, 10vw, 140px);
+    }
+
+    .about-grid__wrap{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: clamp(22px, 2.4vw, 34px);
+    }
+
+    .about-card{
+      background:#fff;
+      border:1px solid #d9dfe3;
+      border-radius: 28px;
+      overflow:hidden;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .about-card:hover{
+      transform: translateY(-4px);
+      border-color:#c8d2d8;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    }
+
+    .about-card__media{
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, #f2f5f7 0%, #dde8ef 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .about-card__media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .about-card__title{
+      padding: 18px 20px 22px;
+      font-size: clamp(20px, 1.6vw, 28px);
+      line-height:1.2;
+      font-weight:300;
+      color:#111;
+    }
+
+    /* ===================== FOOTER ===================== */
+    .site-footer{
+      position: relative;
+      width: 100vw;
+      left: 50%;
+      margin-left: -50vw;
+      background-image: url("images/bluebg3.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color:#fff;
+      padding: clamp(60px, 8vw, 100px) clamp(18px, 4vw, 70px) 30px;
+      overflow-x: clip;
+    }
+
+    .footer-inner{
+      display:grid;
+      grid-template-columns: 4fr 2fr 1fr 1fr;
+      gap: clamp(24px, 4vw, 80px);
+      width:100%;
+      max-width:none;
+      margin:0 auto;
+    }
+
+    .footer-col--logo{
+      display:flex;
+      align-items:flex-start;
+    }
+
+    .footer-logo{
+      width:200px;
+      height:auto;
+      object-fit:contain;
+    }
+
+    .footer-title{
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:18px;
+      font-weight:400;
+      opacity:.5;
+      color:#fff;
+    }
+
+    .footer-links{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .footer-links li{ margin-bottom:12px; }
+
+    .footer-links a{
+      text-decoration:none;
+      color:#ffffff;
+      font-size:16px;
+      transition: color .2s ease;
+    }
+
+    .footer-links a:hover{ color:var(--brand-red); }
+
+    .footer-socials{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      align-items:flex-start;
+    }
+
+    .footer-socials a{
+      width:24px;
+      height:24px;
+      color:#ffffffcc;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .footer-socials a:hover{
+      color:var(--brand-red);
+      transform: translateY(-2px);
+    }
+
+    .footer-socials svg{
+      width:100%;
+      height:100%;
+    }
+
+    .footer-bottom{
+      margin-top: clamp(36px, 5vw, 70px);
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      width:100%;
+      padding-top:24px;
+      font-size:16px;
+      color:#ffffff99;
+    }
+
+    .footer-credit a{
+      color:#ffffffcc;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .footer-credit a:hover{ color:var(--brand-red); }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1399px){
+      .feature-block{ max-width:56vw; }
+      .feature-inner{ column-gap:24px; }
+      .feature-left{ padding-right:clamp(16px, 3vw, 24px); }
+    }
+
+    @media (max-width: 980px){
+      .feature-inner,
+      .about-columns__grid,
+      .about-grid__wrap{
+        grid-template-columns:1fr;
+      }
+
+      .feature-left{
+        grid-template-columns: 2rem 6rem 1fr;
+        column-gap:16px;
+        padding-right:0;
+      }
+
+      .feature-iconWrap,
+      .feature-icon{
+        width:6rem;
+        height:6rem;
+      }
+
+      .feature-content{ padding-left:0; }
+      .feature-block{ max-width:100%; }
+      .feature-right{ padding-top:12px; }
+      .feature-image{
+        width:100%;
+        border-radius:18px;
+        margin-top:0;
+      }
+    }
+
+    @media (max-width: 900px){
+      .footer-inner{
+        grid-template-columns:1fr 1fr;
+        gap:40px;
+      }
+
+      .footer-col--logo{ grid-column: span 2; }
+
+      .footer-bottom{
+        flex-direction:column;
+        gap:12px;
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar" aria-label="Primary">
+    <div class="nav-logo">
+      <img src="images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+    </div>
+
+    <nav class="nav-links">
+      <a class="nav-link nav-link--hide-sm" href="#hero">About</a>
+      <a class="nav-link nav-link--hide-sm" href="#story">Capabilities</a>
+      <a class="nav-link" href="#insight">News</a>
+      <a class="nav-link nav-link--contact" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-hero" id="hero">
+      <div class="about-hero__inner">
+        <div class="eyebrow">About Griffin Integrity Solutions</div>
+        <h1 class="display-heading">
+          Built to Bring <span class="text-highlight">Clarity</span> to Complex Integrity Challenges.
+        </h1>
+        <p class="about-hero__body">
+          Griffin Integrity Solutions supports the energy industry with advanced technical advisory, modern nondestructive testing insight, and practical consulting built for high-consequence environments. We help organizations make better decisions, strengthen internal capability, and move forward with confidence.
+        </p>
+      </div>
+    </section>
+
+    <section class="feature-split" id="story">
+      <div class="section-shell feature-inner">
+        <div class="feature-left">
+          <div class="feature-iconWrap">
+            <img class="feature-icon" src="images/InfoIcon.png" alt="Info icon">
+          </div>
+
+          <div class="feature-content">
+            <h2 class="feature-heading">Who We Are</h2>
+            <div class="feature-block">
+              <div class="feature-title">
+                Strategic expertise for <span class="text-highlight">critical</span> assets and operations.
+              </div>
+              <p class="feature-text">
+                Griffin Integrity Solutions was founded to bridge the gap between technical precision and business performance. Our work combines deep knowledge of advanced inspection, asset integrity, and industry compliance with a practical understanding of how organizations operate in the field. From leadership-level advisory to program-level execution support, we bring focused experience, sharp analysis, and dependable guidance to the challenges that matter most.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-right">
+          <img class="feature-image" src="images/WingPicFram_RT.png" alt="Griffin project visual">
+        </div>
+      </div>
+    </section>
+
+    <section class="about-columns" id="insight">
+      <div class="section-shell">
+        <div class="about-columns__header">
+          <h2 class="display-heading">
+            A partner shaped by <span class="text-highlight">experience</span> and execution.
+          </h2>
+        </div>
+
+        <div class="about-columns__grid">
+          <p>
+            Our approach is rooted in technical depth, but always aimed at practical outcomes. We work with organizations that need more than generic recommendations—they need insight that reflects operational realities, regulatory expectations, and the consequences of getting it wrong. That is why our work focuses on solutions that are technically sound, clearly communicated, and aligned with long-term performance.
+          </p>
+          <p>
+            Whether we are supporting inspection strategy, written practice development, technology adoption, or workforce advancement, we prioritize clarity, accountability, and measurable value. Every engagement is designed to strengthen confidence at every level—from executive leadership to technical teams in the field—while helping clients build systems that are safer, smarter, and more resilient over time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-grid" id="contact">
+      <div class="section-shell">
+        <div class="about-grid__wrap">
+          <article class="about-card">
+            <div class="about-card__media">
+              <img src="images/stock2.jpeg" alt="Inspection planning and consulting">
+            </div>
+            <div class="about-card__title">Technical Leadership</div>
+          </article>
+
+          <article class="about-card">
+            <div class="about-card__media">
+              <img src="images/stock4.jpeg" alt="Training and capability development">
+            </div>
+            <div class="about-card__title">Workforce Development</div>
+          </article>
+
+          <article class="about-card">
+            <div class="about-card__media">
+              <img src="images/stock3.jpeg" alt="Advanced imaging and automation systems">
+            </div>
+            <div class="about-card__title">Technology Integration</div>
+          </article>
+
+          <article class="about-card">
+            <div class="about-card__media">
+              <img src="images/bluebg3.png" alt="Risk, compliance, and asset integrity support">
+            </div>
+            <div class="about-card__title">Integrity-Focused Strategy</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--logo">
+        <img src="images/Griffin Integrity Logo wt.png" alt="Griffin Integrity Solutions" class="footer-logo">
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Services</h4>
+        <ul class="footer-links">
+          <li><a href="#story">Technical Consulting</a></li>
+          <li><a href="#story">Advisory Services</a></li>
+          <li><a href="#story">Affiliate Organizations</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Company</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">About</a></li>
+          <li><a href="#insight">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Reach Us</h4>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M6 9h3v12H6zM7.5 4a1.75 1.75 0 110 3.5A1.75 1.75 0 017.5 4zM12 9h3v1.7c.4-.8 1.5-1.9 3.4-1.9 3.6 0 4.6 2.3 4.6 5.3V21h-3v-6.1c0-1.6-.6-2.7-2.1-2.7-1.3 0-2.1.9-2.4 1.7-.1.3-.1.7-.1 1V21h-3z" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M3 3l7 9-7 9h3l5-6 5 6h5l-7-9 7-9h-3l-5 6-5-6z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Griffin Integrity Solutions, LLC. All Rights Reserved</div>
+      <div class="footer-credit">Website by <a href="https://mcvdesign.com" target="_blank" rel="noreferrer">MCVDesign</a></div>
+    </div>
+  </footer>
+</body>
+</html>
