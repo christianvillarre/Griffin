@@ -751,18 +751,100 @@ html{
   white-space: nowrap;
   border: 0;
 }
+
+/* =========================
+   HERO LAYOUT
+========================= */
+:root{
+  --right-col: clamp(320px, 40vw, 740px); /* 🔥 wider */
+  --gap: clamp(20px, 1vw, 22px);
+}
+
+.stackflow-shell{
+  position: relative;
+  z-index: 3;
+  width: min(1800px, calc(100% - 40px));
+  padding: 0 60px;
+}
+
+.stackflow-main{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  align-items: start;
+
+  width: calc(100% - var(--right-col) - var(--gap));
+}
+
+/* copy spans only the left grid */
+.stackflow-copy{
+  grid-column: 1 / 3;
+  text-align: left;
+  padding-top: 0.5rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.stackflow-copy p{
+  font-size: 22px;
+  max-width: 42ch;
+  font-weight: 200;
+}
+
+.stackflow-col{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* separate right column */
+
+.stackflow-col--1{
+  grid-column: 1 / 2;
+}
+
+.stackflow-col--2{
+  grid-column: 2 / 3;
+}
+.stackflow-col--3{
+  position: absolute;
+  top: 0;
+  right: clamp(20px, 4vw, 60px);
+  width: var(--right-col);
+}
+/* =========================
+   HERO TYPOGRAPHY
+========================= */
+.stackflow-kicker{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+
 .stackflow-heading{
   margin: 0;
   color: #fff;
-  font-size: clamp(2.4rem, 5.5vw, 7.5rem);
+  font-size: clamp(2.4rem, 4.8vw, 4.5rem);
   line-height: 0.97;
   letter-spacing: -0.035em;
-  
+  max-width: 900px;
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
 
-
+.stackflow-text{
+  margin: 20px 0 0;
+  opacity: 1 !important;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgb(255, 255, 255);
+}
 .stackflow-link{
   margin-top: 24px;
   display: inline-flex;
@@ -771,8 +853,8 @@ html{
   width: fit-content;
   color: #F00303;
   text-decoration: none;
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.01em;
   transition: color .2s ease, transform .2s ease;
 }
@@ -791,97 +873,6 @@ html{
 .stackflow-link:hover svg{
   transform: translateX(3px);
 }
-
-/* =========================
-   HERO LAYOUT
-========================= */
-:root{
-  --col-3: 2.5fr; /* slightly larger right column */
-  --gap: clamp(20px, 1vw, 22px);
-}
-
-.stackflow-shell{
-  position: relative;
-  z-index: 3;
-  width: min(1800px, calc(100% - 40px));
-  padding: 0 60px;
-}
-
-.stackflow-main{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(28px, 3vw, 42px);
-  width: 100%;
-}
-
-/* full-width text row */
-.stackflow-copy{
-  grid-column: 1 / -1;
-  text-align: center;
-  padding-top: 0.5rem;
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0;
-  width: none;
-}
-
-.stackflow-copy p {
-  font-size: clamp(0.8rem, 1.7vw, 2rem);
-  max-width: 100ch;
-  opacity: 1 ! important;
-}
-
-
-
-.stackflow-link{
-  margin-top: 24px;
-}
-
-/* all 3 columns together */
-.stackflow-grid{
-  display: grid;
-  grid-template-columns: var(--col-3) 1fr 1fr;
-  grid-template-areas: "col3 col1 col2";
-  gap: var(--gap);
-  align-items: start;
-  width: 100%;
-}
-
-.stackflow-col--1{ grid-area: col1; }
-.stackflow-col--2{ grid-area: col2; }
-.stackflow-col--3{ grid-area: col3; }
-
-.stackflow-col{
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 0;
-}
-
-.stackflow-col--1,
-.stackflow-col--2,
-.stackflow-col--3{
-  position: relative;
-  top: auto;
-  right: auto;
-  width: auto;
-}
-
-/* =========================
-   HERO TYPOGRAPHY
-========================= */
-.stackflow-kicker{
-  margin: 0 0 14px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.72);
-}
-
 
 /* =========================
    CARDS
@@ -975,10 +966,10 @@ html{
 }
 
 /* heights */
-.stackflow-h-sm1{ min-height: 450px; }
-.stackflow-h-sm2{ min-height: 450px; }
-.stackflow-h-md1{ min-height: 450px; }
-.stackflow-h-md2{ min-height: 450px; }
+.stackflow-h-sm1{ min-height: 500px; }
+.stackflow-h-sm2{ min-height: 500px; }
+.stackflow-h-md1{ min-height: 500px; }
+.stackflow-h-md2{ min-height: 500px; }
 .stackflow-h-lg{ min-height: 420px; }
 .stackflow-h-xl{ min-height: 720px; }
 
@@ -1153,32 +1144,31 @@ html{
   <section class="intro-wrap">
    <section class="hero" id="home">
   <div class="stackflow-shell">
-  <div class="stackflow-main">
 
-    <div class="stackflow-copy">
-      <h1 class="stackflow-heading">
-        What's Your <span class="text-highlight">Next Move</span> In NDT?
-      </h1>
-      
-      <p class="stackflow-text">
-        We bring NDT insight, strategy, and execution together so you don’t need to second guess.
-      </p>
+    <div class="stackflow-main">
+      <div class="stackflow-copy">
+        <h1 class="stackflow-heading">
+          What's Your <span class="text-highlight">Next Move</span> In NDT?
+        </h1>
 
-      <a href="/capabilities" class="stackflow-link">
-        <span>Explore Capabilities</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-          <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
+        <p class="stackflow-text">
+          We bring NDT insight, strategy, and execution together so you don’t need to second-guess.
+        </p>
 
-    <div class="stackflow-grid">
+        <a href="/capabilities" class="stackflow-link">
+          <span>Explore Capabilities</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
       <div class="stackflow-col stackflow-col--1">
         <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1">
           <img src="images/stock2.jpeg" alt="Advanced analytics">
           <div class="stackflow-meta">
             <p class="stackflow-eyebrow">Technology</p>
-            <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+            <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h3>
           </div>
         </a>
 
@@ -1186,7 +1176,7 @@ html{
           <img src="images/stock4.jpeg" alt="Field execution">
           <div class="stackflow-meta">
             <p class="stackflow-eyebrow">Operations</p>
-            <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+            <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h3>
           </div>
         </a>
       </div>
@@ -1196,7 +1186,7 @@ html{
           <img src="images/stock1.jpeg" alt="Inspection planning">
           <div class="stackflow-meta">
             <p class="stackflow-eyebrow">Case Study</p>
-            <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+            <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h3>
           </div>
         </a>
 
@@ -1208,32 +1198,38 @@ html{
           </div>
         </a>
       </div>
+    </div>
 
-      <div class="stackflow-col stackflow-col--3">
-        <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--topmeta">
-          <img src="images/stock3.jpeg" alt="Built for critical environments">
-          <div class="stackflow-meta">
-            <p class="stackflow-eyebrow">Featured Story</p>
-            <h3 class="stackflow-title2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h3>
-          </div>
-        </a>
+    <div class="stackflow-col stackflow-col--3">
+      <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--topmeta">
+        <img src="images/stock3.jpeg" alt="Built for critical environments">
+        <div class="stackflow-meta">
+          <p class="stackflow-eyebrow">Featured Story</p>
+          <h3 class="stackflow-title2"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </h3>
+        </div>
+      </a>
 
-        <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
-          <div class="stackflow-meta">
-            <p class="stackflow-eyebrow">STAY IN TOUCH</p>
-            <h3 class="stackflow-title2">Keep updated with major industry updates and get in touch with professionals.</h3>
-            <form class="stackflow-subscribe">
-              <label class="stackflow-sr" for="stackflowEmail">Email address</label>
-              <input id="stackflowEmail" type="email" placeholder="Enter your email for updates">
-              <button type="submit">Subscribe</button>
-            </form>
-          </div>
+      <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
+        
+        <div class="stackflow-meta">
+          <p class="stackflow-eyebrow">STAY IN TOUCH</p>
+          <h3 class="stackflow-title2">Keep updated with major industry updates and get in touch with professionals.</h3>
+        <form class="stackflow-subscribe">
+        <label class="stackflow-sr" for="stackflowEmail">Email address</label>
+        <input id="stackflowEmail" type="email" placeholder="Enter your email for updates">
+        <button type="submit">Subscribe</button>
+      </form>
         </div>
       </div>
+
+      <!--<form class="stackflow-subscribe">
+        <label class="stackflow-sr" for="stackflowEmail">Email address</label>
+        <input id="stackflowEmail" type="email" placeholder="Enter your email for updates">
+        <button type="submit">Subscribe</button>
+      </form>-->
     </div>
 
   </div>
-</div>
 </section>
 
     <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
