@@ -1237,6 +1237,171 @@ html{
   </main>
 </div>
 
+<style>
+  :root{
+  --col-3: 2.15fr; /* slightly less aggressive on tighter widths */
+  --gap: clamp(14px, 1.1vw, 22px);
+}
+
+.stackflow-shell{
+  position: relative;
+  z-index: 3;
+  width: min(1800px, calc(100% - 32px));
+  padding: 0 clamp(14px, 3vw, 60px);
+}
+
+.stackflow-copy{
+  padding-top: 0.25rem;
+}
+
+.stackflow-copy p{
+  font-size: clamp(0.95rem, 1.35vw, 1.5rem);
+  max-width: 52ch;
+  padding: 0 10px;
+}
+
+.stackflow-heading{
+  font-size: clamp(2rem, 5vw, 7.5rem);
+  line-height: 0.98;
+  margin-bottom: 1rem;
+}
+
+.stackflow-title2{
+  font-size: clamp(1rem, 2.8vw, 3.125rem);
+  max-width: 24ch;
+}
+
+.stackflow-title{
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.stackflow-meta{
+  left: clamp(14px, 1.4vw, 18px);
+  right: clamp(14px, 1.4vw, 18px);
+  bottom: clamp(14px, 1.4vw, 18px);
+}
+
+.stackflow-col{
+  gap: clamp(12px, 1.5vw, 1.5rem);
+}
+
+/* slightly more forgiving default heights */
+.stackflow-h-sm1,
+.stackflow-h-sm2,
+.stackflow-h-md1,
+.stackflow-h-md2{
+  min-height: clamp(280px, 32vw, 450px);
+}
+
+.stackflow-h-lg{
+  min-height: clamp(260px, 30vw, 420px);
+}
+
+.stackflow-h-xl{
+  min-height: clamp(420px, 48vw, 720px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1280px){
+  .stackflow-grid{
+    grid-template-columns: 1.7fr 1fr 1fr;
+    gap: clamp(12px, 1.2vw, 18px);
+  }
+
+  .stackflow-copy p{
+    max-width: 46ch;
+  }
+}
+
+@media (max-width: 1080px){
+  .stackflow-grid{
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 14px;
+  }
+
+  .stackflow-heading{
+    font-size: clamp(1.9rem, 4.8vw, 4.8rem);
+  }
+
+  .stackflow-title2{
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+    max-width: 13ch;
+  }
+
+  .stackflow-copy p{
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    max-width: 42ch;
+  }
+}
+
+@media (max-width: 900px){
+  .stackflow-grid{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "col3 col3"
+      "col1 col2";
+    align-items: start;
+  }
+
+  .stackflow-h-xl{
+    min-height: clamp(340px, 52vw, 520px);
+  }
+}
+
+@media (max-width: 760px){
+  .hero{
+    padding-top: 130px;
+    padding-bottom: 80px;
+  }
+
+  .stackflow-shell{
+    width: min(1600px, calc(100% - 20px));
+    padding: 0 10px;
+  }
+
+  .stackflow-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "col3"
+      "col1"
+      "col2";
+    gap: 12px;
+  }
+
+  .stackflow-copy{
+    padding-top: 0;
+  }
+
+  .stackflow-copy p{
+    max-width: 32ch;
+    font-size: 1rem;
+  }
+
+  .stackflow-h-sm1,
+  .stackflow-h-sm2,
+  .stackflow-h-md1,
+  .stackflow-h-md2,
+  .stackflow-h-lg{
+    min-height: 240px;
+  }
+
+  .stackflow-h-xl{
+    min-height: 360px;
+  }
+
+  .stackflow-subscribe{
+    min-height: 200px;
+  }
+
+  .spacer--dark{
+    min-height: 34vh;
+    padding-top: 70px;
+  }
+}
+</style>
 
 
     <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
@@ -1534,7 +1699,7 @@ html{
 }
 
 .caps-tab:hover{
-  background: #052330;
+  background: #05233052;
    color: #fff;
 }
 
@@ -1729,7 +1894,19 @@ html{
             <img src="images/stock1.jpeg" alt="Inspection planning">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Inspection Strategy</h3>
+            <span class="insight-card-title">Inspection Strategy
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+            </span>
+         
             <p class="insight-card-text">
               Build stronger inspection planning processes with guidance tailored to asset criticality,
               field realities, and program-level objectives.
@@ -1744,7 +1921,18 @@ html{
             <img src="images/stock2.jpeg" alt="Data and technology advisory">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Technology Advisory</h3>
+            <span class="insight-card-title">Technical Advisory
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </span>
             <p class="insight-card-text">
               Evaluate emerging tools, workflows, and implementation paths with support grounded in
               practical NDT and operational experience.
@@ -1759,7 +1947,18 @@ html{
             <img src="images/stock3.jpeg" alt="Operational support">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Program Support</h3>
+            <span class="insight-card-title">Program Support
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </span>
             <p class="insight-card-text">
               Strengthen workforce capability, reporting consistency, and execution quality through
               advisory support that scales with your operation.
@@ -1922,6 +2121,28 @@ html{
   .insight-card-media{
     min-height: 220px;
   }
+}
+
+.insight-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.title-arrow {
+  display: inline-flex;
+  color: #ffffff; /* default white */
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateY(0px);
+}
+.insight-card-box:hover .title-arrow{
+  color: #F00303
+}
+
+.title-arrow svg {
+  width: 26px;
+  height: 26px;
 }
 </style>
 
@@ -3888,7 +4109,10 @@ html, body{
     ".contact-left p",
     ".contact-right h3",
     ".contact-form label",
-    ".contact-btn"
+    ".contact-btn",
+    ".caps-intro-title",
+    ".stackflow-heading"
+    
   ]);
 
   const footerTitleTargets = gsap.utils.toArray([
