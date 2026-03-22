@@ -1541,6 +1541,9 @@ html{
   letter-spacing: 0.01em;
   transition: color .2s ease, transform .2s ease;
 }
+.small-link {
+  font-size: 18px;
+}
 
 .page-link svg{
   width: 18px;
@@ -1551,6 +1554,9 @@ html{
 .page-link:hover{
   color: #F00303;
   transform: translateX(2px);
+}
+.small-link:hover {
+  color:white;
 }
 
 .page-link:hover svg{
@@ -1563,10 +1569,10 @@ html{
 
     <div class="caps-panel-tabs" role="tablist" aria-label="Capabilities pages">
       <button class="caps-tab is-active" type="button" role="tab" aria-selected="true" data-panel="0">
-        Technical Consulting
+        Business Advisory Services
       </button>
       <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="1">
-        Business Advisory Services
+        Technical Consulting
       </button>
       <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="2">
         Affiliate Organizations
@@ -1577,8 +1583,32 @@ html{
     </div>
 
     <div class="caps-panel-pages">
+
+       <!-- PAGE 2 -->
+      <article class="caps-page  is-active" data-page="0">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Advanced NDT Advisory Backed by Field Expertise</h2>
+          <p class="caps-page-text">
+            Our advisory services combine advanced NDT expertise with real-world implementation insight.
+            From Level III support and written practice review to advanced training and technology
+            integration, we help organizations improve capability, consistency, and reliability.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Business Advisory Services</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock3.jpeg" alt="Advanced NDT advisory">
+        </div>
+      </article>
+
       <!-- PAGE 1 -->
-      <article class="caps-page is-active" data-page="0">
+      <article class="caps-page" data-page="1">
         <div class="caps-page-copy">
           <p class="caps-page-eyebrow"></p>
           <h2 class="caps-page-title">Technical Consulting for Critical Environments</h2>
@@ -1588,6 +1618,12 @@ html{
             strategic planning, workforce assessment, and high-value technical initiatives with practical,
             experience-driven guidance.
           </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Technical Consulting</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
         </div>
 
         <div class="caps-page-media">
@@ -1595,22 +1631,7 @@ html{
         </div>
       </article>
 
-      <!-- PAGE 2 -->
-      <article class="caps-page" data-page="1">
-        <div class="caps-page-copy">
-          <p class="caps-page-eyebrow"></p>
-          <h2 class="caps-page-title">Advanced NDT Advisory Backed by Field Expertise</h2>
-          <p class="caps-page-text">
-            Our advisory services combine advanced NDT expertise with real-world implementation insight.
-            From Level III support and written practice review to advanced training and technology
-            integration, we help organizations improve capability, consistency, and reliability.
-          </p>
-        </div>
-
-        <div class="caps-page-media">
-          <img src="images/stock2.jpeg" alt="Advanced NDT advisory">
-        </div>
-      </article>
+     
 
       <!-- PAGE 3 -->
       <article class="caps-page" data-page="2">
@@ -1622,10 +1643,16 @@ html{
             affiliate organizations that meet the same standard of quality, accountability, and technical
             precision. This allows us to support broader scopes while maintaining confidence in delivery.
           </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Affiliate Organizations</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
         </div>
 
         <div class="caps-page-media">
-          <img src="images/stock3.jpeg" alt="Affiliate organizations">
+          <img src="images/stock5.jpeg" alt="Affiliate organizations">
         </div>
       </article>
 
@@ -1639,6 +1666,12 @@ html{
             technical consistency, and support long-term operational reliability. From implementation to
             optimization, our focus is on sustainable outcomes that hold up in real environments.
           </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Industry Programs</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
         </div>
 
         <div class="caps-page-media">
@@ -4103,10 +4136,26 @@ html, body{
     ".contact-form label",
     ".contact-btn",
     ".caps-intro-title",
-    ".stackflow-heading"
+    ".caps-intro-eyebrow",
+    ".stackflow-heading",
+    ".insight-grid-title",
+    ".insight-grid-eyebrow",
+    ".insight-grid-intro",
+ 
     
   ]);
 
+    const riseTargets2 = gsap.utils.toArray([
+    ".stackflow-copy p",
+    ".stackflow-link",
+    ".stackflow-card"
+    
+  ]);
+
+    const riseTargets3 = gsap.utils.toArray([
+    ".insight-card"
+    
+  ]);
   const footerTitleTargets = gsap.utils.toArray([
     ".footer-title"
   ]);
@@ -4139,6 +4188,50 @@ html, body{
     );
   });
 
+riseTargets2.forEach((el) => {
+  gsap.fromTo(
+    el,
+    {
+      autoAlpha: 0,
+      y: 36
+    },
+    {
+      autoAlpha: 1,
+      y: 0,
+      duration: 1.6,
+      delay: 0.3, // 👈 add this
+      ease: "power3.out",
+      clearProps: "transform,opacity,visibility",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        once: true
+      }
+    }
+  );
+});
+riseTargets3.forEach((el, i) => {
+  gsap.fromTo(
+    el,
+    {
+      autoAlpha: 0,
+      y: 36
+    },
+    {
+      autoAlpha: 1,
+      y: 0,
+      duration: 1.9,
+      delay: i * 0.35, // 👈 stagger effect
+      ease: "power3.out",
+      clearProps: "transform,opacity,visibility",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+        once: true
+      }
+    }
+  );
+});
   footerTitleTargets.forEach((el) => {
     gsap.fromTo(
       el,
