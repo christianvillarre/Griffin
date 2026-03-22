@@ -963,7 +963,7 @@ html{
 .stackflow-h-lg{ min-height: 420px; }
 .stackflow-h-xl{ min-height: 720px; }
 
-.stackflow-card--topmeta .stackflow-meta{
+.topmeta{
   top: 18px;
   bottom: auto;
 }
@@ -1192,13 +1192,30 @@ html{
               </div>
 
               <div class="stackflow-col stackflow-col--3">
-                <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--topmeta">
-                  <img src="images/stock3.jpeg" alt="Built for critical environments">
-                  <div class="stackflow-meta">
+               <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--featured">
+                <img src="images/stock3.jpeg" alt="Built for critical environments">
+
+                <div class="stackflow-meta stackflow-meta--featured">
+                  <div class="stackflow-featured-top">
                     <p class="stackflow-eyebrow">Featured Story</p>
-                    <h3 class="stackflow-title2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h3>
+                    <h3 class="stackflow-title2">
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </h3>
                   </div>
-                </a>
+
+                  <span class="featured-btn">
+                    <span>Read Featured Story</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                      <path d="M184 112 L328 256 L184 400"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="52"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+              </a>
 
                 <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
                   <div class="stackflow-meta">
@@ -1392,6 +1409,64 @@ html{
     min-height: 34vh;
     padding-top: 70px;
   }
+}
+
+.stackflow-meta--featured{
+  top: 18px;
+  bottom: 18px;
+  left: 18px;
+  right: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stackflow-featured-top{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stackflow-meta--featured .featured-btn{
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+/* =========================
+   FEATURED STORY BUTTON
+========================= */
+.featured-btn{
+  margin-top: 18px;
+  padding: 14px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #151515;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+
+  transition: color .2s ease, transform .2s ease;
+}
+
+/* arrow */
+.featured-btn svg{
+  width: 16px;
+  height: 16px;
+  transition: transform .2s ease;
+}
+
+/* hover */
+.featured-btn:hover{
+  color: #6b6b6b;
+  transform: translateX(2px);
+}
+
+.featured-btn:hover svg{
+  transform: translateX(3px);
 }
 </style>
 
