@@ -885,7 +885,8 @@ html{
   background: rgba(255,255,255,0.04);
   isolation: isolate;
   opacity: 0.8;
-  
+
+  transition: transform .5s ease, filter .3s ease;
 }
 
 .stackflow-card img{
@@ -896,22 +897,9 @@ html{
   object-fit: cover;
   display: block;
 
-  transition: transform .55s ease, filter .35s ease;
+  transition: transform 9s ease, filter 9s ease;
 }
 
-.stackflow-card::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.78) 8%,
-    rgba(0,0,0,0.18) 48%,
-    rgba(0,0,0,0.04) 100%
-  );
-  transition: background .3s ease;
-}
 
 .stackflow-meta{
   position: absolute;
@@ -949,9 +937,13 @@ html{
   font-weight: 200;
   max-width: 22ch;
 }
+.stackflow-card:hover{
+  transform: scale(0.99);
+ 
+}
+
 .stackflow-card:hover img{
-  transform: scale(1.06);
-  filter: brightness(1.05);
+  transform: scale(1.2);
 }
 
 .stackflow-card:hover::after{
