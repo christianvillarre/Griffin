@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hero Layout</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:'Zalando Sans', sans-serif;
+  background:#000;
+  color:#fff;
+}
+
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:stretch;
+  overflow:hidden;
+}
+
+.hero-shell{
+  width:100%;
+  padding:0 60px;
+  display:grid;
+  grid-template-columns:0.8fr 1.4fr; /* ✅ RIGHT COLUMN BIGGER */
+  gap:60px;
+}
+
+/* ================= LEFT (BOTTOM LEFT TITLE) ================= */
+.hero-title{
+  display:flex;
+  align-items:flex-end; /* ✅ push to bottom */
+  justify-content:flex-start;
+  padding-bottom:60px;
+}
+
+.hero-title h1{
+  font-size:clamp(3rem,7vw,7rem);
+  text-align:left; /* ✅ LEFT aligned */
+  max-width:10ch;
+  line-height:0.9;
+  font-weight:300;
+}
+
+/* ================= RIGHT ================= */
+.hero-right{
+  display:grid;
+  grid-template-rows:1fr auto;
+  height:100%;
+}
+
+/* TEXT CENTERED */
+.hero-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero-copy p{
+  font-size:clamp(1rem,1.3vw,1.4rem);
+  max-width:30ch;
+}
+
+.hero-copy a{
+  margin-top:20px;
+  color:red;
+  text-decoration:none;
+}
+
+/* ================= CARDS ================= */
+.card-stage{
+  height:60vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.cards{
+  position:absolute;
+  inset:0;
+  display:flex;
+  gap:20px;
+  align-items:flex-end;
+  transform:translateY(120%);
+}
+
+.col{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.card{
+  position:relative;
+  height:260px;
+  overflow:hidden;
+  background:#111;
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.6), transparent);
+}
+
+.card-meta{
+  position:absolute;
+  bottom:16px;
+  left:16px;
+  right:16px;
+}
+
+.card-meta h3{
+  margin:0;
+  font-weight:300;
+  font-size:18px;
+}
+
+/* FEATURED CARD */
+.col3 .card{
+  height:420px;
+}
+
+/* ================= NEXT ================= */
+.next{
+  height:120vh;
+  background:#fff;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:900px){
+  .hero-shell{
+    grid-template-columns:1fr;
+    padding:0 24px;
+  }
+
+  .hero-title{
+    align-items:flex-start;
+    padding-bottom:20px;
+  }
+
+  .hero-title h1{
+    font-size:clamp(2.5rem,9vw,4rem);
+  }
+
+  .card-stage{
+    height:50vh;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-shell">
+
+    <!-- LEFT -->
+    <div class="hero-title">
+      <h1>
+        What's Your <span style="color:red;">Next Move</span> In NDT?
+      </h1>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hero-right">
+
+      <div class="hero-copy">
+        <p>
+          We bring asset integrity, strategy, and execution together so you don’t need to second guess.
+        </p>
+        <a href="#">Explore Capabilities →</a>
+      </div>
+
+      <div class="card-stage">
+        <div class="cards">
+
+          <div class="col col1">
+            <div class="card">
+              <img src="https://picsum.photos/600/800?1">
+              <div class="card-meta"><h3>Inspection Planning</h3></div>
+            </div>
+            <div class="card">
+              <img src="https://picsum.photos/600/800?2">
+              <div class="card-meta"><h3>Field Execution</h3></div>
+            </div>
+          </div>
+
+          <div class="col col2">
+            <div class="card">
+              <img src="https://picsum.photos/600/800?3">
+              <div class="card-meta"><h3>Advanced Analytics</h3></div>
+            </div>
+            <div class="card">
+              <img src="https://picsum.photos/600/800?4">
+              <div class="card-meta"><h3>Reporting</h3></div>
+            </div>
+          </div>
+
+          <div class="col col3">
+            <div class="card">
+              <img src="https://picsum.photos/600/800?5">
+              <div class="card-meta"><h3>Featured Story</h3></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="next">
+  Next Section
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const tl = gsap.timeline({
+  scrollTrigger:{
+    trigger:".hero",
+    start:"top top",
+    end:"+=140%",
+    scrub:1,
+    pin:true
+  }
+});
+
+tl.to(".cards", {
+  y:"0%",
+  ease:"none",
+  duration:1
+});
+
+tl.fromTo(".col1",
+  {y:120},
+  {y:0, duration:1, ease:"power3.out"},
+  0
+);
+
+tl.fromTo(".col2",
+  {y:200},
+  {y:0, duration:1.2, ease:"power3.out"},
+  0.1
+);
+
+tl.fromTo(".col3",
+  {y:280},
+  {y:0, duration:1.4, ease:"power3.out"},
+  0.2
+);
+</script>
+
+</body>
+</html>

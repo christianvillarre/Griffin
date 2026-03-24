@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackflow Hero Scroll</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#000;
+      --ink:#fff;
+      --red:#F00303;
+      --gap: clamp(18px, 1.4vw, 28px);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; }
+
+    .text-highlight{
+      background: linear-gradient(90deg, #F00303 0%, rgb(19, 75, 99) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+
+    #site{ min-height:100vh; }
+
+    .intro-wrap{
+      position:relative;
+      overflow:visible;
+      background:
+        linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.30)),
+        url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1800&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:stretch;
+      padding: 24px 0;
+      overflow:hidden;
+    }
+
+    .stackflow-shell{
+      position: relative;
+      z-index: 3;
+      width: min(1900px, calc(100% - 28px));
+      padding: 0 clamp(14px, 3vw, 60px);
+      margin:0 auto;
+      min-height: calc(100vh - 48px);
+    }
+
+    .stackflow-main{
+      display:grid;
+      grid-template-columns: minmax(300px, .78fr) minmax(760px, 1.6fr);
+      gap: clamp(22px, 2vw, 34px);
+      width:100%;
+      min-height:100%;
+      align-items:stretch;
+    }
+
+    .stackflow-copy{
+      text-align:left;
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      align-items:flex-start;
+      padding-bottom: clamp(18px, 2vh, 28px);
+    }
+
+    .stackflow-heading{
+      margin:0;
+      font-size: clamp(2.6rem, 6vw, 7.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      font-weight: 300;
+      max-width: 8.2ch;
+    }
+
+    .stackflow-copy p{
+      font-size: clamp(1rem, 1.2vw, 1.18rem);
+      max-width: 30ch;
+      opacity: 1 !important;
+      font-weight: 200;
+      line-height:1.45;
+      margin: 22px 0 0;
+      padding:0;
+    }
+
+    .stackflow-link{
+      margin-top: 24px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      width:fit-content;
+      color: #F00303;
+      text-decoration:none;
+      font-size: clamp(1rem, 1.15vw, 1.12rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .stackflow-link svg{
+      width:18px;
+      height:18px;
+      transition: transform .2s ease;
+    }
+
+    .stackflow-link:hover{
+      color:#fff;
+      transform:translateX(2px);
+    }
+
+    .stackflow-link:hover svg{
+      transform:translateX(3px);
+    }
+
+    .stackflow-stage{
+      position:relative;
+      min-height:100%;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-end;
+      overflow:hidden;
+    }
+
+    /* much taller stage so cards don't feel cropped */
+    .stackflow-track{
+  position:absolute;
+  left:0;
+  right:0;
+  top: 0;              /* anchor to top instead of bottom */
+  will-change:transform;
+}
+
+    /* 2 x 2 */
+    .stackflow-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      width:100%;
+      align-items:start;
+    }
+
+    .stackflow-col{
+      display:flex;
+      flex-direction:column;
+      gap: var(--gap);
+      min-width:0;
+      position:relative;
+      will-change:transform;
+    }
+
+    .stackflow-card{
+      position: relative;
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0;
+      text-decoration: none;
+      background: rgba(255,255,255,0.04);
+      isolation: isolate;
+      opacity: 0.92;
+      transition: transform .5s ease, filter .3s ease;
+    }
+
+    .stackflow-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.58) 8%,
+        rgba(0,0,0,0.16) 48%,
+        rgba(0,0,0,0.03) 100%
+      );
+      z-index:1;
+      transition: background .4s ease;
+      pointer-events:none;
+    }
+
+    .stackflow-card img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition: transform 9s ease, filter 9s ease;
+    }
+
+    .stackflow-meta{
+      position:absolute;
+      left: clamp(16px, 1.5vw, 22px);
+      right: clamp(16px, 1.5vw, 22px);
+      bottom: clamp(16px, 1.5vw, 22px);
+      z-index:2;
+      color:#fff;
+      text-align:left;
+    }
+
+    .stackflow-eyebrow{
+      margin:0 0 6px;
+      font-size: clamp(0.8rem, 0.8vw, 1rem) !important;
+      font-weight:400;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .stackflow-title{
+      margin:0;
+      font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+      line-height:1.04;
+      letter-spacing:-0.02em;
+      color:#fff;
+      font-weight:200;
+      max-width: 18ch;
+    }
+
+    .stackflow-card:hover{
+      transform: scale(0.992);
+    }
+
+    .stackflow-card:hover img{
+      transform: scale(1.12);
+    }
+
+    /* much bigger cards */
+    .stackflow-h-a{ min-height: clamp(420px, 38vw, 680px); }
+    .stackflow-h-b{ min-height: clamp(420px, 38vw, 680px); }
+    .stackflow-h-c{ min-height: clamp(460px, 42vw, 760px); }
+    .stackflow-h-d{ min-height: clamp(460px, 42vw, 760px); }
+
+    .next-section{
+      min-height:120vh;
+      background:#fff;
+      color:#111;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    .next-section h2{
+      margin:0;
+      font-size: clamp(2.4rem, 5vw, 5.4rem);
+      line-height: .95;
+      letter-spacing: -.04em;
+      font-weight: 300;
+      max-width: 10ch;
+    }
+
+    @media (max-width: 1180px){
+      .stackflow-main{
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .stackflow-copy{
+        min-height:auto;
+        padding-top:84px;
+        padding-bottom:0;
+      }
+
+      .stackflow-track{
+        bottom:-2vh;
+      }
+    }
+
+    @media (max-width: 760px){
+      .hero{
+        padding: 10px 0;
+      }
+
+      .stackflow-shell{
+        width: min(1600px, calc(100% - 18px));
+        padding: 0 8px;
+      }
+
+      .stackflow-copy{
+        padding-top:88px;
+      }
+
+      .stackflow-grid{
+        grid-template-columns:1fr;
+      }
+
+      .stackflow-track{
+        bottom:0;
+      }
+
+      .stackflow-h-a,
+      .stackflow-h-b,
+      .stackflow-h-c,
+      .stackflow-h-d{
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="site">
+    <section class="intro-wrap" id="home">
+      <div class="hero">
+        <div class="stackflow-shell">
+          <div class="stackflow-main">
+
+            <div class="stackflow-copy">
+              <h1 class="stackflow-heading">
+                What's Your <span class="text-highlight">Next Move</span> In NDT?
+              </h1>
+
+              <p>
+                We bring asset integrity, strategy, and execution together so you don’t need to second guess.
+              </p>
+
+              <a href="/capabilities" class="stackflow-link">
+                <span>Explore Capabilities</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                  <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="stackflow-stage">
+              <div class="stackflow-track">
+                <div class="stackflow-grid">
+
+                  <div class="stackflow-col stackflow-col--1">
+                    <a href="#" class="stackflow-card stackflow-h-a">
+                      <img src="https://picsum.photos/1200/1600?image=1067" alt="Advanced analytics">
+                      <div class="stackflow-meta">
+                        <p class="stackflow-eyebrow">Technology</p>
+                        <h3 class="stackflow-title">Advanced analytics and execution strategy for stronger inspection outcomes.</h3>
+                      </div>
+                    </a>
+
+                    <a href="#" class="stackflow-card stackflow-h-b">
+                      <img src="https://picsum.photos/1200/1600?image=1039" alt="Field execution">
+                      <div class="stackflow-meta">
+                        <p class="stackflow-eyebrow">Operations</p>
+                        <h3 class="stackflow-title">Field execution support that aligns teams, timelines, and technical decisions.</h3>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="stackflow-col stackflow-col--2">
+                    <a href="#" class="stackflow-card stackflow-h-c">
+                      <img src="https://picsum.photos/1200/1600?image=1040" alt="Inspection planning">
+                      <div class="stackflow-meta">
+                        <p class="stackflow-eyebrow">Case Study</p>
+                        <h3 class="stackflow-title">Inspection planning built around asset criticality and real-world constraints.</h3>
+                      </div>
+                    </a>
+
+                    <a href="#" class="stackflow-card stackflow-h-d">
+                      <img src="https://picsum.photos/1200/1600?image=1027" alt="Integrity reporting">
+                      <div class="stackflow-meta">
+                        <p class="stackflow-eyebrow">Reporting</p>
+                        <h3 class="stackflow-title">Integrity reporting that turns technical findings into clearer decisions.</h3>
+                      </div>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="next-section">
+      <h2>Next Section</h2>
+    </section>
+  </main>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 761px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".intro-wrap",
+          start: "top top",
+          end: "+=260%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1
+        }
+      });
+
+      tl.to(".stackflow-track", {
+        y: "-92vh",
+        ease: "none",
+        duration: 1
+      }, 0);
+
+      tl.to(".stackflow-col--1", {
+        y: "-12vh",
+        ease: "none",
+        duration: 1
+      }, 0);
+
+      tl.to(".stackflow-col--2", {
+        y: "-22vh",
+        ease: "none",
+        duration: 1
+      }, 0);
+    });
+
+    mm.add("(max-width: 760px)", () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".intro-wrap",
+          start: "top top",
+          end: "+=180%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1
+        }
+      });
+
+      tl.to(".stackflow-track", {
+        y: "-52vh",
+        ease: "none",
+        duration: 1
+      }, 0);
+
+      tl.to(".stackflow-col--1", {
+        y: "-5vh",
+        ease: "none",
+        duration: 1
+      }, 0);
+
+      tl.to(".stackflow-col--2", {
+        y: "-10vh",
+        ease: "none",
+        duration: 1
+      }, 0);
+    });
+  </script>
+</body>
+</html>

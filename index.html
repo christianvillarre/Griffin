@@ -4182,174 +4182,7 @@ html, body{
   refresh();
 })();
 </script>
-<script>
-(() => {
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) return;
-
-  const riseTargets = gsap.utils.toArray([
-    "#heroTitle",
-    ".hero-scroll-indicator",
-    "#criticalTitle",
-    ".feature-heading",
-    ".feature-title",
-    ".feature-text",
-    ".image-scroller-eyebrow",
-    ".scroller-copy .card-eyebrow",
-    ".scroller-copy p",
-    ".blue-cta .display-heading",
-    ".white-cta .display-heading",
-    ".ndt-grid-title",
-    ".contact-header h2",
-    ".contact-left h3",
-    ".contact-left p",
-    ".contact-right h3",
-    ".contact-form label",
-    ".contact-btn",
-    ".caps-intro-title",
-    ".caps-intro-eyebrow",
-    ".stackflow-heading",
-    ".insight-grid-title",
-    ".insight-grid-eyebrow",
-    ".insight-grid-intro",
- 
-    
-  ]);
-
-    const riseTargets2 = gsap.utils.toArray([
-    ".stackflow-copy p",
-    ".stackflow-link",
-    ".stackflow-card"
-    
-  ]);
-
-    const riseTargets3 = gsap.utils.toArray([
-    ".insight-card"
-    
-  ]);
-  const footerTitleTargets = gsap.utils.toArray([
-    ".footer-title"
-  ]);
-
-  const fadeOnlyTargets = gsap.utils.toArray([
-    ".footer-logo",
-    ".footer-links li",
-    ".footer-socials a"
-  ]);
-
-  riseTargets.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        autoAlpha: 0,
-        y: 36
-      },
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "transform,opacity,visibility",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
-          once: true
-        }
-      }
-    );
-  });
-
-riseTargets2.forEach((el) => {
-  gsap.fromTo(
-    el,
-    {
-      autoAlpha: 0,
-      y: 36
-    },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 1.6,
-      delay: 0.3, // 👈 add this
-      ease: "power3.out",
-      clearProps: "transform,opacity,visibility",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 88%",
-        once: true
-      }
-    }
-  );
-});
-riseTargets3.forEach((el, i) => {
-  gsap.fromTo(
-    el,
-    {
-      autoAlpha: 0,
-      y: 36
-    },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 1.9,
-      delay: i * 0.35, // 👈 stagger effect
-      ease: "power3.out",
-      clearProps: "transform,opacity,visibility",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 88%",
-        once: true
-      }
-    }
-  );
-});
-  footerTitleTargets.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        opacity: 0
-      },
-      {
-        opacity: 0.5,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "opacity",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 92%",
-          once: true
-        }
-      }
-    );
-  });
-
-  fadeOnlyTargets.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        autoAlpha: 0
-      },
-      {
-        autoAlpha: 1,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "opacity,visibility",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 92%",
-          once: true
-        }
-      }
-    );
-  });
-
-  ScrollTrigger.refresh();
-})();
-</script>
 <!-- ✅ REPLACE your Capabilities dropdown script with this full version
      (same behavior as you have now, but adds fade in/out when switching tabs) -->
 
@@ -4756,6 +4589,337 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  ScrollTrigger.refresh();
+})();
+</script>
+
+
+<style>
+  /* =========================
+   HERO PINNED REVEAL
+========================= */
+.hero{
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;              /* lock hero to viewport */
+  overflow: hidden;           /* hide cards until they slide up */
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding-top: 120px;
+  padding-bottom: 0;
+}
+
+.stackflow-shell{
+  width: min(1800px, calc(100% - 40px));
+  height: 100%;
+  padding: 0 60px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.stackflow-main{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(38vh, auto) 1fr; /* text takes more space */
+  gap: clamp(20px, 2vw, 28px);
+  align-items: start;
+}
+
+.stackflow-copy{
+  grid-column: 1 / -1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: clamp(320px, 42vh, 520px); /* bigger text area */
+  padding-inline: 20px;
+  margin-top:0rem;
+}
+
+.stackflow-heading{
+  font-size: clamp(2.4rem, 6vw, 7rem);
+  max-width: 22ch;
+  margin-inline: auto;
+}
+
+.stackflow-copy p{
+  max-width: 42ch;
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+}
+
+.stackflow-grid{
+  display: grid;
+  grid-template-columns: var(--col-3) 1fr 1fr;
+  grid-template-areas: "col3 col1 col2";
+  gap: var(--gap);
+  align-items: start;
+  width: 100%;
+
+  /* starts lower so it can scroll upward */
+  transform: translateY(72vh);
+  will-change: transform;
+}
+
+@media (max-width: 900px){
+  .stackflow-main{
+    grid-template-rows: minmax(34vh, auto) 1fr;
+  }
+
+  .stackflow-grid{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "col3 col3"
+      "col1 col2";
+    transform: translateY(66vh);
+  }
+}
+
+@media (max-width: 760px){
+  .hero{
+    height: 100svh;
+    min-height: 100svh;
+    padding-top: 110px;
+  }
+
+  .stackflow-shell{
+    width: min(1600px, calc(100% - 20px));
+    padding: 0 10px 24px;
+  }
+
+  .stackflow-main{
+    grid-template-rows: minmax(32vh, auto) 1fr;
+  }
+
+  .stackflow-copy{
+    min-height: clamp(240px, 34vh, 360px);
+  }
+
+  .stackflow-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "col3"
+      "col1"
+      "col2";
+    transform: translateY(58vh);
+  }
+}
+</style>
+<script>
+(() => {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  const hero = document.querySelector(".hero");
+  const copy = document.querySelector(".stackflow-copy");
+  const grid = document.querySelector(".stackflow-grid");
+
+  if (!hero || !copy || !grid) return;
+
+  function killHeroReveal() {
+    const st = ScrollTrigger.getById("heroCardsReveal");
+    if (st) st.kill();
+  }
+
+  function setupHeroReveal() {
+    killHeroReveal();
+
+    gsap.set(copy, { y: 0, opacity: 1 });
+    gsap.set(grid, {
+      y: window.innerWidth <= 760 ? window.innerHeight * 0.58 : window.innerHeight * 0.72
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        id: "heroCardsReveal",
+        trigger: hero,
+        start: "top top",
+        end: "+=140%",
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    })
+    .to(copy, {
+      y: -80,
+      opacity: 0,
+      ease: "none",
+      duration: 0.22
+    }, 0)
+    .to(grid, {
+      y: window.innerWidth <= 760 ? -140 : -920,
+      ease: "none"
+    }, 0);
+  }
+
+  setupHeroReveal();
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();
+</script>
+
+<script>
+(() => {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  // IMPORTANT:
+  // remove anything inside the pinned hero from these generic reveal groups
+  const riseTargets = gsap.utils.toArray([
+    "#criticalTitle",
+    ".feature-heading",
+    ".feature-title",
+    ".feature-text",
+    ".image-scroller-eyebrow",
+    ".scroller-copy .card-eyebrow",
+    ".scroller-copy p",
+    ".blue-cta .display-heading",
+    ".white-cta .display-heading",
+    ".ndt-grid-title",
+    ".contact-header h2",
+    ".contact-left h3",
+    ".contact-left p",
+    ".contact-right h3",
+    ".contact-form label",
+    ".contact-btn",
+    ".caps-intro-title",
+    ".caps-intro-eyebrow",
+    ".insight-grid-title",
+    ".insight-grid-eyebrow",
+    ".insight-grid-intro",
+    ".caps-panel"
+  ]);
+
+  const riseTargets2 = gsap.utils.toArray([
+    // intentionally no hero items here
+  ]);
+
+  const riseTargets3 = gsap.utils.toArray([
+    ".insight-card"
+  ]);
+
+  const footerTitleTargets = gsap.utils.toArray([
+    ".footer-title"
+  ]);
+
+  const fadeOnlyTargets = gsap.utils.toArray([
+    ".footer-logo",
+    ".footer-links li",
+    ".footer-socials a"
+  ]);
+
+  riseTargets.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
+      }
+    );
+  });
+
+  riseTargets2.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1.6,
+        delay: 0.3,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
+      }
+    );
+  });
+
+  riseTargets3.forEach((el, i) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1.9,
+        delay: i * 0.35,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
+      }
+    );
+  });
+
+  footerTitleTargets.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 0.5,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "opacity",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true
+        }
+      }
+    );
+  });
+
+  fadeOnlyTargets.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0
+      },
+      {
+        autoAlpha: 1,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true
+        }
+      }
+    );
+  });
+
+  ScrollTrigger.sort();
   ScrollTrigger.refresh();
 })();
 </script>
