@@ -1146,13 +1146,47 @@ html{
                 We bring asset integrity, strategy, and execution together so you don’t need to second guess.
               </p>
 
-              <a href="/capabilities" class="stackflow-link">
-                <span>Explore Capabilities</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-                  <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
+              <div class="hero-scroll-indicator">
+              <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                <path d="M128 192 L256 320 L384 192" fill="none" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
+            </div>
+            <style>
+              .hero-scroll-indicator{
+  margin-top: 0px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width: clamp(60px, 8vw, 120px);
+
+}
+
+.hero-chevron{
+  width: 116px;
+  height: 116px;
+}
+
+.hero-chevron path{
+  stroke: #ffffff; /* army green */
+}
+.stackflow-copy{
+  position: relative;
+}
+
+.hero-scroll-indicator{
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translateX(-50%);
+  margin-top: 16px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(60px, 8vw, 120px);
+}
+            </style>
 
             <div class="stackflow-grid">
               <div class="stackflow-col stackflow-col--1">
@@ -4795,16 +4829,26 @@ document.addEventListener("DOMContentLoaded", () => {
     ".insight-grid-title",
     ".insight-grid-eyebrow",
     ".insight-grid-intro",
-    ".caps-panel"
+    ".caps-panel",
+     
+    ".stackflow-heading",
+    
+  
   ]);
 
   const riseTargets2 = gsap.utils.toArray([
     // intentionally no hero items here
+    ".stackflow-link",
+    ".stackflow-text",
+   
   ]);
 
   const riseTargets3 = gsap.utils.toArray([
-    ".insight-card"
+    ".insight-card",
+    
+    
   ]);
+  
 
   const footerTitleTargets = gsap.utils.toArray([
     ".footer-title"
@@ -4923,6 +4967,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.refresh();
 })();
 </script>
+
+
+
 
 <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
 <script>
