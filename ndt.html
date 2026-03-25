@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NDT Landing Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+
+      --square:96;
+      --gap:8px;
+      --rectW:254px;
+      --rectH:96px;
+
+      --ovalW:800px;
+      --beamY:0px;
+
+      --col-3:2.5fr;
+      --hero-edge-pad:clamp(16px, 2.4vw, 34px);
+      --hero-gap:clamp(24px, 4vw, 64px);
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,
+    body{ height:100%; }
+
+    html{
+      scroll-behavior:auto;
+      scroll-padding-top:var(--nav-offset);
+    }
+
+    html.lenis,
+    html.lenis body{
+      height:auto;
+    }
+
+    .lenis.lenis-smooth{
+      scroll-behavior:auto !important;
+    }
+
+    body{
+      margin:0;
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    #site{
+      min-height:100vh;
+      padding:0;
+    }
+
+    .intro-wrap{
+      position:relative;
+      overflow:visible;
+      background:#000;
+      padding-bottom:4rem;
+    }
+
+    .intro-wrap::before{
+      content:"";
+      position:absolute;
+      z-index:0;
+      width:520vmax;
+      height:520vmax;
+      left:50%;
+      top:50%;
+      transform:translate(-45%, calc(-55% + var(--beamY))) rotate(-115deg);
+      transform-origin:center;
+      background:linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 44%,
+        rgba(18, 83, 136, 0.776) 48%,
+        rgba(33, 94, 144, 0.769) 50%,
+        rgba(19, 78, 126, 0.677) 52%,
+        transparent 56%,
+        transparent 100%
+      );
+      mask-image:linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 18%,
+        black 22%,
+        black 70%,
+        transparent 74%,
+        transparent 100%
+      );
+      -webkit-mask-image:linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 18%,
+        black 22%,
+        black 70%,
+        transparent 74%,
+        transparent 100%
+      );
+      pointer-events:none;
+    }
+
+    .intro-wrap::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.12);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .wave-divider{
+      position:absolute;
+      left:0;
+      bottom:-1px;
+      width:100%;
+      height:180px;
+      z-index:3;
+      pointer-events:none;
+    }
+
+    .wave-divider path{ fill:#fff; }
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      padding-top:120px;
+      padding-bottom:0;
+      text-align:center;
+      background:none;
+    }
+
+    .hero > *{
+      position:relative;
+      z-index:3;
+      color:#fff;
+    }
+
+    .stackflow-shell{
+      width:100%;
+      max-width:none;
+      height:100%;
+      padding:0 0 36px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      z-index:3;
+    }
+
+    .stackflow-main{
+      width:100%;
+      height:100%;
+      display:grid;
+      grid-template-rows:minmax(32vh, auto) 1fr;
+      gap:clamp(18px, 2vw, 28px);
+      align-items:start;
+    }
+
+    .stackflow-copy{
+      grid-column:1 / -1;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      min-height:clamp(250px, 30vh, 360px);
+      padding-inline:20px;
+      margin:0;
+    }
+
+    .stackflow-heading{
+      margin:0 auto 1.5rem;
+      color:#fff;
+      font-size:clamp(2.4rem, 6vw, 7rem);
+      line-height:0.97;
+      letter-spacing:-0.035em;
+      font-weight:300;
+      max-width:29ch;
+    }
+
+    .stackflow-copy p{
+      margin:0;
+      font-size:clamp(1rem, 1.45vw, 1.35rem);
+      max-width:42ch;
+      opacity:1 !important;
+      font-weight:200;
+    }
+
+    .stackflow-link{
+      margin-top:24px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      width:fit-content;
+      color:#F00303;
+      text-decoration:none;
+      font-size:clamp(1rem, 1.5vw, 1.5rem);
+      font-weight:600;
+      letter-spacing:0.01em;
+      transition:color .2s ease, transform .2s ease;
+    }
+
+    .stackflow-link svg{
+      width:18px;
+      height:18px;
+      transition:transform .2s ease;
+    }
+
+    .stackflow-link:hover{
+      color:#fff;
+      transform:translateX(2px);
+    }
+
+    .stackflow-link:hover svg{
+      transform:translateX(3px);
+    }
+
+    .text-highlight{
+      background:linear-gradient(90deg, #F00303 0%, rgb(19, 75, 99) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+      font-weight:800;
+    }
+
+    /* GRID */
+    /* GRID WRAP */
+.stackflow-grid{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:34px;
+  padding:0 var(--hero-edge-pad);
+  transform:translateY(48vh);
+  will-change:transform;
+  margin-top:-35rem;
+}
+
+/* TOP GRID - unchanged layout */
+.stackflow-grid-top{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0, 0.7fr) minmax(80px, 24vw) minmax(0, 0.62fr);
+  grid-template-areas:
+    "left gapTitle right"
+    "left spacer right";
+  gap:28px var(--hero-gap);
+  align-items:start;
+}
+
+.stackflow-col{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  position:relative;
+  width:auto;
+}
+
+.stackflow-col--left{ grid-area:left; }
+.stackflow-col--right{ grid-area:right; }
+
+.stackflow-gap-title{
+  grid-area:gapTitle;
+  align-self:start;
+  justify-self:center;
+  width:100%;
+  padding-top:10px;
+}
+
+.stackflow-side-note{
+  margin:0;
+  color:rgba(255,255,255,0.8);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+.stackflow-top-copy{
+  padding-top:0px;
+  margin-bottom:8px;
+}
+
+.stackflow-top-copy p{
+  margin:0;
+  color:#fff;
+  text-align:left;
+  font-size:clamp(0.95rem, 1.2vw, 1.2rem);
+  line-height:1.45;
+  font-weight:300;
+  max-width:40ch;
+}
+
+.stackflow-col--left .stackflow-card{
+  margin-left:calc(var(--hero-edge-pad) * -1);
+  width:calc(100% + var(--hero-edge-pad));
+}
+
+.stackflow-col--right .stackflow-card{
+  margin-right:calc(var(--hero-edge-pad) * -1);
+  width:calc(100% + var(--hero-edge-pad));
+}
+
+/* BOTTOM GRID - separate */
+.stackflow-grid-row2{
+  width:100%;
+  display:grid;
+    grid-template-columns:
+    minmax(0, 1fr)   /* 🔥 bigger spacer pushes everything right */
+    minmax(0, 1fr)
+    minmax(0, 0.85fr);
+  gap:28px var(--hero-gap);
+  align-items:start;
+
+  margin-top:140px; /* 🔥 adjust this (try 40–80px) */
+}
+
+.row2-spacer{
+  min-height:1px;
+}
+
+.row2-card{
+  min-width:0;
+}
+
+.row2-card .stackflow-card{
+  width:100%;
+}
+
+.row2-copy{
+  min-width:0;
+}
+    /* CARDS */
+    .stackflow-card{
+      position:relative;
+      display:block;
+      width:100%;
+      overflow:hidden;
+      border-radius:0;
+      text-decoration:none;
+      background:rgba(255,255,255,0.04);
+      isolation:isolate;
+      opacity:0.88;
+      transition:transform .5s ease, filter .3s ease;
+    }
+
+    .stackflow-card img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 9s ease, filter 9s ease;
+    }
+
+    .stackflow-card:hover{
+      transform:scale(0.99);
+    }
+
+    .stackflow-card:hover img{
+      transform:scale(1.2);
+    }
+
+    .stackflow-card--hero{
+      position:relative;
+      display:block;
+      min-height:clamp(420px, 52vw, 760px);
+      overflow:hidden;
+      text-decoration:none;
+      background:rgba(255,255,255,0.04);
+    }
+
+    .stackflow-card--middle{
+      min-height:clamp(420px, 52vw, 760px);
+    }
+
+    .stackflow-card--left img,
+    .stackflow-card--right img,
+    .stackflow-card--middle img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .stackflow-meta{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:2;
+      color:#fff;
+      text-align:left;
+    }
+
+    .stackflow-meta--featured{
+      top:22px;
+      bottom:22px;
+      left:22px;
+      right:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .stackflow-eyebrow{
+      margin:0 0 6px;
+      font-size:clamp(0.8rem, 0.8vw, 1rem);
+      font-weight:400;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.9);
+    }
+
+    .stackflow-title{
+      margin:0;
+      font-size:20px;
+      line-height:1.05;
+      letter-spacing:-0.02em;
+      color:#fff;
+      font-weight:200;
+    }
+
+    .stackflow-title2{
+      margin:0;
+      font-size:50px;
+      line-height:1.05;
+      letter-spacing:-0.02em;
+      color:#fff;
+      font-weight:200;
+      max-width:22ch;
+    }
+
+    @media (max-width:1080px){
+      .stackflow-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-areas:
+          "left right"
+          "gapTitle gapTitle"
+          "row2card row2copy";
+        gap:22px 18px;
+        transform:translateY(42vh);
+      }
+
+      .stackflow-col--spacer,
+      .stackflow-col--row2-spacer{
+        display:none;
+      }
+
+      .stackflow-col--left .stackflow-card,
+      .stackflow-col--right .stackflow-card{
+        margin-left:0;
+        margin-right:0;
+        width:100%;
+      }
+
+      .stackflow-gap-title{
+        padding-top:0;
+      }
+    }
+
+    @media (max-width:760px){
+      .hero{
+        height:100svh;
+        min-height:100svh;
+        padding-top:110px;
+      }
+
+      .stackflow-main{
+        grid-template-rows:minmax(26vh, auto) 1fr;
+      }
+
+      .stackflow-copy{
+        min-height:clamp(220px, 26vh, 300px);
+      }
+
+      .stackflow-grid{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "gapTitle"
+          "left"
+          "right"
+          "row2card"
+          "row2copy";
+        gap:16px;
+        padding:0 12px;
+        transform:translateY(34vh);
+      }
+
+      .stackflow-gap-title,
+      .stackflow-top-copy{
+        padding-top:0;
+        margin-bottom:0;
+      }
+
+      .stackflow-side-note{
+        text-align:center;
+      }
+
+      .stackflow-top-copy p{
+        max-width:none;
+      }
+
+      .stackflow-card--hero,
+      .stackflow-card--middle{
+        min-height:320px;
+      }
+    }
+
+    .stackflow-card{
+  position:relative;
+  display:block;
+  width:100%;
+  overflow:hidden;
+  border-radius:0;
+  text-decoration:none;
+  background:rgba(255,255,255,0.04);
+  isolation:isolate;
+  opacity:0.88;
+  transition:filter .3s ease; /* remove transform transition */
+  will-change:transform;
+}
+
+.stackflow-card--left{
+  transform-origin:left center;
+}
+
+.stackflow-card--right{
+  transform-origin:right center;
+}
+.stackflow-col{
+  overflow: visible;
+}
+
+.stackflow-card--left,
+.stackflow-card--right{
+  transform-origin: center;
+  will-change: transform;
+}
+  </style>
+</head>
+<body>
+  <div id="scroll-container">
+    <main id="site">
+      <section class="intro-wrap" id="home">
+        <div class="hero">
+          <div class="stackflow-shell">
+            <div class="stackflow-main">
+
+              <div class="stackflow-copy">
+                <h1 class="stackflow-heading">
+                  What's Your <span class="text-highlight">Next Move</span> In NDT?
+                </h1>
+
+                <p class="stackflow-text">
+                  We bring asset integrity, strategy, and execution together so you don’t need to second guess.
+                </p>
+
+                <a href="/capabilities" class="stackflow-link">
+                  <span>Explore Capabilities</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                    <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="stackflow-grid">
+  <!-- TOP GRID -->
+  <div class="stackflow-grid-top">
+    <div class="stackflow-col stackflow-col--left">
+      <a href="/about" class="stackflow-card stackflow-card--hero stackflow-card--left">
+        <img src="images/stock3.jpeg" alt="Built for critical environments">
+        <div class="stackflow-meta stackflow-meta--featured">
+          <div class="stackflow-featured-top">
+            <p class="stackflow-eyebrow">Featured Story</p>
+            <h3 class="stackflow-title2">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </h3>
+          </div>
+
+          <span class="featured-btn">
+            <span>Read Featured Story</span>
+            
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <div class="stackflow-gap-title">
+      <p class="stackflow-side-note">(Featured Work)</p>
+    </div>
+
+    <div class="stackflow-col stackflow-col--right">
+      <div class="stackflow-top-copy">
+        <p>
+          Advanced insight and field-ready execution, designed to keep programs moving with confidence.
+        </p>
+      </div>
+
+      <a href="/news/advanced-analytics" class="stackflow-card stackflow-card--hero stackflow-card--right">
+        <img src="images/stock2.jpeg" alt="Advanced analytics">
+        <div class="stackflow-meta">
+          <p class="stackflow-eyebrow">Technology</p>
+          <h3 class="stackflow-title">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </h3>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- BOTTOM GRID -->
+  <div class="stackflow-grid-row2">
+    <div class="row2-spacer" aria-hidden="true"></div>
+
+    <div class="row2-card">
+      <a href="/services/field-solutions" class="stackflow-card stackflow-card--hero stackflow-card--middle">
+        <img src="images/stock1.jpeg" alt="Field solutions">
+        <div class="stackflow-meta">
+          <p class="stackflow-eyebrow">Field Solutions</p>
+          <h3 class="stackflow-title">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </h3>
+        </div>
+      </a>
+    </div>
+
+    <div class="row2-copy">
+      <div class="stackflow-top-copy">
+        <p>
+          Practical support where planning, inspection, and decision-making need to stay aligned.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+          </div>
+        </div>
+
+        <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            d="M0,60 C240,60 480,140 720,140 C960,140 1200,60 1440,60 L1440,180 L0,180 Z"
+            fill="#ffffff">
+          </path>
+        </svg>
+      </section>
+    </main>
+  </div>
+
+  <script>
+  (() => {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    const hero = document.querySelector(".hero");
+    const copy = document.querySelector(".stackflow-copy");
+    const grid = document.querySelector(".stackflow-grid");
+    const leftCard = document.querySelector(".stackflow-card--left");
+    const rightCard = document.querySelector(".stackflow-card--right");
+
+    if (!hero || !copy || !grid || !leftCard || !rightCard) return;
+
+    function killHeroReveal() {
+      const st = ScrollTrigger.getById("heroCardsReveal");
+      if (st) st.kill();
+    }
+
+    function setupHeroReveal() {
+      killHeroReveal();
+
+      const isMobile = window.innerWidth <= 760;
+
+      gsap.set(copy, { y: 0, opacity: 1 });
+      gsap.set(grid, {
+        y: isMobile ? window.innerHeight * 0.62 : window.innerHeight * 0.82
+      });
+
+      gsap.set(leftCard, { scale: 1 });
+      gsap.set(rightCard, { scale: 1 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          id: "heroCardsReveal",
+          trigger: hero,
+          start: "top top",
+          end: "+=220%",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      tl.to(copy, {
+        y: -100,
+        opacity: 0,
+        ease: "none",
+        duration: 0.22
+      }, 0);
+
+      tl.to(grid, {
+        y: isMobile ? -220 : -860,
+        ease: "none",
+        duration: 1
+      }, 0);
+
+      tl.to(leftCard, {
+        scale: isMobile ? 1.04 : 1.10,
+        ease: "none",
+        duration: 1
+      }, 0);
+
+      tl.to(rightCard, {
+        scale: isMobile ? 1.04 : 1.10,
+        ease: "none",
+        duration: 1
+      }, 0);
+    }
+
+    setupHeroReveal();
+    window.addEventListener("resize", () => ScrollTrigger.refresh());
+  })();
+</script>
+
+  <script>
+    (() => {
+      if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) return;
+
+      const riseTargets = gsap.utils.toArray([
+        "#criticalTitle",
+        ".feature-heading",
+        ".feature-title",
+        ".feature-text",
+        ".image-scroller-eyebrow",
+        ".scroller-copy .card-eyebrow",
+        ".scroller-copy p",
+        ".blue-cta .display-heading",
+        ".white-cta .display-heading",
+        ".ndt-grid-title",
+        ".contact-header h2",
+        ".contact-left h3",
+        ".contact-left p",
+        ".contact-right h3",
+        ".contact-form label",
+        ".contact-btn",
+        ".caps-intro-title",
+        ".caps-intro-eyebrow",
+        ".insight-grid-title",
+        ".insight-grid-eyebrow",
+        ".insight-grid-intro",
+        ".caps-panel"
+      ]);
+
+      const riseTargets3 = gsap.utils.toArray([
+        ".insight-card"
+      ]);
+
+      const footerTitleTargets = gsap.utils.toArray([
+        ".footer-title"
+      ]);
+
+      const fadeOnlyTargets = gsap.utils.toArray([
+        ".footer-logo",
+        ".footer-links li",
+        ".footer-socials a"
+      ]);
+
+      riseTargets.forEach((el) => {
+        gsap.fromTo(el,
+          { autoAlpha: 0, y: 36 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.85,
+            ease: "power3.out",
+            clearProps: "transform,opacity,visibility",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              once: true
+            }
+          }
+        );
+      });
+
+      riseTargets3.forEach((el, i) => {
+        gsap.fromTo(el,
+          { autoAlpha: 0, y: 36 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1.9,
+            delay: i * 0.35,
+            ease: "power3.out",
+            clearProps: "transform,opacity,visibility",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              once: true
+            }
+          }
+        );
+      });
+
+      footerTitleTargets.forEach((el) => {
+        gsap.fromTo(el,
+          { opacity: 0 },
+          {
+            opacity: 0.5,
+            duration: 0.85,
+            ease: "power3.out",
+            clearProps: "opacity",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 92%",
+              once: true
+            }
+          }
+        );
+      });
+
+      fadeOnlyTargets.forEach((el) => {
+        gsap.fromTo(el,
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            duration: 0.85,
+            ease: "power3.out",
+            clearProps: "opacity,visibility",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 92%",
+              once: true
+            }
+          }
+        );
+      });
+
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    })();
+  </script>
+
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const lenis = new Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.1,
+        anchors: {
+          offset: 110
+        }
+      });
+
+      window.lenis = lenis;
+    })();
+  </script>
+</body>
+</html>
