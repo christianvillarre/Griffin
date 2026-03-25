@@ -1,0 +1,840 @@
+
+
+<section class="griffin-trust-section">
+  <div class="griffin-trust-shell">
+    <div class="griffin-trust-header">
+      <!--<p class="griffin-trust-eyebrow">Why Griffin Stands Apart</p>-->
+      <h2 class="griffin-trust-title">Trusted in NDT</h2>
+    </div>
+
+    <div class="griffin-trust-grid">
+      <article class="griffin-trust-card trust-card-1">
+        <div class="griffin-trust-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 6l20 8v14c0 14-8.5 24.5-20 30C20.5 52.5 12 42 12 28V14l20-8z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M23 32l6 6 12-14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="griffin-trust-card-title">Independent Perspective</h3>
+        <p class="griffin-trust-card-text">
+          Griffin delivers objective guidance shaped by technical credibility, strategic judgment, and alignment with the client’s real priorities.
+        </p>
+      </article>
+
+      <article class="griffin-trust-card trust-card-2">
+        <div class="griffin-trust-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M14 46h36M14 32h24M14 18h30" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M44 42l6 6 10-14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="griffin-trust-card-title">Technical Depth</h3>
+        <p class="griffin-trust-card-text">
+          Our network brings together experienced operators, inspectors, engineers, and advisors who understand the complexity behind critical asset decisions.
+        </p>
+      </article>
+
+      <article class="griffin-trust-card trust-card-3">
+        <div class="griffin-trust-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="20" cy="20" r="6" fill="none" stroke="currentColor" stroke-width="3.5"/>
+            <circle cx="44" cy="18" r="6" fill="none" stroke="currentColor" stroke-width="3.5"/>
+            <circle cx="32" cy="42" r="6" fill="none" stroke="currentColor" stroke-width="3.5"/>
+            <path d="M25 23l14-8M23 25l6 11M41 23l-5 12" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="griffin-trust-card-title">Trusted Connections</h3>
+        <p class="griffin-trust-card-text">
+          Griffin connects the right expertise, perspective, and leadership at the right time, helping clients move forward with confidence and clarity.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .griffin-trust-section{
+    background: #fff;
+    padding: clamp(40px, 4vw, 90px) 0 60px;
+  }
+
+  .griffin-trust-shell{
+    width: min(1700px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 60px);
+  }
+
+  .griffin-trust-header{
+    max-width: 920px;
+    margin-bottom: clamp(28px, 3vw, 42px);
+  }
+
+  .griffin-trust-eyebrow{
+    margin: 0 0 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #777;
+  }
+
+  .griffin-trust-title{
+    margin: 0;
+    font-size: clamp(1.8rem, 2.6vw, 3rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-weight: 300;
+    color: #111;
+    max-width: 40ch;
+  }
+
+  .griffin-trust-grid{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 2vw, 28px);
+    align-items: stretch;
+  }
+
+.griffin-trust-card{
+  position: relative;
+  overflow: hidden;
+  padding: 32px 28px 32px 70px; /* add left padding to compensate */
+  min-height: 280px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #202020 0%, #2a2a2abd 100%);
+  color: #fff;
+  /*border: 1px solid rgba(255,255,255,0.08);*/
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .35s ease;
+  /*box-shadow: 0 10px 30px rgba(0,0,0,0.08);*/
+}
+
+.griffin-trust-card::after{
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 70%;
+  border-radius: 20px;
+  
+  /* match section background to fake the cut-out */
+  background: #fff;
+  
+  left: -70px; /* half outside */
+  top: 50%;
+  transform: translateY(-50%);
+  
+  z-index: 2;
+  pointer-events: none;
+}
+
+  .griffin-trust-card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 42%);
+    pointer-events: none;
+    opacity: .85;
+  }
+
+  .griffin-trust-card:hover{
+    transform: translateY(-6px);
+    /*box-shadow: 0 20px 40px rgba(0,0,0,0.16);
+    border-color: rgba(255,255,255,0.2);*/
+  }
+
+  .trust-card-1:hover{
+    background: linear-gradient(135deg, #f00303 0%, #a81818 50%);
+  }
+
+  .trust-card-2:hover{
+    background: linear-gradient(135deg, #f00303 0%, #a81818 50%);
+  }
+
+  .trust-card-3:hover{
+    background: linear-gradient(135deg, #f00303 0%, #a81818 50%);
+  }
+
+  .griffin-trust-icon{
+    width: 58px;
+    height: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(2px);
+  }
+
+  .griffin-trust-icon svg{
+    width: 30px;
+    height: 30px;
+    color: currentColor;
+  }
+
+  .griffin-trust-card-title{
+    margin: 0 0 14px;
+    font-size: clamp(1.2rem, 1.4vw, 1.55rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .griffin-trust-card-text{
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    max-width: 34ch;
+  }
+
+  @media (max-width: 1100px){
+    .griffin-trust-grid{
+      grid-template-columns: 1fr;
+    }
+
+    .griffin-trust-title{
+      max-width: 100%;
+    }
+
+    .griffin-trust-card{
+      min-height: auto;
+    }
+
+    .griffin-trust-card-text{
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 760px){
+    .griffin-trust-section{
+      padding: 50px 0 32px;
+    }
+
+    .griffin-trust-shell{
+      width: min(1600px, calc(100% - 24px));
+      padding: 0 16px;
+    }
+
+    .griffin-trust-title{
+      font-size: clamp(2rem, 9vw, 3rem);
+      max-width: 100%;
+    }
+
+    .griffin-trust-card{
+      padding: 24px 22px;
+      border-radius: 20px;
+    }
+  }
+</style>
+
+
+
+
+
+<section class="caps-panel-section">
+  <div class="caps-panel">
+
+    <div class="caps-panel-tabs" role="tablist" aria-label="Capabilities pages">
+      <button class="caps-tab is-active" type="button" role="tab" aria-selected="true" data-panel="0">
+        Business Advisory Services
+      </button>
+      <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="1">
+        Technical Consulting
+      </button>
+      <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="2">
+        Affiliate Organizations
+      </button>
+      <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="3">
+        Industry Programs
+      </button>
+    </div>
+
+    <div class="caps-panel-pages">
+
+       <!-- PAGE 2 -->
+      <article class="caps-page  is-active" data-page="0">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Advanced NDT Advisory Backed by Field Expertise</h2>
+          <p class="caps-page-text">
+            Our advisory services combine advanced NDT expertise with real-world implementation insight.
+            From Level III support and written practice review to advanced training and technology
+            integration, we help organizations improve capability, consistency, and reliability.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Business Advisory Services</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock3.jpeg" alt="Advanced NDT advisory">
+        </div>
+      </article>
+
+      <!-- PAGE 1 -->
+      <article class="caps-page" data-page="1">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Technical Consulting for Critical Environments</h2>
+          <p class="caps-page-text">
+            Griffin Integrity delivers specialized technical consulting that helps organizations make
+            confident decisions in complex operational environments. We support compliance alignment,
+            strategic planning, workforce assessment, and high-value technical initiatives with practical,
+            experience-driven guidance.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Technical Consulting</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock1.jpeg" alt="Technical consulting">
+        </div>
+      </article>
+
+     
+
+      <!-- PAGE 3 -->
+      <article class="caps-page" data-page="2">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Affiliate Organizations That Extend Capability</h2>
+          <p class="caps-page-text">
+            When projects require additional specialization or scale, Griffin works alongside trusted
+            affiliate organizations that meet the same standard of quality, accountability, and technical
+            precision. This allows us to support broader scopes while maintaining confidence in delivery.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Affiliate Organizations</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock5.jpeg" alt="Affiliate organizations">
+        </div>
+      </article>
+
+      <!-- PAGE 4 -->
+      <article class="caps-page" data-page="3">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Programs Built Around Long-Term Performance</h2>
+          <p class="caps-page-text">
+            We help organizations develop programs that strengthen inspection performance, improve
+            technical consistency, and support long-term operational reliability. From implementation to
+            optimization, our focus is on sustainable outcomes that hold up in real environments.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Industry Programs</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock4.jpeg" alt="Industry programs">
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.caps-panel-section{
+  background: #fff;
+  padding: clamp(72px, 6vw, 120px) 0;
+}
+
+.caps-panel{
+  width: min(1600px, calc(100% - 40px));
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+}
+
+/* top selectors */
+.caps-panel-tabs{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  
+}
+
+.caps-tab{
+  appearance: none;
+  border: 0;
+  border-right: none;
+  background: #ffffff;
+  color: #111;
+  padding: 22px 24px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.caps-tab:last-child{
+  border-right: 0;
+}
+
+.caps-tab:hover{
+  background: #454545d1;
+   color: #fff;
+}
+
+.caps-tab.is-active{
+  background: #052330;
+  color: #fff;
+}
+
+/* pages */
+.caps-panel-pages{
+  position: relative;
+}
+
+.caps-page{
+  display: none;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.4fr);
+  min-height: 460px;
+}
+
+.caps-page.is-active{
+  display: grid;
+}
+
+.caps-page-copy{
+  padding: clamp(36px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:#052330;
+  
+}
+
+.caps-page-eyebrow{
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #dcdcdc;
+}
+
+.caps-page-title{
+  margin: 0 0 20px;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: #f9f9f9;
+  max-width: 22ch;
+  
+}
+
+.caps-page-text{
+  margin: 0;
+  max-width: 42ch;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.caps-page-media{
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.caps-page-media img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* responsive */
+@media (max-width: 1100px){
+  .caps-panel-tabs{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .caps-tab:nth-child(2){
+    border-right: 0;
+  }
+
+  .caps-page,
+  .caps-page.is-active{
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .caps-page-copy{
+    order: 2;
+  }
+
+  .caps-page-media{
+    order: 1;
+    min-height: 420px;
+  }
+
+  .caps-page-title,
+  .caps-page-text{
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px){
+  .caps-panel{
+    width: min(1800px, calc(100% - 24px));
+  }
+
+  .caps-panel-tabs{
+    grid-template-columns: 1fr;
+  }
+
+  .caps-tab{
+    border-right: 0;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 18px 16px;
+  }
+
+  .caps-tab:last-child{
+    border-bottom: 0;
+  }
+
+  .caps-page-copy{
+    padding: 24px 16px;
+  }
+
+  .caps-page-media{
+    min-height: 300px;
+  }
+
+  .caps-page-title{
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+}
+</style>
+
+<script>
+(() => {
+  const tabs = document.querySelectorAll(".caps-tab");
+  const pages = document.querySelectorAll(".caps-page");
+
+  if (!tabs.length || !pages.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-panel");
+
+      tabs.forEach((btn) => {
+        btn.classList.remove("is-active");
+        btn.setAttribute("aria-selected", "false");
+      });
+
+      pages.forEach((page) => {
+        page.classList.remove("is-active");
+      });
+
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+
+      const nextPage = document.querySelector(`.caps-page[data-page="${target}"]`);
+      if (nextPage) nextPage.classList.add("is-active");
+    });
+  });
+})();
+</script>
+
+
+
+
+
+
+<section class="insight-grid-section" id="news">
+  <div class="insight-grid-shell">
+    <div class="insight-grid-head">
+      <p class="insight-grid-eyebrow">Capabilities</p>
+      <h2 class="insight-grid-title">Specialized Advisory Built for Complex Technical Environments</h2>
+      <p class="insight-grid-intro">
+        Griffin Integrity provides technical consulting and NDT advisory services that help organizations
+        improve decision-making, strengthen reliability programs, and align operational execution with
+        long-term performance goals.
+      </p>
+    </div>
+
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock1.jpeg" alt="Inspection planning">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">Inspection Strategy
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+            </span>
+         
+            <p class="insight-card-text">
+              Build stronger inspection planning processes with guidance tailored to asset criticality,
+              field realities, and program-level objectives.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock2.jpeg" alt="Data and technology advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">Technical Advisory
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </span>
+            <p class="insight-card-text">
+              Evaluate emerging tools, workflows, and implementation paths with support grounded in
+              practical NDT and operational experience.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock3.jpeg" alt="Operational support">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">Program Support
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </span>
+            <p class="insight-card-text">
+              Strengthen workforce capability, reporting consistency, and execution quality through
+              advisory support that scales with your operation.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+.insight-grid-section{
+  background:#052330;
+  color: #ffffff;
+  padding: clamp(72px, 2vw, 120px) 0;
+}
+
+.insight-grid-shell{
+  width: min(1400px, calc(100% - 40px)); /* was 1800px */
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.insight-grid-head{
+  max-width: 980px;
+  margin: 0 auto clamp(34px, 5vw, 64px);
+  text-align: center;
+}
+
+.insight-grid-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Section title (matches your hero feel) */
+.insight-grid-title{
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 3.8vw, 3.5rem); /* match stackflow-heading */
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: #fbfbfb;
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Intro paragraph (match hero + contact tone) */
+.insight-grid-intro{
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: 16px;              /* same as .stackflow-text */
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.insight-grid-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.insight-card{
+  display: flex;
+}
+
+.insight-card-box{
+  width: 100%;
+  background:#052330;
+  padding: 1rem; /* was 3rem */
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease; /* 👈 key line */
+  cursor: pointer;
+}
+.insight-card-box:hover{
+  background:#fff;
+}
+.insight-card-media{
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.insight-card-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.insight-card-body{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Card title */
+.insight-card-title{
+  margin: 0;
+  font-size: clamp(18px, 1.2vw, 22px); /* slightly tighter */
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+/* Card paragraph */
+.insight-card-text{
+  margin: 0;
+  font-size: 15px;              /* was too small/variable */
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.76);
+  transition: color 0.3s ease;
+}
+.insight-card-box:hover .insight-card-title,
+.insight-card-box:hover .insight-card-text{
+  color: rgba(0, 0, 0, 0.85);
+}
+@media (max-width: 1100px){
+  .insight-grid-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card-box{
+    padding: 2.25rem;
+  }
+
+  .insight-card-media{
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 760px){
+  .insight-grid-section{
+    padding: 64px 0;
+  }
+
+  .insight-grid-shell{
+    width: min(1600px, calc(100% - 24px));
+    padding: 0 16px;
+  }
+
+  .insight-grid-title,
+  .insight-grid-intro{
+    max-width: 100%;
+  }
+
+  .insight-card-box{
+    padding: 1.5rem;
+  }
+
+  .insight-card-media{
+    min-height: 220px;
+  }
+}
+
+.insight-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.title-arrow {
+  display: inline-flex;
+  color: #ffffff; /* default white */
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateY(0px);
+}
+.insight-card-box:hover .title-arrow{
+  color: #F00303
+}
+
+.title-arrow svg {
+  width: 26px;
+  height: 26px;
+}
+</style>
+
