@@ -912,7 +912,7 @@ html{
   text-decoration: none;
   background: rgba(255,255,255,0.04);
   isolation: isolate;
-  opacity: 0.8;
+  opacity: 1;
 
   transition: transform .5s ease, filter .3s ease;
 }
@@ -1246,13 +1246,92 @@ html{
               </div>
 
               <div class="stackflow-col stackflow-col--3">
-                <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--topmeta">
-                  <img src="images/stock3.jpeg" alt="Built for critical environments">
-                  <div class="stackflow-meta">
+               <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--featured">
+                <img src="images/stock3.jpeg" alt="Built for critical environments">
+
+                <div class="stackflow-meta stackflow-meta--featured">
+                  <div class="stackflow-featured-top">
                     <p class="stackflow-eyebrow">Featured Story</p>
-                    <h3 class="stackflow-title2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h3>
+                    <h3 class="stackflow-title2">
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </h3>
                   </div>
+
+                  <span class="featured-btn">
+                    <span>Read Featured Story</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                      <path d="M184 112 L328 256 L184 400"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="52"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+                  
                 </a>
+                <style>
+
+.stackflow-meta--featured{
+  top: 18px;
+  bottom: 18px;
+  left: 18px;
+  right: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stackflow-featured-top{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stackflow-meta--featured .featured-btn{
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+/* =========================
+   FEATURED STORY BUTTON
+========================= */
+.featured-btn{
+  margin-top: 18px;
+  padding: 14px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #151515;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+
+  transition: color .2s ease, transform .2s ease;
+}
+
+/* arrow */
+.featured-btn svg{
+  width: 16px;
+  height: 16px;
+  transition: transform .2s ease;
+}
+
+/* hover */
+.featured-btn:hover{
+  color: #6b6b6b;
+  transform: translateX(2px);
+}
+
+.featured-btn:hover svg{
+  transform: translateX(3px);
+}
+</style>
+
 
                 <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
                   <div class="stackflow-meta">
@@ -1283,171 +1362,6 @@ html{
   </main>
 </div>
 
-<style>
-  :root{
-  --col-3: 2.15fr; /* slightly less aggressive on tighter widths */
-  --gap: clamp(14px, 1.1vw, 22px);
-}
-
-.stackflow-shell{
-  position: relative;
-  z-index: 3;
-  width: min(1800px, calc(100% - 32px));
-  padding: 0 clamp(14px, 3vw, 60px);
-}
-
-.stackflow-copy{
-  padding-top: 0.25rem;
-}
-
-.stackflow-copy p{
-  font-size: clamp(0.95rem, 1.35vw, 1.5rem);
-  max-width: 52ch;
-  padding: 0 10px;
-}
-
-.stackflow-heading{
-  font-size: clamp(2rem, 5vw, 7.5rem);
-  line-height: 0.98;
-  margin-bottom: 1rem;
-}
-
-.stackflow-title2{
-  font-size: clamp(1rem, 2.8vw, 3.125rem);
-  max-width: 24ch;
-}
-
-.stackflow-title{
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-}
-
-.stackflow-meta{
-  left: clamp(14px, 1.4vw, 18px);
-  right: clamp(14px, 1.4vw, 18px);
-  bottom: clamp(14px, 1.4vw, 18px);
-}
-
-.stackflow-col{
-  gap: clamp(12px, 1.5vw, 1.5rem);
-}
-
-/* slightly more forgiving default heights */
-.stackflow-h-sm1,
-.stackflow-h-sm2,
-.stackflow-h-md1,
-.stackflow-h-md2{
-  min-height: clamp(280px, 32vw, 450px);
-}
-
-.stackflow-h-lg{
-  min-height: clamp(260px, 30vw, 420px);
-}
-
-.stackflow-h-xl{
-  min-height: clamp(420px, 48vw, 720px);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1280px){
-  .stackflow-grid{
-    grid-template-columns: 1.7fr 1fr 1fr;
-    gap: clamp(12px, 1.2vw, 18px);
-  }
-
-  .stackflow-copy p{
-    max-width: 46ch;
-  }
-}
-
-@media (max-width: 1080px){
-  .stackflow-grid{
-    grid-template-columns: 1.25fr 1fr 1fr;
-    gap: 14px;
-  }
-
-  .stackflow-heading{
-    font-size: clamp(1.9rem, 4.8vw, 4.8rem);
-  }
-
-  .stackflow-title2{
-    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
-    max-width: 13ch;
-  }
-
-  .stackflow-copy p{
-    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
-    max-width: 42ch;
-  }
-}
-
-@media (max-width: 900px){
-  .stackflow-grid{
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "col3 col3"
-      "col1 col2";
-    align-items: start;
-  }
-
-  .stackflow-h-xl{
-    min-height: clamp(340px, 52vw, 520px);
-  }
-}
-
-@media (max-width: 760px){
-  .hero{
-    padding-top: 130px;
-    padding-bottom: 80px;
-  }
-
-  .stackflow-shell{
-    width: min(1600px, calc(100% - 20px));
-    padding: 0 10px;
-  }
-
-  .stackflow-grid{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "col3"
-      "col1"
-      "col2";
-    gap: 12px;
-  }
-
-  .stackflow-copy{
-    padding-top: 0;
-  }
-
-  .stackflow-copy p{
-    max-width: 32ch;
-    font-size: 1rem;
-  }
-
-  .stackflow-h-sm1,
-  .stackflow-h-sm2,
-  .stackflow-h-md1,
-  .stackflow-h-md2,
-  .stackflow-h-lg{
-    min-height: 240px;
-  }
-
-  .stackflow-h-xl{
-    min-height: 360px;
-  }
-
-  .stackflow-subscribe{
-    min-height: 200px;
-  }
-
-  .spacer--dark{
-    min-height: 34vh;
-    padding-top: 70px;
-  }
-}
-</style>
 
 
     <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
