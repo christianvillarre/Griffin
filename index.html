@@ -820,10 +820,10 @@ html{
 .stackflow-shell{
   position: relative;
   z-index: 3;
-  width: 100%;
+  width: min(1800px, calc(100% - 40px));
+  padding: 0 20px;
   max-width: none;
-  padding: 0;
-  margin: 0;
+ 
 }
 .stackflow-main{
   display: grid;
@@ -965,7 +965,7 @@ html{
 
 .stackflow-title2{
   margin: 0;
-  font-size: clamp(2rem, 3.8vw, 50px);
+  font-size: clamp(1.5rem,2.8vw, 50px);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: #fff;
@@ -991,12 +991,27 @@ html{
 }
 
 /* heights */
-.stackflow-h-sm1{ min-height: 450px; }
-.stackflow-h-sm2{ min-height: 450px; }
-.stackflow-h-md1{ min-height: 450px; }
-.stackflow-h-md2{ min-height: 450px; }
-.stackflow-h-lg{ min-height: 420px; }
-.stackflow-h-xl{ min-height: 720px; }
+:root{
+  --stackflow-card-h: clamp(280px, 28vw, 450px);
+  --stackflow-stack-gap: 1rem;
+}
+
+/* all regular cards same height */
+.stackflow-h-sm1,
+.stackflow-h-sm2,
+.stackflow-h-md1,
+.stackflow-h-md2{
+  min-height: var(--stackflow-card-h);
+}
+
+/* lg + xl = one full stacked column height */
+.stackflow-h-lg{
+  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.42);
+}
+
+.stackflow-h-xl{
+  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.58);
+}
 
 .stackflow-card--topmeta .stackflow-meta{
   top: 18px;
@@ -1021,7 +1036,21 @@ html{
   top: 18px;
   bottom: auto;
 }
+.stackflow-card--solid.stackflow-h-lg{
+  min-height: unset;
+  height: auto;
+}
 
+.stackflow-card--solid .stackflow-meta{
+  position: relative;
+  inset: auto;
+  padding: 24px;
+}
+
+.stackflow-card--solid{
+  display: flex;
+  align-items: stretch;
+}
 /* =========================
    SUBSCRIBE BLOCK
 ========================= */
@@ -1033,7 +1062,7 @@ html{
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.07);
   border: none;
-  min-height: 220px;
+  min-height: 100px;
   align-content: center;
   align-items: center;
 }
@@ -1212,13 +1241,13 @@ html{
 
             <div class="stackflow-copy">
               <h1 class="stackflow-heading">
-                What's Your <span class="text-highlight">Next Move</span> In NDT?
+                What's Your <span class="text-highlight">Next Move</span> <br>In NDT?
               </h1>
-              
+              <!--
               <p class="stackflow-text">
                 We bring asset integrity, strategy, and execution together so you don’t need to second guess.
               </p>
-
+              
               <a href="/capabilities" class="stackflow-link">
                 <span>Explore Capabilities</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -1229,7 +1258,7 @@ html{
                   stroke-linecap="round"
                   stroke-linejoin="round"/>
               </svg>
-              </a>
+              </a>-->
             </div>
 
             <div class="stackflow-grid">
@@ -1571,17 +1600,28 @@ html{
             <img src="images/stock1.jpeg" alt="Inspection strategy">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Inspection Strategy</h3>
+            <h3 class="stack-card-title">Advanced NDT Subject Matter Experts</h3>
           </div>
           <div class="stack-card-content">
+          <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Build stronger inspection planning processes with guidance tailored to asset criticality,
-              field realities, and long-range program objectives.
+              Provide access to experienced specialists who support complex inspections, procedure development, 
+              and critical technical decisions across advanced NDT applications.
             </p>
-            <div class="stack-card-image small">
-              <img src="images/stock2.jpeg" alt="Inspection detail">
-            </div>
+
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
           </div>
+
+          <div class="stack-card-image small">
+            <img src="images/stock2.jpeg" alt="Inspection detail">
+          </div>
+
+        </div>
         </div>
       </article>
 
@@ -1591,13 +1631,21 @@ html{
             <img src="images/stock2.jpeg" alt="Technical advisory">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Technical Advisory</h3>
+            <h3 class="stack-card-title">Automation, Robotics, and Advanced Imaging Systems</h3>
           </div>
           <div class="stack-card-content">
+             <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Evaluate tools, workflows, and implementation paths with support grounded in practical
-              NDT and operational experience.
+              Support the evaluation and integration of automated inspection technologies, robotics, 
+              and advanced imaging systems to improve safety, accuracy, and efficiency.
             </p>
+
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a></div>
             <div class="stack-card-image small">
               <img src="images/stock3.jpeg" alt="Technical detail">
             </div>
@@ -1611,13 +1659,21 @@ html{
             <img src="images/stock3.jpeg" alt="Program support">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Program Support</h3>
+            <h3 class="stack-card-title">NDT Written Practice Review and Development</h3>
           </div>
           <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Strengthen workforce capability, reporting consistency, and execution quality through
-              advisory support that scales with your operation.
+             Develop and refine written practices to ensure compliance with industry standards 
+             while aligning with operational realities and inspection requirements.
             </p>
+             <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
+            </div>
             <div class="stack-card-image small">
               <img src="images/stock4.jpeg" alt="Program detail">
             </div>
@@ -1631,13 +1687,21 @@ html{
             <img src="images/stock4.jpeg" alt="Reliability planning">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Reliability Planning</h3>
+            <h3 class="stack-card-title">Mergers & Acquisition Support</h3>
           </div>
           <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Improve program durability with structured planning that aligns field execution with
-              reliability goals and long-term asset priorities.
+              Deliver technical and operational due diligence to help assess risk, 
+              validate capabilities, and support informed investment and acquisition decisions.
             </p>
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
+            </div>
             <div class="stack-card-image small">
               <img src="images/stock5.jpeg" alt="Reliability detail">
             </div>
@@ -1651,13 +1715,21 @@ html{
             <img src="images/stock5.jpeg" alt="Field readiness">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Field Readiness</h3>
+            <h3 class="stack-card-title">Talent Acquisition & Assessment</h3>
           </div>
           <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Support execution in real operating environments with processes and guidance shaped by
-              practical constraints and field realities.
+              Identify, evaluate, and place qualified personnel while ensuring alignment with 
+              technical requirements, organizational culture, and long-term workforce needs.
             </p>
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
+            </div>
             <div class="stack-card-image small">
               <img src="images/stock1.jpeg" alt="Field readiness detail">
             </div>
@@ -1671,13 +1743,21 @@ html{
             <img src="images/stock1.jpeg" alt="Training systems">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Training Systems</h3>
+            <h3 class="stack-card-title">Corporate Development & Strategic Planning</h3>
           </div>
           <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Develop stronger internal capability through structured training support, written practice
-              alignment, and performance-focused technical development.
+             Guide growth initiatives, operational scaling, and long-term strategic planning 
+             with insight grounded in industry experience and market dynamics.
             </p>
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
+            </div>
             <div class="stack-card-image small">
               <img src="images/stock3.jpeg" alt="Training detail">
             </div>
@@ -1691,13 +1771,22 @@ html{
             <img src="images/stock2.jpeg" alt="Implementation support">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Implementation Support</h3>
+            <h3 class="stack-card-title">Business Development & Client Strategies</h3>
           </div>
           <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Move from strategy to execution with support that helps teams implement technical programs
-              more consistently across operations.
+              Strengthen market positioning and client engagement through targeted strategies
+              that support sustainable growth and long-term partnerships.
             </p>
+
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
+            </div>
             <div class="stack-card-image small">
               <img src="images/stock4.jpeg" alt="Implementation detail">
             </div>
@@ -1711,13 +1800,21 @@ html{
             <img src="images/stock4.jpeg" alt="Long-term performance">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Long-Term Performance</h3>
+            <h3 class="stack-card-title">Capital Acquisition</h3>
           </div>
           <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Build systems that improve technical consistency, support better decision-making, and
-              contribute to reliable long-term performance.
+              Support capital planning and funding strategies with guidance that aligns technical programs, 
+              growth initiatives, and investment priorities with long-term business objectives.
             </p>
+            <a href="#" class="stack-btn-inline">
+              Learn more
+              <svg viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H9M17 7V15" />
+              </svg>
+            </a>
+            </div>
             <div class="stack-card-image small">
               <img src="images/stock5.jpeg" alt="Long-term performance detail">
             </div>
@@ -1798,7 +1895,7 @@ html{
   font-weight: 500;
   color: #fff;
   text-align: center;
-  max-width: 10ch;
+  max-width: 16ch;
   text-wrap: balance;
 }
 
@@ -1816,7 +1913,7 @@ html{
   font-size: 0.98rem;
   line-height: 1.6;
   color: rgba(255,255,255,0.76);
-  max-width: 34ch;
+  max-width: 54ch;
 }
 
 .stack-card-image.small{
@@ -1892,6 +1989,63 @@ html{
     font-size: 0.95rem;
   }
 }
+.stack-card-text-wrap{
+  display: grid;
+  align-content: center;   /* vertical centering */
+  justify-items: start;    /* left align children */
+  min-width: 0;
+}
+
+.stack-card-text{
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.76);
+  max-width: 54ch;
+  margin-bottom: 1rem;
+}
+
+/* button */
+.stack-btn-inline{
+  display: inline-flex;
+  align-items: center;
+  
+  gap: 0.35rem;
+
+  margin-top: 0.6rem;
+
+  background: #0F3D51;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  white-space: nowrap;
+
+  width: fit-content; /* ensures no stretching */
+
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.stack-btn-inline svg{
+  width: 12px;
+  height: 12px;
+  stroke: rgba(255,255,255,0.7);
+  stroke-width: 1.6;
+  fill: none;
+  transition: transform 0.25s ease, stroke 0.25s ease;
+}
+
+.stack-btn-inline:hover{
+  color: #fff;
+}
+
+.stack-btn-inline:hover svg{
+  stroke: #fff;
+  transform: translate(2px, -2px);
+}
+
 </style>
 
 
