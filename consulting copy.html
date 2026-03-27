@@ -161,26 +161,30 @@
 
     /* ================= HOW WE HELP ================= */
     .help-section{
-      padding: clamp(70px, 8vw, 120px) 0 110px;
+      
       background:#fff;
+      
     }
 
     .help-head{
-      margin-bottom: clamp(34px, 5vw, 56px);
+      margin-bottom: clamp(24px, 3vw, 46px);
+      border-top:1px solid black;
     }
 
     .help-head .service-eyebrow{
       color:#777;
       margin-bottom:14px;
+     
     }
 
     .help-head h2{
       margin:0;
-      font-size: clamp(2.2rem, 4vw, 4.2rem);
+      font-size: clamp(1.2rem, 2vw, 2.2rem);
       line-height:0.96;
       letter-spacing:-0.035em;
       font-weight:300;
       max-width:26ch;
+       margin-top: 24px;
     }
 
     .help-grid{
@@ -200,13 +204,13 @@
     }
 
     .help-card:hover{
-      background:var(--navy);
-      color:#fff;
+      background:#7777771b;
+      color:#000000;
     }
 
     .help-card:hover .help-card__title,
     .help-card:hover .help-list li{
-      color:#fff;
+      color:#000000;
     }
 
     .help-card:hover .help-arrow{
@@ -642,24 +646,36 @@
 
 </style>
 
-  <section class="service-hero">
-    <div class="service-hero__inner">
-      <p class="service-eyebrow">Technical Consulting</p>
-      <h1 class="service-title">
-        NDT Level III <span class="text-highlight">Consulting</span> &amp; Support
-      </h1>
-      <p class="service-subtitle">
-        Certified Level III expertise for inspection programs, procedures, compliance alignment, and high-stakes technical decision-making.
-      </p>
+<section class="service-top-image">
+  <img src="images/stock4.jpeg" alt="NDT consulting support">
 
-      <a href="#how-we-help" class="page-link">
-        <span>See How We Help</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-          <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+  <div class="service-split-intro">
+    <div class="service-split-card">
+      <div class="service-split-title">
+        <p class="service-eyebrow dark">Technical Consulting</p>
+        <h1 class="service-title-box">
+          NDT Level III
+          Consulting
+          &amp; Support
+        </h1>
+      </div>
+
+      <div class="service-split-content">
+        <p class="service-subtitle-dark">
+          Certified Level III expertise for inspection programs, procedures,
+          compliance alignment, and high-stakes technical decision-making.
+        </p>
+
+        <a href="#how-we-help" class="page-link">
+          <span>See How We Help</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
  <section class="service-intro">
   <div class="page-wrap">
@@ -672,8 +688,8 @@
   <section class="help-section" id="how-we-help">
     <div class="page-wrap">
       <div class="help-head">
-        <p class="service-eyebrow">How We Help Clients</p>
-        <h2>Focused support across the areas that shape inspection performance.</h2>
+        <!--<p class="service-eyebrow">How We Help Clients</p>-->
+        <h2>How We Help Clients</h2>
       </div>
 
       <div class="help-grid">
@@ -686,10 +702,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Review NDT procedures for code and client alignment</li>
-            <li>Identify gaps in technical clarity and execution flow</li>
-            <li>Support revisions for stronger field usability</li>
+          <div class="help-list">
+            <p>Ensures NDT procedures align with applicable codes and client requirements while improving clarity, consistency, and field usability. Focuses on eliminating ambiguity and strengthening execution flow.</p>
           </ul>
         </article>
 
@@ -702,10 +716,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Develop and refine employer-based written practices</li>
-            <li>Align certification pathways with applicable standards</li>
-            <li>Improve documentation consistency and defensibility</li>
+          <div class="help-list">
+            <p>Develops and refines employer-based written practices to meet standards and operational needs. Emphasizes clear documentation, consistent structure, and defensibility during audits.</p>
           </ul>
         </article>
 
@@ -718,10 +730,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Strengthen inspection governance and approval workflows</li>
-            <li>Support quality programs with Level III review</li>
-            <li>Provide independent technical accountability</li>
+          <div class="help-list">
+            <p>Provides Level III oversight to strengthen inspection governance, approval workflows, and overall program integrity. Ensures consistent technical quality and accountability.</p>
           </ul>
         </article>
 
@@ -734,10 +744,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Prepare teams for client, regulatory, and internal audits</li>
-            <li>Review records, qualifications, and compliance evidence</li>
-            <li>Help correct findings before they escalate</li>
+          <div class="help-list">
+            <p>Prepares teams for audits by reviewing records, qualifications, and compliance. Identifies gaps early and supports corrective actions to prevent findings.</p>
           </ul>
         </article>
 
@@ -750,10 +758,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Assess qualification structures and progression paths</li>
-            <li>Support exams, practical evaluations, and documentation</li>
-            <li>Improve consistency across technician development</li>
+          <div class="help-list">
+            <p>Improves qualification systems by standardizing training, evaluations, and progression. Supports exams, practicals, and documentation for consistency.</p>
           </ul>
         </article>
 
@@ -766,10 +772,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Investigate recurring inspection challenges</li>
-            <li>Support interpretation and method-selection decisions</li>
-            <li>Bring expert guidance to unusual or high-risk cases</li>
+          <div class="help-list">
+            <p>Addresses complex or recurring inspection issues with expert guidance on method selection, interpretation, and problem-solving.</p>
           </ul>
         </article>
 
@@ -782,10 +786,8 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Provide credible technical support in client discussions</li>
-            <li>Translate complex issues into actionable direction</li>
-            <li>Represent inspection interests with confidence</li>
+          <div class="help-list">
+            <p>Represents inspection interests in client discussions by translating technical issues into clear, actionable direction.</p>
           </ul>
         </article>
 
@@ -798,15 +800,429 @@
               </svg>
             </span>
           </h3>
-          <ul class="help-list">
-            <li>Identify opportunities to improve inspection reliability</li>
-            <li>Standardize reporting and review processes</li>
-            <li>Build stronger long-term technical infrastructure</li>
+          <div class="help-list">
+            <p>Drives ongoing improvements in inspection reliability, reporting consistency, and overall program effectiveness.</p>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
+
+  
+<section class="insight-grid-section" id="news">
+  <div class="page-wrap">
+  <div class="insight-grid-shell">
+    <div class="help-head">
+        <!--<p class="service-eyebrow">How We Help Clients</p>-->
+        <h2>Related Insights</h2>
+      </div>
+
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock1.jpeg" alt="Inspection planning">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Inspection Strategy
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+
+            <p class="insight-card-text">
+              Build stronger inspection planning processes with guidance tailored to asset criticality,
+              field realities, and program-level objectives.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock2.jpeg" alt="Data and technology advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Technical Advisory
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+
+            <p class="insight-card-text">
+              Evaluate emerging tools, workflows, and implementation paths with support grounded in
+              practical NDT and operational experience.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock3.jpeg" alt="Operational support">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Program Support
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+
+            <p class="insight-card-text">
+              Strengthen workforce capability, reporting consistency, and execution quality through
+              advisory support that scales with your operation.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+</section>
+
+<style>
+.insight-grid-section{
+  background:#ffffff;
+  color:#111111;
+  padding: clamp(72px, 2vw, 120px) 0;
+}
+
+.insight-grid-shell{
+  
+  margin: 0 auto;
+  
+}
+
+.insight-grid-head{
+  max-width: 980px;
+  margin: 0 auto clamp(34px, 5vw, 64px);
+  text-align: left;
+}
+
+.insight-grid-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777777;
+}
+
+.insight-grid-head h2{
+  margin: 0 0 18px;
+  font-size: clamp(1.2rem, 2vw, 2.2rem);
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  font-weight:300;
+  color: #111111;
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insight-grid-intro{
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(17,17,17,0.72);
+}
+
+.insight-grid-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.insight-card{
+  display: flex;
+}
+
+.insight-card-box{
+  width: 100%;
+  background:#ffffff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.insight-card-box:hover{
+  background: var(--navy);
+}
+
+.insight-card-media{
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.insight-card-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.insight-card-body{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-card-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  font-size: clamp(18px, 1.2vw, 22px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: #111111;
+  transition: color 0.3s ease;
+}
+
+.insight-card-text{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(17,17,17,0.78);
+  transition: color 0.3s ease;
+}
+
+.insight-card-box:hover .insight-card-title,
+.insight-card-box:hover .insight-card-text{
+  color: #ffffff;
+}
+
+.title-arrow{
+  display: inline-flex;
+  color: #111111;
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateY(0px);
+}
+
+.insight-card-box:hover .title-arrow{
+  color: #F00303;
+}
+
+.title-arrow svg{
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 1100px){
+  .insight-grid-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card-box{
+    padding: 2.25rem;
+  }
+
+  .insight-card-media{
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 760px){
+  .insight-grid-section{
+    padding: 64px 0;
+  }
+
+  .insight-grid-shell{
+    width: min(1600px, calc(100% - 24px));
+    padding: 0 16px;
+  }
+
+  .insight-grid-title,
+  .insight-grid-intro{
+    max-width: 100%;
+  }
+
+  .insight-card-box{
+    padding: 1.5rem;
+  }
+
+  .insight-card-media{
+    min-height: 220px;
+  }
+}
+</style>
+
+<style>
+.service-top-image{
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.service-top-image img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.service-split-intro{
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  margin-top: 0;
+
+  /* 👇 THIS is the key */
+  background: linear-gradient(
+    to right,
+    #0d1d27 0%,
+    #0d1d27 36%,
+    #ffffff 36%,
+    #ffffff 100%
+  );
+}
+.service-split-card{
+  width: 1200px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 36% 64%;
+  background: #fff;
+  /*box-shadow: 0 24px 60px rgba(0,0,0,0.08);*/
+  overflow: hidden;
+   margin: 0 auto; /* ✅ centers it */
+  
+}
+
+.service-split-title{
+  padding: clamp(2rem, 4vw, 3.5rem);
+  background: #0d1d27;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  min-height: 340px;
+}
+
+.service-eyebrow.dark{
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.service-title-box{
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+  color: #fff;
+  max-width: 10ch;
+  text-wrap: balance;
+}
+
+.service-split-content{
+  padding: clamp(2rem, 4vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 340px;
+  background: #fff;
+}
+
+.service-subtitle-dark{
+  margin: 0;
+  max-width: 40ch;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.75;
+  color: rgba(17,17,17,0.72);
+  font-weight: 300;
+}
+
+.page-link{
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  color: var(--red);
+  text-decoration: none;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.page-link svg{
+  width: 18px;
+  height: 18px;
+  transition: transform .2s ease;
+}
+
+.page-link:hover{
+  transform: translateX(2px);
+}
+
+.page-link:hover svg{
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px){
+  .service-top-image{
+    min-height: 100vh;
+  }
+
+  .service-split-card{
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .service-split-title,
+  .service-split-content{
+    min-height: auto;
+  }
+
+  .service-title-box{
+    max-width: none;
+  }
+}
+</style>
 </body>
 </html>
