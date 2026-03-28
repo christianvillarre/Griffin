@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
 
   <style>
     :root{
@@ -404,6 +405,9 @@
   }
   .nav-link:hover .nav-chevron{ opacity: 1; }
 </style>
+
+ <div id="scroll-container">
+<main>
 
 <header class="navbar" aria-label="Primary">
     <div class="nav-logo">
@@ -1532,7 +1536,7 @@
     </div>
   </div>
 </section>
-
+</main></div>
 <style>
   .explore-grid{
   display: grid;
@@ -1671,283 +1675,23 @@
 }
 </style>
 
+
+<script src="/navbar.js"></script>
+<script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  /* ===================== ICONS ===================== */
-  const ICON_RIGHT_ARROW = `
-    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 6l6 6-6 6"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
-    </svg>
-  `;
-
-  const ICON_UPRIGHT = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 17L17 7M10 7h7v7"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
-    </svg>
-  `;
-
-  /* ===================== CONTENT ===================== */
-  const CAPABILITIES = {
-    tabs: [
-      {
-        key: "technical",
-        label: "Business Advisory Services",
-        title: "Business Advisory Services",
-        desc:
-          "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.",
-        items: [
-          "Mergers & Acquisition Support",
-          "Talent Acquisition & Assessment",
-          "Corporate Development & Strategic Planning",
-          "Business Development & Client Strategies",
-          "Capital Acquisition",
-        ],
-      },
-      {
-        key: "advisory",
-        label: "Technical Consulting",
-        title: "Technical Consulting",
-        desc:
-          "Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.",
-        items: [
-          "NDT Level III Consulting & Support",
-          "Advanced NDT Subject Matter Experts",
-          "NDT Written Practice Review and Development",
-          "Next Level Advanced NDT Training Programs",
-          "Advanced NDT Technology Programs and Procedures",
-          "Automation, Robotics, and Advanced Imaging Systems",
-        ],
-      },
-      {
-        key: "affiliate",
-        label: "Affiliate Organizations",
-        title: "Affiliate Organizations",
-        desc:
-          "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
-        items: [
-          "Top Notch EDM Services",
-          "Sound NDT Solutions",
-          "ATCO Automated Scanning Systems",
-          "Halo NDT Technologies",
-        ],
-      },
-    ],
-  };
-
-  /* ===================== DOM ===================== */
-  const dropdownWrap = document.getElementById("navDropdown");
-  const ddLeft = document.getElementById("navDdLeft");
-  const ddRight = document.getElementById("navDdRight");
-  const navbar = document.querySelector(".navbar");
-
-  if (!dropdownWrap || !ddLeft || !ddRight) return;
-
-  /* ===================== STATE ===================== */
-  let activeKey = null;               // only "capabilities" in your case
-  let activeCapTab = "technical";     // default tab
-  let isAnimatingRight = false;
-
-  /* ===================== HELPERS ===================== */
-  function clearActiveTriggers() {
-    document
-      .querySelectorAll('.nav-link[data-dropdown].is-active')
-      .forEach(el => el.classList.remove("is-active"));
-  }
-
-  function getTab(key) {
-    return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
-  }
-
-  function renderLeft(tabKey) {
-    ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
-      <a
-        class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
-        href="#"
-        data-cap-tab="${t.key}"
-      >
-        <span>${t.label}</span>
-        ${ICON_RIGHT_ARROW}
-      </a>
-    `).join("");
-  }
-
-  function renderRight(tab) {
-    ddRight.innerHTML = `
-      <div class="nav-dd-title">${tab.title}</div>
-      <p class="nav-dd-desc">${tab.desc}</p>
-
-      <div class="nav-dd-links">
-        ${tab.items.map(item => `
-          <a class="nav-dd-greenlink" href="#services" data-dd-close>
-            <span>${item}</span>
-            ${ICON_UPRIGHT}
-          </a>
-        `).join("")}
-      </div>
-    `;
-  }
-
-  // Small RAF tween helper
-  function tween(dur, onUpdate) {
-    return new Promise(resolve => {
-      const t0 = performance.now();
-      function frame(now) {
-        const t = Math.min(1, (now - t0) / dur);
-        onUpdate(t);
-        if (t < 1) requestAnimationFrame(frame);
-        else resolve();
+  (() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+      smoothWheel: true,
+      syncTouch: false,
+      lerp: 0.1,
+      anchors: {
+        offset: 110
       }
-      requestAnimationFrame(frame);
-    });
-  }
-
-  // Easing: quick-out (feels snappy)
-  const easeOut = (t) => 1 - Math.pow(1 - t, 3.2);
-
-  // ✅ Your preferred behavior:
-  // 1) fade OUT quickly
-  // 2) swap content
-  // 3) fade IN quickly + move up slightly
-  async function swapRightQuick(nextTabKey) {
-    if (isAnimatingRight) return;
-    if (nextTabKey === activeCapTab) return;
-
-    isAnimatingRight = true;
-
-    const nextTab = getTab(nextTabKey);
-
-    // Keep dropdown open and prevent accidental clicks mid-animation
-    ddRight.style.pointerEvents = "none";
-    ddRight.style.willChange = "opacity, transform";
-
-    // --- OUT (quick) ---
-    const OUT_DUR = 95; // quick
-    await tween(OUT_DUR, (t) => {
-      const e = easeOut(t);
-      ddRight.style.opacity = String(1 - e);
-      ddRight.style.transform = `translateY(${0 + (2 * e)}px)`; // tiny sink
     });
 
-    // --- SWAP (hidden) ---
-    renderRight(nextTab);
-
-    // reset for IN
-    ddRight.style.opacity = "0";
-    ddRight.style.transform = "translateY(8px)"; // start slightly lower
-
-    // --- IN (quick + up) ---
-    const IN_DUR = 140; // slightly longer than OUT, still quick
-    await tween(IN_DUR, (t) => {
-      const e = easeOut(t);
-      ddRight.style.opacity = String(e);
-      ddRight.style.transform = `translateY(${8 - (8 * e)}px)`; // rise into place
-    });
-
-    // cleanup
-    ddRight.style.opacity = "";
-    ddRight.style.transform = "";
-    ddRight.style.willChange = "";
-    ddRight.style.pointerEvents = "";
-
-    // update state + left selection
-    activeCapTab = nextTabKey;
-    renderLeft(activeCapTab);
-
-    isAnimatingRight = false;
-  }
-
-  /* ===================== OPEN/CLOSE ===================== */
-  function openDropdown(key) {
-    activeKey = key;
-
-    clearActiveTriggers();
-    const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
-    if (trigger) trigger.classList.add("is-active");
-
-    if (key === "capabilities") {
-      renderLeft(activeCapTab);
-      renderRight(getTab(activeCapTab));
-
-      // ensure right is visible and not transformed
-      ddRight.style.opacity = "";
-      ddRight.style.transform = "";
-    }
-
-    dropdownWrap.classList.add("is-open");
-    dropdownWrap.setAttribute("aria-hidden", "false");
-  }
-
-  function closeDropdown() {
-    activeKey = null;
-    dropdownWrap.classList.remove("is-open");
-    dropdownWrap.setAttribute("aria-hidden", "true");
-    clearActiveTriggers();
-  }
-
-  /* ===================== EVENTS ===================== */
-
-  // Trigger click (Capabilities)
-  document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const key = link.getAttribute("data-dropdown");
-      const isSame =
-        dropdownWrap.classList.contains("is-open") && activeKey === key;
-
-      if (isSame) closeDropdown();
-      else openDropdown(key);
-    });
-  });
-
-  // Inside dropdown: left tabs + right links
-  dropdownWrap.addEventListener("click", (e) => {
-    e.stopPropagation();
-
-    // Left tab click
-    const tabEl = e.target.closest("[data-cap-tab]");
-    if (tabEl) {
-      e.preventDefault();
-      swapRightQuick(tabEl.getAttribute("data-cap-tab"));
-      return;
-    }
-
-    // Right-side links close (you have data-dd-close on them)
-    const closeEl = e.target.closest("[data-dd-close]");
-    if (closeEl) closeDropdown();
-  });
-
-  // Outside click closes
-  document.addEventListener("click", (e) => {
-    if (!dropdownWrap.classList.contains("is-open")) return;
-
-    const clickedInside =
-      dropdownWrap.contains(e.target) ||
-      (navbar && navbar.contains(e.target));
-
-    if (!clickedInside) closeDropdown();
-  });
-
-  // ESC closes
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDropdown();
-  });
-
-  // Close dropdown when clicking non-dropdown nav links
-  document.querySelectorAll(".nav-link:not([data-dropdown])")
-    .forEach(link => link.addEventListener("click", () => closeDropdown()));
-});
+    window.lenis = lenis;
+  })();
 </script>
 
 </body>
