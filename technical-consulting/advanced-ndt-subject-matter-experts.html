@@ -1,0 +1,1954 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NDT Level III Consulting & Support</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1200px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+      
+    }
+
+    img{ max-width:100%; display:block; }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+      
+    }
+
+    .text-highlight{
+      background: linear-gradient(90deg, #F00303 0%, rgb(19, 75, 99) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .page-link{
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      color: var(--red);
+      text-decoration: none;
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .page-link svg{
+      width:18px;
+      height:18px;
+      transition: transform .2s ease;
+    }
+
+    .page-link:hover{
+      transform: translateX(2px);
+    }
+
+    .page-link:hover svg{
+      transform: translateX(3px);
+    }
+
+    /* ================= HERO ================= */
+    .service-hero{
+  padding: clamp(120px, 12vw, 180px) 2rem clamp(80px, 7vw, 110px);
+
+  /* 👇 IMAGE + OVERLAY STACK */
+  background-image:
+    linear-gradient(180deg, rgba(5, 35, 48, 0.76) 0%, rgba(5, 35, 48, 0.212) 100%),
+    url("images/Graybg.png"); /* ← change this */
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+
+    .service-hero::before{
+      content:"";
+      position:absolute;
+      inset:auto -10% -20% auto;
+      width:60vw;
+      height:60vw;
+      background: radial-gradient(circle, rgba(240,3,3,0.16) 0%, rgba(240,3,3,0) 70%);
+      pointer-events:none;
+    }
+
+    .service-hero__inner{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .service-eyebrow{
+      margin:0 0 18px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.76);
+    }
+
+    .service-title{
+      margin:0 0 18px;
+      font-size: clamp(2.6rem, 3vw, 3.5rem);
+      line-height:0.94;
+      letter-spacing:-0.04em;
+      font-weight:300;
+      max-width:25ch;
+    }
+
+    .service-subtitle{
+      margin:0;
+      max-width:58ch;
+      font-size: clamp(1rem, 1.5vw, 1.4rem);
+      line-height:1.6;
+      color:rgba(255,255,255,0.82);
+      font-weight:300;
+    }
+
+    /* ================= LARGE INTRO ================= */
+.service-intro{
+  width: 100%;
+  background: #fff;
+  padding: clamp(80px, 10vw, 100px) 2rem;
+  position: relative; /* 👈 add this */
+}
+
+.service-intro__inner{
+  width: 100%;
+  max-width: none;
+}
+
+.service-intro h2{
+  margin: 0;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  color: var(--ink);
+  max-width: 58ch;
+
+  border-left: 8px solid var(--red);
+  padding-left: 24px;
+}
+
+    /* ================= HOW WE HELP ================= */
+    .help-section{
+      
+      background:#fff;
+      
+    }
+
+    .help-head{
+      margin-bottom: clamp(24px, 3vw, 46px);
+      border-top:1px solid black;
+    }
+
+    .help-head .service-eyebrow{
+      color:#777;
+      margin-bottom:14px;
+     
+    }
+
+    .help-head h2{
+      margin:0;
+      font-size: clamp(1.8rem, 2vw, 2.2rem);
+      line-height:0.96;
+      letter-spacing:-0.035em;
+      font-weight:300;
+      max-width:26ch;
+       margin-top: 24px;
+    }
+
+    .help-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:0;
+      /*border-top:1px solid var(--line);
+      border-left:1px solid var(--line);*/
+    }
+
+    .help-card{
+      padding: 28px 26px 30px;
+      /*border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);*/
+      min-height: 250px;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .help-card:hover{
+      background:#7777771b;
+      color:#000000;
+    }
+
+    .help-card:hover .help-card__title,
+    .help-card:hover .help-list li{
+      color:#000000;
+    }
+
+    .help-card:hover .help-arrow{
+      color:var(--red);
+      transform: translateX(4px);
+    }
+
+    .help-card__title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 18px;
+      font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height:1.2;
+      font-weight:600;
+      color:#111;
+      transition: color .25s ease;
+    }
+
+    .help-arrow{
+      flex:0 0 auto;
+      width:22px;
+      height:22px;
+      color:#111;
+      transition: color .25s ease, transform .25s ease;
+    }
+
+    .help-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .help-list li{
+      position:relative;
+      padding-left:18px;
+      font-size:15px;
+      line-height:1.6;
+      color:rgba(17,17,17,0.78);
+      transition: color .25s ease;
+    }
+
+    .help-list li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--red);
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    @media (max-width: 1180px){
+      .help-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 980px){
+      .service-intro__grid{
+        grid-template-columns: 1fr;
+      }
+
+      .service-intro__copy h2,
+      .service-intro__copy p{
+        max-width:100%;
+      }
+    }
+
+    @media (max-width: 700px){
+      .page-wrap,
+      .service-hero__inner{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .help-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .help-card{
+        min-height:auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<style>
+   /* ===================== NAVBAR ===================== */
+  .navbar{
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, calc(100% - 28px));
+    height: 84px;
+    border-radius: 10px;
+    background: #00202e70;
+    border: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 50;
+
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    min-width: 140px;
+  }
+
+  .nav-logo img{
+    height: 48px;
+    width: auto;
+    display:block;
+    object-fit: contain;
+    transform: translateY(-3px);
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    text-transform: uppercase;
+  }
+
+  .nav-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 12px;
+    text-decoration:none;
+    color: rgba(255,255,255,0.92);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    border: 1px solid rgba(255,255,255,0.0);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover{ color:#F00303; }
+
+  /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
+  .nav-link[data-dropdown].is-active,
+  .nav-link[data-dropdown].is-active:hover {
+    color: #F00303; /* drives text + chevron because SVG uses currentColor */
+  }
+
+  .nav-link[data-dropdown].is-active .nav-chevron{
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .nav-link--contact{
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    border: 1px solid rgba(255,255,255,0.65);
+    padding: 0 16px;
+  }
+  .nav-link--contact:hover{
+    background: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,0.9);
+    color:#111;
+  }
+
+  @media (max-width: 560px){
+    .nav-link--hide-sm{ display:none; }
+  }
+
+  .nav-link--has-chevron{ gap: 3px; }
+
+  .nav-chevron{
+    width: 16px;
+    height: 16px;
+    display: block;
+    transform: translateY(0px);
+    opacity: 0.9;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-link:hover .nav-chevron{ opacity: 1; }
+</style>
+
+<header class="navbar" aria-label="Primary">
+    <div class="nav-logo">
+      <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+    </div>
+
+    <nav class="nav-links">
+      <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="capabilities">
+  <span class="nav-link__label">Capabilities</span>
+  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+      
+      <a class="nav-link" href="#home">News</a>
+      <a class="nav-link nav-link--contact" href="#home">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ✅ Navbar Dropdown (Services / News) -->
+<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
+  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
+    <!-- LEFT COLUMN -->
+    <div class="nav-dd-left" id="navDdLeft">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="nav-dd-right" id="navDdRight">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
+
+<style>
+  /* --- Left column tabs (Capabilities) --- */
+.nav-dd-item.is-tab{
+  cursor: pointer;
+}
+
+.nav-dd-item.is-tab.is-selected{
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+}
+
+.nav-dd-item.is-tab.is-selected .dd-arrow path{
+  stroke: #F00303;
+}
+  /* ===================== NAV DROPDOWN ===================== */
+.nav-dropdown-wrap{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(18px + 84px + 10px); /* navbar top + height + gap */
+  width: min(900px, calc(100% - 28px));
+  z-index: 49; /* under navbar (navbar is 50) */
+  pointer-events: none; /* only clickable when open */
+}
+
+.nav-dropdown{
+  border-radius: 10px;
+
+  /* ✅ match navbar exactly */
+  background: #00202ec0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+  padding: 16px;
+
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.nav-dropdown-wrap.is-open{
+  pointer-events: auto;
+}
+.nav-dropdown-wrap.is-open .nav-dropdown{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LEFT */
+.nav-dd-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-dd-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 10px 14px;
+  border-radius: 16px;
+
+  background: rgba(33, 33, 33, 0);
+  border: none;
+
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.nav-dd-item:hover{
+  transform: translateY(-1px);
+  background: #5677851b;
+  border-color: rgba(255,255,255,0.18);
+  color:#ffffff;
+}
+
+.nav-dd-item .dd-arrow{
+  width: 18px;
+  height: 18px;
+  opacity: 0.95;
+}
+.nav-dd-item .dd-arrow path{
+  stroke: rgba(255,255,255,0.92);
+}
+.nav-dd-item:hover .dd-arrow path{
+  stroke: #ffffff;
+}
+
+
+/* RIGHT */
+.nav-dd-right{
+  padding: 6px 4px 6px 2px;
+  color: rgba(255,255,255,0.92);
+}
+
+.nav-dd-title{
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.nav-dd-desc{
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.78;
+  max-width: 48ch;
+}
+
+.nav-dd-links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ===================== RIGHT COLUMN LINKS ===================== */
+
+.nav-dd-greenlink{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+
+  color: #F00303;              /* red text default */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: 
+    color 170ms cubic-bezier(.22,1,.36,1),
+    transform 160ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Animated underline (always red) ===== */
+.nav-dd-greenlink::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: #F00303;                 /* stays red */
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.95;
+  transition: transform 180ms cubic-bezier(.22,1,.36,1);
+}
+
+/* underline animates in */
+.nav-dd-greenlink:hover::after,
+.nav-dd-greenlink:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* ===== Arrow default state ===== */
+.nav-dd-greenlink svg{
+  width: 16px;
+  height: 16px;
+  transform: translateY(0);
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
+}
+
+.nav-dd-greenlink svg path{
+  stroke: #ffffff;                     /* white arrow default */
+  transition: stroke 170ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Hover state ===== */
+.nav-dd-greenlink:hover,
+.nav-dd-greenlink:focus-visible{
+  color: #ffffff;                      /* text fades to white */
+}
+
+.nav-dd-greenlink:hover svg,
+.nav-dd-greenlink:focus-visible svg{
+  transform: translateY(-1px);          /* arrow moves up 1px */
+}
+
+.nav-dd-greenlink:hover svg path,
+.nav-dd-greenlink:focus-visible svg path{
+  stroke: #F00303;                      /* arrow turns red */
+}
+
+/* Mobile stacking */
+@media (max-width: 720px){
+  .nav-dropdown{
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+
+<section class="service-top-image">
+  <img src="/images/stock8.jpeg" alt="NDT consulting support">
+</section>
+
+<section class="service-split-section">
+  <div class="service-split-card">
+    <div class="service-split-title">
+      <!--<p class="service-eyebrow dark">Technical Consulting</p>-->
+      <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">›</span>
+
+        <a href="/technical-consulting">Technical Consulting</a>
+        
+      </nav>
+      <h1 class="service-title-box">
+        Advanced NDT Subject Matter Experts
+      </h1>
+    </div>
+    
+    <div class="service-split-content">
+      
+      <p class="service-subtitle-dark">
+        Certified Level III expertise for inspection programs, procedures,
+        compliance alignment, and high-stakes technical decision-making.
+      </p>
+
+      <a href="#how-we-help" class="page-link">
+        <span>See How We Help</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+          <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+.service-top-image{
+  width: 100%;
+  height: clamp(320px, 45vw, 45vh);
+  position: relative;
+  overflow: hidden;
+  background: #0d1d27;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+}
+
+.service-top-image img{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  
+}
+
+.service-split-section{
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #0d1d27 0%,
+    #0d1d27 36%,
+    #ffffff 36%,
+    #ffffff 100%
+  );
+}
+
+.service-split-card{
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 36% 64%;
+  background: #fff;
+  overflow: hidden;
+  
+}
+
+.service-split-title{
+  padding: clamp(1.75rem, 3vw, 3rem);
+  background: #0d1d27;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(220px, 20vw, 320px);
+}
+
+.service-split-content{
+  padding: clamp(1.75rem, 3vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  background: #fff;
+}
+
+.service-eyebrow.dark{
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.service-title-box{
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3.3rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+  color: #fff;
+  max-width: 10ch;
+  text-wrap: balance;
+}
+
+.service-subtitle-dark{
+  margin: 0;
+  max-width: 40ch;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.75;
+  color: rgba(17,17,17,0.72);
+  font-weight: 300;
+}
+
+.page-link{
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  color: var(--red);
+  text-decoration: none;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.page-link svg{
+  width: 18px;
+  height: 18px;
+  transition: transform .2s ease;
+}
+
+.page-link:hover{
+  transform: translateX(2px);
+}
+
+.page-link:hover svg{
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px){
+  .service-split-section{
+    background: #ffffff;
+  }
+
+  .service-split-card{
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .service-split-title,
+  .service-split-content{
+    min-height: auto;
+  }
+
+  .service-title-box{
+    max-width: none;
+  }
+}
+.breadcrumb{
+  position: static; /* 👈 key fix */
+  transform: none;
+  width: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  padding-bottom: 20px;
+}
+
+.breadcrumb a{
+  color: #cccccc;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb a:hover{
+  opacity: 1;
+  color: var(--red);
+}
+
+.breadcrumb-sep{
+  opacity: 0.4;
+}
+
+.breadcrumb-current{
+  color: #999; /* 👈 greyed out */
+  pointer-events: none;
+}
+
+.breadcrumb{
+  margin-bottom: 0;
+}
+</style>
+
+<section class="service-intro">
+  <div class="page-wrap">
+    <div class="service-intro__inner">
+
+      <!-- 👇 MOVE IT HERE -->
+      
+
+      <h2>
+        Certified NDT Level III expertise to optimize inspection programs, ensure compliance, and guide critical decisions. We deliver clear, reliable support for complex environments—helping you operate with confidence, accuracy, and control.
+      </h2>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="help-section" id="ndt-consulting">
+  <div class="page-wrap">
+    <div class="head-info">
+      <!--<h2>NDT Level III Consulting and Support</h2>-->
+    </div>
+    
+    <div class="help-text-block">
+      <p>
+        Griffin Integrity provides independent Level III consulting to support inspection programs, technical decision-making, 
+        and compliance requirements across industries, with a focus on strengthening reliability, improving 
+        documentation clarity, and ensuring alignment with applicable codes and standards. Support includes 
+        procedure development and review, written practice guidance, personnel qualification systems, audit 
+        preparation, and ongoing technical advisory, with engagements structured to integrate seamlessly with 
+        existing operations while elevating consistency, accountability, and overall program performance.
+        
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+
+.help-text-block{
+  width: 100%;
+  margin-bottom: 4rem;
+  column-count: 2;
+  column-gap: 60px;
+  column-fill: balance; /* keeps columns even */
+  font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(17,17,17,0.8);
+}
+
+.help-text-block p{
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .help-text-block{
+    column-count: 1;
+  }
+}
+</style>
+
+  <section class="help-section" id="how-we-help">
+    <div class="page-wrap">
+      <div class="help-head">
+        <!--<p class="service-eyebrow">How We Help Clients</p>-->
+        <h2>How We Help Clients</h2>
+      </div>
+
+      <div class="help-grid">
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Procedure Review
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Ensures NDT procedures align with applicable codes and client requirements while improving clarity, consistency, and field usability. Focuses on eliminating ambiguity and strengthening execution flow.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Written Practice Support
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Develops and refines employer-based written practices to meet standards and operational needs. Emphasizes clear documentation, consistent structure, and defensibility during audits.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Program Oversight
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Provides Level III oversight to strengthen inspection governance, approval workflows, and overall program integrity. Ensures consistent technical quality and accountability.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Audit Readiness
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Prepares teams for audits by reviewing records, qualifications, and compliance. Identifies gaps early and supports corrective actions to prevent findings.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Personnel Qualification
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Improves qualification systems by standardizing training, evaluations, and progression. Supports exams, practicals, and documentation for consistency.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Technical Troubleshooting
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Addresses complex or recurring inspection issues with expert guidance on method selection, interpretation, and problem-solving.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Client Representation
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Represents inspection interests in client discussions by translating technical issues into clear, actionable direction.</p>
+          </ul>
+        </article>
+
+        <article class="help-card">
+          <h3 class="help-card__title">
+            Continuous Improvement
+            <span class="help-arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h3>
+          <div class="help-list">
+            <p>Drives ongoing improvements in inspection reliability, reporting consistency, and overall program effectiveness.</p>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<section class="feature-split-section">
+  <div class="page-wrap">
+    <div class="feature-split">
+
+      <!-- LEFT: IMAGE -->
+      <div class="feature-split__media">
+        <img src="/images/stock4.jpeg" alt="Inspection in progress">
+      </div>
+
+      <!-- RIGHT: CONTENT -->
+      <div class="feature-split__content">
+        <h2>Field-Driven Inspection Support</h2>
+        <p>
+          Deliver practical, field-aligned inspection solutions backed by Level III expertise.
+          This approach bridges the gap between written requirements and real-world execution,
+          improving reliability, clarity, and decision-making across your program.
+        </p>
+
+        <a href="#" class="feature-split__link">
+          Learn More
+          <span class="help-arrow">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>
+  .feature-split-section{
+  background:#ffffff;
+  padding: clamp(12px, 2vw, 40px) 0;
+}
+
+.feature-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 40px);
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding:2rem 2rem;
+  
+}
+
+/* IMAGE */
+.feature-split__media{
+  width: 100%;
+  height: 100%;
+}
+
+.feature-split__media img{
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CONTENT */
+.feature-split__content{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.feature-split__content h2{
+  margin: 0;
+  font-size: clamp(1.5rem, 2vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  color: #111;
+  max-width: 18ch;
+}
+
+.feature-split__content p{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(17,17,17,0.75);
+  max-width: 50ch;
+}
+
+/* LINK */
+.feature-split__link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #111;
+  transition: color 0.3s ease;
+}
+
+.feature-split__link:hover{
+  color: var(--navy);
+}
+
+.feature-split__link .help-arrow{
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.feature-split__link:hover .help-arrow{
+  transform: translateX(4px);
+  color: #F00303;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px){
+  .feature-split{
+    grid-template-columns: 1fr;
+  }
+
+  .feature-split__media img{
+    max-height: 320px;
+  }
+}
+.feature-split{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 40px);
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border-radius: 0px;
+}
+
+/* HOVER EFFECT */
+.feature-split:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+</style>  
+
+<section class="insight-grid-section" id="news">
+  <div class="page-wrap">
+  <div class="insight-grid-shell">
+    <div class="help-head">
+        <!--<p class="service-eyebrow">How We Help Clients</p>-->
+        <h2>Related Insights</h2>
+      </div>
+
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock1.jpeg" alt="Inspection planning">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Inspection Strategy
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+
+            <p class="insight-card-text">
+              Build stronger inspection planning processes with guidance tailored to asset criticality,
+              field realities, and program-level objectives.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock2.jpeg" alt="Data and technology advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Technical Advisory
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+
+            <p class="insight-card-text">
+              Evaluate emerging tools, workflows, and implementation paths with support grounded in
+              practical NDT and operational experience.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock3.jpeg" alt="Operational support">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Program Support
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+
+            <p class="insight-card-text">
+              Strengthen workforce capability, reporting consistency, and execution quality through
+              advisory support that scales with your operation.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  </div>
+</section>
+
+<style>
+.insight-grid-section{
+  background:#ffffff;
+  color:#111111;
+  padding: clamp(72px, 2vw, 120px) 0;
+}
+
+.insight-grid-shell{
+  
+  margin: 0 auto;
+  
+}
+
+.insight-grid-head{
+  max-width: 980px;
+  margin: 0 auto clamp(34px, 5vw, 64px);
+  text-align: left;
+}
+
+.insight-grid-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777777;
+}
+
+.insight-grid-head h2{
+  margin: 0 0 18px;
+  font-size: clamp(1.2rem, 2vw, 2.2rem);
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  font-weight:300;
+  color: #111111;
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insight-grid-intro{
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(17,17,17,0.72);
+}
+
+.insight-grid-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.insight-card{
+  display: flex;
+}
+
+.insight-card-box{
+  width: 100%;
+  background:#ffffff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.insight-card-box:hover{
+  background: var(--navy);
+}
+
+.insight-card-media{
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.insight-card-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.insight-card-body{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-card-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  font-size: clamp(18px, 1.2vw, 22px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: #111111;
+  transition: color 0.3s ease;
+}
+
+.insight-card-text{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(17,17,17,0.78);
+  transition: color 0.3s ease;
+}
+
+.insight-card-box:hover .insight-card-title,
+.insight-card-box:hover .insight-card-text{
+  color: #ffffff;
+}
+
+.title-arrow{
+  display: inline-flex;
+  color: #111111;
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateY(0px);
+}
+
+.insight-card-box:hover .title-arrow{
+  color: #F00303;
+}
+
+.title-arrow svg{
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 1100px){
+  .insight-grid-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card-box{
+    padding: 2.25rem;
+  }
+
+  .insight-card-media{
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 760px){
+  .insight-grid-section{
+    padding: 64px 0;
+  }
+
+  .insight-grid-shell{
+    width: min(1600px, calc(100% - 24px));
+    padding: 0 16px;
+  }
+
+  .insight-grid-title,
+  .insight-grid-intro{
+    max-width: 100%;
+  }
+
+  .insight-card-box{
+    padding: 1.5rem;
+  }
+
+  .insight-card-media{
+    min-height: 220px;
+  }
+}
+</style>
+
+<section class="help-section" id="keep-exploring">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Keep Exploring</h2>
+    </div>
+
+    <div class="explore-grid">
+      <a href="#" class="explore-link">
+        Services Overview
+        <span class="help-arrow">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="#" class="explore-link">
+        Inspection Methods
+        <span class="help-arrow">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="#" class="explore-link">
+        Industry Applications
+        <span class="help-arrow">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="#" class="explore-link">
+        Case Studies
+        <span class="help-arrow">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="#" class="explore-link">
+        Technical Resources
+        <span class="help-arrow">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="#" class="explore-link">
+        Contact & Support
+        <span class="help-arrow">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .explore-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+
+.explore-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #111;
+  /*border-bottom: 1px solid rgba(0,0,0,0.1);*/
+  padding: 10px 0;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.explore-link:hover{
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.explore-link .help-arrow{
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.explore-link:hover .help-arrow{
+  transform: translateX(4px);
+  color: #F00303;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .explore-grid{
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+<section class="advisor-cta-section" id="connect-advisor">
+  <div class="page-wrap">
+    <div class="advisor-cta">
+      <div class="advisor-cta__content">
+        <h2>Connect with a NDT Level III Advisor</h2>
+      </div>
+
+      <a href="mailto:you@example.com" class="advisor-cta__button">
+        <span class="advisor-cta__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Connect</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+.advisor-cta-section{
+  padding: 0 0 5rem;
+  background: #fff;
+}
+
+.advisor-cta{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid rgba(17,17,17,0.08);
+}
+
+.advisor-cta__content h2{
+  margin: 0;
+  font-size: clamp(1.5rem, 2vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  color: #111;
+}
+
+.advisor-cta__button{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 24px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid #111;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.advisor-cta__button:hover{
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: translateY(-1px);
+}
+
+.advisor-cta__icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.advisor-cta__icon svg{
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px){
+  .advisor-cta{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.25rem 0;
+  }
+
+  .advisor-cta__button{
+    width: auto;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* ===================== ICONS ===================== */
+  const ICON_RIGHT_ARROW = `
+    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  const ICON_UPRIGHT = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17L17 7M10 7h7v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  /* ===================== CONTENT ===================== */
+  const CAPABILITIES = {
+    tabs: [
+      {
+        key: "technical",
+        label: "Business Advisory Services",
+        title: "Business Advisory Services",
+        desc:
+          "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.",
+        items: [
+          "Mergers & Acquisition Support",
+          "Talent Acquisition & Assessment",
+          "Corporate Development & Strategic Planning",
+          "Business Development & Client Strategies",
+          "Capital Acquisition",
+        ],
+      },
+      {
+        key: "advisory",
+        label: "Technical Consulting",
+        title: "Technical Consulting",
+        desc:
+          "Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.",
+        items: [
+          "NDT Level III Consulting & Support",
+          "Advanced NDT Subject Matter Experts",
+          "NDT Written Practice Review and Development",
+          "Next Level Advanced NDT Training Programs",
+          "Advanced NDT Technology Programs and Procedures",
+          "Automation, Robotics, and Advanced Imaging Systems",
+        ],
+      },
+      {
+        key: "affiliate",
+        label: "Affiliate Organizations",
+        title: "Affiliate Organizations",
+        desc:
+          "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+        items: [
+          "Top Notch EDM Services",
+          "Sound NDT Solutions",
+          "ATCO Automated Scanning Systems",
+          "Halo NDT Technologies",
+        ],
+      },
+    ],
+  };
+
+  /* ===================== DOM ===================== */
+  const dropdownWrap = document.getElementById("navDropdown");
+  const ddLeft = document.getElementById("navDdLeft");
+  const ddRight = document.getElementById("navDdRight");
+  const navbar = document.querySelector(".navbar");
+
+  if (!dropdownWrap || !ddLeft || !ddRight) return;
+
+  /* ===================== STATE ===================== */
+  let activeKey = null;               // only "capabilities" in your case
+  let activeCapTab = "technical";     // default tab
+  let isAnimatingRight = false;
+
+  /* ===================== HELPERS ===================== */
+  function clearActiveTriggers() {
+    document
+      .querySelectorAll('.nav-link[data-dropdown].is-active')
+      .forEach(el => el.classList.remove("is-active"));
+  }
+
+  function getTab(key) {
+    return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
+  }
+
+  function renderLeft(tabKey) {
+    ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
+      <a
+        class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
+        href="#"
+        data-cap-tab="${t.key}"
+      >
+        <span>${t.label}</span>
+        ${ICON_RIGHT_ARROW}
+      </a>
+    `).join("");
+  }
+
+  function renderRight(tab) {
+    ddRight.innerHTML = `
+      <div class="nav-dd-title">${tab.title}</div>
+      <p class="nav-dd-desc">${tab.desc}</p>
+
+      <div class="nav-dd-links">
+        ${tab.items.map(item => `
+          <a class="nav-dd-greenlink" href="#services" data-dd-close>
+            <span>${item}</span>
+            ${ICON_UPRIGHT}
+          </a>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  // Small RAF tween helper
+  function tween(dur, onUpdate) {
+    return new Promise(resolve => {
+      const t0 = performance.now();
+      function frame(now) {
+        const t = Math.min(1, (now - t0) / dur);
+        onUpdate(t);
+        if (t < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  // Easing: quick-out (feels snappy)
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3.2);
+
+  // ✅ Your preferred behavior:
+  // 1) fade OUT quickly
+  // 2) swap content
+  // 3) fade IN quickly + move up slightly
+  async function swapRightQuick(nextTabKey) {
+    if (isAnimatingRight) return;
+    if (nextTabKey === activeCapTab) return;
+
+    isAnimatingRight = true;
+
+    const nextTab = getTab(nextTabKey);
+
+    // Keep dropdown open and prevent accidental clicks mid-animation
+    ddRight.style.pointerEvents = "none";
+    ddRight.style.willChange = "opacity, transform";
+
+    // --- OUT (quick) ---
+    const OUT_DUR = 95; // quick
+    await tween(OUT_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(1 - e);
+      ddRight.style.transform = `translateY(${0 + (2 * e)}px)`; // tiny sink
+    });
+
+    // --- SWAP (hidden) ---
+    renderRight(nextTab);
+
+    // reset for IN
+    ddRight.style.opacity = "0";
+    ddRight.style.transform = "translateY(8px)"; // start slightly lower
+
+    // --- IN (quick + up) ---
+    const IN_DUR = 140; // slightly longer than OUT, still quick
+    await tween(IN_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(e);
+      ddRight.style.transform = `translateY(${8 - (8 * e)}px)`; // rise into place
+    });
+
+    // cleanup
+    ddRight.style.opacity = "";
+    ddRight.style.transform = "";
+    ddRight.style.willChange = "";
+    ddRight.style.pointerEvents = "";
+
+    // update state + left selection
+    activeCapTab = nextTabKey;
+    renderLeft(activeCapTab);
+
+    isAnimatingRight = false;
+  }
+
+  /* ===================== OPEN/CLOSE ===================== */
+  function openDropdown(key) {
+    activeKey = key;
+
+    clearActiveTriggers();
+    const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
+    if (trigger) trigger.classList.add("is-active");
+
+    if (key === "capabilities") {
+      renderLeft(activeCapTab);
+      renderRight(getTab(activeCapTab));
+
+      // ensure right is visible and not transformed
+      ddRight.style.opacity = "";
+      ddRight.style.transform = "";
+    }
+
+    dropdownWrap.classList.add("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDropdown() {
+    activeKey = null;
+    dropdownWrap.classList.remove("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "true");
+    clearActiveTriggers();
+  }
+
+  /* ===================== EVENTS ===================== */
+
+  // Trigger click (Capabilities)
+  document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const key = link.getAttribute("data-dropdown");
+      const isSame =
+        dropdownWrap.classList.contains("is-open") && activeKey === key;
+
+      if (isSame) closeDropdown();
+      else openDropdown(key);
+    });
+  });
+
+  // Inside dropdown: left tabs + right links
+  dropdownWrap.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    // Left tab click
+    const tabEl = e.target.closest("[data-cap-tab]");
+    if (tabEl) {
+      e.preventDefault();
+      swapRightQuick(tabEl.getAttribute("data-cap-tab"));
+      return;
+    }
+
+    // Right-side links close (you have data-dd-close on them)
+    const closeEl = e.target.closest("[data-dd-close]");
+    if (closeEl) closeDropdown();
+  });
+
+  // Outside click closes
+  document.addEventListener("click", (e) => {
+    if (!dropdownWrap.classList.contains("is-open")) return;
+
+    const clickedInside =
+      dropdownWrap.contains(e.target) ||
+      (navbar && navbar.contains(e.target));
+
+    if (!clickedInside) closeDropdown();
+  });
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
+  });
+
+  // Close dropdown when clicking non-dropdown nav links
+  document.querySelectorAll(".nav-link:not([data-dropdown])")
+    .forEach(link => link.addEventListener("click", () => closeDropdown()));
+});
+</script>
+
+</body>
+</html>

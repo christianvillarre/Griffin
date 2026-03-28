@@ -1463,8 +1463,8 @@ html{
 <section class="caps-intro-section">
   <div class="caps-intro-shell">
     <div class="caps-intro-copy">
-      <p class="caps-intro-eyebrow">Who Is Griffin Integrity Solutions?</p>
-      <h2 class="caps-intro-title">We're an independent advisory platform connecting industry leaders, technical experts, and senior executives across the industrial inspection and asset integrity ecosystem.</h2>
+      <p class="caps-intro-eyebrow">Who We Are</p>
+      <h2 class="caps-intro-title">Griffin is an independent advisory platform connecting industry leaders, technical experts, and senior executives across the industrial inspection and asset integrity ecosystem.</h2>
        <h2 class="caps-intro-title">Bringing clarity, alignment, and execution to complex technical decisions; Griffin is connecting the right expertise, perspective, and strategy at the moments it matters most.</h2>
       <p class="caps-intro-text">
        
@@ -4240,7 +4240,7 @@ riseTargets3.forEach((el, i) => {
      (same behavior as you have now, but adds fade in/out when switching tabs) -->
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   /* ===================== ICONS ===================== */
   const ICON_RIGHT_ARROW = `
     <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -4274,12 +4274,27 @@ document.addEventListener("DOMContentLoaded", () => {
         desc:
           "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.",
         items: [
-          "Mergers & Acquisition Support",
-          "Talent Acquisition & Assessment",
-          "Corporate Development & Strategic Planning",
-          "Business Development & Client Strategies",
-          "Capital Acquisition",
-        ],
+          {
+            label: "Mergers & Acquisition Support",
+            link: "business-advisory.html#mergers-acquisitions"
+          },
+          {
+            label: "Talent Acquisition & Assessment",
+            link: "business-advisory.html#talent-acquisition"
+          },
+          {
+            label: "Corporate Development & Strategic Planning",
+            link: "business-advisory.html#corporate-development"
+          },
+          {
+            label: "Business Development & Client Strategies",
+            link: "business-advisory.html#business-development"
+          },
+          {
+            label: "Capital Acquisition",
+            link: "business-advisory.html#capital-acquisition"
+          }
+        ]
       },
       {
         key: "advisory",
@@ -4288,13 +4303,31 @@ document.addEventListener("DOMContentLoaded", () => {
         desc:
           "Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.",
         items: [
-          "NDT Level III Consulting & Support",
-          "Advanced NDT Subject Matter Experts",
-          "NDT Written Practice Review and Development",
-          "Next Level Advanced NDT Training Programs",
-          "Advanced NDT Technology Programs and Procedures",
-          "Automation, Robotics, and Advanced Imaging Systems",
-        ],
+          {
+            label: "NDT Level III Consulting & Support",
+            link: "technical-consulting/ndt-level-iii-consulting-support.html#level-iii-consulting"
+          },
+          {
+            label: "Advanced NDT Subject Matter Experts",
+            link: "technical-consulting/advanced-ndt-subject-matter-experts.html#subject-matter-experts"
+          },
+          {
+            label: "NDT Written Practice Review and Development",
+            link: "technical-consulting/ndt-written-practice-review-development.html#written-practice"
+          },
+          {
+            label: "Next Level Advanced NDT Training Programs",
+            link: "technical-consulting.html#training-programs"
+          },
+          {
+            label: "Advanced NDT Technology Programs and Procedures",
+            link: "technical-consulting.html#technology-programs"
+          },
+          {
+            label: "Automation, Robotics, and Advanced Imaging Systems",
+            link: "technical-consulting.html#automation-robotics-imaging"
+          }
+        ]
       },
       {
         key: "affiliate",
@@ -4303,13 +4336,25 @@ document.addEventListener("DOMContentLoaded", () => {
         desc:
           "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
         items: [
-          "Top Notch EDM Services",
-          "Sound NDT Solutions",
-          "ATCO Automated Scanning Systems",
-          "Halo NDT Technologies",
-        ],
-      },
-    ],
+          {
+            label: "Top Notch EDM Services",
+            link: "affiliate-organizations.html#top-notch-edm"
+          },
+          {
+            label: "Sound NDT Solutions",
+            link: "affiliate-organizations.html#sound-ndt"
+          },
+          {
+            label: "ATCO Automated Scanning Systems",
+            link: "affiliate-organizations.html#atco"
+          },
+          {
+            label: "Halo NDT Technologies",
+            link: "affiliate-organizations.html#halo-ndt"
+          }
+        ]
+      }
+    ]
   };
 
   /* ===================== DOM ===================== */
@@ -4321,32 +4366,36 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!dropdownWrap || !ddLeft || !ddRight) return;
 
   /* ===================== STATE ===================== */
-  let activeKey = null;               // only "capabilities" in your case
-  let activeCapTab = "technical";     // default tab
+  let activeKey = null;
+  let activeCapTab = "technical";
   let isAnimatingRight = false;
 
   /* ===================== HELPERS ===================== */
   function clearActiveTriggers() {
     document
       .querySelectorAll('.nav-link[data-dropdown].is-active')
-      .forEach(el => el.classList.remove("is-active"));
+      .forEach((el) => el.classList.remove("is-active"));
   }
 
   function getTab(key) {
-    return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
+    return CAPABILITIES.tabs.find((t) => t.key === key) || CAPABILITIES.tabs[0];
   }
 
   function renderLeft(tabKey) {
-    ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
-      <a
-        class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
-        href="#"
-        data-cap-tab="${t.key}"
-      >
-        <span>${t.label}</span>
-        ${ICON_RIGHT_ARROW}
-      </a>
-    `).join("");
+    ddLeft.innerHTML = CAPABILITIES.tabs
+      .map(
+        (t) => `
+          <a
+            class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
+            href="#"
+            data-cap-tab="${t.key}"
+          >
+            <span>${t.label}</span>
+            ${ICON_RIGHT_ARROW}
+          </a>
+        `
+      )
+      .join("");
   }
 
   function renderRight(tab) {
@@ -4355,37 +4404,41 @@ document.addEventListener("DOMContentLoaded", () => {
       <p class="nav-dd-desc">${tab.desc}</p>
 
       <div class="nav-dd-links">
-        ${tab.items.map(item => `
-          <a class="nav-dd-greenlink" href="#services" data-dd-close>
-            <span>${item}</span>
-            ${ICON_UPRIGHT}
-          </a>
-        `).join("")}
+        ${tab.items
+          .map(
+            (item) => `
+              <a class="nav-dd-greenlink" href="${item.link}" data-dd-close>
+                <span>${item.label}</span>
+                ${ICON_UPRIGHT}
+              </a>
+            `
+          )
+          .join("")}
       </div>
     `;
   }
 
-  // Small RAF tween helper
   function tween(dur, onUpdate) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       const t0 = performance.now();
+
       function frame(now) {
         const t = Math.min(1, (now - t0) / dur);
         onUpdate(t);
-        if (t < 1) requestAnimationFrame(frame);
-        else resolve();
+
+        if (t < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          resolve();
+        }
       }
+
       requestAnimationFrame(frame);
     });
   }
 
-  // Easing: quick-out (feels snappy)
   const easeOut = (t) => 1 - Math.pow(1 - t, 3.2);
 
-  // ✅ Your preferred behavior:
-  // 1) fade OUT quickly
-  // 2) swap content
-  // 3) fade IN quickly + move up slightly
   async function swapRightQuick(nextTabKey) {
     if (isAnimatingRight) return;
     if (nextTabKey === activeCapTab) return;
@@ -4394,40 +4447,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nextTab = getTab(nextTabKey);
 
-    // Keep dropdown open and prevent accidental clicks mid-animation
     ddRight.style.pointerEvents = "none";
     ddRight.style.willChange = "opacity, transform";
 
-    // --- OUT (quick) ---
-    const OUT_DUR = 95; // quick
+    const OUT_DUR = 95;
     await tween(OUT_DUR, (t) => {
       const e = easeOut(t);
       ddRight.style.opacity = String(1 - e);
-      ddRight.style.transform = `translateY(${0 + (2 * e)}px)`; // tiny sink
+      ddRight.style.transform = `translateY(${0 + 2 * e}px)`;
     });
 
-    // --- SWAP (hidden) ---
     renderRight(nextTab);
 
-    // reset for IN
     ddRight.style.opacity = "0";
-    ddRight.style.transform = "translateY(8px)"; // start slightly lower
+    ddRight.style.transform = "translateY(8px)";
 
-    // --- IN (quick + up) ---
-    const IN_DUR = 140; // slightly longer than OUT, still quick
+    const IN_DUR = 140;
     await tween(IN_DUR, (t) => {
       const e = easeOut(t);
       ddRight.style.opacity = String(e);
-      ddRight.style.transform = `translateY(${8 - (8 * e)}px)`; // rise into place
+      ddRight.style.transform = `translateY(${8 - 8 * e}px)`;
     });
 
-    // cleanup
     ddRight.style.opacity = "";
     ddRight.style.transform = "";
     ddRight.style.willChange = "";
     ddRight.style.pointerEvents = "";
 
-    // update state + left selection
     activeCapTab = nextTabKey;
     renderLeft(activeCapTab);
 
@@ -4445,8 +4491,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (key === "capabilities") {
       renderLeft(activeCapTab);
       renderRight(getTab(activeCapTab));
-
-      // ensure right is visible and not transformed
       ddRight.style.opacity = "";
       ddRight.style.transform = "";
     }
@@ -4463,9 +4507,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===================== EVENTS ===================== */
-
-  // Trigger click (Capabilities)
-  document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
+  document.querySelectorAll(".nav-link[data-dropdown]").forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -4474,16 +4516,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const isSame =
         dropdownWrap.classList.contains("is-open") && activeKey === key;
 
-      if (isSame) closeDropdown();
-      else openDropdown(key);
+      if (isSame) {
+        closeDropdown();
+      } else {
+        openDropdown(key);
+      }
     });
   });
 
-  // Inside dropdown: left tabs + right links
   dropdownWrap.addEventListener("click", (e) => {
     e.stopPropagation();
 
-    // Left tab click
     const tabEl = e.target.closest("[data-cap-tab]");
     if (tabEl) {
       e.preventDefault();
@@ -4491,12 +4534,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Right-side links close (you have data-dd-close on them)
     const closeEl = e.target.closest("[data-dd-close]");
     if (closeEl) closeDropdown();
   });
 
-  // Outside click closes
   document.addEventListener("click", (e) => {
     if (!dropdownWrap.classList.contains("is-open")) return;
 
@@ -4507,17 +4548,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!clickedInside) closeDropdown();
   });
 
-  // ESC closes
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeDropdown();
   });
 
-  // Close dropdown when clicking non-dropdown nav links
-  document.querySelectorAll(".nav-link:not([data-dropdown])")
-    .forEach(link => link.addEventListener("click", () => closeDropdown()));
+  document
+    .querySelectorAll(".nav-link:not([data-dropdown])")
+    .forEach((link) => link.addEventListener("click", () => closeDropdown()));
 });
 </script>
-
 
 <script>
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
