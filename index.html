@@ -976,13 +976,17 @@ html{
 
 .stackflow-title2{
   margin: 0;
-  font-size: clamp(1.5rem,2.8vw, 50px);
+  font-size: clamp(1.2rem,2vw, 2.1rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: #fff;
-  font-weight: 200;
+  font-weight: 400;
   max-width: 22ch;
 }
+.larger {
+  font-size: clamp(1.5rem,2.2vw, 2.9rem);
+}
+
 
 .stackflow-card:hover{
   transform: scale(0.99);
@@ -1255,7 +1259,7 @@ html{
   width: 100%;
   
   
-  margin-top: -20vh; /* tweak this */
+  margin-top: -40vh; /* tweak this */
   margin-bottom: 25vh;
 }
 
@@ -1304,31 +1308,83 @@ html{
 
             <div class="stackflow-grid">
               <div class="stackflow-col stackflow-col--1">
-                <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1">
+               <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
                   <img src="images/stock2.jpeg" alt="Advanced analytics">
-                  <div class="stackflow-meta">
-                    <p class="stackflow-eyebrow">Technology</p>
-                    <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+
+                  <div class="stackflow-meta stackflow-meta--split">
+                    <div class="stackflow-card-top">
+                      <p class="stackflow-eyebrow">Technology</p>
+                      <h3 class="stackflow-title2">
+                        Smarter Inspection Through Advanced Analytics
+                      </h3>
+                    </div>
+
+                    <span class="featured-btn">
+                      <span>Read More</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                        <path d="M184 112 L328 256 L184 400"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="52"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                      </svg>
+                    </span>
                   </div>
                 </a>
 
-                <a href="/news/field-execution" class="stackflow-card stackflow-h-md2">
-                  <img src="images/stock4.jpeg" alt="Field execution">
-                  <div class="stackflow-meta">
-                    <p class="stackflow-eyebrow">Operations</p>
-                    <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+
+                <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
+                  <img src="images/stock2.jpeg" alt="Advanced analytics">
+
+                  <div class="stackflow-meta stackflow-meta--split">
+                    <div class="stackflow-card-top">
+                      <p class="stackflow-eyebrow">Operations</p>
+                      <h3 class="stackflow-title2">
+                        Smarter Inspection Through Advanced Analytics
+                      </h3>
+                    </div>
+
+                    <span class="featured-btn">
+                      <span>Read More</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                        <path d="M184 112 L328 256 L184 400"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="52"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                      </svg>
+                    </span>
                   </div>
                 </a>
               </div>
 
               <div class="stackflow-col stackflow-col--2">
-                <a href="/news/inspection-planning" class="stackflow-card stackflow-h-sm1">
-                  <img src="images/stock1.jpeg" alt="Inspection planning">
-                  <div class="stackflow-meta">
-                    <p class="stackflow-eyebrow">Case Study</p>
-                    <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
-                  </div>
-                </a>
+                <a href="/news/inspection-planning" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
+  <img src="images/stock1.jpeg" alt="Inspection planning">
+
+  <div class="stackflow-meta stackflow-meta--split">
+    <div class="stackflow-card-top">
+      <p class="stackflow-eyebrow">Case Study</p>
+      <h3 class="stackflow-title2">
+        Reducing Downtime with Precision Integrity Strategy
+      </h3>
+    </div>
+
+    <span class="featured-btn">
+      <span>Read Case Study</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+        <path d="M184 112 L328 256 L184 400"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="52"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
+</a>
 
                 <a href="/news/integrity-reporting" class="stackflow-card stackflow-h-sm2">
                   <img src="images/stock5.jpeg" alt="Integrity reporting">
@@ -1343,11 +1399,11 @@ html{
                <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--featured">
                 <img src="images/stock3.jpeg" alt="Built for critical environments">
 
-                <div class="stackflow-meta stackflow-meta--featured">
+                <div class="stackflow-meta stackflow-meta--featured intro-card">
                   <div class="stackflow-featured-top">
                     <p class="stackflow-eyebrow">Featured Story</p>
-                    <h3 class="stackflow-title2">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    <h3 class="stackflow-title2 larger">
+                      Where Strategy, Technology, and Execution Converge
                     </h3>
                   </div>
 
@@ -1369,7 +1425,7 @@ html{
                 <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
                   <div class="stackflow-meta">
                     <p class="stackflow-eyebrow">STAY IN TOUCH</p>
-                    <h3 class="stackflow-title2">Keep updated with major industry updates and get in touch with professionals.</h3>
+                    <h3 class="stackflow-title2 larger">Keep updated with major industry updates and get in touch with professionals.</h3>
                     <form class="stackflow-subscribe">
                       <label class="stackflow-sr" for="stackflowEmail">Email address</label>
                       <input id="stackflowEmail" type="email" placeholder="Enter your email for updates">
@@ -1453,6 +1509,57 @@ html{
 
 .featured-btn:hover svg{
   transform: translateX(3px);
+}
+
+.stackflow-card--split{
+  position: relative;
+  overflow: hidden;
+}
+
+.stackflow-meta--split{
+  position: absolute;
+  inset: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.stackflow-card-top{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stackflow-meta--split .featured-btn{
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+/* optional: make text easier to read on image cards */
+.stackflow-card--split::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.28) 0%,
+    rgba(0,0,0,0.12) 35%,
+    rgba(0,0,0,0.42) 100%
+  );
+  z-index: 1;
+}
+
+.stackflow-card--split .stackflow-eyebrow,
+.stackflow-card--split .stackflow-title2{
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.stackflow-card--split .featured-btn{
+  position: relative;
+  z-index: 2;
 }
 </style>
 
