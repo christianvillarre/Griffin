@@ -1,5 +1,4 @@
-
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   /* ===================== ICONS ===================== */
   const ICON_RIGHT_ARROW = `
     <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -87,34 +86,70 @@
             link: "business-advisory.html#capital-acquisition"
           }
         ]
-      },
-      {
-        key: "affiliate",
-        label: "Affiliate Organizations",
-        title: "Affiliate Organizations",
-        desc:
-          "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
-        items: [
-          {
-            label: "Top Notch EDM Services",
-            link: "affiliate-organizations.html#top-notch-edm"
-          },
-          {
-            label: "Sound NDT Solutions",
-            link: "affiliate-organizations.html#sound-ndt"
-          },
-          {
-            label: "ATCO Automated Scanning Systems",
-            link: "affiliate-organizations.html#atco"
-          },
-          {
-            label: "Halo NDT Technologies",
-            link: "affiliate-organizations.html#halo-ndt"
-          }
-        ]
       }
     ]
   };
+
+const AFFILIATES = {
+  tabs: [
+    {
+      key: "top-notch-edm",
+      label: "Top Notch EDM Services",
+      title: "Top Notch EDM Services",
+      image: "/images/partner-logo2.png",
+      imageAlt: "Top Notch EDM",
+      desc:
+        "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+      items: [
+        {
+          label: "Learn More",
+          link: "affiliate-organizations.html#top-notch-edm"
+        },
+      ]
+    },
+    {
+      key: "sound-ndt",
+      label: "Sound NDT Solutions",
+      title: "Sound NDT Solutions",
+      image: "/images/partner-logo1.png",
+      imageAlt: "Top Notch EDM",
+      desc:
+        "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+      items: [
+        {
+          label: "Learn More",
+          link: "affiliate-organizations.html#top-notch-edm"
+        },
+      ]
+    },
+    {
+      key: "atco",
+      label: "ATCO Automated Scanning Systems",
+      title: "ATCO Automated Scanning Systems",
+      desc:
+        "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+      items: [
+        {
+          label: "Learn More",
+          link: "affiliate-organizations.html#top-notch-edm"
+        },
+      ]
+    },
+    {
+      key: "halo-ndt",
+      label: "Halo NDT Technologies",
+      title: "Halo NDT Technologies",
+      desc:
+        "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+      items: [
+        {
+          label: "Learn More",
+          link: "affiliate-organizations.html#top-notch-edm"
+        },
+      ]
+    }
+  ]
+};
 
   /* ===================== DOM ===================== */
   const dropdownWrap = document.getElementById("navDropdown");
@@ -127,9 +162,24 @@
   /* ===================== STATE ===================== */
   let activeKey = null;
   let activeCapTab = "technical";
+  let activeAffiliateTab = "top-notch-edm";
   let isAnimatingRight = false;
+  let closeTimer = null;
 
   /* ===================== HELPERS ===================== */
+  function cancelCloseTimer() {
+  if (closeTimer) {
+    clearTimeout(closeTimer);
+    closeTimer = null;
+  }
+}
+
+function scheduleCloseDropdown() {
+  cancelCloseTimer();
+  closeTimer = setTimeout(() => {
+    closeDropdown();
+  }, 120);
+}
   function clearActiveTriggers() {
     document
       .querySelectorAll('.nav-link[data-dropdown].is-active')
@@ -176,6 +226,114 @@
       </div>
     `;
   }
+
+  function renderAffiliateDropdown() {
+    ddLeft.innerHTML = "";
+
+    ddRight.innerHTML = `
+      <div class="nav-dd-title">${AFFILIATES.title}</div>
+      <p class="nav-dd-desc">${AFFILIATES.desc}</p>
+
+      <div class="nav-dd-links">
+        ${AFFILIATES.items
+          .map(
+            (item) => `
+              <a class="nav-dd-greenlink" href="${item.link}" data-dd-close>
+                <span>${item.label}</span>
+                ${ICON_UPRIGHT}
+              </a>
+            `
+          )
+          .join("")}
+      </div>
+    `;
+  }
+
+function getAffiliateTab(key) {
+  return AFFILIATES.tabs.find((t) => t.key === key) || AFFILIATES.tabs[0];
+}
+
+function renderAffiliateLeft(tabKey) {
+  ddLeft.innerHTML = AFFILIATES.tabs
+    .map(
+      (t) => `
+        <a
+          class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
+          href="#"
+          data-affiliate-tab="${t.key}"
+        >
+          <span>${t.label}</span>
+          ${ICON_RIGHT_ARROW}
+        </a>
+      `
+    )
+    .join("");
+}
+
+function renderAffiliateRight(tab) {
+  ddRight.innerHTML = `
+    <div class="nav-dd-title">${tab.title}</div>
+    <p class="nav-dd-desc">${tab.desc}</p>
+
+    ${
+      tab.image
+        ? `
+      <div class="nav-dd-image-wrap">
+        <img
+          src="${tab.image}"
+          alt="${tab.imageAlt || tab.title}"
+          class="nav-dd-image"
+        />
+      </div>
+      `
+        : ""
+    }
+
+    <div class="nav-dd-links">
+      ${tab.items
+        .map(
+          (item) => `
+            <a class="nav-dd-greenlink" href="${item.link}" data-dd-close>
+              <span>${item.label}</span>
+              ${ICON_UPRIGHT}
+            </a>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderAffiliateDropdown() {
+  renderAffiliateLeft(activeAffiliateTab);
+  renderAffiliateRight(getAffiliateTab(activeAffiliateTab));
+}
+  function getAffiliateTab(key) {
+  return AFFILIATES.tabs.find((t) => t.key === key) || AFFILIATES.tabs[0];
+}
+
+function renderAffiliateLeft(tabKey) {
+  ddLeft.innerHTML = AFFILIATES.tabs
+    .map(
+      (t) => `
+        <a
+          class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
+          href="#"
+          data-affiliate-tab="${t.key}"
+        >
+          <span>${t.label}</span>
+          ${ICON_RIGHT_ARROW}
+        </a>
+      `
+    )
+    .join("");
+}
+
+
+function renderAffiliateDropdown() {
+  renderAffiliateLeft(activeAffiliateTab);
+  renderAffiliateRight(getAffiliateTab(activeAffiliateTab));
+}
 
   function tween(dur, onUpdate) {
     return new Promise((resolve) => {
@@ -254,6 +412,12 @@
       ddRight.style.transform = "";
     }
 
+    if (key === "affiliates") {
+      renderAffiliateDropdown();
+      ddRight.style.opacity = "";
+      ddRight.style.transform = "";
+    }
+
     dropdownWrap.classList.add("is-open");
     dropdownWrap.setAttribute("aria-hidden", "false");
   }
@@ -266,36 +430,73 @@
   }
 
   /* ===================== EVENTS ===================== */
-  document.querySelectorAll(".nav-link[data-dropdown]").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const key = link.getAttribute("data-dropdown");
-      const isSame =
-        dropdownWrap.classList.contains("is-open") && activeKey === key;
-
-      if (isSame) {
-        closeDropdown();
-      } else {
-        openDropdown(key);
-      }
-    });
+document.querySelectorAll(".nav-link[data-dropdown]").forEach((link) => {
+  link.addEventListener("mouseenter", () => {
+    cancelCloseTimer();
+    const key = link.getAttribute("data-dropdown");
+    openDropdown(key);
   });
 
-  dropdownWrap.addEventListener("click", (e) => {
-    e.stopPropagation();
+  link.addEventListener("mouseleave", (e) => {
+    const toEl = e.relatedTarget;
 
-    const tabEl = e.target.closest("[data-cap-tab]");
-    if (tabEl) {
-      e.preventDefault();
-      swapRightQuick(tabEl.getAttribute("data-cap-tab"));
-      return;
+    if (toEl && dropdownWrap.contains(toEl)) return;
+
+    scheduleCloseDropdown();
+  });
+});
+
+dropdownWrap.addEventListener("mouseenter", () => {
+  cancelCloseTimer();
+});
+
+dropdownWrap.addEventListener("mouseleave", () => {
+  scheduleCloseDropdown();
+});
+
+dropdownWrap.addEventListener("mouseover", (e) => {
+  const capTabEl = e.target.closest("[data-cap-tab]");
+  if (capTabEl) {
+    const nextKey = capTabEl.getAttribute("data-cap-tab");
+    swapRightQuick(nextKey);
+    return;
+  }
+
+  const affiliateTabEl = e.target.closest("[data-affiliate-tab]");
+  if (affiliateTabEl) {
+    const nextKey = affiliateTabEl.getAttribute("data-affiliate-tab");
+    if (nextKey !== activeAffiliateTab) {
+      activeAffiliateTab = nextKey;
+      renderAffiliateLeft(activeAffiliateTab);
+      renderAffiliateRight(getAffiliateTab(activeAffiliateTab));
     }
+  }
+});
 
-    const closeEl = e.target.closest("[data-dd-close]");
-    if (closeEl) closeDropdown();
-  });
+
+
+dropdownWrap.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  const capTabEl = e.target.closest("[data-cap-tab]");
+  if (capTabEl) {
+    e.preventDefault();
+    swapRightQuick(capTabEl.getAttribute("data-cap-tab"));
+    return;
+  }
+
+  const affiliateTabEl = e.target.closest("[data-affiliate-tab]");
+  if (affiliateTabEl) {
+    e.preventDefault();
+    activeAffiliateTab = affiliateTabEl.getAttribute("data-affiliate-tab");
+    renderAffiliateLeft(activeAffiliateTab);
+    renderAffiliateRight(getAffiliateTab(activeAffiliateTab));
+    return;
+  }
+
+  const closeEl = e.target.closest("[data-dd-close]");
+  if (closeEl) closeDropdown();
+});
 
   document.addEventListener("click", (e) => {
     if (!dropdownWrap.classList.contains("is-open")) return;
@@ -315,3 +516,4 @@
     .querySelectorAll(".nav-link:not([data-dropdown])")
     .forEach((link) => link.addEventListener("click", () => closeDropdown()));
 });
+
