@@ -1,0 +1,1525 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Business Advisory Services | Griffin Integrity</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1200px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    img{ max-width:100%; display:block; }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .page-link{
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      color: var(--red);
+      text-decoration: none;
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .page-link svg{
+      width:18px;
+      height:18px;
+      transition: transform .2s ease;
+    }
+
+    .page-link:hover{
+      transform: translateX(2px);
+    }
+
+    .page-link:hover svg{
+      transform: translateX(3px);
+    }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar{
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, calc(100% - 28px));
+      height: 84px;
+      border-radius: 10px;
+      background: #00202e70;
+      border: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 50;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 140px;
+    }
+
+    .nav-logo img{
+      height: 48px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      transform: translateY(-3px);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 12px;
+      text-decoration:none;
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      border: 1px solid rgba(255,255,255,0.0);
+      transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover{ color:#F00303; }
+
+    .nav-link[data-dropdown].is-active,
+    .nav-link[data-dropdown].is-active:hover {
+      color: #F00303;
+    }
+
+    .nav-link[data-dropdown].is-active .nav-chevron{
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    .nav-link--contact{
+      background: rgba(255,255,255,0.95);
+      color: #111;
+      border: 1px solid rgba(255,255,255,0.65);
+      padding: 0 16px;
+    }
+
+    .nav-link--contact:hover{
+      background: rgba(255,255,255,1);
+      border-color: rgba(255,255,255,0.9);
+      color:#111;
+    }
+
+    .nav-link--has-chevron{ gap: 3px; }
+
+    .nav-chevron{
+      width: 16px;
+      height: 16px;
+      display: block;
+      transform: translateY(0px);
+      opacity: 0.9;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .nav-link:hover .nav-chevron{ opacity: 1; }
+
+    @media (max-width: 560px){
+      .nav-link--hide-sm{ display:none; }
+    }
+
+    /* ===================== NAV DROPDOWN ===================== */
+    .nav-dd-item.is-tab{
+      cursor: pointer;
+    }
+
+    .nav-dd-item.is-tab.is-selected{
+      background: rgba(255, 255, 255, 0.055);
+      color: #ffffff;
+    }
+
+    .nav-dd-item.is-tab.is-selected .dd-arrow path{
+      stroke: #F00303;
+    }
+
+    .nav-dropdown-wrap{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: calc(18px + 84px + 10px);
+      width: min(900px, calc(100% - 28px));
+      z-index: 49;
+      pointer-events: none;
+    }
+
+    .nav-dropdown{
+      border-radius: 10px;
+      background: #00202ec0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 14px;
+      padding: 16px;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .nav-dropdown-wrap.is-open{
+      pointer-events: auto;
+    }
+
+    .nav-dropdown-wrap.is-open .nav-dropdown{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-dd-left{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-dd-item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(33, 33, 33, 0);
+      border: none;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .nav-dd-item:hover{
+      transform: translateY(-1px);
+      background: #5677851b;
+      border-color: rgba(255,255,255,0.18);
+      color:#ffffff;
+    }
+
+    .nav-dd-item .dd-arrow{
+      width: 18px;
+      height: 18px;
+      opacity: 0.95;
+    }
+
+    .nav-dd-item .dd-arrow path{
+      stroke: rgba(255,255,255,0.92);
+    }
+
+    .nav-dd-item:hover .dd-arrow path{
+      stroke: #ffffff;
+    }
+
+    .nav-dd-right{
+      padding: 6px 4px 6px 2px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .nav-dd-title{
+      font-size: 16px;
+      font-weight: 700;
+      margin: 2px 0 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-dd-desc{
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      opacity: 0.78;
+      max-width: 48ch;
+    }
+
+    .nav-dd-links{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .nav-dd-greenlink{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: #F00303;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      transition:
+        color 170ms cubic-bezier(.22,1,.36,1),
+        transform 160ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink::after{
+      content:"";
+      position:absolute;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 1px;
+      background: #F00303;
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0.95;
+      transition: transform 180ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink:hover::after,
+    .nav-dd-greenlink:focus-visible::after{
+      transform: scaleX(1);
+    }
+
+    .nav-dd-greenlink svg{
+      width: 16px;
+      height: 16px;
+      transform: translateY(0);
+      transition: transform 160ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink svg path{
+      stroke: #ffffff;
+      transition: stroke 170ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink:hover,
+    .nav-dd-greenlink:focus-visible{
+      color: #ffffff;
+    }
+
+    .nav-dd-greenlink:hover svg,
+    .nav-dd-greenlink:focus-visible svg{
+      transform: translateY(-1px);
+    }
+
+    .nav-dd-greenlink:hover svg path,
+    .nav-dd-greenlink:focus-visible svg path{
+      stroke: #F00303;
+    }
+
+    @media (max-width: 720px){
+      .nav-dropdown{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ================= DIFFERENT HERO STYLE ================= */
+    .advisory-hero{
+      padding: 130px 0 0;
+      background:
+        linear-gradient(180deg, #f7f8fa 0%, #ffffff 100%);
+    }
+
+    .advisory-hero__grid{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: clamp(500px, 62vw, 760px);
+    }
+
+    .advisory-hero__content{
+      background: #ffffff;
+      padding: clamp(34px, 5vw, 64px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .advisory-hero__eyebrow{
+      margin: 0 0 18px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #777;
+    }
+
+    .advisory-hero__content h1{
+      margin: 0 0 22px;
+      font-size: clamp(2.8rem, 5vw, 5.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      font-weight: 500;
+      color: #111;
+      max-width: 8.5ch;
+    }
+
+    .advisory-hero__content p{
+      margin: 0;
+      max-width: 43ch;
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      line-height: 1.8;
+      color: rgba(17,17,17,0.72);
+      font-weight: 300;
+    }
+
+    .advisory-hero__meta{
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(17,17,17,0.1);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 24px;
+    }
+
+    .advisory-hero__meta-item span{
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
+    .advisory-hero__meta-item p{
+      margin:0;
+      font-size: 15px;
+      line-height: 1.6;
+      color:#111;
+      font-weight:500;
+    }
+
+    .advisory-hero__media{
+      position: relative;
+      min-height: 100%;
+      overflow: hidden;
+      background: #0d1d27;
+    }
+
+    .advisory-hero__media img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .advisory-hero__media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        180deg,
+        rgba(5,35,48,0.12) 0%,
+        rgba(5,35,48,0.10) 45%,
+        rgba(5,35,48,0.32) 100%
+      );
+    }
+
+    .advisory-hero__floating-card{
+      position:absolute;
+      left: clamp(22px, 3vw, 34px);
+      bottom: clamp(22px, 3vw, 34px);
+      z-index: 2;
+      width: min(360px, calc(100% - 44px));
+      background: rgba(5,35,48,0.88);
+      color: #fff;
+      padding: 24px 24px 22px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .advisory-hero__floating-card h2{
+      margin:0 0 10px;
+      font-size: clamp(1.25rem, 1.6vw, 1.65rem);
+      line-height:1.02;
+      letter-spacing:-0.03em;
+      font-weight:500;
+    }
+
+    .advisory-hero__floating-card p{
+      margin:0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(255,255,255,0.82);
+    }
+
+    /* ================= INTRO BAND ================= */
+    .advisory-intro{
+      background:
+        linear-gradient(rgba(5,35,48,0.74), rgba(5,35,48,0.74)),
+        url("images/bluebg3.png") center/cover no-repeat;
+    }
+
+    .advisory-intro__inner{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+      min-height: clamp(240px, 28vw, 360px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: clamp(70px, 10vw, 120px) 0;
+    }
+
+    .advisory-intro__inner p{
+      margin:0;
+      max-width:60ch;
+      font-size: clamp(1.15rem, 1.75vw, 1.75rem);
+      line-height:1.75;
+      color: rgba(255,255,255,0.92);
+      font-weight:300;
+    }
+
+    /* ================= SECTION HEAD ================= */
+    .section-head{
+      margin-bottom: clamp(26px, 3vw, 42px);
+      border-top: 1px solid #111;
+      padding-top: 24px;
+    }
+
+    .section-head h2{
+      margin: 0;
+      font-size: clamp(1.8rem, 2vw, 2.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      font-weight: 300;
+      max-width: 24ch;
+    }
+
+    /* ================= 2 GRID ================= */
+    .advisory-two-grid{
+      background:#fff;
+      padding: clamp(72px, 8vw, 110px) 0;
+    }
+
+    .advisory-two-grid__grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(32px, 5vw, 70px);
+    }
+
+    .advisory-two-grid__item h2{
+      margin: 0 0 18px;
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      font-weight: 400;
+      color: #111;
+    }
+
+    .advisory-two-grid__item p{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(17,17,17,0.76);
+      max-width: 50ch;
+    }
+
+    /* ================= SERVICES CARDS ================= */
+    .services-grid-section{
+      background:#fff;
+      padding: 0 0 clamp(72px, 8vw, 110px);
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:0;
+    }
+
+    .services-card{
+      display:flex;
+    }
+
+    .services-card__box{
+      width:100%;
+      padding: 1.2rem;
+      background:#fff;
+      transition: background-color .3s ease, color .3s ease;
+      cursor:pointer;
+    }
+
+    .services-card__box:hover{
+      background: var(--navy);
+    }
+
+    .services-card__media{
+      width:100%;
+      height:240px;
+      overflow:hidden;
+      margin-bottom:1.35rem;
+    }
+
+    .services-card__media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .services-card__body{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .services-card__label{
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#777;
+      transition: color .3s ease;
+    }
+
+    .services-card__title{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      margin:0;
+      font-size: clamp(18px, 1.2vw, 22px);
+      line-height:1.1;
+      letter-spacing:-0.025em;
+      font-weight:600;
+      color:#111;
+      transition: color .3s ease;
+    }
+
+    .services-card__text{
+      margin:0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,0.78);
+      transition: color .3s ease;
+    }
+
+    .title-arrow{
+      display:inline-flex;
+      color:#111;
+      transition: color .3s ease;
+    }
+
+    .title-arrow svg{
+      width:24px;
+      height:24px;
+    }
+
+    .services-card__box:hover .services-card__label,
+    .services-card__box:hover .services-card__title,
+    .services-card__box:hover .services-card__text{
+      color:#fff;
+    }
+
+    .services-card__box:hover .title-arrow{
+      color: var(--red);
+    }
+
+    /* ================= IMAGE FEATURE ================= */
+    .advisory-feature{
+      position: relative;
+      min-height: clamp(480px, 56vw, 760px);
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .advisory-feature__image{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+    }
+
+    .advisory-feature::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        90deg,
+        rgba(5,35,48,0.30) 0%,
+        rgba(5,35,48,0.34) 28%,
+        rgba(255,255,255,0.04) 70%,
+        rgba(255,255,255,1) 100%
+      );
+      z-index:1;
+    }
+
+    .advisory-feature__overlay{
+      position:relative;
+      z-index:2;
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .advisory-feature__card{
+      width:min(460px, 48%);
+      background: rgba(255,255,255,0.96);
+      padding: clamp(28px, 4vw, 42px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .advisory-feature__card h2{
+      margin:0 0 14px;
+      color:#111;
+      font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+      line-height:1.02;
+      letter-spacing:-0.04em;
+      font-weight:400;
+      max-width:14ch;
+    }
+
+    .advisory-feature__card p{
+      margin:0;
+      color: rgba(17,17,17,0.76);
+      font-size:1rem;
+      line-height:1.75;
+    }
+
+    /* ================= TEXT STATEMENT ================= */
+    .advisory-statement{
+      background:#fff;
+      padding: clamp(72px, 8vw, 110px) 0;
+    }
+
+    .advisory-statement__wrap{
+      border-top:1px solid rgba(17,17,17,0.1);
+      padding-top:34px;
+    }
+
+    .advisory-statement__wrap h2{
+      margin:0 0 20px;
+      font-size: clamp(2rem, 2.8vw, 3rem);
+      line-height:0.98;
+      letter-spacing:-0.04em;
+      font-weight:300;
+      max-width:16ch;
+    }
+
+    .advisory-statement__wrap p{
+      margin:0;
+      max-width:70ch;
+      font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+      line-height:1.85;
+      color: rgba(17,17,17,0.76);
+    }
+
+    /* ================= EXPLORE ================= */
+    .explore-links{
+      padding: 0 0 5rem;
+      background:#fff;
+    }
+
+    .explore-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:18px 40px;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    .explore-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:18px;
+      font-weight:500;
+      text-decoration:none;
+      color:#111;
+      padding:10px 0;
+      transition: color .3s ease;
+    }
+
+    .explore-link:hover{
+      color: var(--navy);
+    }
+
+    .explore-link .help-arrow{
+      width:22px;
+      height:22px;
+      transition: transform .3s ease, color .3s ease;
+    }
+
+    .explore-link:hover .help-arrow{
+      transform: translateX(4px);
+      color: var(--red);
+    }
+
+    /* ================= CTA ================= */
+    .advisor-cta-section{
+      padding: 0 0 5rem;
+      background: #fff;
+    }
+
+    .advisor-cta{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      border-top: 1px solid rgba(17,17,17,0.08);
+    }
+
+    .advisor-cta__content h2{
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 300;
+      color: #111;
+    }
+
+    .advisor-cta__button{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 0 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid #111;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .advisor-cta__button:hover{
+      background: var(--navy);
+      border-color: var(--navy);
+      transform: translateY(-1px);
+    }
+
+    .advisor-cta__icon{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .advisor-cta__icon svg{
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 1100px){
+      .services-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .services-card__box{
+        padding: 2rem;
+      }
+
+      .services-card__media{
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 980px){
+      .advisory-hero__grid{
+        grid-template-columns: 1fr;
+      }
+
+      .advisory-hero__media{
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 900px){
+      .advisory-two-grid__grid{
+        grid-template-columns: 1fr;
+      }
+
+      .advisory-feature{
+        min-height: 560px;
+        align-items:end;
+        padding-bottom:28px;
+      }
+
+      .advisory-feature::after{
+        background: linear-gradient(
+          180deg,
+          rgba(5,35,48,0.32) 0%,
+          rgba(5,35,48,0.18) 35%,
+          rgba(255,255,255,0.88) 100%
+        );
+      }
+
+      .advisory-feature__card{
+        width:100%;
+        max-width:100%;
+      }
+    }
+
+    @media (max-width: 768px){
+      .advisory-intro__inner{
+        text-align:left;
+        justify-content:flex-start;
+      }
+
+      .explore-grid{
+        grid-template-columns:1fr;
+      }
+
+      .advisor-cta{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2.25rem 0;
+      }
+
+      .advisor-cta__button{
+        width:auto;
+      }
+
+      .advisory-hero__meta{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px){
+      .page-wrap,
+      .advisory-hero__grid,
+      .advisory-intro__inner,
+      .advisory-feature__overlay{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+    }
+.advisory-hero__bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.floating-logo{
+  position: static;
+  width: 100%;
+  height: auto;
+  
+  object-fit: contain;
+  display: block;
+}
+  </style>
+</head>
+<body>
+<header class="navbar" aria-label="Primary">
+  <div class="nav-logo">
+  <a href="/">
+    <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+  </a>
+</div>
+
+  <nav class="nav-links">
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="capabilities">
+      <span class="nav-link__label">Capabilities</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="affiliates">
+      <span class="nav-link__label">Affiliates</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+    <a class="nav-link" href="#home">News</a>
+    <a class="nav-link nav-link--contact" href="#home">Contact</a>
+  </nav>
+</header>
+<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
+  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
+    <div class="nav-dd-left" id="navDdLeft"></div>
+    <div class="nav-dd-right" id="navDdRight"></div>
+  </div>
+</div>
+  <div id="scroll-container">
+    <main>
+
+      <!-- DIFFERENT STYLE HERO -->
+      <section class="advisory-hero">
+        <div class="advisory-hero__grid">
+            <div class="advisory-hero__content">
+            <div class="advisory-hero__eyebrow">Affiliate Organization</div>
+            <h1>Top Notch EDM</h1>
+            <p>
+                We partner with Top Notch EDM Services to deliver high-quality ultrasonic testing (UT) reference standards, calibration blocks, custom welded flaw samples, and performance demonstration blocks. Their team combines precision machining and advanced welding capabilities with deep non-destructive testing (NDT) expertise.
+            </p>
+
+            <a href="#advisory-services" class="page-link">
+                <span>Explore Services</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <div class="advisory-hero__meta">
+                <div class="advisory-hero__meta-item">
+                <span>Approach</span>
+                <p>Independent, structured, practical</p>
+                </div>
+                <div class="advisory-hero__meta-item">
+                <span>Focus</span>
+                <p>Strategy, operations, execution clarity</p>
+                </div>
+            </div>
+            </div>
+
+            <div class="advisory-hero__media">
+            <img src="/images/stock14.jpeg" alt="Business advisory services">
+            <div class="advisory-hero__media">
+            <img src="/images/stock14.jpeg" alt="Business advisory services" class="advisory-hero__bg">
+            <div class="advisory-hero__floating-card">
+                <img src="/images/partner-logo2.png" alt="Company Logo" class="floating-logo">
+            </div>
+            </div>
+            </div>
+        </div>
+        </section>
+
+      <!-- INTRO -->
+      <section class="advisory-intro">
+        <div class="advisory-intro__inner">
+          <p>
+            Our advisory work helps organizations evaluate complexity, improve alignment,
+            and move from uncertainty toward clearer action. The emphasis is always on
+            thoughtful structure, practical insight, and support that creates measurable value.
+          </p>
+        </div>
+      </section>
+
+      <!-- TWO COLUMN -->
+      <section class="advisory-two-grid">
+        <div class="page-wrap">
+          <div class="advisory-two-grid__grid">
+            <div class="advisory-two-grid__item">
+              <h2>What We Help Solve</h2>
+              <p>
+                Businesses often face challenges that are not caused by a single issue,
+                but by gaps in clarity, alignment, process, or decision structure. We help
+                identify where momentum is being lost, where systems are underperforming,
+                and where better frameworks can improve execution.
+              </p>
+            </div>
+
+            <div class="advisory-two-grid__item">
+              <h2>How We Deliver Value</h2>
+              <p>
+                We focus on practical recommendations that leadership teams and operating
+                groups can actually use. That means clear priorities, realistic paths
+                forward, and advisory support shaped by business context rather than
+                generic solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services-grid-section" id="advisory-services">
+        <div class="page-wrap">
+          <div class="section-head">
+            <h2>Business Advisory Services</h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="services-card">
+              <div class="services-card__box">
+                <div class="services-card__media">
+                  <img src="/images/stock1.jpeg" alt="Strategic planning advisory">
+                </div>
+                <div class="services-card__body">
+                  <span class="services-card__label">Service 01</span>
+                  <h3 class="services-card__title">
+                    Strategic Planning Support
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <p class="services-card__text">
+                    Support for clarifying priorities, refining direction, and aligning
+                    business decisions with long-term goals and near-term realities.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="services-card">
+              <div class="services-card__box">
+                <div class="services-card__media">
+                  <img src="/images/stock2.jpeg" alt="Operational improvement advisory">
+                </div>
+                <div class="services-card__body">
+                  <span class="services-card__label">Service 02</span>
+                  <h3 class="services-card__title">
+                    Operational Improvement
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <p class="services-card__text">
+                    Advisory support to improve workflow structure, process consistency,
+                    accountability, and the day-to-day systems that shape performance.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="services-card">
+              <div class="services-card__box">
+                <div class="services-card__media">
+                  <img src="/images/stock3.jpeg" alt="Decision support">
+                </div>
+                <div class="services-card__body">
+                  <span class="services-card__label">Service 03</span>
+                  <h3 class="services-card__title">
+                    Leadership Decision Support
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <p class="services-card__text">
+                    Independent perspective and structured analysis to support higher-stakes
+                    choices, planning conversations, and internal alignment.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="services-card">
+              <div class="services-card__box">
+                <div class="services-card__media">
+                  <img src="/images/stock4.jpeg" alt="Process advisory">
+                </div>
+                <div class="services-card__body">
+                  <span class="services-card__label">Service 04</span>
+                  <h3 class="services-card__title">
+                    Process Review & Redesign
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <p class="services-card__text">
+                    Review existing systems, identify friction points, and help reshape
+                    process design for better clarity, consistency, and follow-through.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="services-card">
+              <div class="services-card__box">
+                <div class="services-card__media">
+                  <img src="/images/stock1.jpeg" alt="Growth advisory">
+                </div>
+                <div class="services-card__body">
+                  <span class="services-card__label">Service 05</span>
+                  <h3 class="services-card__title">
+                    Growth Readiness Advisory
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <p class="services-card__text">
+                    Prepare teams, structures, and internal systems for growth by improving
+                    how planning, communication, and execution work together.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="services-card">
+              <div class="services-card__box">
+                <div class="services-card__media">
+                  <img src="/images/stock2.jpeg" alt="Business advisory implementation">
+                </div>
+                <div class="services-card__body">
+                  <span class="services-card__label">Service 06</span>
+                  <h3 class="services-card__title">
+                    Implementation Guidance
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </h3>
+                  <p class="services-card__text">
+                    Turn recommendations into practical next steps with advisory support
+                    that helps teams execute with more confidence and less ambiguity.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE SECTION -->
+      <section class="advisory-feature">
+        <img class="advisory-feature__image" src="/images/stock3.jpeg" alt="Business advisory support in action">
+
+        <div class="advisory-feature__overlay">
+          <div class="advisory-feature__card">
+            <h2>Clearer Structure Creates Better Decisions</h2>
+            <p>
+              Strong business performance is often shaped by how clearly priorities,
+              processes, and decisions are defined. Our advisory work helps leaders
+              create stronger foundations for execution, accountability, and growth.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATEMENT -->
+      <section class="advisory-statement">
+        <div class="page-wrap">
+          <div class="advisory-statement__wrap">
+            <h2>Advisory Support Should Move the Business Forward</h2>
+            <p>
+              Advice only becomes valuable when it can be understood, trusted, and used.
+              That is why our focus stays on practical clarity. Whether the challenge is
+              strategic, operational, or structural, the goal is always the same: help
+              organizations make stronger decisions and create systems that support better outcomes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPLORE -->
+      <section class="explore-links">
+        <div class="page-wrap">
+          <div class="section-head">
+            <h2>Keep Exploring</h2>
+          </div>
+
+          <div class="explore-grid">
+            <a href="#" class="explore-link">
+              About Griffin Integrity
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Technical Consulting
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Industry Insights
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Strategic Support
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Operational Services
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Contact
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="advisor-cta-section" id="connect-advisor">
+        <div class="page-wrap">
+          <div class="advisor-cta">
+            <div class="advisor-cta__content">
+              <h2>Need business advisory support?</h2>
+            </div>
+
+            <a href="mailto:you@example.com" class="advisor-cta__button">
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact Us</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/navbar.js"></script>
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const lenis = new Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.1,
+        anchors: {
+          offset: 110
+        }
+      });
+
+      window.lenis = lenis;
+    })();
+  </script>
+<style>
+    /* ================= DIFFERENT HERO STYLE ================= */
+.advisory-hero{
+  min-height: 100vh;
+  padding: 110px 0 0;
+  background: linear-gradient(180deg, #f7f8fa 0%, #ffffff 100%);
+}
+
+.advisory-hero__grid{
+  width: min(1440px, calc(100% - 32px));
+  min-height: calc(100vh - 110px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.advisory-hero__content{
+  background: #ffffff;
+  padding: clamp(32px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.advisory-hero__eyebrow{
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.advisory-hero__content h1{
+  margin: 0 0 22px;
+  font-size: clamp(2.8rem, 4vw, 2.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  font-weight: 500;
+  color: #111;
+  max-width: 18.5ch;
+}
+
+.advisory-hero__content p{
+  margin: 0;
+  max-width: 43ch;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.8;
+  color: rgba(17,17,17,0.72);
+  font-weight: 300;
+}
+
+.advisory-hero__meta{
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(17,17,17,0.1);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+}
+
+.advisory-hero__meta-item span{
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.advisory-hero__meta-item p{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #111;
+  font-weight: 500;
+}
+
+.advisory-hero__media{
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  background: #0d1d27;
+}
+
+.advisory-hero__media img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.advisory-hero__media::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5,35,48,0.10) 0%,
+    rgba(5,35,48,0.08) 45%,
+    rgba(5,35,48,0.28) 100%
+  );
+}
+
+.advisory-hero__floating-card{
+  position: absolute;
+  left: clamp(22px, 3vw, 34px);
+  bottom: clamp(22px, 3vw, 34px);
+  z-index: 2;
+  width: min(380px, calc(100% - 44px));
+  background: rgba(5, 35, 48, 0);
+  color: #fff;
+  padding: 24px 24px 22px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  height: 100px;
+  width: 420px;
+  
+}
+
+.advisory-hero__floating-card h2{
+  margin: 0 0 10px;
+  font-size: clamp(1.25rem, 1.6vw, 1.65rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+.advisory-hero__floating-card p{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.82);
+}
+
+@media (max-width: 980px){
+  .advisory-hero{
+    padding-top: 100px;
+  }
+
+  .advisory-hero__grid{
+    width: min(1440px, calc(100% - 24px));
+    grid-template-columns: 1fr;
+    min-height: auto;
+    max-height: none;
+  }
+
+  .advisory-hero__media{
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 768px){
+  .advisory-hero__meta{
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</body>
+</html>

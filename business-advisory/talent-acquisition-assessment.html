@@ -1,0 +1,1408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Griffin Integrity</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1200px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    img{ max-width:100%; display:block; }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .page-link{
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      color: var(--red);
+      text-decoration: none;
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .page-link svg{
+      width:18px;
+      height:18px;
+      transition: transform .2s ease;
+    }
+
+    .page-link:hover{
+      transform: translateX(2px);
+    }
+
+    .page-link:hover svg{
+      transform: translateX(3px);
+    }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar{
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, calc(100% - 28px));
+      height: 84px;
+      border-radius: 10px;
+      background: #00202e70;
+      border: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 50;
+
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .nav-logo{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 140px;
+    }
+
+    .nav-logo img{
+      height: 48px;
+      width: auto;
+      display:block;
+      object-fit: contain;
+      transform: translateY(-3px);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 12px;
+      text-decoration:none;
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      border: 1px solid rgba(255,255,255,0.0);
+      transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover{ color:#F00303; }
+
+    .nav-link[data-dropdown].is-active,
+    .nav-link[data-dropdown].is-active:hover {
+      color: #F00303;
+    }
+
+    .nav-link[data-dropdown].is-active .nav-chevron{
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    .nav-link--contact{
+      background: rgba(255,255,255,0.95);
+      color: #111;
+      border: 1px solid rgba(255,255,255,0.65);
+      padding: 0 16px;
+    }
+
+    .nav-link--contact:hover{
+      background: rgba(255,255,255,1);
+      border-color: rgba(255,255,255,0.9);
+      color:#111;
+    }
+
+    @media (max-width: 560px){
+      .nav-link--hide-sm{ display:none; }
+    }
+
+    .nav-link--has-chevron{ gap: 3px; }
+
+    .nav-chevron{
+      width: 16px;
+      height: 16px;
+      display: block;
+      transform: translateY(0px);
+      opacity: 0.9;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .nav-link:hover .nav-chevron{ opacity: 1; }
+
+    /* ===================== NAV DROPDOWN ===================== */
+    .nav-dd-item.is-tab{
+      cursor: pointer;
+    }
+
+    .nav-dd-item.is-tab.is-selected{
+      background: rgba(255, 255, 255, 0.055);
+      color: #ffffff;
+    }
+
+    .nav-dd-item.is-tab.is-selected .dd-arrow path{
+      stroke: #F00303;
+    }
+
+    .nav-dropdown-wrap{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: calc(18px + 84px + 10px);
+      width: min(900px, calc(100% - 28px));
+      z-index: 49;
+      pointer-events: none;
+    }
+
+    .nav-dropdown{
+      border-radius: 10px;
+      background: #00202ec0;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 14px;
+      padding: 16px;
+
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .nav-dropdown-wrap.is-open{
+      pointer-events: auto;
+    }
+
+    .nav-dropdown-wrap.is-open .nav-dropdown{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-dd-left{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-dd-item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(33, 33, 33, 0);
+      border: none;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .nav-dd-item:hover{
+      transform: translateY(-1px);
+      background: #5677851b;
+      border-color: rgba(255,255,255,0.18);
+      color:#ffffff;
+    }
+
+    .nav-dd-item .dd-arrow{
+      width: 18px;
+      height: 18px;
+      opacity: 0.95;
+    }
+
+    .nav-dd-item .dd-arrow path{
+      stroke: rgba(255,255,255,0.92);
+    }
+
+    .nav-dd-item:hover .dd-arrow path{
+      stroke: #ffffff;
+    }
+
+    .nav-dd-right{
+      padding: 6px 4px 6px 2px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .nav-dd-title{
+      font-size: 16px;
+      font-weight: 700;
+      margin: 2px 0 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-dd-desc{
+      margin: 0 0 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      opacity: 0.78;
+      max-width: 48ch;
+    }
+
+    .nav-dd-links{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .nav-dd-greenlink{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: #F00303;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      -webkit-tap-highlight-color: transparent;
+      transition:
+        color 170ms cubic-bezier(.22,1,.36,1),
+        transform 160ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink::after{
+      content:"";
+      position:absolute;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 1px;
+      background: #F00303;
+      transform: scaleX(0);
+      transform-origin: left;
+      opacity: 0.95;
+      transition: transform 180ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink:hover::after,
+    .nav-dd-greenlink:focus-visible::after{
+      transform: scaleX(1);
+    }
+
+    .nav-dd-greenlink svg{
+      width: 16px;
+      height: 16px;
+      transform: translateY(0);
+      transition: transform 160ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink svg path{
+      stroke: #ffffff;
+      transition: stroke 170ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .nav-dd-greenlink:hover,
+    .nav-dd-greenlink:focus-visible{
+      color: #ffffff;
+    }
+
+    .nav-dd-greenlink:hover svg,
+    .nav-dd-greenlink:focus-visible svg{
+      transform: translateY(-1px);
+    }
+
+    .nav-dd-greenlink:hover svg path,
+    .nav-dd-greenlink:focus-visible svg path{
+      stroke: #F00303;
+    }
+
+    @media (max-width: 720px){
+      .nav-dropdown{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ================= ABOUT HERO ================= */
+    .service-top-image{
+      width: 100%;
+      height: clamp(420px, 58vw, 80vh);
+      position: relative;
+      overflow: hidden;
+      background: #0d1d27;
+      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+    }
+
+    .service-top-image img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+    }
+
+    .service-top-image::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.24) 50%,
+        rgba(0,0,0,0.56) 100%
+      );
+    }
+
+    .service-top-image__title{
+      position: absolute;
+      left: 50%;
+      bottom: clamp(30px, 5vw, 56px);
+      transform: translateX(-50%);
+      width: min(1200px, calc(100% - 40px));
+      z-index: 2;
+    }
+
+    .service-eyebrow{
+      margin:0 0 14px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.76);
+    }
+
+    .service-top-image__title h1{
+      margin: 0;
+      color: #fff;
+      font-size: clamp(2.5rem, 5vw, 5.5rem);
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      max-width: 14ch;
+    }
+
+    /* ================= FULL WIDTH INTRO BAND ================= */
+    .service-split-section{
+      width: 100%;
+    }
+
+    .about-intro-band{
+      background:
+        linear-gradient(rgba(5,35,48,0.74), rgba(5,35,48,0.74)),
+        url("/images/bluebg3.png") center/cover no-repeat;
+    }
+
+    .about-intro-band__inner{
+      width: 100%;
+    }
+
+    .service-split-content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .about-intro-band__content{
+      width: 100%;
+      max-width: none;
+      min-height: clamp(240px, 28vw, 360px);
+      padding: clamp(70px, 10vw, 120px) clamp(24px, 7vw, 90px);
+      align-items: center;
+      text-align: center;
+    }
+
+    .service-subtitle-dark{
+      margin: 0;
+      max-width: 60ch;
+      font-size: clamp(1.15rem, 1.75vw, 1.75rem);
+      line-height: 1.75;
+      color: rgba(255,255,255,0.92);
+      font-weight: 300;
+    }
+
+    /* ================= 2 GRID TEXT ================= */
+    .about-two-grid{
+      background: #fff;
+      padding: clamp(72px, 8vw, 110px) 0;
+    }
+
+    .about-two-grid__grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(32px, 5vw, 70px);
+    }
+
+    .about-two-grid__item h2{
+      margin: 0 0 18px;
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      font-weight: 400;
+      color: #111;
+    }
+
+    .about-two-grid__item p{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(17,17,17,0.76);
+      max-width: 50ch;
+    }
+
+    /* ================= TEXT BLOCK ================= */
+    .help-section{
+      background:#fff;
+    }
+
+    .help-head{
+      margin-bottom: clamp(24px, 3vw, 46px);
+      border-top:1px solid black;
+    }
+
+    .help-head h2{
+      margin:0;
+      font-size: clamp(1.8rem, 2vw, 2.2rem);
+      line-height:0.96;
+      letter-spacing:-0.035em;
+      font-weight:300;
+      max-width:26ch;
+      margin-top: 24px;
+    }
+
+    .help-text-block{
+      width: 100%;
+      margin-bottom: 5rem;
+      column-count: 2;
+      column-gap: 60px;
+      column-fill: balance;
+      font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height: 1.8;
+      color: rgba(17,17,17,0.8);
+    }
+
+    .help-text-block p{
+      margin: 0;
+    }
+
+    /* ================= VALUE GRID ================= */
+    .help-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:0;
+    }
+
+    .help-card{
+      padding: 28px 26px 30px;
+      min-height: 250px;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .help-card:hover{
+      background:#7777771b;
+      color:#000000;
+    }
+
+    .help-card:hover .help-card__title,
+    .help-card:hover .help-list p{
+      color:#000000;
+    }
+
+    .help-card:hover .help-arrow{
+      color:var(--red);
+      transform: translateX(4px);
+    }
+
+    .help-card__title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 18px;
+      font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height:1.2;
+      font-weight:600;
+      color:#111;
+      transition: color .25s ease;
+    }
+
+    .help-arrow{
+      flex:0 0 auto;
+      width:22px;
+      height:22px;
+      color:#111;
+      transition: color .25s ease, transform .25s ease;
+    }
+
+    .help-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .help-list p{
+      margin: 0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,0.78);
+      transition: color .25s ease;
+    }
+
+    /* ================= IMAGE FEATURE SECTION ================= */
+    .about-end-feature{
+  position: relative;
+  min-height: clamp(460px, 55vw, 760px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.about-end-feature__image{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.about-end-feature::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(5,35,48,0.28) 0%,
+    rgba(5,35,48,0.34) 30%,
+    rgba(255,255,255,0.00) 72%,
+    rgba(255,255,255,1) 100%
+  );
+  z-index: 1;
+}
+
+.about-end-feature__overlay{
+  position: relative;
+  z-index: 2;
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.about-end-feature__card{
+  width: min(430px, 46%);
+  background: rgba(255,255,255,0.96);
+  padding: clamp(28px, 4vw, 42px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.about-end-feature__card h2{
+  margin: 0 0 14px;
+  color: #111;
+  font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  max-width: 14ch;
+}
+
+.about-end-feature__card p{
+  margin: 0;
+  color: rgba(17,17,17,0.76);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 900px){
+  .about-end-feature{
+    min-height: 560px;
+    align-items: end;
+    padding-bottom: 28px;
+  }
+
+  .about-end-feature::after{
+    background: linear-gradient(
+      180deg,
+      rgba(5,35,48,0.32) 0%,
+      rgba(5,35,48,0.18) 35%,
+      rgba(255,255,255,0.88) 100%
+    );
+  }
+
+  .about-end-feature__card{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+    /* ================= BOTTOM 2 GRID ================= */
+    .about-bottom-grid{
+      background: #fff;
+      padding: clamp(60px, 7vw, 100px) 0;
+    }
+
+    .about-bottom-grid__grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: clamp(28px, 4vw, 60px);
+      border-top: 1px solid rgba(17,17,17,0.1);
+      padding-top: 32px;
+    }
+
+    .about-bottom-grid__item h3{
+      margin: 0 0 14px;
+      font-size: clamp(1.2rem, 1.7vw, 1.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #111;
+    }
+
+    .about-bottom-grid__item p{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(17,17,17,0.74);
+      max-width: 48ch;
+    }
+
+    /* ================= INSIGHT SECTION ================= */
+    .insight-grid-section{
+      background:#ffffff;
+      color:#111111;
+      padding: clamp(72px, 5vw, 120px) 0;
+    }
+
+    .insight-grid-cards{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .insight-card{
+      display: flex;
+    }
+
+    .insight-card-box{
+      width: 100%;
+      background:#ffffff;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .insight-card-box:hover{
+      background: var(--navy);
+    }
+
+    .insight-card-media{
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .insight-card-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .insight-card-body{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .insight-card-title{
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin: 0;
+      font-size: clamp(18px, 1.2vw, 22px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: #111111;
+      transition: color 0.3s ease;
+    }
+
+    .insight-card-text{
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(17,17,17,0.78);
+      transition: color 0.3s ease;
+    }
+
+    .insight-card-box:hover .insight-card-title,
+    .insight-card-box:hover .insight-card-text{
+      color: #ffffff;
+    }
+
+    .title-arrow{
+      display: inline-flex;
+      color: #111111;
+      transition: color 0.3s ease, transform 0.3s ease;
+      transform: translateY(0px);
+    }
+
+    .insight-card-box:hover .title-arrow{
+      color: #F00303;
+    }
+
+    .title-arrow svg{
+      width: 26px;
+      height: 26px;
+    }
+
+    /* ================= EXPLORE LINKS ================= */
+    .explore-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px 40px;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+
+    .explore-link{
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      color: #111;
+      padding: 10px 0;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .explore-link:hover{
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .explore-link .help-arrow{
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .explore-link:hover .help-arrow{
+      transform: translateX(4px);
+      color: #F00303;
+    }
+
+    /* ================= CTA ================= */
+    .advisor-cta-section{
+      padding: 0 0 5rem;
+      background: #fff;
+    }
+
+    .advisor-cta{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      border-top: 1px solid rgba(17,17,17,0.08);
+    }
+
+    .advisor-cta__content h2{
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 300;
+      color: #111;
+    }
+
+    .advisor-cta__button{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 0 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid #111;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .advisor-cta__button:hover{
+      background: var(--navy);
+      border-color: var(--navy);
+      transform: translateY(-1px);
+    }
+
+    .advisor-cta__icon{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .advisor-cta__icon svg{
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 1180px){
+      .help-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1100px){
+      .insight-grid-cards{
+        grid-template-columns: 1fr;
+      }
+
+      .insight-card-box{
+        padding: 2.25rem;
+      }
+
+      .insight-card-media{
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 900px){
+      .about-two-grid__grid,
+      .about-bottom-grid__grid{
+        grid-template-columns: 1fr;
+      }
+
+      .about-end-feature{
+        min-height: 560px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(5,35,48,0.32) 0%,
+            rgba(5,35,48,0.18) 35%,
+            rgba(255,255,255,0.88) 100%
+          ),
+          url("/images/stock4.png") center/cover no-repeat;
+        align-items: end;
+        padding-bottom: 28px;
+      }
+
+      .about-end-feature__card{
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .about-intro-band__content{
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 768px){
+      .help-text-block{
+        column-count: 1;
+      }
+
+      .explore-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .advisor-cta{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2.25rem 0;
+      }
+
+      .advisor-cta__button{
+        width: auto;
+      }
+    }
+
+    @media (max-width: 700px){
+      .page-wrap,
+      .service-top-image__title{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .help-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .help-card{
+        min-height:auto;
+      }
+    }
+
+    @media (max-width: 760px){
+      .insight-grid-section{
+        padding: 64px 0;
+      }
+
+      .insight-card-box{
+        padding: 1.5rem;
+      }
+
+      .insight-card-media{
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ Fixed Navbar -->
+<header class="navbar" aria-label="Primary">
+  <div class="nav-logo">
+  <a href="/">
+    <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+  </a>
+</div>
+
+  <nav class="nav-links">
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="capabilities">
+      <span class="nav-link__label">Capabilities</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="affiliates">
+      <span class="nav-link__label">Affiliates</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+    <a class="nav-link" href="#home">News</a>
+    <a class="nav-link nav-link--contact" href="#home">Contact</a>
+  </nav>
+</header>
+<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
+  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
+    <div class="nav-dd-left" id="navDdLeft"></div>
+    <div class="nav-dd-right" id="navDdRight"></div>
+  </div>
+</div>
+
+  <div id="scroll-container">
+    <main>
+
+      <!-- ABOUT HERO -->
+      <section class="service-top-image" id="about">
+        <img src="/images/stock12.jpeg" alt="About Griffin Integrity">
+
+        <div class="service-top-image__title">
+          <p class="service-eyebrow">Business Advisory Services</p>
+          <h1>Talent Acquisition & Assessment</h1>
+        </div>
+      </section>
+
+      <!-- FULL WIDTH DESCRIPTION WITH BLUEBG3 -->
+      <section class="service-split-section about-intro-band">
+        <div class="about-intro-band__inner">
+          <div class="service-split-content about-intro-band__content">
+            <p class="service-subtitle-dark">
+              Griffin Integrity delivers dependable inspection consulting and technical
+              support with a focus on clarity, accountability, and real-world execution.
+              We help clients strengthen programs, improve documentation, and make
+              confident decisions in complex operating environments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 GRID TITLE TEXT -->
+      <section class="about-two-grid">
+        <div class="page-wrap">
+          <div class="about-two-grid__grid">
+            <div class="about-two-grid__item">
+              <h2>Who We Are</h2>
+              <p>
+                We are a technical partner focused on helping organizations improve the
+                quality, consistency, and defensibility of their inspection programs.
+                Our work is grounded in practical field knowledge and disciplined review.
+              </p>
+            </div>
+
+            <div class="about-two-grid__item">
+              <h2>How We Work</h2>
+              <p>
+                Our approach is straightforward: understand the environment, identify
+                what matters most, and deliver support that is clear, useful, and aligned
+                with operational realities. We prioritize precision without overcomplicating
+                the process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESCRIPTION SECTION -->
+      <section class="help-section" id="company-overview">
+        <div class="page-wrap">
+          <div class="help-head">
+            <h2>Our Approach</h2>
+          </div>
+
+          <div class="help-text-block">
+            <p>
+              Griffin Integrity supports organizations that need dependable technical guidance,
+              structured oversight, and practical consulting rooted in real operational demands.
+              We focus on helping clients build stronger systems, improve documentation quality,
+              and navigate complex requirements with greater clarity and confidence.
+              <br><br>
+              Our work is shaped by a commitment to disciplined review, technical consistency,
+              and solutions that are usable in the field. Rather than offering generic support,
+              we work to understand the environment, pressures, and expectations surrounding
+              each engagement so recommendations are grounded, relevant, and actionable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE CARDS -->
+      <section class="help-section" id="what-clients-can-expect">
+        <div class="page-wrap">
+          <div class="help-head">
+            <h2>What Clients Can Expect</h2>
+          </div>
+
+          <div class="help-grid">
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Technical Clarity
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <div class="help-list">
+                <p>
+                  Clear guidance that helps teams understand requirements, reduce ambiguity,
+                  and move forward with confidence.
+                </p>
+              </div>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Reliable Support
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <div class="help-list">
+                <p>
+                  Consistent consulting support tailored to existing operations, project goals,
+                  and long-term program performance.
+                </p>
+              </div>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Independent Perspective
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <div class="help-list">
+                <p>
+                  Objective review and advisory support that strengthens decision-making,
+                  documentation quality, and accountability.
+                </p>
+              </div>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Field Awareness
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <div class="help-list">
+                <p>
+                  Recommendations shaped by practical execution, not just theory, so the work
+                  holds up in real operating conditions.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- END IMAGE SECTION WITH LEFT BOX -->
+      <section class="about-end-feature">
+        <img class="about-end-feature__image" src="/images/stock3.jpeg" alt="Technical support and inspection expertise">
+
+        <div class="about-end-feature__overlay">
+          <div class="about-end-feature__card">
+            <h2>A Stronger Standard of Support</h2>
+            <p>
+              We bring together technical oversight, documentation discipline, and practical
+              industry experience to help clients build stronger programs, improve consistency,
+              and move forward with greater confidence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 GRID UNDER IMAGE -->
+      <section class="about-bottom-grid">
+        <div class="page-wrap">
+          <div class="about-bottom-grid__grid">
+            <div class="about-bottom-grid__item">
+              <h3>Our Focus</h3>
+              <p>
+                Supporting organizations that need practical, technically sound consulting
+                that improves program integrity without adding unnecessary complexity.
+              </p>
+            </div>
+
+            <div class="about-bottom-grid__item">
+              <h3>Our Commitment</h3>
+              <p>
+                Delivering thoughtful, dependable support that helps clients operate with
+                greater confidence, consistency, and control.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTRA SECTION -->
+      <section class="insight-grid-section" id="insights">
+        <div class="page-wrap">
+          <div class="help-head">
+            <h2>Related Insights</h2>
+          </div>
+
+          <div class="insight-grid-cards">
+            <article class="insight-card">
+              <div class="insight-card-box">
+                <div class="insight-card-media">
+                  <img src="/images/stock1.jpeg" alt="Operational clarity">
+                </div>
+                <div class="insight-card-body">
+                  <span class="insight-card-title">
+                    Operational Clarity
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </span>
+                  <p class="insight-card-text">
+                    Explore how clearer documentation and aligned technical support improve
+                    consistency across teams and field execution.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="insight-card">
+              <div class="insight-card-box">
+                <div class="insight-card-media">
+                  <img src="/images/stock2.jpeg" alt="Independent advisory">
+                </div>
+                <div class="insight-card-body">
+                  <span class="insight-card-title">
+                    Independent Advisory
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </span>
+                  <p class="insight-card-text">
+                    See how an objective technical perspective can support better decisions,
+                    stronger review processes, and improved accountability.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="insight-card">
+              <div class="insight-card-box">
+                <div class="insight-card-media">
+                  <img src="/images/stock3.jpeg" alt="Program strength">
+                </div>
+                <div class="insight-card-body">
+                  <span class="insight-card-title">
+                    Program Strength
+                    <span class="title-arrow">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </span>
+                  <p class="insight-card-text">
+                    Learn how disciplined support helps strengthen program structure, reporting
+                    quality, and long-term performance.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTRA LINKS -->
+      <section class="help-section" id="keep-exploring">
+        <div class="page-wrap">
+          <div class="help-head">
+            <h2>Keep Exploring</h2>
+          </div>
+
+          <div class="explore-grid">
+            <a href="#" class="explore-link">
+              Services Overview
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Technical Capabilities
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Industry Applications
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Project Support
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Resources
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+
+            <a href="#" class="explore-link">
+              Contact
+              <span class="help-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="advisor-cta-section" id="connect-advisor">
+        <div class="page-wrap">
+          <div class="advisor-cta">
+            <div class="advisor-cta__content">
+              <h2>Let’s Start the Conversation</h2>
+            </div>
+
+            <a href="mailto:you@example.com" class="advisor-cta__button">
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact Us</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/navbar.js"></script>
+
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const lenis = new Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.1,
+        anchors: {
+          offset: 110
+        }
+      });
+
+      window.lenis = lenis;
+    })();
+  </script>
+
+</body>
+</html>

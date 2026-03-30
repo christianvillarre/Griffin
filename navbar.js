@@ -67,23 +67,23 @@ document.addEventListener("DOMContentLoaded", () => {
         items: [
           {
             label: "Mergers & Acquisition Support",
-            link: "business-advisory.html#mergers-acquisitions"
+            link: "/business-advisory/mergers-acquisitions-support.html"
           },
           {
             label: "Talent Acquisition & Assessment",
-            link: "business-advisory.html#talent-acquisition"
+            link: "/business-advisory/talent-acquisition-assessment.html"
           },
           {
             label: "Corporate Development & Strategic Planning",
-            link: "business-advisory.html#corporate-development"
+            link: "/business-advisory/corporate-development-strategic-planning.html"
           },
           {
             label: "Business Development & Client Strategies",
-            link: "business-advisory.html#business-development"
+            link: "/business-advisory/business-development-client-strategies.html"
           },
           {
             label: "Capital Acquisition",
-            link: "business-advisory.html#capital-acquisition"
+            link: "/business-advisory/capital-acquisition.html"
           }
         ]
       }
@@ -103,7 +103,7 @@ const AFFILIATES = {
       items: [
         {
           label: "Learn More",
-          link: "affiliate-organizations.html#top-notch-edm"
+          link: "/affiliates/top-notch-edm.html"
         },
       ]
     },
@@ -112,13 +112,13 @@ const AFFILIATES = {
       label: "Sound NDT Solutions",
       title: "Sound NDT Solutions",
       image: "/images/partner-logo1.png",
-      imageAlt: "Top Notch EDM",
+      imageAlt: "Sound NDT Solutions",
       desc:
         "We work with Sound NDT Solutions (SNS) to provide advanced non-destructive testing (NDT) services and expert Level III consulting. With decades of experience and recognized industry certifications, their team specializes in advanced ultrasonic testing, including phased array and automated weld inspections. <br><br>Through this partnership, we deliver accurate, high-quality testing solutions both in the lab and in the field, ensuring reliable results that meet strict industry standards.",
       items: [
         {
           label: "Learn More",
-          link: "affiliate-organizations.html#top-notch-edm"
+          link: "/affiliates/sound-ndt-solutions.html"
         },
       ]
     },
@@ -131,7 +131,7 @@ const AFFILIATES = {
       items: [
         {
           label: "Learn More",
-          link: "affiliate-organizations.html#top-notch-edm"
+          link: "/affiliates/atco-automated-scanning-systems.html"
         },
       ]
     },
@@ -144,7 +144,7 @@ const AFFILIATES = {
       items: [
         {
           label: "Learn More",
-          link: "affiliate-organizations.html#top-notch-edm"
+          link: "/affiliates/halo-ndt-technologies.html"
         },
       ]
     }

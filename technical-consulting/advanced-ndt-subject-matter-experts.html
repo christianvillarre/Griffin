@@ -409,37 +409,37 @@
  <div id="scroll-container">
 <main>
 
+<!-- ✅ Fixed Navbar -->
 <header class="navbar" aria-label="Primary">
-    <div class="nav-logo">
-      <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
-    </div>
+  <div class="nav-logo">
+  <a href="/">
+    <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+  </a>
+</div>
 
-    <nav class="nav-links">
-      <a class="nav-link nav-link--hide-sm" href="#home">About</a>
-  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="capabilities">
-  <span class="nav-link__label">Capabilities</span>
-  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</a>
-      
-      <a class="nav-link" href="#home">News</a>
-      <a class="nav-link nav-link--contact" href="#home">Contact</a>
-    </nav>
-  </header>
+  <nav class="nav-links">
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="capabilities">
+      <span class="nav-link__label">Capabilities</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
 
-  <!-- ✅ Navbar Dropdown (Services / News) -->
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="affiliates">
+      <span class="nav-link__label">Affiliates</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+    <a class="nav-link" href="#home">News</a>
+    <a class="nav-link nav-link--contact" href="#home">Contact</a>
+  </nav>
+</header>
 <div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
   <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
-    <!-- LEFT COLUMN -->
-    <div class="nav-dd-left" id="navDdLeft">
-      <!-- injected by JS -->
-    </div>
-
-    <!-- RIGHT COLUMN -->
-    <div class="nav-dd-right" id="navDdRight">
-      <!-- injected by JS -->
-    </div>
+    <div class="nav-dd-left" id="navDdLeft"></div>
+    <div class="nav-dd-right" id="navDdRight"></div>
   </div>
 </div>
 
