@@ -311,7 +311,7 @@ html{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(0,0,0,0.12);
+  background: rgba(0, 0, 0, 0.302);
   z-index: 1;
   pointer-events:none;
 }
@@ -448,7 +448,7 @@ html{
   max-width: 320px;
   border-radius: 10px;
   display: block;
-  margin-bottom: 1rem;
+  margin: 1.5rem 0rem;
 }
 </style>
 <style>
@@ -933,10 +933,25 @@ html{
   overflow: hidden;
   border-radius: 0;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.785);
   isolation: isolate;
   opacity: 1;
   transition: transform .5s ease, filter .3s ease;
+
+}
+.stackflow-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.219) 0%,
+    rgba(0, 0, 0, 0.261) 42%,
+    rgba(0, 0, 0, 0.391) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity .3s ease, background .3s ease;
 }
 
 .stackflow-card img{
@@ -1008,14 +1023,6 @@ html{
   transform: scale(1.2);
 }
 
-.stackflow-card:hover::after{
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.56) 8%,
-    rgba(0, 0, 0, 0.14) 48%,
-    rgba(0, 0, 0, 0.03) 100%
-  );
-}
 
 /* heights */
 :root{
@@ -1149,7 +1156,7 @@ html{
 }
 
 #heroTitle,
-.hero-scroll-indicator
+.hero-scroll-indicator,
 #criticalTitle{
   display: none;
 }
@@ -1286,7 +1293,9 @@ html{
 .hero{
   padding-top: 0;
 }
+
 </style>
+
  <div id="scroll-container">
   <main id="site">
 
@@ -1327,7 +1336,7 @@ html{
                     <div class="stackflow-card-top">
                       <p class="stackflow-eyebrow">Technology</p>
                       <h3 class="stackflow-title2">
-                        Smarter Inspection Through Advanced Analytics
+                        Automation, Robotics, and Advanced Imaging Systems
                       </h3>
                     </div>
 
@@ -1415,7 +1424,7 @@ html{
                   <div class="stackflow-featured-top">
                     <p class="stackflow-eyebrow">Featured Story</p>
                     <h3 class="stackflow-title2 larger">
-                      Where Strategy, Technology, and Execution Converge
+                      Can Digital NDT Systems Replace Traditional Methods in High-Risk Inspections?
                     </h3>
                   </div>
 
@@ -1549,18 +1558,6 @@ html{
 }
 
 /* optional: make text easier to read on image cards */
-.stackflow-card--split::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.28) 0%,
-    rgba(0,0,0,0.12) 35%,
-    rgba(0,0,0,0.42) 100%
-  );
-  z-index: 1;
-}
 
 .stackflow-card--split .stackflow-eyebrow,
 .stackflow-card--split .stackflow-title2{
@@ -1577,7 +1574,6 @@ html{
 
     <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
     <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
-  </section> <!-- ✅ CLOSE intro-wrap -->
 
 <section class="caps-intro-section">
   <div class="caps-intro-shell">
@@ -2639,7 +2635,7 @@ background:#000;
   color:#111;
 }
 
-/* accent word 
+/* accent word
 .text-accent{
   position: relative;
   display: inline-block;
@@ -2652,10 +2648,11 @@ background:#000;
   bottom:0.12em;
   width:100%;
   height:0.35em;
-  background:#3b82f6; /* same blue vibe as your other section 
+  background:#3b82f6;
   z-index:-1;
   transform: skewX(-8deg);
-}*/
+}
+*/
 </style>
 
 <section class="ndt-grid-section">
@@ -3297,8 +3294,6 @@ html, body{
   </div>
 
 </footer>
-
-</main></div>
 <style>
   /* ===================== FOOTER ===================== */
 .site-footer{
@@ -3448,13 +3443,6 @@ html, body{
 </style>
 
 
-
-
-
-
-
-
-</main>
 
   <!-- ✅ One SVG "sheet" (white + loader content) that gets cut out by expanding window -->
   <svg id="loaderSvg" aria-hidden="true">

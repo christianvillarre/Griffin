@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           {
             label: "Advanced NDT Technology Programs and Procedures",
-            link: "/technical-consulting/advanced-ndt-technology-programs-procedures.html"
+            link: "/technical-consulting/advanced-ndt-programs-procedures.html"
           },
           {
             label: "Automation, Robotics, and Advanced Imaging Systems",
@@ -99,7 +99,7 @@ const AFFILIATES = {
       image: "/images/partner-logo2.png",
       imageAlt: "Top Notch EDM",
       desc:
-        "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+        "We partner with Top Notch EDM Services to deliver high-quality ultrasonic testing (UT) reference standards, calibration blocks, custom welded flaw samples, and performance demonstration blocks. Their team combines precision machining and advanced welding capabilities with deep non-destructive testing (NDT) expertise.",
       items: [
         {
           label: "Learn More",
@@ -114,7 +114,7 @@ const AFFILIATES = {
       image: "/images/partner-logo1.png",
       imageAlt: "Top Notch EDM",
       desc:
-        "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+        "We work with Sound NDT Solutions (SNS) to provide advanced non-destructive testing (NDT) services and expert Level III consulting. With decades of experience and recognized industry certifications, their team specializes in advanced ultrasonic testing, including phased array and automated weld inspections. <br><br>Through this partnership, we deliver accurate, high-quality testing solutions both in the lab and in the field, ensuring reliable results that meet strict industry standards.",
       items: [
         {
           label: "Learn More",
@@ -455,12 +455,23 @@ dropdownWrap.addEventListener("mouseleave", () => {
 });
 
 dropdownWrap.addEventListener("mouseover", (e) => {
+  /*
   const capTabEl = e.target.closest("[data-cap-tab]");
   if (capTabEl) {
     const nextKey = capTabEl.getAttribute("data-cap-tab");
     swapRightQuick(nextKey);
     return;
+  }*/
+ const capTabEl = e.target.closest("[data-cap-tab]");
+if (capTabEl) {
+  const nextKey = capTabEl.getAttribute("data-cap-tab");
+  if (nextKey !== activeCapTab) {
+    activeCapTab = nextKey;
+    renderLeft(activeCapTab);
+    renderRight(getTab(activeCapTab));
   }
+  return;
+}
 
   const affiliateTabEl = e.target.closest("[data-affiliate-tab]");
   if (affiliateTabEl) {
