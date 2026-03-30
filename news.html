@@ -357,11 +357,12 @@
     /* ================= HERO ================= */
     .news-hero{
       position: relative;
-      min-height: clamp(420px, 58vw, 760px);
+      min-height: clamp(220px, 20vw, 460px);
       overflow: hidden;
       background: #0d1d27;
       display: flex;
       align-items: flex-end;
+      padding-top: 8rem;
     }
 
     .news-hero img{
@@ -405,11 +406,11 @@
     .news-hero__content h1{
       margin: 0;
       color: #fff;
-      font-size: clamp(2.7rem, 5vw, 5.8rem);
+      font-size: clamp(2.7rem, 4vw, 3.8rem);
       line-height: 0.95;
       letter-spacing: -0.05em;
       font-weight: 500;
-      max-width: 10ch;
+      max-width: 50ch;
     }
 
     /* ================= INTRO BAND ================= */
@@ -795,53 +796,978 @@
 </head>
 <body>
 
-  <header class="navbar" aria-label="Primary">
-    <div class="nav-logo">
-      <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
-    </div>
+ <header class="navbar" aria-label="Primary">
+  <div class="nav-logo">
+  <a href="/">
+    <img src="images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+  </a>
+</div>
 
-    <nav class="nav-links">
-      <a class="nav-link nav-link--hide-sm" href="/about">About</a>
-      <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#news" data-dropdown="capabilities">
-        <span class="nav-link__label">Capabilities</span>
-        <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-          <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a class="nav-link" href="/news">News</a>
-      <a class="nav-link nav-link--contact" href="#connect-news">Contact</a>
-    </nav>
-  </header>
+  <nav class="nav-links">
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="capabilities">
+      <span class="nav-link__label">Capabilities</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
 
-  <div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
-    <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
-      <div class="nav-dd-left" id="navDdLeft"></div>
-      <div class="nav-dd-right" id="navDdRight"></div>
-    </div>
+    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="affiliates">
+      <span class="nav-link__label">Affiliates</span>
+      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="nav-link nav-link--hide-sm" href="/about.html">About</a>
+    <a class="nav-link" href="/news.html">News</a>
+    <a class="nav-link nav-link--contact" href="/contact.html">Contact</a>
+  </nav>
+</header>
+<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
+  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
+    <div class="nav-dd-left" id="navDdLeft"></div>
+    <div class="nav-dd-right" id="navDdRight"></div>
   </div>
+</div>
+<style>
+.nav-dd-image-wrap {
+  margin: 10px 0 12px;
+}
+
+.nav-dd-image {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  display: block;
+  margin: 1.5rem 0rem;
+}
+</style>
+<style>
+  /* --- Left column tabs (Capabilities) --- */
+.nav-dd-item.is-tab{
+  cursor: pointer;
+}
+
+.nav-dd-item.is-tab.is-selected{
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+}
+
+.nav-dd-item.is-tab.is-selected .dd-arrow path{
+  stroke: #F00303;
+}
+  /* ===================== NAV DROPDOWN ===================== */
+.nav-dropdown-wrap{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(18px + 84px + 10px); /* navbar top + height + gap */
+  width: min(900px, calc(100% - 28px));
+  z-index: 49; /* under navbar (navbar is 50) */
+  pointer-events: none; /* only clickable when open */
+}
+
+.nav-dropdown{
+  border-radius: 10px;
+
+  /* ✅ match navbar exactly */
+  background: #00202ec0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+  padding: 16px;
+
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.nav-dropdown-wrap.is-open{
+  pointer-events: auto;
+}
+.nav-dropdown-wrap.is-open .nav-dropdown{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LEFT */
+.nav-dd-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-dd-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 10px 14px;
+  border-radius: 16px;
+
+  background: rgba(33, 33, 33, 0);
+  border: none;
+
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.nav-dd-item:hover{
+  transform: translateY(-1px);
+  background: #5677851b;
+  border-color: rgba(255,255,255,0.18);
+  color:#ffffff;
+}
+
+.nav-dd-item .dd-arrow{
+  width: 18px;
+  height: 18px;
+  opacity: 0.95;
+}
+.nav-dd-item .dd-arrow path{
+  stroke: rgba(255,255,255,0.92);
+}
+.nav-dd-item:hover .dd-arrow path{
+  stroke: #ffffff;
+}
+
+
+/* RIGHT */
+.nav-dd-right{
+  padding: 6px 4px 6px 2px;
+  color: rgba(255,255,255,0.92);
+}
+
+.nav-dd-title{
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.nav-dd-desc{
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.78;
+  max-width: 48ch;
+}
+
+.nav-dd-links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ===================== RIGHT COLUMN LINKS ===================== */
+
+.nav-dd-greenlink{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+
+  color: #F00303;              /* red text default */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: 
+    color 170ms cubic-bezier(.22,1,.36,1),
+    transform 160ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Animated underline (always red) ===== */
+.nav-dd-greenlink::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: #F00303;                 /* stays red */
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.95;
+  transition: transform 180ms cubic-bezier(.22,1,.36,1);
+}
+
+/* underline animates in */
+.nav-dd-greenlink:hover::after,
+.nav-dd-greenlink:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* ===== Arrow default state ===== */
+.nav-dd-greenlink svg{
+  width: 16px;
+  height: 16px;
+  transform: translateY(0);
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
+}
+
+.nav-dd-greenlink svg path{
+  stroke: #ffffff;                     /* white arrow default */
+  transition: stroke 170ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Hover state ===== */
+.nav-dd-greenlink:hover,
+.nav-dd-greenlink:focus-visible{
+  color: #ffffff;                      /* text fades to white */
+}
+
+.nav-dd-greenlink:hover svg,
+.nav-dd-greenlink:focus-visible svg{
+  transform: translateY(-1px);          /* arrow moves up 1px */
+}
+
+.nav-dd-greenlink:hover svg path,
+.nav-dd-greenlink:focus-visible svg path{
+  stroke: #F00303;                      /* arrow turns red */
+}
+
+/* Mobile stacking */
+@media (max-width: 720px){
+  .nav-dropdown{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.text-highlight {
+  background: linear-gradient(90deg, #F00303 0%,rgb(19, 75, 99) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+ 
+}
+.hero-scroll-indicator{
+  margin-top: 0px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width: clamp(60px, 8vw, 120px);
+
+}
+
+.hero-chevron{
+  width: 116px;
+  height: 116px;
+}
+
+.hero-chevron path{
+  stroke: #ffffff; /* army green */
+}
+
+
+/* ✅ Canvas overlay: above background, below content */
+#heroGrid{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;            /* sits above background */
+  pointer-events: none;  /* doesn't block clicks */
+}
+
+/* your overlay tint stays above canvas */
+.hero::before{
+  z-index: 2;
+}
+
+
+/* canvas / overlay layering */
+#heroGrid{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero::before{
+  z-index: 2;
+}
+
+.hero > *{
+  position: relative;
+  z-index: 3;
+}
+
+#heroDropIcon{
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -140%);
+  width: clamp(120px, 50vh, 480px);
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.display-heading{
+  font-size: clamp(34px, 7vw, 76px);
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  
+}
+
+.stackflow-sr{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+.stackflow-heading{
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.4rem, 5.5vw, 6.5rem);
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  
+  margin-bottom: 2rem;
+  font-weight: 200;
+  margin-bottom: 5rem;
+  
+}
+
+
+.stackflow-link{
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+
+  color: #F00303;
+  text-decoration: none;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+
+  position: relative;
+
+  transition:
+    color .25s cubic-bezier(.22,1,.36,1),
+    transform .25s cubic-bezier(.22,1,.36,1);
+}
+
+/* subtle animated underline */
+.stackflow-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:100%;
+  height:1px;
+  background: currentColor;
+  color: #ff0505;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+
+/* arrow */
+.stackflow-link svg{
+  width: 22px;
+  height: 22px;
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+  color: #ffffff;
+}
+
+/* hover */
+.stackflow-link:hover{
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.stackflow-link:hover::after{
+  transform: scaleX(1);
+}
+
+.stackflow-link:hover svg{
+  transform: translateX(6px);
+   color: #F00303;
+}
+/* =========================
+   HERO LAYOUT
+========================= */
+:root{
+  --col-3: 2.15fr;
+  --gap: clamp(20px, 1vw, 22px);
+}
+
+.stackflow-shell{
+  position: relative;
+  z-index: 3;
+  width: min(1800px, calc(100% - 40px));
+  padding: 0 20px;
+  max-width: none;
+ 
+}
+.stackflow-main{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 3vw, 42px);
+  width: 100%;
+  
+}
+
+/* full-width text row */
+.stackflow-copy{
+  grid-column: 1 / -1;
+  text-align: center;
+  padding-top: 0.5rem;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  width: auto; /* fixed invalid value */
+}
+
+.stackflow-copy p{
+  font-size: clamp(0.8rem, 1.7vw, 2rem);
+  max-width: 40ch;
+  opacity: 1 !important;
+  font-weight: 200;
+}
+
+.stackflow-link{
+  margin-top: 24px;
+}
+
+/* all 3 columns together */
+.stackflow-grid{
+  display: grid;
+  grid-template-columns: var(--col-3) 1fr 1fr;
+  grid-template-areas: "col3 col1 col2";
+  gap: var(--gap);
+  align-items: start;
+  
+  width: 100%;
+ 
+  margin: 0 auto;
+  margin-bottom: clamp(6vh, 12vw, 30vh);
+  
+}
+
+.stackflow-col--1{ grid-area: col1; }
+.stackflow-col--2{ grid-area: col2; }
+.stackflow-col--3{ grid-area: col3; }
+
+.stackflow-col{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.stackflow-col--1,
+.stackflow-col--2,
+.stackflow-col--3{
+  position: relative;
+  top: auto;
+  right: auto;
+  width: auto;
+}
+
+/* =========================
+   HERO TYPOGRAPHY
+========================= */
+.stackflow-kicker{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* =========================
+   CARDS
+========================= */
+.stackflow-card{
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.785);
+  isolation: isolate;
+  opacity: 1;
+  transition: transform .5s ease, filter .3s ease;
+
+}
+.stackflow-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.219) 0%,
+    rgba(0, 0, 0, 0.261) 42%,
+    rgba(0, 0, 0, 0.391) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity .3s ease, background .3s ease;
+}
+
+.stackflow-card img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 9s ease, filter 9s ease;
+}
+
+.stackflow-meta{
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  color: #fff;
+  text-align: left;
+}
+
+.stackflow-eyebrow{
+  margin: 0 0 6px;
+  font-size: clamp(0.8rem, 0.8vw, 1rem) !important;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.899);
+}
+
+.stackflow-meta,
+.stackflow-title,
+.stackflow-title2,
+.stackflow-copy p,
+.stackflow-heading{
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.stackflow-title{
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  font-weight: 200;
+}
+
+.stackflow-title2{
+  margin: 0;
+  font-size: clamp(1.2rem,2vw, 2.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  font-weight: 400;
+  max-width: 22ch;
+}
+.larger {
+  font-size: clamp(1.5rem,2.2vw, 2.9rem);
+}
+
+
+.stackflow-card:hover{
+  transform: scale(0.99);
+}
+
+.stackflow-card:hover img{
+  transform: scale(1.2);
+}
+
+
+/* heights */
+:root{
+  --stackflow-card-h: clamp(280px, 28vw, 450px);
+  --stackflow-stack-gap: 1rem;
+}
+
+/* all regular cards same height */
+.stackflow-h-sm1,
+.stackflow-h-sm2,
+.stackflow-h-md1,
+.stackflow-h-md2{
+  min-height: var(--stackflow-card-h);
+}
+
+/* lg + xl = one full stacked column height */
+.stackflow-h-lg{
+  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.42);
+}
+
+.stackflow-h-xl{
+  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.58);
+}
+
+.stackflow-card--topmeta .stackflow-meta{
+  top: 18px;
+  bottom: auto;
+}
+
+.stackflow-card--solid{
+  background: #F00303;
+  opacity: 1;
+  box-shadow: none;
+}
+
+.stackflow-card--solid img{
+  display: none;
+}
+
+.stackflow-card--solid::after{
+  display: none;
+}
+
+.stackflow-card--solid .stackflow-meta{
+  top: 18px;
+  bottom: auto;
+}
+.stackflow-card--solid.stackflow-h-lg{
+  min-height: unset;
+  height: auto;
+}
+
+.stackflow-card--solid .stackflow-meta{
+  position: relative;
+  inset: auto;
+  padding: 24px;
+}
+
+.stackflow-card--solid{
+  display: flex;
+  align-items: stretch;
+}
+/* =========================
+   SUBSCRIBE BLOCK
+========================= */
+.stackflow-subscribe{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 0;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.07);
+  border: none;
+  min-height: 100px;
+  align-content: center;
+  align-items: center;
+}
+
+.stackflow-subscribe input{
+  width: 100%;
+  min-width: 0;
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  color: #000;
+  font-family: inherit;
+  font-size: 18px;
+  outline: none;
+}
+
+.stackflow-subscribe input::placeholder{
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.stackflow-subscribe button{
+  height: 56px;
+  width: auto;
+  min-width: 160px;
+  max-width: 100%;
+  padding: 0 18px;
+  border: none;
+  border-radius: 14px;
+  background: #052330;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+
+.stackflow-subscribe button:hover{
+  transform: translateY(-1px);
+  background: #c90202;
+}
+
+/* =========================
+   SECTION / SPACER
+========================= */
+.intro-wrap{
+  overflow: visible;
+}
+
+.spacer--dark{
+  min-height: 55vh;
+  padding-top: 180px;
+  align-items: flex-start;
+}
+
+#heroTitle,
+.hero-scroll-indicator,
+#criticalTitle{
+  display: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1180px){
+  .stackflow-shell{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stackflow-copy{
+    grid-column: 1 / 3;
+    min-height: 420px;
+  }
+
+  .stackflow-col--1{
+    grid-column: 1 / 2;
+  }
+
+  .stackflow-col--2{
+    grid-column: 2 / 3;
+  }
+
+  .stackflow-col--3{
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+
+  .stackflow-h-xl{
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 900px){
+  .stackflow-subscribe{
+    grid-template-columns: 1fr;
+  }
+
+  .stackflow-subscribe button{
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 760px){
+  .hero{
+    padding-top: 130px;
+    padding-bottom: 80px;
+  }
+
+  .stackflow-shell{
+    width: min(1600px, calc(100% - 24px));
+    grid-template-columns: 1fr;
+  }
+
+  .stackflow-copy,
+  .stackflow-col--1,
+  .stackflow-col--2,
+  .stackflow-col--3{
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .stackflow-h-sm1,
+  .stackflow-h-sm2,
+  .stackflow-h-md1,
+  .stackflow-h-md2,
+  .stackflow-h-lg{
+    min-height: 230px;
+  }
+
+  .stackflow-h-xl{
+    min-height: 420px;
+  }
+
+  .stackflow-subscribe{
+    min-height: 200px;
+  }
+
+  .spacer--dark{
+    min-height: 34vh;
+    padding-top: 70px;
+  }
+}
+#heroBottomIcon{
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 3rem);
+  width: auto;
+  height: 50vh;
+  max-height: 620px;
+  min-height: 120px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  
+}
+
+/* keep your main content above it */
+.stackflow-main{
+  display: flex;
+  flex-direction: column;
+}
+
+.stackflow-copy{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+}
+
+.stackflow-grid{
+  width: 100%;
+  
+  
+  margin-top: -40vh; /* tweak this */
+  margin-bottom: 25vh;
+}
+
+.stackflow-copy{
+  padding-top: 0;
+}
+
+.stackflow-heading{
+  margin-top: 0;
+}
+
+.hero{
+  padding-top: 0;
+}
+
+</style>
 
   <div id="scroll-container">
     <main>
 
       <!-- HERO -->
       <section class="news-hero">
-        <img src="/images/stock1.jpeg" alt="Industry news and updates">
         <div class="news-hero__content">
           <p class="service-eyebrow">News</p>
           <h1>Insights, Updates & Industry Perspective</h1>
-        </div>
-      </section>
 
-      <!-- INTRO -->
-      <section class="news-intro">
-        <div class="news-intro__inner">
-          <p>
-            Explore the latest company updates, technical insights, and industry-focused
-            perspectives from Griffin Integrity. This page is designed to highlight useful
-            information, relevant developments, and practical thinking across the work we support.
+          <p class="news-hero__sub">
+            Stay informed with the latest company updates, market trends, and expert insights shaping our industry.
           </p>
-        </div>
-      </section>
+
+          <div class="news-hero__social">
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4V24h-4V8zm7 0h3.6v2.2h.05c.5-.95 1.75-2.2 3.6-2.2 3.85 0 4.55 2.55 4.55 5.85V24h-4v-7.9c0-1.9-.05-4.35-2.65-4.35-2.65 0-3.05 2.05-3.05 4.2V24h-4V8z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <!-- X -->
+        <a href="https://x.com" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.53 3H21l-7.5 8.57L22 21h-6.5l-5.1-6.3L4.5 21H1l8-9.14L2 3h6.7l4.6 5.8L17.53 3z"/>
+          </svg>
+          <span></span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22 12a10 10 0 1 0-11.56 9.88v-7h-2.7v-2.88h2.7V9.8c0-2.67 1.6-4.14 4.04-4.14 1.17 0 2.4.2 2.4.2v2.64h-1.35c-1.33 0-1.75.83-1.75 1.68v2.02h3l-.48 2.88h-2.52v7A10 10 0 0 0 22 12z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+
+      </div>
+  </div>
+</section>
+<style>
+  .news-hero__sub{
+  margin: 16px 0 20px;
+  max-width: 52ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+.news-hero__social{
+  display: flex;
+  gap: 18px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.news-hero__social a{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.news-hero__social a svg{
+  width: 16px;
+  height: 16px;
+}
+
+.news-hero__social a:hover{
+  color: #fff;
+  transform: translateY(-1px);
+}
+</style>
+
 
       <!-- FEATURED STORY -->
       <section class="featured-news">
