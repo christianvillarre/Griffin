@@ -734,11 +734,11 @@ html{
 }
 
 .display-heading{
-  font-size: clamp(34px, 7vw, 76px);
+  font-size: clamp(34px, 7vw, 56px);
   line-height: 1.05;
   margin: 0;
   letter-spacing: -0.02em;
-  font-weight: 700;
+  font-weight: 200;
   
 }
 
@@ -1329,7 +1329,7 @@ html{
 
             <div class="stackflow-grid">
               <div class="stackflow-col stackflow-col--1">
-               <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
+               <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
                   <img src="images/stock22.jpeg" alt="Advanced analytics">
 
                   <div class="stackflow-meta stackflow-meta--split">
@@ -1355,7 +1355,7 @@ html{
                 </a>
 
 
-                <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
+                <a href="/technical-consulting/advanced-ndt-training.html" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
                   <img src="images/stock7.jpeg" alt="Advanced analytics">
 
                   <div class="stackflow-meta stackflow-meta--split">
@@ -1382,7 +1382,7 @@ html{
               </div>
 
               <div class="stackflow-col stackflow-col--2">
-                <a href="/news/inspection-planning" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
+                <a href="/business-advisory/talent-acquisition-assessment.html" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
   <img src="images/stock19.jpeg" alt="Inspection planning">
 
   <div class="stackflow-meta stackflow-meta--split">
@@ -1407,7 +1407,7 @@ html{
   </div>
 </a>
 
-                 <a href="/news/inspection-planning" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
+                 <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
   <img src="images/stock8.jpeg" alt="Inspection planning">
 
   <div class="stackflow-meta stackflow-meta--split">
@@ -1434,7 +1434,7 @@ html{
               </div>
 
               <div class="stackflow-col stackflow-col--3">
-               <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--featured">
+               <a href="/news.html" class="stackflow-card stackflow-h-xl stackflow-card--featured">
                 <img src="images/stock25.jpeg" alt="Built for critical environments">
 
                 <div class="stackflow-meta stackflow-meta--featured intro-card">
@@ -2569,7 +2569,7 @@ background:#000;
 
 
 
-
+<!--
   <section class="blue-cta">
   <h2 class="display-heading">
     Precision That <span class="text-highlight">Performs</span>.
@@ -2670,12 +2670,12 @@ background:#000;
   transform: skewX(-8deg);
 }
 */
-</style>
+</style>-->
 
 <section class="ndt-grid-section">
 
   <h2 class="display-heading ndt-grid-title">
-    Precision Built on Proven Inspection.
+    Our Partners in Industrial Inspection & Asset Integrity
   </h2>
 
   <div class="ndt-box-row">
@@ -2732,7 +2732,8 @@ background:#000;
 <style>
 .ndt-grid-section{
   background:#fff;
-  padding:120px 24px;
+  padding:20px 24px;
+  padding-bottom: 120px;
 }
 
 .ndt-grid-title{
@@ -2760,20 +2761,28 @@ background:#000;
   z-index:-1;
 }
 
-.ndt-box-row{
-  --line:2px;
-  --dot:10px;
-  --box-h:180px;
-  --fade-h:130px;
-  --ink:#111;
-
-  max-width:1400px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  position:relative;
+.ndt-box-wrap{
+  width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
+.ndt-box-row{
+  --line: 2px;
+  --dot: 10px;
+  --box-h: 180px;
+  --fade-h: 130px;
+  --ink: #111;
+
+  width: 1200px;
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  position: relative;
+
+  left: 50%;
+  transform: translateX(-50%);
+}
 /* bottom ghost horizontal row */
 .ndt-box-row::after{
   content:"";
@@ -2819,7 +2828,7 @@ background:#000;
   transform:translate(-50%, -50%);
   width:auto;
   height:auto;
-  max-width:62%;
+  max-width:82%;
   max-height:62px;
   object-fit:contain;
   z-index:1;
@@ -3824,6 +3833,8 @@ html, body{
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
