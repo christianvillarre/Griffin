@@ -613,7 +613,7 @@ html{
     <span class="bottom-nav__content">
       <span class="bottom-nav__brand">
         <img
-          src="images/GriffinIcon.png"
+          src="images/Griffin Icon wt.png"
           alt="Griffin Integrity"
         />
       </span>
@@ -1555,17 +1555,7 @@ html{
                       </h3>
                     </div>
 
-                    <span class="featured-btn">
-                      <span>Read More</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-                        <path d="M184 112 L328 256 L184 400"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="52"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                      </svg>
-                    </span>
+                   
                   </div>
                 </a>
 
@@ -1581,17 +1571,7 @@ html{
                       </h3>
                     </div>
 
-                    <span class="featured-btn">
-                      <span>Read More</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-                        <path d="M184 112 L328 256 L184 400"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="52"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                      </svg>
-                    </span>
+                   
                   </div>
                 </a>
               </div>
@@ -1608,17 +1588,7 @@ html{
       </h3>
     </div>
 
-    <span class="featured-btn">
-      <span>Read Case Study</span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-        <path d="M184 112 L328 256 L184 400"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="52"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-      </svg>
-    </span>
+    
   </div>
 </a>
 
@@ -1633,17 +1603,7 @@ html{
       </h3>
     </div>
 
-    <span class="featured-btn">
-      <span>Read More</span>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-        <path d="M184 112 L328 256 L184 400"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="52"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-      </svg>
-    </span>
+    
   </div>
 </a>
               </div>
@@ -4100,16 +4060,16 @@ html, body{
 </script>-->
 <style>
  :root{
-  --bottom-nav-w: clamp(220px, 28vw, 450px);
-  --bottom-nav-h: clamp(54px, 6vw, 66px);
+  --bottom-nav-w: clamp(220px, 28vw, 650px);
+  --bottom-nav-h: clamp(54px, 6vw, 76px);
   --bottom-nav-open: clamp(54px, 6vw, 56px);
 
-  --bottom-nav-bg: #ffffffe6;
-  --bottom-nav-menu-bg: #f1f1f1bb;
-  --bottom-nav-border: rgba(255, 255, 255, 0.932);
+  --bottom-nav-bg: #0f3d51cd;
+  --bottom-nav-menu-bg: #0f3d51cd;
+  --bottom-nav-border: rgba(255, 255, 255, 0.203);
 
   --menu-panel-w: clamp(320px, 52vw, 1000px);
-  --menu-inner-pad: clamp(18px, 3vw, 48px);
+  --menu-inner-pad: clamp(18px, 6vw, 78px);
 
   --menu-radius: 2px;
   --card-radius: clamp(12px, 1.5vw, 16px);
@@ -4122,6 +4082,7 @@ html, body{
   bottom: 48px;
   transform: translateX(-50%);
   z-index: 100;
+
 }
 
 /* trigger button */
@@ -4161,10 +4122,12 @@ html, body{
   gap: 8px;
   padding: 0 10px;
   opacity: 1;
-
+  padding: 0rem 1.2rem;
+  
   transition:
     opacity .18s ease,
     transform .28s cubic-bezier(.22, 1, .36, 1);
+    
 }
 
 .bottom-nav__brand{
@@ -4175,13 +4138,13 @@ html, body{
 
 .bottom-nav__brand img{
   display: block;
-  width: clamp(22px, 2.2vw, 28px);
-  height: clamp(22px, 2.2vw, 28px);
+  width: clamp(22px, 3vw, 58px);
+  height: clamp(22px, 3vw, 58px);
   object-fit: contain;
 }
 
 .bottom-nav__home{
-  color: #052330;
+  color: #ffffff;
   font-size: clamp(13px, 1.2vw, 15px);
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -4206,7 +4169,7 @@ html, body{
   width: 18px;
   height: 2px;
   border-radius: 999px;
-  background: #052330;
+  background: #ffffff;
   transition: transform .25s ease, opacity .25s ease;
 }
 
@@ -4229,7 +4192,7 @@ html, body{
   width: 18px;
   height: 2px;
   border-radius: 999px;
-  background: #052330;
+  background: #ffffff;
 }
 
 .bottom-nav__x span:first-child{
@@ -4261,7 +4224,7 @@ html, body{
 .bottom-nav-menu{
   position: absolute;
   left: 50%;
-  bottom: 84px;
+  bottom: 95px;
   z-index: 1;
 
   width: min(var(--menu-panel-w), calc(100vw - 32px));
@@ -4341,7 +4304,7 @@ html, body{
 /* eyebrow */
 .bottom-nav-menu__eyebrow{
   margin-bottom: 18px;
-  color: #052330;
+  color: #f7f7f7;
   font-size: clamp(10px, 0.8vw, 11px);
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -4352,7 +4315,7 @@ html, body{
 .bottom-nav-menu__panel-note{
   margin: -4px 0 14px;
   max-width: 34ch;
-  color: #052330;
+  color: #f9f9f9;
   font-size: clamp(12px, 1.1vw, 13px);
   line-height: 1.45;
 }
@@ -4378,7 +4341,7 @@ html, body{
   border: 0;
   background: transparent;
 
-  color: #052330;
+  color: #f7f7f7;
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 600;
   line-height: 1;
@@ -4421,7 +4384,7 @@ html, body{
   border-radius: var(--card-radius);
   cursor: pointer;
 
-  color: #052330;
+  color: #ffffff;
   font-size: clamp(11px, 0.95vw, 12px);
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -4443,7 +4406,7 @@ html, body{
 .bottom-nav-menu__back:hover{
   transform: translateY(-1px);
   background: rgba(86, 119, 133, 0.16);
-  color: #052330;
+  color: #ffffff;
 }
 
 /* submenu list */
@@ -4467,7 +4430,7 @@ html, body{
   border-radius: var(--card-radius);
   background: rgba(255,255,255,0.02);
 
-  color: #052330;
+  color: #f0f0f0;
   text-decoration: none;
   font-size: clamp(12px, 1vw, 20px);
   font-weight: 600;
@@ -4547,7 +4510,7 @@ html, body{
 }
 
 .bottom-nav-menu__mini{
-  color: #052330;
+  color: #efefef;
   font-size: clamp(11px, 0.95vw, 12px);
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -4561,7 +4524,7 @@ html, body{
 }
 
 .bottom-nav-menu__contact-link{
-  color: #052330;
+  color: #f7f7f7;
   font-size: clamp(13px, 1vw, 14px);
   line-height: 1.35;
   text-decoration: none;
@@ -4591,7 +4554,7 @@ html, body{
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
 
-  color: #052330;
+  color: #f2f2f2;
   font-size: clamp(13px, 1vw, 14px);
   font-weight: 700;
   letter-spacing: 0.12em;
