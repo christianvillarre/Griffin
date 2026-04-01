@@ -588,7 +588,7 @@
   background: transparent;
 
   color: #f7f7f7;
-  font-size: clamp(24px, 3vw, 34px);
+  font-size: clamp(24px, 3vw, 44px);
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
