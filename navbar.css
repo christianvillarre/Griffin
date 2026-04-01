@@ -624,7 +624,7 @@
 
   appearance: none;
   border: 0;
-  background: rgba(255, 255, 255, 0);
+  background: rgba(18, 129, 226, 0);
   padding: 10px 14px;
   margin: 0 0 10px;
   border-radius: var(--card-radius);
@@ -869,7 +869,7 @@
   :root{
     /* navbar size */
     --bottom-nav-w: clamp(170px, 45vw, 460px);
-    --bottom-nav-h: clamp(44px, 4.2vw, 54px);
+    --bottom-nav-h: clamp(44px, 5.2vw, 74px);
     --bottom-nav-open: clamp(44px, 4.2vw, 48px);
 
     /* menu panel */
@@ -932,10 +932,12 @@
   }
 
   .bottom-nav-menu__back{
-    padding: 7px 10px;
-    margin: 0 0 8px;
+    
     font-size: clamp(10px, 0.8vw, 11px);
     gap: 8px;
+    margin: 0;
+    padding: 0;
+    margin-left: -4px;
   }
 
   .bottom-nav-menu__back::before{
@@ -991,7 +993,7 @@
   }
 
   .bottom-nav-menu{
-    bottom: 72px;
+    bottom: 82px;
     width: min(var(--menu-panel-w), calc(100vw - 24px));
     max-height: min(80vh, calc(100vh - 100px));
   }
