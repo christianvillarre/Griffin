@@ -1087,10 +1087,13 @@
 
 .bottom-nav-menu__content-grid{
   display: grid;
-  grid-template-columns: 2fr 2fr; /* wider right side */
+  grid-template-columns: 1fr 2fr; /* wider right side */
   gap: clamp(28px, 4vw, 64px);
   align-items: start;
   width: 100%;
+}
+.bottom-nav-menu__panel[data-panel="main"] .bottom-nav-menu__content-grid {
+  grid-template-columns: 2fr 2fr;
 }
 .bottom-nav-menu__col--secondary{
   width: 100%;
