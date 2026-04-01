@@ -314,7 +314,7 @@
   --bottom-nav-menu-bg: #0f3d51cd;
   --bottom-nav-border: rgba(255, 255, 255, 0.203);
 
-  --menu-panel-w: clamp(320px, 52vw, 1000px);
+  --menu-panel-w: clamp(320px, 62vw, 1200px);
   --menu-inner-pad: clamp(18px, 6vw, 78px);
 
   --menu-radius: 2px;
@@ -635,6 +635,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  padding-left: 0;
 
   transition:
     transform .18s ease,
@@ -642,11 +643,12 @@
     color .18s ease;
 }
 
-.bottom-nav-menu__back::before{
-  content: "←";
-  font-size: 14px;
-  line-height: 1;
-  color: #f00303;
+.bottom-nav-menu__panel-title{
+    color: white;
+    font-size: clamp(11px, 0.95vw, 12px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .bottom-nav-menu__back:hover{

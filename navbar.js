@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let isOpen = false;
+  let currentPanel = "main";
 
   const menuPanels = menu.querySelectorAll(".bottom-nav-menu__panel");
   const menuTriggers = menu.querySelectorAll("[data-target]");
@@ -16,10 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
   menu.style.display = "none";
   menu.setAttribute("aria-hidden", "true");
 
+  function getPanelItems(panelName) {
+    const panel = menu.querySelector(`.bottom-nav-menu__panel[data-panel="${panelName}"]`);
+    return panel ? panel.querySelectorAll("*") : [];
+  }
+
   function showMenuPanel(targetName) {
     menuPanels.forEach((panel) => {
       panel.classList.toggle("is-active", panel.dataset.panel === targetName);
     });
+    currentPanel = targetName;
   }
 
   function resetMenuToMain() {
@@ -27,11 +34,60 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getAnimatedItems() {
-    return menu.querySelectorAll(".bottom-nav-menu__panel.is-active *");
+    return getPanelItems(currentPanel);
+  }
+
+  function animatePanelItemsIn(panelName) {
+    const items = getPanelItems(panelName);
+    if (!items.length) return;
+
+    gsap.killTweensOf(items);
+    gsap.set(items, { clearProps: "all" });
+    gsap.set(items, {
+      opacity: 0,
+      y: 20
+    });
+
+    gsap.to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      stagger: 0.03,
+      ease: "power3.out",
+      clearProps: "opacity,transform"
+    });
+  }
+
+  function switchPanel(targetName) {
+    if (targetName === currentPanel) return;
+
+    const currentItems = getPanelItems(currentPanel);
+    const nextPanel = menu.querySelector(`.bottom-nav-menu__panel[data-panel="${targetName}"]`);
+    if (!nextPanel) return;
+
+    gsap.killTweensOf(currentItems);
+
+    gsap.to(currentItems, {
+      opacity: 0,
+      y: 10,
+      duration: 0.15,
+      stagger: {
+        each: 0.01,
+        from: "end"
+      },
+      ease: "power2.in",
+      onComplete: () => {
+        showMenuPanel(targetName);
+        animatePanelItemsIn(targetName);
+      }
+    });
   }
 
   function openMenu() {
     isOpen = true;
+
+    gsap.killTweensOf(menu);
+    gsap.killTweensOf(menu.querySelectorAll("*"));
 
     menu.style.display = "block";
     menu.offsetHeight;
@@ -43,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.setAttribute("aria-hidden", "false");
     nav.setAttribute("aria-label", "Close navigation");
 
+    showMenuPanel(currentPanel);
+
     const items = getAnimatedItems();
 
     gsap.set(menu, {
@@ -51,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scale: 0.985
     });
 
+    gsap.set(items, { clearProps: "all" });
     gsap.set(items, {
       opacity: 0,
       y: 20
@@ -69,7 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
         y: 0,
         duration: 0.5,
         stagger: 0.035,
-        ease: "power3.out"
+        ease: "power3.out",
+        clearProps: "opacity,transform"
       }, "-=0.3");
   }
 
@@ -82,12 +142,19 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.setAttribute("aria-hidden", "true");
     nav.setAttribute("aria-label", "Open navigation");
 
+    gsap.killTweensOf(menu);
+    gsap.killTweensOf(items);
+
     gsap.timeline({
       onComplete: () => {
         nav.classList.remove("is-open");
         menu.classList.remove("is-open");
         resetMenuToMain();
-        if (!isOpen) menu.style.display = "none";
+        currentPanel = "main";
+        menu.style.display = "none";
+
+        gsap.set(menu, { clearProps: "all" });
+        gsap.set(menu.querySelectorAll("*"), { clearProps: "opacity,transform" });
       }
     })
       .to(items, {
@@ -128,13 +195,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" && isOpen) closeMenu();
   });
 
-  menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => closeMenu());
+  menuTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      switchPanel(trigger.dataset.target);
+    });
   });
 
-  menuTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      showMenuPanel(trigger.dataset.target);
-    });
+  menu.querySelectorAll("a:not([data-target])").forEach((link) => {
+    link.addEventListener("click", () => closeMenu());
   });
 });
