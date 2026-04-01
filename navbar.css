@@ -943,10 +943,8 @@
   }
 
   .bottom-nav-menu__subitem{
-    font-size: clamp(11px, 1.2vw, 14px);
-    padding: 7px 10px;
-    gap: 8px;
-    line-height: 1.25;
+    font-size: clamp(11px, 1.2vw, 13px);
+    line-height: 1;
   }
 
   .bottom-nav-menu__subitem-icon{
