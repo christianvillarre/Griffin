@@ -1,78 +1,21 @@
-function initNavbar() {
+document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("bottomNav");
   const menu = document.getElementById("bottomNavMenu");
 
-  if (!nav || !menu) {
-    console.warn("Navbar elements not found");
-    return;
-  }
-
+  if (!nav || !menu) return;
   if (typeof gsap === "undefined") {
     console.warn("GSAP not loaded");
     return;
   }
 
-  if (nav.dataset.initialized === "true") return;
-  nav.dataset.initialized = "true";
-
   let isOpen = false;
   let currentPanel = "main";
 
   const menuPanels = menu.querySelectorAll(".bottom-nav-menu__panel");
+  const menuTriggers = menu.querySelectorAll("[data-target]");
 
   menu.style.display = "none";
   menu.setAttribute("aria-hidden", "true");
-  nav.setAttribute("aria-expanded", "false");
-  nav.setAttribute("aria-label", "Open navigation");
-
-  function setCurrentPageName() {
-    const label = nav.querySelector(".bottom-nav__home");
-    if (!label) return;
-
-    let path = window.location.pathname;
-
-    if (path.endsWith("/")) {
-      path += "index.html";
-    }
-
-    const file = path.split("/").pop();
-
-    const pageMap = {
-      "index.html": "Home",
-      "about.html": "About",
-      "news.html": "News",
-      "contact.html": "Contact",
-
-      "ndt-level-iii-consulting-support.html": "NDT Level III Consulting",
-      "advanced-ndt-subject-matter-experts.html": "NDT Subject Matter Experts",
-      "ndt-written-practice-review-development.html": "NDT Written Practice",
-      "advanced-ndt-training.html": "Advanced NDT Training",
-      "advanced-ndt-programs-procedures.html": "NDT Programs & Procedures",
-      "automation-robotics-imaging-systems.html": "Automation & Robotics",
-
-      "mergers-acquisitions-support.html": "M&A Support",
-      "talent-acquisition-assessment.html": "Talent Acquisition",
-      "corporate-development-strategic-planning.html": "Strategic Planning",
-      "business-development-client-strategies.html": "Business Development",
-      "capital-acquisition.html": "Capital Acquisition",
-
-      "top-notch-edm.html": "Top Notch EDM",
-      "sound-ndt-solutions.html": "Sound NDT Solutions",
-      "sound-ndt.html": "Sound NDT"
-    };
-
-    if (pageMap[file]) {
-      label.textContent = pageMap[file];
-      return;
-    }
-
-    const prettyName = file
-      .replace(".html", "")
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-
-    label.textContent = prettyName || "Home";
-  }
 
   function getPanelItems(panelName) {
     const panel = menu.querySelector(`.bottom-nav-menu__panel[data-panel="${panelName}"]`);
@@ -80,12 +23,9 @@ function initNavbar() {
   }
 
   function showMenuPanel(targetName) {
-    console.log("Activating panel:", targetName);
-
     menuPanels.forEach((panel) => {
       panel.classList.toggle("is-active", panel.dataset.panel === targetName);
     });
-
     currentPanel = targetName;
   }
 
@@ -103,7 +43,10 @@ function initNavbar() {
 
     gsap.killTweensOf(items);
     gsap.set(items, { clearProps: "all" });
-    gsap.set(items, { opacity: 0, y: 20 });
+    gsap.set(items, {
+      opacity: 0,
+      y: 20
+    });
 
     gsap.to(items, {
       opacity: 1,
@@ -118,14 +61,26 @@ function initNavbar() {
   function switchPanel(targetName) {
     if (targetName === currentPanel) return;
 
+    const currentItems = getPanelItems(currentPanel);
     const nextPanel = menu.querySelector(`.bottom-nav-menu__panel[data-panel="${targetName}"]`);
-    if (!nextPanel) {
-      console.warn("Panel not found:", targetName);
-      return;
-    }
+    if (!nextPanel) return;
 
-    showMenuPanel(targetName);
-    animatePanelItemsIn(targetName);
+    gsap.killTweensOf(currentItems);
+
+    gsap.to(currentItems, {
+      opacity: 0,
+      y: 10,
+      duration: 0.15,
+      stagger: {
+        each: 0.01,
+        from: "end"
+      },
+      ease: "power2.in",
+      onComplete: () => {
+        showMenuPanel(targetName);
+        animatePanelItemsIn(targetName);
+      }
+    });
   }
 
   function openMenu() {
@@ -221,27 +176,6 @@ function initNavbar() {
       }, "-=0.1");
   }
 
-  function animateNavIn() {
-    gsap.killTweensOf(nav);
-
-    gsap.set(nav, {
-      opacity: 0,
-      y: 24,
-      scale: 0.96
-    });
-
-    gsap.to(nav, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: "power3.out",
-      clearProps: "opacity,transform"
-    });
-  }
-
-  setCurrentPageName();
-
   nav.addEventListener("click", (e) => {
     e.stopPropagation();
     isOpen ? closeMenu() : openMenu();
@@ -261,26 +195,29 @@ function initNavbar() {
     if (e.key === "Escape" && isOpen) closeMenu();
   });
 
-  menu.addEventListener("click", (e) => {
-    const trigger = e.target.closest("[data-target]");
-    if (!trigger) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const target = trigger.dataset.target;
-    console.log("Switching to:", target);
-
-    switchPanel(target);
+  menuTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      switchPanel(trigger.dataset.target);
+    });
   });
 
   menu.querySelectorAll("a:not([data-target])").forEach((link) => {
     link.addEventListener("click", () => closeMenu());
   });
+});
 
-  requestAnimationFrame(() => {
-    animateNavIn();
+
+function initNavbar() {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.mega-menu');
+
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('open');
   });
-}
 
-window.addEventListener("load", initNavbar);
+  // all other navbar listeners and animations here
+}

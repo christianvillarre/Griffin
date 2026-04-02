@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
-
+    <link rel="stylesheet" href="/navbar.css" />
   <style>
     :root{
       --bg:#ffffff;
@@ -30,7 +30,6 @@
       overflow-x:hidden;
     }
 
-    img{ max-width:100%; display:block; }
 
     .page-wrap{
       width:min(var(--page-max), calc(100% - 40px));
@@ -65,298 +64,7 @@
       transform: translateX(3px);
     }
 
-    /* ===================== NAVBAR ===================== */
-    .navbar{
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(900px, calc(100% - 28px));
-      height: 84px;
-      border-radius: 10px;
-      background: #00202e70;
-      border: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 50;
-
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      padding: 10px 20px;
-    }
-
-    .nav-logo{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 140px;
-    }
-
-    .nav-logo img{
-      height: 48px;
-      width: auto;
-      display:block;
-      object-fit: contain;
-      transform: translateY(-3px);
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      text-transform: uppercase;
-    }
-
-    .nav-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height: 42px;
-      padding: 0 14px;
-      border-radius: 12px;
-      text-decoration:none;
-      color: rgba(255,255,255,0.92);
-      font-weight: 600;
-      font-size: 14px;
-      letter-spacing: 0.01em;
-      border: 1px solid rgba(255,255,255,0.0);
-      transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
-      white-space: nowrap;
-    }
-
-    .nav-link:hover{ color:#F00303; }
-
-    .nav-link[data-dropdown].is-active,
-    .nav-link[data-dropdown].is-active:hover {
-      color: #F00303;
-    }
-
-    .nav-link[data-dropdown].is-active .nav-chevron{
-      transform: rotate(180deg);
-      opacity: 1;
-    }
-
-    .nav-link--contact{
-      background: rgba(255,255,255,0.95);
-      color: #111;
-      border: 1px solid rgba(255,255,255,0.65);
-      padding: 0 16px;
-    }
-
-    .nav-link--contact:hover{
-      background: rgba(255,255,255,1);
-      border-color: rgba(255,255,255,0.9);
-      color:#111;
-    }
-
-    @media (max-width: 560px){
-      .nav-link--hide-sm{ display:none; }
-    }
-
-    .nav-link--has-chevron{ gap: 3px; }
-
-    .nav-chevron{
-      width: 16px;
-      height: 16px;
-      display: block;
-      transform: translateY(0px);
-      opacity: 0.9;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    .nav-link:hover .nav-chevron{ opacity: 1; }
-
-    /* ===================== NAV DROPDOWN ===================== */
-    .nav-dd-item.is-tab{
-      cursor: pointer;
-    }
-
-    .nav-dd-item.is-tab.is-selected{
-      background: rgba(255, 255, 255, 0.055);
-      color: #ffffff;
-    }
-
-    .nav-dd-item.is-tab.is-selected .dd-arrow path{
-      stroke: #F00303;
-    }
-
-    .nav-dropdown-wrap{
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      top: calc(18px + 84px + 10px);
-      width: min(900px, calc(100% - 28px));
-      z-index: 49;
-      pointer-events: none;
-    }
-
-    .nav-dropdown{
-      border-radius: 10px;
-      background: #00202ec0;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1.35fr;
-      gap: 14px;
-      padding: 16px;
-
-      opacity: 0;
-      transform: translateY(-8px);
-      transition: opacity .18s ease, transform .18s ease;
-    }
-
-    .nav-dropdown-wrap.is-open{
-      pointer-events: auto;
-    }
-
-    .nav-dropdown-wrap.is-open .nav-dropdown{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav-dd-left{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .nav-dd-item{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      background: rgba(33, 33, 33, 0);
-      border: none;
-      color: rgba(255,255,255,0.92);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-    }
-
-    .nav-dd-item:hover{
-      transform: translateY(-1px);
-      background: #5677851b;
-      border-color: rgba(255,255,255,0.18);
-      color:#ffffff;
-    }
-
-    .nav-dd-item .dd-arrow{
-      width: 18px;
-      height: 18px;
-      opacity: 0.95;
-    }
-
-    .nav-dd-item .dd-arrow path{
-      stroke: rgba(255,255,255,0.92);
-    }
-
-    .nav-dd-item:hover .dd-arrow path{
-      stroke: #ffffff;
-    }
-
-    .nav-dd-right{
-      padding: 6px 4px 6px 2px;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .nav-dd-title{
-      font-size: 16px;
-      font-weight: 700;
-      margin: 2px 0 6px;
-      letter-spacing: -0.01em;
-    }
-
-    .nav-dd-desc{
-      margin: 0 0 12px;
-      font-size: 13px;
-      line-height: 1.45;
-      opacity: 0.78;
-      max-width: 48ch;
-    }
-
-    .nav-dd-links{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .nav-dd-greenlink{
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      color: #F00303;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.01em;
-      line-height: 1.2;
-      -webkit-tap-highlight-color: transparent;
-      transition:
-        color 170ms cubic-bezier(.22,1,.36,1),
-        transform 160ms cubic-bezier(.22,1,.36,1);
-    }
-
-    .nav-dd-greenlink::after{
-      content:"";
-      position:absolute;
-      left: 0;
-      right: 0;
-      bottom: -3px;
-      height: 1px;
-      background: #F00303;
-      transform: scaleX(0);
-      transform-origin: left;
-      opacity: 0.95;
-      transition: transform 180ms cubic-bezier(.22,1,.36,1);
-    }
-
-    .nav-dd-greenlink:hover::after,
-    .nav-dd-greenlink:focus-visible::after{
-      transform: scaleX(1);
-    }
-
-    .nav-dd-greenlink svg{
-      width: 16px;
-      height: 16px;
-      transform: translateY(0);
-      transition: transform 160ms cubic-bezier(.22,1,.36,1);
-    }
-
-    .nav-dd-greenlink svg path{
-      stroke: #ffffff;
-      transition: stroke 170ms cubic-bezier(.22,1,.36,1);
-    }
-
-    .nav-dd-greenlink:hover,
-    .nav-dd-greenlink:focus-visible{
-      color: #ffffff;
-    }
-
-    .nav-dd-greenlink:hover svg,
-    .nav-dd-greenlink:focus-visible svg{
-      transform: translateY(-1px);
-    }
-
-    .nav-dd-greenlink:hover svg path,
-    .nav-dd-greenlink:focus-visible svg path{
-      stroke: #F00303;
-    }
-
-    @media (max-width: 720px){
-      .nav-dropdown{
-        grid-template-columns: 1fr;
-      }
-    }
-
+   
     /* ================= ABOUT HERO ================= */
     .service-top-image{
       width: 100%;
@@ -991,39 +699,8 @@
 </head>
 <body>
 
-<!-- ✅ Fixed Navbar -->
-<header class="navbar" aria-label="Primary">
-  <div class="nav-logo">
-  <a href="/">
-    <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
-  </a>
-</div>
-
-  <nav class="nav-links">
-    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="capabilities">
-      <span class="nav-link__label">Capabilities</span>
-      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-
-    <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#" data-dropdown="affiliates">
-      <span class="nav-link__label">Affiliates</span>
-      <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-        <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-    <a class="nav-link nav-link--hide-sm" href="/about.html">About</a>
-    <a class="nav-link" href="/news.html">News</a>
-    <a class="nav-link nav-link--contact" href="/contact.html">Contact</a>
-  </nav>
-</header>
-<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
-  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
-    <div class="nav-dd-left" id="navDdLeft"></div>
-    <div class="nav-dd-right" id="navDdRight"></div>
-  </div>
-</div>
+ <!-- NAVBAR -->
+<div id="site-navbar"></div>
 
   <div id="scroll-container">
     <main>
@@ -1385,7 +1062,10 @@
     </main>
   </div>
 
-  <script src="/navbar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="/navbar.js"></script>
+<script src="/load-navbar.js"></script>
 
   <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
   <script>

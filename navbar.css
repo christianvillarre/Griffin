@@ -306,7 +306,7 @@
 }
 
  :root{
-  --bottom-nav-w: clamp(220px, 28vw, 650px);
+  --bottom-nav-w: clamp(220px, 58vw, 750px);
   --bottom-nav-h: clamp(54px, 6vw, 96px);
   --bottom-nav-open: clamp(54px, 6vw, 86px);
 
@@ -645,7 +645,7 @@
 
 .bottom-nav-menu__panel-title{
     color: white;
-    font-size: clamp(11px, 1.25vw, 120px);
+    font-size: clamp(20px, 0.15vw, 25px);
     font-weight: 600;
     padding: 0;
     margin: 0;
@@ -850,10 +850,6 @@
     padding: 0 8px;
   }
 
-  .bottom-nav__toggle{
-    width: 40px;
-    height: 40px;
-  }
 
   .bottom-nav-menu__meta{
     grid-template-columns: 1fr;
@@ -868,9 +864,9 @@
 @media (max-width: 1400px){
   :root{
     /* navbar size */
-    --bottom-nav-w: clamp(170px, 45vw, 460px);
-    --bottom-nav-h: clamp(44px, 5.2vw, 74px);
-    --bottom-nav-open: clamp(44px, 4.2vw, 48px);
+    --bottom-nav-w: clamp(170px, 55vw, 550px);
+    --bottom-nav-h: clamp(44px, 5.8vw, 94px);
+    --bottom-nav-open: clamp(44px, 5.2vw, 68px);
 
     /* menu panel */
     --menu-panel-w: clamp(320px, 62vw, 1200px);
@@ -893,15 +889,16 @@
 }
 
   .bottom-nav__toggle{
-    width: 34px;
-    height: 34px;
-    gap: 3px;
+    width: 55px;
+  height: 55px;
+  gap: 6px;
+
   }
 
   .bottom-nav__line,
   .bottom-nav__x span{
-    width: 25px;
-    height: 1px;
+    width: 30px;
+    height: 2px;
   }
 
   /* typography scales down more */
@@ -1000,91 +997,7 @@
   
 }
 
-/* ===================== TOP AREA ===================== */
-.bottom-nav-menu__top{
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  min-height: 100%;
-}
 
-/* ===================== PANELS ===================== */
-.bottom-nav-menu__panel{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateX(24px);
-
-  transition:
-    opacity .28s ease,
-    transform .34s cubic-bezier(.22, 1, .36, 1),
-    visibility 0s linear .34s;
-  will-change: transform, opacity;
-}
-
-/* ACTIVE panel (incoming) */
-.bottom-nav-menu__panel.is-active{
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(0);
-
-  transition:
-    opacity .28s ease .08s,
-    transform .34s cubic-bezier(.22, 1, .36, 1) .08s,
-    visibility 0s linear 0s;
-}
-/* entering directions */
-.bottom-nav-menu__panel.is-entering-from-right{
-  opacity: 0;
-  visibility: visible;
-  pointer-events: none;
-  transform: translateX(28px);
-}
-
-.bottom-nav-menu__panel.is-entering-from-left{
-  opacity: 0;
-  visibility: visible;
-  pointer-events: none;
-  transform: translateX(-28px);
-}
-
-/* exiting directions */
-.bottom-nav-menu__panel.is-exiting-to-left{
-  opacity: 0;
-  visibility: visible;
-  pointer-events: none;
-  transform: translateX(-28px);
-}
-
-.bottom-nav-menu__panel.is-exiting-to-right{
-  opacity: 0;
-  visibility: visible;
-  pointer-events: none;
-  transform: translateX(28px);
-}
-/* exiting */
-.bottom-nav-menu__panel.is-exiting-to-left,
-.bottom-nav-menu__panel.is-exiting-to-right{
-  transition:
-    opacity .2s ease,
-    transform .26s cubic-bezier(.4, 0, .2, 1);
-}
-
-/* entering (delayed) */
-.bottom-nav-menu__panel.is-active{
-  transition:
-    opacity .28s ease .1s,
-    transform .34s cubic-bezier(.22, 1, .36, 1) .1s;
-}
 
 .bottom-nav-menu__content-grid{
   display: grid;
@@ -1113,7 +1026,10 @@
 }
 
 .bottom-nav-menu.is-open{
+  display: block;
+  opacity: 1;
   pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 .dd-arrow {
     width: 20px;
