@@ -943,11 +943,13 @@
 
   .bottom-nav-menu__sublist{
     gap: 7px;
+    
   }
 
   .bottom-nav-menu__subitem{
-    font-size: clamp(11px, 1.2vw, 13px);
+    font-size: clamp(11px, 4vw, 30px);
     line-height: 1;
+   
   }
 
   .bottom-nav-menu__subitem-icon{
@@ -1067,3 +1069,235 @@
   margin-top: 0;
 }
 
+/* ===================== MOBILE LAYOUT TWEAKS ===================== */
+@media (max-width: 768px){
+  :root{
+    /* wider trigger + wider panel on mobile */
+    --bottom-nav-w: min(92vw, 420px);
+    --bottom-nav-h: clamp(58px, 12vw, 82px); /* 👈 height */
+    --bottom-nav-open: 56px;
+    --menu-panel-w: calc(100vw - 20px);
+    --menu-inner-pad: 20px;
+  }
+
+  /* wider closed button on mobile */
+  .bottom-nav{
+    width: var(--bottom-nav-w);
+  }
+
+  /* make the X slightly thinner + a bit less wide */
+  .bottom-nav__x span{
+    width: 30px;
+    height: 1px;
+  }
+  .bottom-nav__line{
+  display: block;
+  width: 32px;
+  height: 1px;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+  /* keep menu comfortably sized */
+  .bottom-nav-menu{
+    width: min(var(--menu-panel-w), calc(100vw - 20px));
+    bottom: 78px;
+    max-height: calc(100vh - 96px);
+  }
+
+  /* main panel stack */
+  .bottom-nav-menu__panel[data-panel="main"] .bottom-nav-menu__content-grid,
+  .bottom-nav-menu__content-grid,
+  .bottom-nav-menu__main-headings{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* MENU stays first/top */
+  .bottom-nav-menu__col--primary{
+    order: 1;
+  }
+
+  /* socials + reach us under menu in a row */
+  .bottom-nav-menu__meta{
+    order: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 6px;
+  }
+
+  .bottom-nav-menu__meta-headings{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  /* any secondary content goes below */
+  .bottom-nav-menu__col--secondary{
+    order: 3;
+  }
+
+  /* in stacked columns, heading/text above subitems */
+  .bottom-nav-menu__col--secondary,
+  .bottom-nav-menu__col--primary,
+  .bottom-nav-menu__meta-left,
+  .bottom-nav-menu__meta-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bottom-nav-menu__panel-title,
+  .bottom-nav-menu__panel-note,
+  .bottom-nav-menu__eyebrow{
+    margin-bottom: 10px;
+  }
+  .bottom-nav-menu__panel-note {
+    max-width: 50ch;
+  }
+
+  .bottom-nav-menu__sublist{
+    width: 100%;
+    gap: 8px;
+  }
+
+  .bottom-nav-menu__subitem{
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 560px){
+  :root{
+    --bottom-nav-w: calc(100vw - 124px);
+    --menu-panel-w: calc(100vw - 16px);
+    --menu-inner-pad: 18px;
+  }
+
+  .bottom-nav{
+    width: var(--bottom-nav-w);
+  }
+
+  .bottom-nav__x span{
+    width: 26px;
+    height: 1px;
+  }
+
+  .bottom-nav-menu__meta,
+  .bottom-nav-menu__meta-headings{
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .bottom-nav-menu__item{
+    font-size: clamp(20px, 8vw, 38px);
+    padding: 4px 0;
+
+  }
+
+  .bottom-nav-menu__panel-title{
+    font-size: 18px;
+    margin-bottom: 0.75rem;
+  }
+  .bottom-nav__home {
+    display:none;
+  }
+}
+
+@media (max-width: 768px){
+
+  /* 🔥 Remove the separate headings row */
+  .bottom-nav-menu__meta-headings{
+    display: none;
+  }
+
+  /* Make each column self-contained (eyebrow + content together) */
+  .bottom-nav-menu__meta-left,
+  .bottom-nav-menu__meta-right{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* Ensure eyebrow sits directly above its content */
+  .bottom-nav-menu__meta-left .bottom-nav-menu__eyebrow,
+  .bottom-nav-menu__meta-right .bottom-nav-menu__eyebrow{
+    order: 0;
+    margin-bottom: 4px;
+  }
+
+  /* Content follows eyebrow */
+  .bottom-nav-menu__meta-left > *,
+  .bottom-nav-menu__meta-right > *{
+    order: 1;
+  }
+}
+
+@media (max-width: 768px){
+  /* hide the detached heading row on mobile */
+  .bottom-nav-menu__meta-headings{
+    display: none !important;
+  }
+
+  /* socials + reach us stay under Menu in 2 columns */
+  .bottom-nav-menu__meta{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 6px;
+    align-items: start;
+  }
+
+  .bottom-nav-menu__meta-left,
+  .bottom-nav-menu__meta-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* recreate the eyebrow labels inside each column */
+  .bottom-nav-menu__meta-left::before,
+  .bottom-nav-menu__meta-right::before{
+    color: #f7f7f7;
+    font-size: clamp(10px, 0.8vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .bottom-nav-menu__meta-left::before{
+    content: "Socials";
+  }
+
+  .bottom-nav-menu__meta-right::before{
+    content: "Reach Us";
+  }
+}
+
+@media (max-width: 560px){
+  .bottom-nav__home{
+    display: none;
+  }
+
+  .bottom-nav__content{
+    grid-template-columns: 1fr auto;
+    gap: 0;
+    padding: 0 10px;
+  }
+
+  .bottom-nav__brand{
+    justify-content: flex-start;
+  }
+
+  .bottom-nav__toggle{
+    justify-self: end;
+    width: 44px;
+  }
+}
