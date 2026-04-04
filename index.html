@@ -4165,9 +4165,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const intro = document.querySelector(".intro-wrap");
 const img = document.querySelector(".hero-rise-img");
+const heading = document.querySelector(".stackflow-heading");
 
 if (intro && img) {
-  gsap.timeline({
+  const tl = gsap.timeline({
     scrollTrigger: {
       trigger: intro,
       start: "top top",
@@ -4176,18 +4177,35 @@ if (intro && img) {
       pin: true,
       anticipatePin: 1
     }
-  })
-  .fromTo(img,
-    { 
+  });
+
+  tl.fromTo(img,
+    {
       yPercent: 60,
-      opacity: 0   // 👈 starts invisible
+      opacity: 0
     },
-    { 
+    {
       yPercent: 0,
-      opacity: 1,  // 👈 fades in
+      opacity: 1,
       ease: "none"
-    }
+    },
+    0
   );
+
+  if (heading) {
+    tl.fromTo(heading,
+      {
+        opacity: 1,
+        y: 0
+      },
+      {
+        opacity: 0,
+        y: -40,
+        ease: "none"
+      },
+      0
+    );
+  }
 }
 </script>
 </body>
