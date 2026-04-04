@@ -66,7 +66,7 @@ html{
      ========================================================= */
 .intro-wrap{
   position: relative;
-  overflow: hidden;
+  overflow: clip;   /* ✅ or hidden */
   background:#000;
   padding-bottom: 4rem;
 }
@@ -78,14 +78,13 @@ html{
 .intro-wrap::before{
   content:"";
   position:absolute;
-  z-index:1;
+  z-index:0;
 
   width: 520vmax;
   height: 520vmax;
 
   left: 50%;
-  top: 100%;
-  overflow: hidden;
+  top: 50%;
 
   /* ✅ add var offset (moves beam up/down smoothly) */
   transform: translate(-45%, calc(-55% + var(--beamY))) rotate(-115deg);
@@ -122,14 +121,13 @@ html{
   );
 
   pointer-events:none;
-  z-index: 0;
 }
 
 /* side images (img3/img4) responsive: narrower + more inset on small screens */
 .side-img{
   position:absolute;
   top:0;
- 
+  overflow: visible;
 
   /* ✅ height responds to WIDTH (vw) but is capped by viewport height (vh) */
   height: clamp(140vh, 95vw, 150vh);
@@ -185,17 +183,15 @@ html{
 }
 
   /* wave indent (white) into next section */
-.wave-divider {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: auto;
-  min-height: 120px;
-  z-index: 3;
-  pointer-events: none;
-  display: block;
-}
+  .wave-divider{
+    position:absolute;
+    left:0;
+    bottom:-1px;
+    width:100%;
+    height: 180px;
+    z-index: 3;
+    pointer-events:none;
+  }
   .wave-divider path{ fill:#fff; }
 
   /* ---------- HERO (no more 200vh ::after background) ---------- */
@@ -218,7 +214,7 @@ html{
   position:absolute;
   inset:0;
   background: rgba(0, 0, 0, 0.302);
-  z-index: 0;
+  z-index: 1;
   pointer-events:none;
 }
   .hero > *{
@@ -803,7 +799,9 @@ html{
 /* =========================
    SECTION / SPACER
 ========================= */
-
+.intro-wrap{
+  overflow: visible;
+}
 
 .spacer--dark{
   min-height: 55vh;
@@ -904,9 +902,10 @@ html{
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 3rem);
-  width: 80vw;
+  width: auto;
   height: 50vh;
-  height: auto;
+  max-height: 620px;
+  min-height: 120px;
   z-index: 2;
   pointer-events: none;
   opacity: 1;
@@ -955,13 +954,7 @@ html{
   <main id="site">
 
     <section class="intro-wrap" id="home">
-       <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
-    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
-    
       <div class="hero">
-        <video class="hero-rise-img" autoplay muted loop playsinline>
-          <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/griffin_red_waves.mp4" type="video/mp4">
-        </video>
         <div class="hero-topbar">
         <!-- Center Logo -->
         <div class="hero-topbar__center">
@@ -995,16 +988,122 @@ html{
               </a>-->
             </div>
 
+            <div class="stackflow-grid">
+              <div class="stackflow-col stackflow-col--1">
+               <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
+                  <img src="images/stock22.jpeg" alt="Advanced analytics">
+
+                  <div class="stackflow-meta stackflow-meta--split">
+                    <div class="stackflow-card-top">
+                      <p class="stackflow-eyebrow">Technology</p>
+                      <h3 class="stackflow-title2">
+                        Automation, Robotics, and Advanced Imaging Systems
+                      </h3>
+                    </div>
+
+                   
+                  </div>
+                </a>
+
+
+                <a href="/technical-consulting/advanced-ndt-training.html" class="stackflow-card stackflow-h-md1 stackflow-card--split stackflow-card--technology intro-card">
+                  <img src="images/stock7.jpeg" alt="Advanced analytics">
+
+                  <div class="stackflow-meta stackflow-meta--split">
+                    <div class="stackflow-card-top">
+                      <p class="stackflow-eyebrow">Operations</p>
+                      <h3 class="stackflow-title2">
+                        Smarter Inspection Through Advanced Analytics
+                      </h3>
+                    </div>
+
+                   
+                  </div>
+                </a>
+              </div>
+
+              <div class="stackflow-col stackflow-col--2">
+                <a href="/business-advisory/talent-acquisition-assessment.html" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
+  <img src="images/stock19.jpeg" alt="Inspection planning">
+
+  <div class="stackflow-meta stackflow-meta--split">
+    <div class="stackflow-card-top">
+      <p class="stackflow-eyebrow">Case Study</p>
+      <h3 class="stackflow-title2">
+        How Griffin Discovers Industry Talent
+      </h3>
+    </div>
+
+    
+  </div>
+</a>
+
+                 <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stackflow-card stackflow-h-sm1 stackflow-card--split stackflow-card--case-study intro-card">
+  <img src="images/stock8.jpeg" alt="Inspection planning">
+
+  <div class="stackflow-meta stackflow-meta--split">
+    <div class="stackflow-card-top">
+      <p class="stackflow-eyebrow">Business Advisory</p>
+      <h3 class="stackflow-title2">
+        Reducing Downtime with Precision Integrity Strategy
+      </h3>
+    </div>
+
+    
+  </div>
+</a>
+              </div>
+
+              <div class="stackflow-col stackflow-col--3">
+               <a href="/news.html" class="stackflow-card stackflow-h-xl stackflow-card--featured">
+                <img src="images/stock25.jpeg" alt="Built for critical environments">
+
+                <div class="stackflow-meta stackflow-meta--featured intro-card">
+                  <div class="stackflow-featured-top">
+                    <p class="stackflow-eyebrow">Featured Story</p>
+                    <h3 class="stackflow-title2 larger">
+                      Can Digital NDT Systems Replace Traditional Methods in High-Risk Inspections?
+                    </h3>
+                  </div>
+
+                  <span class="featured-btn">
+                    <span>Read Featured Story</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                      <path d="M184 112 L328 256 L184 400"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="52"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+                  
+                </a>
+          
+                <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
+                  <div class="stackflow-meta">
+                    <p class="stackflow-eyebrow">STAY IN TOUCH</p>
+                    <h3 class="stackflow-title2 larger">Keep updated with major industry updates and get in touch with professionals.</h3>
+                    <form class="stackflow-subscribe">
+                      <label class="stackflow-sr" for="stackflowEmail">Email address</label>
+                      <input id="stackflowEmail" type="email" placeholder="Enter your email for updates">
+                      <button type="submit">Subscribe</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
       </div>
 
       <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
-       <path
-  d="M0,80 C240,80 480,120 720,120 C960,120 1200,80 1440,80 L1440,180 L0,180 Z"
-  fill="#ffffff">
-</path>
+        <path
+        d="M0,60 C240,60 480,140 720,140 C960,140 1200,60 1440,60 L1440,180 L0,180 Z"
+        fill="#ffffff">
+      </path>
       </svg>
     </section>
 
@@ -1025,7 +1124,6 @@ html{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  
 }
 
 .hero-topbar__center img{
@@ -1166,7 +1264,8 @@ html{
 }
 </style>
 
-   
+    <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
+    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
 
 <section class="caps-intro-section">
   <div class="caps-intro-shell">
@@ -1194,7 +1293,6 @@ html{
   .caps-intro-section{
   background: #fff;
   padding: clamp(32px, 0vw, 0px) 0 40px;
-  z-index: 999;
 }
 
 .caps-intro-shell{
@@ -1205,7 +1303,6 @@ html{
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.7fr);
   align-items: start;
   gap: clamp(28px, 4vw, 72px);
-  z-index: 9999;
 }
 
 .caps-intro-copy{
@@ -4135,60 +4232,7 @@ riseTargets3.forEach((el, i) => {
     window.lenis = lenis;
   })();
 </script>
-<style>
-.hero-topbar{
-  z-index: 5; /* highest */
-}
 
-.hero-rise-img{
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 104vh;
-  object-fit: cover;
 
-  z-index: 2;
-  pointer-events: none;
-
-  /* keep your fade */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-}
-.stackflow-shell{
-
-  z-index: 1; /* BELOW image */
-}
-
-</style>
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-const intro = document.querySelector(".intro-wrap");
-const img = document.querySelector(".hero-rise-img");
-
-if (intro && img) {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: intro,
-      start: "top top",
-      end: "+=150%",
-      scrub: true,
-      pin: true,
-      anticipatePin: 1
-    }
-  })
-  .fromTo(img,
-    { 
-      yPercent: 60,
-      opacity: 0   // 👈 starts invisible
-    },
-    { 
-      yPercent: 0,
-      opacity: 1,  // 👈 fades in
-      ease: "none"
-    }
-  );
-}
-</script>
 </body>
 </html>
