@@ -906,6 +906,7 @@ html{
   bottom: 0;
   transform: translate(-50%, 3rem);
   width: 80vw;
+  max-width: 1600px;
   height: 50vh;
   height: auto;
   z-index: 2;
@@ -2917,7 +2918,7 @@ html, body{
   color:#fff;
   padding: clamp(60px, 8vw, 100px) clamp(18px, 4vw, 70px) 30px;
 
-  margin-top: 100px;
+ 
   
 
   overflow-x: clip; /* prevents rounding overflow */
@@ -4176,63 +4177,6 @@ if (intro && img) {
   }
 }
 </script>
-<style>
-  @media (max-width: 760px){
-  .hero-rise-img{
-    inset: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    transform: translate(-50%, 60px); /* 👈 keep X + add Y */
-    
-  }
-}
-@media (max-width: 760px){
-  .hero{
-    min-height: 150vh;   /* 👈 makes hero taller */
-    padding-top: 130px;
-    margin-bottom:-60px; /* 👈 gives more bottom breathing room */
-    overflow: visible;
-  }
-}
-@media (max-width: 760px){
-  .stackflow-copy{
-    justify-content: flex-start;   /* 👈 move heading up */
-    padding-top: 8vh;              /* 👈 controls how high */
-    min-height: 100vh;              /* 👈 prevents it from forcing center */
-  }
-}
-@media (max-width: 760px){
-  :root{
-    --beamY: -920px; /* 👈 move beam upward */
-  }
-}
-@media (max-width: 760px){
 
-  /* 🔺 make Griffin icon larger + slightly higher */
-  .hero-topbar__center img{
-    height: clamp(70px, 25vw, 120px); /* bigger */
-  }
-
-  .hero-topbar{
-    top: 3%; /* move whole topbar slightly up */
-  }
-
-  /* 🔺 move Griffin text up */
-  #heroBottomIcon{
-    transform: translate(-50%, 0.2rem); /* was 3rem → now lifted up */
-    width: 90vw; /* optional: slightly larger presence */
-  }
-
-}
-@media (max-width: 760px){
-  .wave-divider{
-    bottom: -10px;
-    min-height: 20px;
-  }
-}
-
-</style>
 </body>
 </html>
