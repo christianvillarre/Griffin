@@ -9,11 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <!-- in <head> -->
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
-
-<link rel="stylesheet" href="/navbar.css" />
   
 </head>
 <style>
@@ -49,10 +46,109 @@ html{
     font-family: 'Zalando Sans', sans-serif;
     background: var(--bg);
     color: var(--ink);
-    overflow-x: hidden;
-     background: #052330;
+  
   }
 
+  /* ===================== NAVBAR ===================== */
+  .navbar{
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, calc(100% - 28px));
+    height: 84px;
+    border-radius: 10px;
+    background: #00202e70;
+    border: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 50;
+
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    min-width: 140px;
+  }
+
+  .nav-logo img{
+    height: 48px;
+    width: auto;
+    display:block;
+    object-fit: contain;
+    transform: translateY(-3px);
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    text-transform: uppercase;
+  }
+
+  .nav-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 12px;
+    text-decoration:none;
+    color: rgba(255,255,255,0.92);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    border: 1px solid rgba(255,255,255,0.0);
+    transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover{ color:#F00303; }
+
+  /* ✅ Dropdown trigger selected (stays red + arrow flips up) */
+  .nav-link[data-dropdown].is-active,
+  .nav-link[data-dropdown].is-active:hover {
+    color: #F00303; /* drives text + chevron because SVG uses currentColor */
+  }
+
+  .nav-link[data-dropdown].is-active .nav-chevron{
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .nav-link--contact{
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    border: 1px solid rgba(255,255,255,0.65);
+    padding: 0 16px;
+  }
+  .nav-link--contact:hover{
+    background: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,0.9);
+    color:#111;
+  }
+
+  @media (max-width: 560px){
+    .nav-link--hide-sm{ display:none; }
+  }
+
+  .nav-link--has-chevron{ gap: 3px; }
+
+  .nav-chevron{
+    width: 16px;
+    height: 16px;
+    display: block;
+    transform: translateY(0px);
+    opacity: 0.9;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-link:hover .nav-chevron{ opacity: 1; }
 
   /* ---------- Site ---------- */
 #site{
@@ -67,7 +163,7 @@ html{
      ========================================================= */
 .intro-wrap{
   position: relative;
-  overflow: hidden;
+  overflow: clip;   /* ✅ or hidden */
   background:#000;
   padding-bottom: 4rem;
 }
@@ -79,14 +175,13 @@ html{
 .intro-wrap::before{
   content:"";
   position:absolute;
-  z-index:1;
+  z-index:0;
 
   width: 520vmax;
   height: 520vmax;
 
   left: 50%;
-  top: 100%;
-  overflow: hidden;
+  top: 50%;
 
   /* ✅ add var offset (moves beam up/down smoothly) */
   transform: translate(-45%, calc(-55% + var(--beamY))) rotate(-115deg);
@@ -123,14 +218,13 @@ html{
   );
 
   pointer-events:none;
-  z-index: 0;
 }
 
 /* side images (img3/img4) responsive: narrower + more inset on small screens */
 .side-img{
   position:absolute;
   top:0;
- 
+  overflow: visible;
 
   /* ✅ height responds to WIDTH (vw) but is capped by viewport height (vh) */
   height: clamp(140vh, 95vw, 150vh);
@@ -186,17 +280,15 @@ html{
 }
 
   /* wave indent (white) into next section */
-.wave-divider {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: auto;
-  min-height: 120px;
-  z-index: 3;
-  pointer-events: none;
-  display: block;
-}
+  .wave-divider{
+    position:absolute;
+    left:0;
+    bottom:-1px;
+    width:100%;
+    height: 180px;
+    z-index: 3;
+    pointer-events:none;
+  }
   .wave-divider path{ fill:#fff; }
 
   /* ---------- HERO (no more 200vh ::after background) ---------- */
@@ -210,7 +302,7 @@ html{
   padding-top: 150px;
   padding-bottom: 120px;
   text-align: center;
- 
+  background: none;
 }
   /* optional subtle tint over the bg (keep it light) */
 /* ✅ ONE overlay for the entire 200vh area (prevents the seam) */
@@ -218,8 +310,8 @@ html{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(0, 0, 0, 0.302);
-  z-index: 0;
+  background: rgba(0,0,0,0.12);
+  z-index: 1;
   pointer-events:none;
 }
   .hero > *{
@@ -312,10 +404,246 @@ html{
 </style>
 <body>
 
-<div id="site-navbar"></div>
+  <!-- ✅ Fixed Navbar -->
+  <header class="navbar" aria-label="Primary">
+    <div class="nav-logo">
+      <img src="images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+    </div>
+
+    <nav class="nav-links">
+      <a class="nav-link nav-link--hide-sm" href="#home">About</a>
+  <a class="nav-link nav-link--hide-sm nav-link--has-chevron" href="#home" data-dropdown="capabilities">
+  <span class="nav-link__label">Capabilities</span>
+  <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+    <path d="M128 192 L256 320 L384 192" fill="none" stroke="currentColor" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+      
+      <a class="nav-link" href="#home">News</a>
+      <a class="nav-link nav-link--contact" href="#home">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ✅ Navbar Dropdown (Services / News) -->
+<div class="nav-dropdown-wrap" id="navDropdown" aria-hidden="true">
+  <div class="nav-dropdown" role="dialog" aria-label="Navigation dropdown">
+    <!-- LEFT COLUMN -->
+    <div class="nav-dd-left" id="navDdLeft">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="nav-dd-right" id="navDdRight">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</div>
 
 <style>
+  /* --- Left column tabs (Capabilities) --- */
+.nav-dd-item.is-tab{
+  cursor: pointer;
+}
 
+.nav-dd-item.is-tab.is-selected{
+  background: rgba(255, 255, 255, 0.055);
+  color: #ffffff;
+}
+
+.nav-dd-item.is-tab.is-selected .dd-arrow path{
+  stroke: #F00303;
+}
+  /* ===================== NAV DROPDOWN ===================== */
+.nav-dropdown-wrap{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(18px + 84px + 10px); /* navbar top + height + gap */
+  width: min(900px, calc(100% - 28px));
+  z-index: 49; /* under navbar (navbar is 50) */
+  pointer-events: none; /* only clickable when open */
+}
+
+.nav-dropdown{
+  border-radius: 10px;
+
+  /* ✅ match navbar exactly */
+  background: #00202ec0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+  padding: 16px;
+
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.nav-dropdown-wrap.is-open{
+  pointer-events: auto;
+}
+.nav-dropdown-wrap.is-open .nav-dropdown{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LEFT */
+.nav-dd-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-dd-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 10px 14px;
+  border-radius: 16px;
+
+  background: rgba(33, 33, 33, 0);
+  border: none;
+
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.nav-dd-item:hover{
+  transform: translateY(-1px);
+  background: #5677851b;
+  border-color: rgba(255,255,255,0.18);
+  color:#ffffff;
+}
+
+.nav-dd-item .dd-arrow{
+  width: 18px;
+  height: 18px;
+  opacity: 0.95;
+}
+.nav-dd-item .dd-arrow path{
+  stroke: rgba(255,255,255,0.92);
+}
+.nav-dd-item:hover .dd-arrow path{
+  stroke: #ffffff;
+}
+
+
+/* RIGHT */
+.nav-dd-right{
+  padding: 6px 4px 6px 2px;
+  color: rgba(255,255,255,0.92);
+}
+
+.nav-dd-title{
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.nav-dd-desc{
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.78;
+  max-width: 48ch;
+}
+
+.nav-dd-links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ===================== RIGHT COLUMN LINKS ===================== */
+
+.nav-dd-greenlink{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+
+  color: #F00303;              /* red text default */
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: 
+    color 170ms cubic-bezier(.22,1,.36,1),
+    transform 160ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Animated underline (always red) ===== */
+.nav-dd-greenlink::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: #F00303;                 /* stays red */
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.95;
+  transition: transform 180ms cubic-bezier(.22,1,.36,1);
+}
+
+/* underline animates in */
+.nav-dd-greenlink:hover::after,
+.nav-dd-greenlink:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* ===== Arrow default state ===== */
+.nav-dd-greenlink svg{
+  width: 16px;
+  height: 16px;
+  transform: translateY(0);
+  transition: transform 160ms cubic-bezier(.22,1,.36,1);
+}
+
+.nav-dd-greenlink svg path{
+  stroke: #ffffff;                     /* white arrow default */
+  transition: stroke 170ms cubic-bezier(.22,1,.36,1);
+}
+
+/* ===== Hover state ===== */
+.nav-dd-greenlink:hover,
+.nav-dd-greenlink:focus-visible{
+  color: #ffffff;                      /* text fades to white */
+}
+
+.nav-dd-greenlink:hover svg,
+.nav-dd-greenlink:focus-visible svg{
+  transform: translateY(-1px);          /* arrow moves up 1px */
+}
+
+.nav-dd-greenlink:hover svg path,
+.nav-dd-greenlink:focus-visible svg path{
+  stroke: #F00303;                      /* arrow turns red */
+}
+
+/* Mobile stacking */
+@media (max-width: 720px){
+  .nav-dropdown{
+    grid-template-columns: 1fr;
+  }
+}
 
 .text-highlight {
   background: linear-gradient(90deg, #F00303 0%,rgb(19, 75, 99) 100%);
@@ -323,8 +651,7 @@ html{
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  font-weight: 900;
- 
+  font-weight: 800;
 }
 .hero-scroll-indicator{
   margin-top: 0px;
@@ -393,11 +720,11 @@ html{
 }
 
 .display-heading{
-  font-size: clamp(34px, 7vw, 56px);
+  font-size: clamp(34px, 7vw, 76px);
   line-height: 1.05;
   margin: 0;
   letter-spacing: -0.02em;
-  font-weight: 200;
+  font-weight: 700;
   
 }
 
@@ -412,19 +739,15 @@ html{
   white-space: nowrap;
   border: 0;
 }
-
-
 .stackflow-heading{
   margin: 0;
   color: #fff;
-  font-size: clamp(2.4rem, 4.5vw, 6.5rem);
+  font-size: clamp(2.4rem, 5.5vw, 7.5rem);
   line-height: 0.97;
   letter-spacing: -0.035em;
   
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-weight: 300;
-  margin-bottom: 5rem;
-  
 }
 
 
@@ -432,65 +755,36 @@ html{
   margin-top: 24px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   width: fit-content;
-
   color: #F00303;
   text-decoration: none;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1;
-
-  position: relative;
-
-  transition:
-    color .25s cubic-bezier(.22,1,.36,1),
-    transform .25s cubic-bezier(.22,1,.36,1);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color .2s ease, transform .2s ease;
 }
 
-/* subtle animated underline */
-.stackflow-link::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-4px;
-  width:100%;
-  height:1px;
-  background: currentColor;
-  color: #ff0505;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s cubic-bezier(.22,1,.36,1);
-}
-
-/* arrow */
 .stackflow-link svg{
-  width: 22px;
-  height: 22px;
-  transition: transform .3s cubic-bezier(.22,1,.36,1);
-  color: #ffffff;
+  width: 18px;
+  height: 18px;
+  transition: transform .2s ease;
 }
 
-/* hover */
 .stackflow-link:hover{
-  color: #ffffff;
-  transform: translateX(4px);
-}
-
-.stackflow-link:hover::after{
-  transform: scaleX(1);
+  color: #fff;
+  transform: translateX(2px);
 }
 
 .stackflow-link:hover svg{
-  transform: translateX(6px);
-   color: #F00303;
+  transform: translateX(3px);
 }
+
 /* =========================
    HERO LAYOUT
 ========================= */
 :root{
-  --col-3: 2.15fr;
+  --col-3: 2.5fr; /* slightly larger right column */
   --gap: clamp(20px, 1vw, 22px);
 }
 
@@ -498,16 +792,14 @@ html{
   position: relative;
   z-index: 3;
   width: min(1800px, calc(100% - 40px));
-  padding: 0 20px;
-  max-width: none;
- 
+  padding: 0 60px;
 }
+
 .stackflow-main{
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(28px, 3vw, 42px);
   width: 100%;
-  
 }
 
 /* full-width text row */
@@ -521,15 +813,17 @@ html{
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
-  width: auto; /* fixed invalid value */
+  width: none;
 }
 
-.stackflow-copy p{
+.stackflow-copy p {
   font-size: clamp(0.8rem, 1.7vw, 2rem);
   max-width: 40ch;
-  opacity: 1 !important;
+  opacity: 1 ! important;
   font-weight: 200;
 }
+
+
 
 .stackflow-link{
   margin-top: 24px;
@@ -542,12 +836,7 @@ html{
   grid-template-areas: "col3 col1 col2";
   gap: var(--gap);
   align-items: start;
-  
   width: 100%;
- 
-  margin: 0 auto;
-  margin-bottom: clamp(6vh, 12vw, 30vh);
-  
 }
 
 .stackflow-col--1{ grid-area: col1; }
@@ -579,8 +868,9 @@ html{
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255,255,255,0.72);
 }
+
 
 /* =========================
    CARDS
@@ -590,38 +880,26 @@ html{
   display: block;
   width: 100%;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 0px;
   text-decoration: none;
-  background: rgba(0, 0, 0, 0.785);
+  background: rgba(255,255,255,0.04);
   isolation: isolate;
-  opacity: 1;
+  opacity: 0.8;
+  
   transition: transform .5s ease, filter .3s ease;
-
-}
-.stackflow-card::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.219) 0%,
-    rgba(0, 0, 0, 0.261) 42%,
-    rgba(0, 0, 0, 0.391) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-  transition: opacity .3s ease, background .3s ease;
 }
 
 .stackflow-card img{
   position: absolute;
-  inset: 0;
+  inset: 0;              /* top:0; right:0; bottom:0; left:0 */
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+
   transition: transform 9s ease, filter 9s ease;
 }
+
 
 .stackflow-meta{
   position: absolute;
@@ -642,15 +920,6 @@ html{
   color: rgba(255, 255, 255, 0.899);
 }
 
-.stackflow-meta,
-.stackflow-title,
-.stackflow-title2,
-.stackflow-copy p,
-.stackflow-heading{
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 .stackflow-title{
   margin: 0;
   font-size: 20px;
@@ -659,62 +928,50 @@ html{
   color: #fff;
   font-weight: 200;
 }
-
 .stackflow-title2{
   margin: 0;
-  font-size: clamp(1.2rem,2vw, 2.1rem);
+  font-size: 50px;
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: #fff;
-  font-weight: 400;
+  font-weight: 200;
   max-width: 22ch;
 }
-.larger {
-  font-size: clamp(1.5rem,2.2vw, 2.9rem);
-}
-
-
 .stackflow-card:hover{
   transform: scale(0.99);
+ 
 }
 
 .stackflow-card:hover img{
   transform: scale(1.2);
 }
 
+.stackflow-card:hover::after{
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.56) 8%,
+    rgba(0,0,0,0.14) 48%,
+    rgba(0,0,0,0.03) 100%
+  );
+}
 
 /* heights */
-:root{
-  --stackflow-card-h: clamp(280px, 28vw, 450px);
-  --stackflow-stack-gap: 1rem;
-}
+.stackflow-h-sm1{ min-height: 450px; }
+.stackflow-h-sm2{ min-height: 450px; }
+.stackflow-h-md1{ min-height: 450px; }
+.stackflow-h-md2{ min-height: 450px; }
+.stackflow-h-lg{ min-height: 420px; }
+.stackflow-h-xl{ min-height: 720px; }
 
-/* all regular cards same height */
-.stackflow-h-sm1,
-.stackflow-h-sm2,
-.stackflow-h-md1,
-.stackflow-h-md2{
-  min-height: var(--stackflow-card-h);
-}
-
-/* lg + xl = one full stacked column height */
-.stackflow-h-lg{
-  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.42);
-}
-
-.stackflow-h-xl{
-  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.58);
-}
-
-.stackflow-card--topmeta .stackflow-meta{
+.topmeta{
   top: 18px;
   bottom: auto;
 }
-
 .stackflow-card--solid{
   background: #F00303;
   opacity: 1;
   box-shadow: none;
+  
 }
 
 .stackflow-card--solid img{
@@ -724,40 +981,25 @@ html{
 .stackflow-card--solid::after{
   display: none;
 }
-
 .stackflow-card--solid .stackflow-meta{
   top: 18px;
   bottom: auto;
-}
-.stackflow-card--solid.stackflow-h-lg{
-  min-height: unset;
-  height: auto;
-}
-
-.stackflow-card--solid .stackflow-meta{
-  position: relative;
-  inset: auto;
-  padding: 24px;
-}
-
-.stackflow-card--solid{
-  display: flex;
-  align-items: stretch;
 }
 /* =========================
    SUBSCRIBE BLOCK
 ========================= */
 .stackflow-subscribe{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: 1fr;
   gap: 12px;
-  padding: 0;
+  padding: 0px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255,255,255,0.07);
   border: none;
-  min-height: 100px;
+ 
+ 
+  min-height: 220px;
   align-content: center;
-  align-items: center;
 }
 
 .stackflow-subscribe input{
@@ -766,34 +1008,31 @@ html{
   height: 56px;
   padding: 0 16px;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.92);
-  color: #000;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.92);
+  color: #000000;
   font-family: inherit;
   font-size: 18px;
   outline: none;
 }
 
 .stackflow-subscribe input::placeholder{
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0,0,0,0.5);
 }
 
 .stackflow-subscribe button{
   height: 56px;
-  width: auto;
-  min-width: 160px;
-  max-width: 100%;
+  width: 200px;
   padding: 0 18px;
   border: none;
   border-radius: 14px;
-  background: #052330;
-  color: #fff;
+  background:#052330;
+  color: #ffffff;
   font-family: inherit;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: transform .2s ease, background .2s ease;
-  white-space: nowrap;
 }
 
 .stackflow-subscribe button:hover{
@@ -804,7 +1043,9 @@ html{
 /* =========================
    SECTION / SPACER
 ========================= */
-
+.intro-wrap{
+  overflow: visible;
+}
 
 .spacer--dark{
   min-height: 55vh;
@@ -849,17 +1090,6 @@ html{
   }
 }
 
-@media (max-width: 900px){
-  .stackflow-subscribe{
-    grid-template-columns: 1fr;
-  }
-
-  .stackflow-subscribe button{
-    width: 100%;
-    min-width: 0;
-  }
-}
-
 @media (max-width: 760px){
   .hero{
     padding-top: 130px;
@@ -879,10 +1109,8 @@ html{
     grid-row: auto;
   }
 
-  .stackflow-h-sm1,
-  .stackflow-h-sm2,
-  .stackflow-h-md1,
-  .stackflow-h-md2,
+  .stackflow-h-sm,
+  .stackflow-h-md,
   .stackflow-h-lg{
     min-height: 230px;
   }
@@ -900,77 +1128,12 @@ html{
     padding-top: 70px;
   }
 }
-#heroBottomIcon{
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 3rem);
-  width: 80vw;
-  height: 50vh;
-  height: auto;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 1;
-  
-}
-
-/* keep your main content above it */
-.stackflow-main{
-  display: flex;
-  flex-direction: column;
-}
-
-.stackflow-copy{
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0;
-}
-
-.stackflow-grid{
-  width: 100%;
-  
-  
-  margin-top: -40vh; /* tweak this */
-  margin-bottom: 25vh;
-}
-
-.stackflow-copy{
-  padding-top: 0;
-}
-
-.stackflow-heading{
-  margin-top: 0;
-}
-
-.hero{
-  padding-top: 0;
-}
-
 </style>
-
  <div id="scroll-container">
   <main id="site">
 
     <section class="intro-wrap" id="home">
-       <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
-    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
-    
       <div class="hero">
-        <video class="hero-rise-img" autoplay muted loop playsinline>
-          <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/griffin_red_waves1.mp4" type="video/mp4">
-        </video>
-        <div class="hero-topbar">
-        <!-- Center Logo -->
-        <div class="hero-topbar__center">
-          <img src="images/GriffinIcon.png" alt="Griffin Integrity">
-        </div>
-      </div>
-
-         <img id="heroBottomIcon" src="images/GriffinText.png" alt="" aria-hidden="true">
         <div class="stackflow-shell">
           <div class="stackflow-main">
 
@@ -978,95 +1141,308 @@ html{
               <h1 class="stackflow-heading">
                 What's Your <span class="text-highlight">Next Move</span> In NDT?
               </h1>
-              <!--
+
               <p class="stackflow-text">
                 We bring asset integrity, strategy, and execution together so you don’t need to second guess.
               </p>
-              
-              <a href="/capabilities" class="stackflow-link">
-                <span>Explore Capabilities</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 17L17 7M10 7h7v7"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-              </svg>
-              </a>-->
-            </div>
 
+              <div class="hero-scroll-indicator">
+              <svg class="hero-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                <path d="M128 192 L256 320 L384 192" fill="none" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            </div>
+            <style>
+              .hero-scroll-indicator{
+  margin-top: 0px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width: clamp(60px, 8vw, 120px);
+
+}
+
+.hero-chevron{
+  width: 116px;
+  height: 116px;
+}
+
+.hero-chevron path{
+  stroke: #ffffff; /* army green */
+}
+.stackflow-copy{
+  position: relative;
+}
+
+.hero-scroll-indicator{
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translateX(-50%);
+  margin-top: 16px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(60px, 8vw, 120px);
+}
+            </style>
+
+            <div class="stackflow-grid">
+              <div class="stackflow-col stackflow-col--1">
+                <a href="/news/advanced-analytics" class="stackflow-card stackflow-h-md1">
+                  <img src="images/stock2.jpeg" alt="Advanced analytics">
+                  <div class="stackflow-meta">
+                    <p class="stackflow-eyebrow">Technology</p>
+                    <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                  </div>
+                </a>
+
+                <a href="/news/field-execution" class="stackflow-card stackflow-h-md2">
+                  <img src="images/stock4.jpeg" alt="Field execution">
+                  <div class="stackflow-meta">
+                    <p class="stackflow-eyebrow">Operations</p>
+                    <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                  </div>
+                </a>
+              </div>
+
+              <div class="stackflow-col stackflow-col--2">
+                <a href="/news/inspection-planning" class="stackflow-card stackflow-h-sm1">
+                  <img src="images/stock1.jpeg" alt="Inspection planning">
+                  <div class="stackflow-meta">
+                    <p class="stackflow-eyebrow">Case Study</p>
+                    <h3 class="stackflow-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                  </div>
+                </a>
+
+                <a href="/news/integrity-reporting" class="stackflow-card stackflow-h-sm2">
+                  <img src="images/stock5.jpeg" alt="Integrity reporting">
+                  <div class="stackflow-meta">
+                    <p class="stackflow-eyebrow">Reporting</p>
+                    <h3 class="stackflow-title">Integrity Reporting</h3>
+                  </div>
+                </a>
+              </div>
+
+              <div class="stackflow-col stackflow-col--3">
+               <a href="/about" class="stackflow-card stackflow-h-xl stackflow-card--featured">
+                <img src="images/stock3.jpeg" alt="Built for critical environments">
+
+                <div class="stackflow-meta stackflow-meta--featured">
+                  <div class="stackflow-featured-top">
+                    <p class="stackflow-eyebrow">Featured Story</p>
+                    <h3 class="stackflow-title2">
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </h3>
+                  </div>
+
+                  <span class="featured-btn">
+                    <span>Read Featured Story</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                      <path d="M184 112 L328 256 L184 400"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="52"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+              </a>
+
+                <div class="stackflow-card stackflow-h-lg stackflow-card--solid">
+                  <div class="stackflow-meta">
+                    <p class="stackflow-eyebrow">STAY IN TOUCH</p>
+                    <h3 class="stackflow-title2">Keep updated with major industry updates and get in touch with professionals.</h3>
+                    <form class="stackflow-subscribe">
+                      <label class="stackflow-sr" for="stackflowEmail">Email address</label>
+                      <input id="stackflowEmail" type="email" placeholder="Enter your email for updates">
+                      <button type="submit">Subscribe</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
       </div>
 
       <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
-       <path
-  d="M0,80 C240,80 480,120 720,120 C960,120 1200,80 1440,80 L1440,180 L0,180 Z"
-  fill="#ffffff">
-</path>
+        <path
+        d="M0,60 C240,60 480,140 720,140 C960,140 1200,60 1440,60 L1440,180 L0,180 Z"
+        fill="#ffffff">
+      </path>
       </svg>
     </section>
 
-
+  </main>
 </div>
 
-    <style>
-.hero-topbar{
-  position: absolute;
-  top: 2%;
-  left: 0;
-  width: 100%;
-  z-index: 10;
+<style>
+  :root{
+  --col-3: 2.15fr; /* slightly less aggressive on tighter widths */
+  --gap: clamp(14px, 1.1vw, 22px);
 }
 
-/* CENTER LOGO — true center of viewport */
-.hero-topbar__center{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  
+.stackflow-shell{
+  position: relative;
+  z-index: 3;
+  width: min(1800px, calc(100% - 32px));
+  padding: 0 clamp(14px, 3vw, 60px);
 }
 
-.hero-topbar__center img{
-  height: clamp(28px, 8vw, 142px);
-  width: auto;
+.stackflow-copy{
+  padding-top: 0.25rem;
 }
 
-/* RIGHT CTA */
-.hero-topbar__cta{
-  position: absolute;
-  right: 28px;
-  top: 0;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  color: #fafafa;
-  font-size: clamp(12px, 1vw, 14px);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-
-  transition: transform .2s ease, color .2s ease;
+.stackflow-copy p{
+  font-size: clamp(0.95rem, 1.35vw, 1.5rem);
+  max-width: 52ch;
+  padding: 0 10px;
 }
 
-.hero-topbar__cta svg{
-  width: 16px;
-  height: 16px;
+.stackflow-heading{
+  font-size: clamp(2rem, 5vw, 7.5rem);
+  line-height: 0.98;
+  margin-bottom: 1rem;
 }
 
-.hero-topbar__cta svg path{
-  stroke: currentColor;
+.stackflow-title2{
+  font-size: clamp(1rem, 2.8vw, 3.125rem);
+  max-width: 24ch;
 }
 
-/* hover */
-.hero-topbar__cta:hover{
-  transform: translateY(-2px);
-  color: #f00303;
+.stackflow-title{
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.stackflow-meta{
+  left: clamp(14px, 1.4vw, 18px);
+  right: clamp(14px, 1.4vw, 18px);
+  bottom: clamp(14px, 1.4vw, 18px);
+}
+
+.stackflow-col{
+  gap: clamp(12px, 1.5vw, 1.5rem);
+}
+
+/* slightly more forgiving default heights */
+.stackflow-h-sm1,
+.stackflow-h-sm2,
+.stackflow-h-md1,
+.stackflow-h-md2{
+  min-height: clamp(280px, 32vw, 450px);
+}
+
+.stackflow-h-lg{
+  min-height: clamp(260px, 30vw, 420px);
+}
+
+.stackflow-h-xl{
+  min-height: clamp(420px, 48vw, 720px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1280px){
+  .stackflow-grid{
+    grid-template-columns: 1.7fr 1fr 1fr;
+    gap: clamp(12px, 1.2vw, 18px);
+  }
+
+  .stackflow-copy p{
+    max-width: 46ch;
+  }
+}
+
+@media (max-width: 1080px){
+  .stackflow-grid{
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 14px;
+  }
+
+  .stackflow-heading{
+    font-size: clamp(1.9rem, 4.8vw, 4.8rem);
+  }
+
+  .stackflow-title2{
+    font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+    max-width: 13ch;
+  }
+
+  .stackflow-copy p{
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    max-width: 42ch;
+  }
+}
+
+@media (max-width: 900px){
+  .stackflow-grid{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "col3 col3"
+      "col1 col2";
+    align-items: start;
+  }
+
+  .stackflow-h-xl{
+    min-height: clamp(340px, 52vw, 520px);
+  }
+}
+
+@media (max-width: 760px){
+  .hero{
+    padding-top: 130px;
+    padding-bottom: 80px;
+  }
+
+  .stackflow-shell{
+    width: min(1600px, calc(100% - 20px));
+    padding: 0 10px;
+  }
+
+  .stackflow-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "col3"
+      "col1"
+      "col2";
+    gap: 12px;
+  }
+
+  .stackflow-copy{
+    padding-top: 0;
+  }
+
+  .stackflow-copy p{
+    max-width: 32ch;
+    font-size: 1rem;
+  }
+
+  .stackflow-h-sm1,
+  .stackflow-h-sm2,
+  .stackflow-h-md1,
+  .stackflow-h-md2,
+  .stackflow-h-lg{
+    min-height: 240px;
+  }
+
+  .stackflow-h-xl{
+    min-height: 360px;
+  }
+
+  .stackflow-subscribe{
+    min-height: 200px;
+  }
+
+  .spacer--dark{
+    min-height: 34vh;
+    padding-top: 70px;
+  }
 }
 
 .stackflow-meta--featured{
@@ -1126,54 +1502,18 @@ html{
 .featured-btn:hover svg{
   transform: translateX(3px);
 }
-
-.stackflow-card--split{
-  position: relative;
-  overflow: hidden;
-}
-
-.stackflow-meta--split{
-  position: absolute;
-  inset: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 2;
-}
-
-.stackflow-card-top{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.stackflow-meta--split .featured-btn{
-  margin-top: 0;
-  align-self: flex-start;
-}
-
-/* optional: make text easier to read on image cards */
-
-.stackflow-card--split .stackflow-eyebrow,
-.stackflow-card--split .stackflow-title2{
-  position: relative;
-  z-index: 2;
-  color: #fff;
-}
-
-.stackflow-card--split .featured-btn{
-  position: relative;
-  z-index: 2;
-}
 </style>
 
-   
+
+    <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
+    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
+  </section> <!-- ✅ CLOSE intro-wrap -->
 
 <section class="caps-intro-section">
   <div class="caps-intro-shell">
     <div class="caps-intro-copy">
-      <p class="caps-intro-eyebrow">Who We Are</p>
-      <h2 class="caps-intro-title">Griffin is an independent advisory platform connecting industry leaders, technical experts, and senior executives across the industrial inspection and asset integrity ecosystem.</h2>
+      <p class="caps-intro-eyebrow">Who Is Griffin Integrity Solutions?</p>
+      <h2 class="caps-intro-title">We're an independent advisory platform connecting industry leaders, technical experts, and senior executives across the industrial inspection and asset integrity ecosystem.</h2>
        <h2 class="caps-intro-title">Bringing clarity, alignment, and execution to complex technical decisions; Griffin is connecting the right expertise, perspective, and strategy at the moments it matters most.</h2>
       <p class="caps-intro-text">
        
@@ -1195,7 +1535,6 @@ html{
   .caps-intro-section{
   background: #fff;
   padding: clamp(32px, 0vw, 0px) 0 40px;
-  z-index: 999;
 }
 
 .caps-intro-shell{
@@ -1206,7 +1545,6 @@ html{
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.7fr);
   align-items: start;
   gap: clamp(28px, 4vw, 72px);
-  z-index: 9999;
 }
 
 .caps-intro-copy{
@@ -1231,7 +1569,7 @@ html{
   letter-spacing: -0.035em;
   font-weight: 300;
   color: #111;
-  max-width: 32ch;
+  max-width: 30ch;
 }
 
 .caps-intro-text{
@@ -1335,501 +1673,616 @@ html{
 }
 
 </style>
+<section class="caps-panel-section">
+  <div class="caps-panel">
 
-
-
-
-
-
-
-<section class="stack-cards-section" id="stackCards">
-  <div class="stack-cards-shell">
-    <div class="stack-cards-stage">
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock14.jpeg" alt="Inspection strategy">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">NDT Level III Consulting & Support</h3>
-          </div>
-          <div class="stack-card-content">
-          <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Certified Level III expertise for inspection programs, procedures, compliance alignment, and high-stakes technical decision-making.
-            </p>
-
-            <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="stack-card-image small">
-            <img src="images/stock2.jpeg" alt="Inspection detail">
-          </div>
-
-        </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock17.jpeg" alt="Inspection strategy">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Advanced NDT Subject Matter Experts</h3>
-          </div>
-          <div class="stack-card-content">
-          <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Provide access to experienced specialists who support complex inspections, procedure development, 
-              and critical technical decisions across advanced NDT applications.
-            </p>
-
-            <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="stack-card-image small">
-            <img src="images/stock2.jpeg" alt="Inspection detail">
-          </div>
-
-        </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock8.jpeg" alt="Technical advisory">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Automation, Robotics, and Advanced Imaging Systems</h3>
-          </div>
-          <div class="stack-card-content">
-             <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Support the evaluation and integration of automated inspection technologies, robotics, 
-              and advanced imaging systems to improve safety, accuracy, and efficiency.
-            </p>
-
-            <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a></div>
-            <div class="stack-card-image small">
-              <img src="images/stock3.jpeg" alt="Technical detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock18.jpeg" alt="Program support">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">NDT Written Practice Review and Development</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-             Develop and refine written practices to ensure compliance with industry standards 
-             while aligning with operational realities and inspection requirements.
-            </p>
-             <a href="/technical-consulting/ndt-written-practice-review-development.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock4.jpeg" alt="Program detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock23.jpeg" alt="Reliability planning">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Mergers & Acquisition Support</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Deliver technical and operational due diligence to help assess risk, 
-              validate capabilities, and support informed investment and acquisition decisions.
-            </p>
-            <a href="/business-advisory/mergers-acquisitions-support.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock5.jpeg" alt="Reliability detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock19.jpeg" alt="Field readiness">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Talent Acquisition & Assessment</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Identify, evaluate, and place qualified personnel while ensuring alignment with 
-              technical requirements, organizational culture, and long-term workforce needs.
-            </p>
-            <a href="/business-advisory/talent-acquisition-assessment.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock1.jpeg" alt="Field readiness detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock20.jpeg" alt="Training systems">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Corporate Development & Strategic Planning</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-             Guide growth initiatives, operational scaling, and long-term strategic planning 
-             with insight grounded in industry experience and market dynamics.
-            </p>
-            <a href="/business-advisory/corporate-development-strategic-planning.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock3.jpeg" alt="Training detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock13.jpeg" alt="Implementation support">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Business Development & Client Strategies</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Strengthen market positioning and client engagement through targeted strategies
-              that support sustainable growth and long-term partnerships.
-            </p>
-
-            <a href="/business-advisory/business-development-client-strategies.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock4.jpeg" alt="Implementation detail">
-            </div>
-          </div>
-        </div>
-      </article>
-      <!--
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock4.jpeg" alt="Long-term performance">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Capital Acquisition</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Support capital planning and funding strategies with guidance that aligns technical programs, 
-              growth initiatives, and investment priorities with long-term business objectives.
-            </p>
-            <a href="#" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock5.jpeg" alt="Long-term performance detail">
-            </div>
-          </div>
-        </div>
-      </article>-->
-      
-
+    <div class="caps-panel-tabs" role="tablist" aria-label="Capabilities pages">
+      <button class="caps-tab is-active" type="button" role="tab" aria-selected="true" data-panel="0">
+        Business Advisory Services
+      </button>
+      <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="1">
+        Technical Consulting
+      </button>
+      <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="2">
+        Affiliate Organizations
+      </button>
+      <button class="caps-tab" type="button" role="tab" aria-selected="false" data-panel="3">
+        Industry Programs
+      </button>
     </div>
+
+    <div class="caps-panel-pages">
+
+       <!-- PAGE 2 -->
+      <article class="caps-page  is-active" data-page="0">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Advanced NDT Advisory Backed by Field Expertise</h2>
+          <p class="caps-page-text">
+            Our advisory services combine advanced NDT expertise with real-world implementation insight.
+            From Level III support and written practice review to advanced training and technology
+            integration, we help organizations improve capability, consistency, and reliability.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Business Advisory Services</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock3.jpeg" alt="Advanced NDT advisory">
+        </div>
+      </article>
+
+      <!-- PAGE 1 -->
+      <article class="caps-page" data-page="1">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Technical Consulting for Critical Environments</h2>
+          <p class="caps-page-text">
+            Griffin Integrity delivers specialized technical consulting that helps organizations make
+            confident decisions in complex operational environments. We support compliance alignment,
+            strategic planning, workforce assessment, and high-value technical initiatives with practical,
+            experience-driven guidance.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Technical Consulting</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock1.jpeg" alt="Technical consulting">
+        </div>
+      </article>
+
+     
+
+      <!-- PAGE 3 -->
+      <article class="caps-page" data-page="2">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Affiliate Organizations That Extend Capability</h2>
+          <p class="caps-page-text">
+            When projects require additional specialization or scale, Griffin works alongside trusted
+            affiliate organizations that meet the same standard of quality, accountability, and technical
+            precision. This allows us to support broader scopes while maintaining confidence in delivery.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Affiliate Organizations</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock5.jpeg" alt="Affiliate organizations">
+        </div>
+      </article>
+
+      <!-- PAGE 4 -->
+      <article class="caps-page" data-page="3">
+        <div class="caps-page-copy">
+          <p class="caps-page-eyebrow"></p>
+          <h2 class="caps-page-title">Programs Built Around Long-Term Performance</h2>
+          <p class="caps-page-text">
+            We help organizations develop programs that strengthen inspection performance, improve
+            technical consistency, and support long-term operational reliability. From implementation to
+            optimization, our focus is on sustainable outcomes that hold up in real environments.
+          </p>
+          <a href="/capabilities" class="page-link small-link">
+          <span>Industry Programs</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+            <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        </div>
+
+        <div class="caps-page-media">
+          <img src="images/stock4.jpeg" alt="Industry programs">
+        </div>
+      </article>
+    </div>
+
   </div>
 </section>
 
 <style>
-.stack-cards-section{
-  position: relative;
-  background: #08151d;
-  padding: 0 0 0rem;
+.caps-panel-section{
+  background: #fff;
+  padding: clamp(72px, 6vw, 120px) 0;
 }
 
-.stack-cards-shell{
-  width: min(100vw, calc(100% - 0px));
+.caps-panel{
+  width: min(1600px, calc(100% - 40px));
   margin: 0 auto;
-  /*padding: 0 20px;*/
+  background: #fff;
+  border: 1px solid #e8e8e8;
 }
 
-.stack-cards-track{
-  position: relative;
-  padding-top: 2rem;
-  padding-bottom: 8rem;
-}
-
-.stack-card{
-  position: relative;
-  height: 25rem;
-  /*margin-bottom: 1.25rem;*/
-}
-
-.stack-card-inner{
-  position: relative; /* not sticky */
-  height: 25rem;
+/* top selectors */
+.caps-panel-tabs{
   display: grid;
-  grid-template-columns: 28% 24% 48%;
-  align-items: stretch;
-  overflow: hidden;
-  border-radius: 0px;
-  background: #0d1d27;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 18px 50px rgba(0,0,0,0.18);
-  will-change: transform;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  
 }
 
-.stack-card-image{
+.caps-tab{
+  appearance: none;
+  border: 0;
+  border-right: none;
+  background: #ffffff;
+  color: #111;
+  padding: 22px 24px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.caps-tab:last-child{
+  border-right: 0;
+}
+
+.caps-tab:hover{
+  background: #454545d1;
+   color: #fff;
+}
+
+.caps-tab.is-active{
+  background: #052330;
+  color: #fff;
+}
+
+/* pages */
+.caps-panel-pages{
   position: relative;
-  overflow: hidden;
-  height: 100%;
 }
 
-.stack-card-image img{
+.caps-page{
+  display: none;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.4fr);
+  min-height: 460px;
+}
+
+.caps-page.is-active{
+  display: grid;
+}
+
+.caps-page-copy{
+  padding: clamp(36px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:#052330;
+  
+}
+
+.caps-page-eyebrow{
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #dcdcdc;
+}
+
+.caps-page-title{
+  margin: 0 0 20px;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: #f9f9f9;
+  max-width: 22ch;
+  
+}
+
+.caps-page-text{
+  margin: 0;
+  max-width: 42ch;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.caps-page-media{
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.caps-page-media img{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.stack-card-title-wrap{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  border-left: 1px solid rgba(255,255,255,0.06);
-  border-right: 1px solid rgba(255,255,255,0.06);
-}
-
-.stack-card-title{
-  margin: 0;
-  font-size: clamp(1.4rem, 2vw, 2rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-weight: 500;
-  color: #fff;
-  text-align: center;
-  max-width: 16ch;
-  text-wrap: balance;
-}
-
-.stack-card-content{
-  display: grid;
-  grid-template-columns: 1fr 11rem;
-  gap: 1rem;
-  align-items: stretch;
-  padding: 1.25rem;
-}
-
-.stack-card-text{
-  margin: 0;
-  align-self: center;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.76);
-  max-width: 54ch;
-}
-
-.stack-card-image.small{
-  height: 100%;
-  min-height: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  display: none;
-}
-
-/* older cards lower, newer cards higher */
-.stack-card:nth-child(1) .stack-card-inner{ z-index: 1; }
-.stack-card:nth-child(2) .stack-card-inner{ z-index: 2; }
-.stack-card:nth-child(3) .stack-card-inner{ z-index: 3; }
-.stack-card:nth-child(4) .stack-card-inner{ z-index: 4; }
-.stack-card:nth-child(5) .stack-card-inner{ z-index: 5; }
-.stack-card:nth-child(6) .stack-card-inner{ z-index: 6; }
-.stack-card:nth-child(7) .stack-card-inner{ z-index: 7; }
-.stack-card:nth-child(8) .stack-card-inner{ z-index: 8; }
-
+/* responsive */
 @media (max-width: 1100px){
-  .stack-card,
-  .stack-card-inner{
-    height: auto;
+  .caps-panel-tabs{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .stack-card-inner{
-    grid-template-columns: 1fr;
-    transform: none !important;
-  }
-
-  .stack-card-image.main{
-    height: 220px;
-  }
-
-  .stack-card-title-wrap{
-    justify-content: flex-start;
-    border-left: 0;
+  .caps-tab:nth-child(2){
     border-right: 0;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
-  .stack-card-title{
-    text-align: left;
-    max-width: none;
+  .caps-page,
+  .caps-page.is-active{
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
-  .stack-card-content{
+  .caps-page-copy{
+    order: 2;
+  }
+
+  .caps-page-media{
+    order: 1;
+    min-height: 420px;
+  }
+
+  .caps-page-title,
+  .caps-page-text{
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px){
+  .caps-panel{
+    width: min(1800px, calc(100% - 24px));
+  }
+
+  .caps-panel-tabs{
     grid-template-columns: 1fr;
   }
 
-  .stack-card-image.small{
-    height: 180px;
+  .caps-tab{
+    border-right: 0;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 18px 16px;
+  }
+
+  .caps-tab:last-child{
+    border-bottom: 0;
+  }
+
+  .caps-page-copy{
+    padding: 24px 16px;
+  }
+
+  .caps-page-media{
+    min-height: 300px;
+  }
+
+  .caps-page-title{
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+}
+</style>
+
+<script>
+(() => {
+  const tabs = document.querySelectorAll(".caps-tab");
+  const pages = document.querySelectorAll(".caps-page");
+
+  if (!tabs.length || !pages.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-panel");
+
+      tabs.forEach((btn) => {
+        btn.classList.remove("is-active");
+        btn.setAttribute("aria-selected", "false");
+      });
+
+      pages.forEach((page) => {
+        page.classList.remove("is-active");
+      });
+
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+
+      const nextPage = document.querySelector(`.caps-page[data-page="${target}"]`);
+      if (nextPage) nextPage.classList.add("is-active");
+    });
+  });
+})();
+</script>
+
+
+
+
+
+
+
+<section class="insight-grid-section" id="news">
+  <div class="insight-grid-shell">
+    <div class="insight-grid-head">
+      <p class="insight-grid-eyebrow">Capabilities</p>
+      <h2 class="insight-grid-title">Specialized Advisory Built for Complex Technical Environments</h2>
+      <p class="insight-grid-intro">
+        Griffin Integrity provides technical consulting and NDT advisory services that help organizations
+        improve decision-making, strengthen reliability programs, and align operational execution with
+        long-term performance goals.
+      </p>
+    </div>
+
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock1.jpeg" alt="Inspection planning">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">Inspection Strategy
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+            </span>
+         
+            <p class="insight-card-text">
+              Build stronger inspection planning processes with guidance tailored to asset criticality,
+              field realities, and program-level objectives.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock2.jpeg" alt="Data and technology advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">Technical Advisory
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </span>
+            <p class="insight-card-text">
+              Evaluate emerging tools, workflows, and implementation paths with support grounded in
+              practical NDT and operational experience.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock3.jpeg" alt="Operational support">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">Program Support
+                 <span class="title-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+          </span>
+            <p class="insight-card-text">
+              Strengthen workforce capability, reporting consistency, and execution quality through
+              advisory support that scales with your operation.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+.insight-grid-section{
+  background:#052330;
+  color: #ffffff;
+  padding: clamp(72px, 2vw, 120px) 0;
+}
+
+.insight-grid-shell{
+  width: min(1400px, calc(100% - 40px)); /* was 1800px */
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.insight-grid-head{
+  max-width: 980px;
+  margin: 0 auto clamp(34px, 5vw, 64px);
+  text-align: center;
+}
+
+.insight-grid-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Section title (matches your hero feel) */
+.insight-grid-title{
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 3.8vw, 3.5rem); /* match stackflow-heading */
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: #fbfbfb;
+  max-width: 32ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Intro paragraph (match hero + contact tone) */
+.insight-grid-intro{
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: 16px;              /* same as .stackflow-text */
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.insight-grid-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.insight-card{
+  display: flex;
+}
+
+.insight-card-box{
+  width: 100%;
+  background:#052330;
+  padding: 1rem; /* was 3rem */
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease; /* 👈 key line */
+  cursor: pointer;
+}
+.insight-card-box:hover{
+  background:#fff;
+}
+.insight-card-media{
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.insight-card-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.insight-card-body{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Card title */
+.insight-card-title{
+  margin: 0;
+  font-size: clamp(18px, 1.2vw, 22px); /* slightly tighter */
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+/* Card paragraph */
+.insight-card-text{
+  margin: 0;
+  font-size: 15px;              /* was too small/variable */
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.76);
+  transition: color 0.3s ease;
+}
+.insight-card-box:hover .insight-card-title,
+.insight-card-box:hover .insight-card-text{
+  color: rgba(0, 0, 0, 0.85);
+}
+@media (max-width: 1100px){
+  .insight-grid-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card-box{
+    padding: 2.25rem;
+  }
+
+  .insight-card-media{
+    min-height: 300px;
   }
 }
 
 @media (max-width: 760px){
-  .stack-cards-shell{
+  .insight-grid-section{
+    padding: 64px 0;
+  }
+
+  .insight-grid-shell{
     width: min(1600px, calc(100% - 24px));
-    padding: 0 12px;
+    padding: 0 16px;
   }
 
-  .stack-card{
-    margin-bottom: 1rem;
+  .insight-grid-title,
+  .insight-grid-intro{
+    max-width: 100%;
   }
 
-  .stack-card-title-wrap,
-  .stack-card-content{
-    padding: 1rem;
+  .insight-card-box{
+    padding: 1.5rem;
   }
 
-  .stack-card-text{
-    font-size: 0.95rem;
+  .insight-card-media{
+    min-height: 220px;
   }
 }
-.stack-card-text-wrap{
-  display: grid;
-  align-content: center;   /* vertical centering */
-  justify-items: start;    /* left align children */
-  min-width: 0;
-}
 
-.stack-card-text{
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.76);
-  max-width: 54ch;
-  margin-bottom: 1rem;
-}
-
-/* button */
-.stack-btn-inline{
+.insight-card-title {
   display: inline-flex;
   align-items: center;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.title-arrow {
+  display: inline-flex;
+  color: #ffffff; /* default white */
+  transition: color 0.3s ease, transform 0.3s ease;
+  transform: translateY(0px);
+}
+.insight-card-box:hover .title-arrow{
+  color: #F00303
+}
+
+.title-arrow svg {
+  width: 26px;
+  height: 26px;
+}
+</style>
+
+
+<style>
   
-  gap: 0.35rem;
-
-  margin-top: 0.6rem;
-
-  background: #0F3D51;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  white-space: nowrap;
-
-  width: fit-content; /* ensures no stretching */
-
-  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
-}
-
-.stack-btn-inline svg{
-  width: 12px;
-  height: 12px;
-  stroke: rgba(255,255,255,0.7);
-  stroke-width: 1.6;
-  fill: none;
-  transition: transform 0.25s ease, stroke 0.25s ease;
-}
-
-.stack-btn-inline:hover{
-  color: #fff;
-}
-
-.stack-btn-inline:hover svg{
-  stroke: #fff;
-  transform: translate(2px, -2px);
-}
-
 </style>
 
 
@@ -2148,7 +2601,7 @@ background:#000;
 
 
 
-<!--
+
   <section class="blue-cta">
   <h2 class="display-heading">
     Precision That <span class="text-highlight">Performs</span>.
@@ -2231,7 +2684,7 @@ background:#000;
   color:#111;
 }
 
-/* accent word
+/* accent word 
 .text-accent{
   position: relative;
   display: inline-block;
@@ -2244,17 +2697,16 @@ background:#000;
   bottom:0.12em;
   width:100%;
   height:0.35em;
-  background:#3b82f6;
+  background:#3b82f6; /* same blue vibe as your other section 
   z-index:-1;
   transform: skewX(-8deg);
-}
-*/
-</style>-->
+}*/
+</style>
 
 <section class="ndt-grid-section">
 
   <h2 class="display-heading ndt-grid-title">
-    Our Partners in Industrial Inspection & Asset Integrity
+    Precision Built on Proven Inspection.
   </h2>
 
   <div class="ndt-box-row">
@@ -2311,8 +2763,7 @@ background:#000;
 <style>
 .ndt-grid-section{
   background:#fff;
-  padding:20px 24px;
-  padding-bottom: 120px;
+  padding:120px 24px;
 }
 
 .ndt-grid-title{
@@ -2340,28 +2791,20 @@ background:#000;
   z-index:-1;
 }
 
-.ndt-box-wrap{
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
 .ndt-box-row{
-  --line: 2px;
-  --dot: 10px;
-  --box-h: 180px;
-  --fade-h: 130px;
-  --ink: #111;
+  --line:2px;
+  --dot:10px;
+  --box-h:180px;
+  --fade-h:130px;
+  --ink:#111;
 
-  width: 1200px;
-  max-width: none;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  position: relative;
-
-  left: 50%;
-  transform: translateX(-50%);
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  position:relative;
 }
+
 /* bottom ghost horizontal row */
 .ndt-box-row::after{
   content:"";
@@ -2407,7 +2850,7 @@ background:#000;
   transform:translate(-50%, -50%);
   width:auto;
   height:auto;
-  max-width:82%;
+  max-width:62%;
   max-height:62px;
   object-fit:contain;
   z-index:1;
@@ -2899,6 +3342,8 @@ html, body{
   </div>
 
 </footer>
+
+</main></div>
 <style>
   /* ===================== FOOTER ===================== */
 .site-footer{
@@ -3048,6 +3493,13 @@ html, body{
 </style>
 
 
+
+
+
+
+
+
+</main>
 
   <!-- ✅ One SVG "sheet" (white + loader content) that gets cut out by expanding window -->
   <svg id="loaderSvg" aria-hidden="true">
@@ -3409,64 +3861,9 @@ html, body{
   })();
 </script>-->
 
-<script>
- 
-</script>
-<script>
-  
-</script>
+
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="/navbar.js"></script>
-<script src="/load-navbar.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger);
-
-  if (window.innerWidth <= 1100) return;
-
-  const section = document.querySelector(".stack-cards-section");
-  const cards = gsap.utils.toArray(".stack-card");
-
-  if (!section || !cards.length) return;
-
-  cards.forEach((card, index) => {
-    const inner = card.querySelector(".stack-card-inner");
-
-    ScrollTrigger.create({
-      trigger: card,
-      start: "top top",
-      endTrigger: section,
-      end: "bottom bottom",
-      pin: inner,
-      pinSpacing: false,
-      invalidateOnRefresh: true
-    });
-
-    // optional subtle depth cue as each card becomes pinned
-    ScrollTrigger.create({
-      trigger: card,
-      start: "top top",
-      endTrigger: section,
-      end: "bottom bottom",
-      onEnter: () => gsap.to(inner, {
-        scale: 1,
-        duration: 0.25,
-        ease: "power2.out"
-      }),
-      onLeaveBack: () => gsap.to(inner, {
-        scale: 1,
-        duration: 0.25,
-        ease: "power2.out"
-      })
-    });
-  });
-
-  ScrollTrigger.refresh();
-});
-</script>
-
 
 <script>
 (function () {
@@ -3819,178 +4216,288 @@ document.addEventListener("DOMContentLoaded", () => {
   refresh();
 })();
 </script>
-<script>
-(() => {
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) return;
-
-  const riseTargets = gsap.utils.toArray([
-    "#heroTitle",
-    ".hero-scroll-indicator",
-    "#criticalTitle",
-    ".feature-heading",
-    ".feature-title",
-    ".feature-text",
-    ".image-scroller-eyebrow",
-    ".scroller-copy .card-eyebrow",
-    ".scroller-copy p",
-    ".blue-cta .display-heading",
-    ".white-cta .display-heading",
-    ".ndt-grid-title",
-    ".contact-header h2",
-    ".contact-left h3",
-    ".contact-left p",
-    ".contact-right h3",
-    ".contact-form label",
-    ".contact-btn",
-    ".caps-intro-title",
-    ".caps-intro-eyebrow",
-    ".stackflow-heading",
-    ".insight-grid-title",
-    ".insight-grid-eyebrow",
-    ".insight-grid-intro",
- 
-    
-  ]);
-
-    const riseTargets2 = gsap.utils.toArray([
-    ".stackflow-copy p",
-    ".stackflow-link",
-    ".stackflow-card"
-    
-  ]);
-
-    const riseTargets3 = gsap.utils.toArray([
-    ".insight-card"
-    
-  ]);
-  const footerTitleTargets = gsap.utils.toArray([
-    ".footer-title"
-  ]);
-
-  const fadeOnlyTargets = gsap.utils.toArray([
-    ".footer-logo",
-    ".footer-links li",
-    ".footer-socials a"
-  ]);
-
-  riseTargets.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        autoAlpha: 0,
-        y: 36
-      },
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "transform,opacity,visibility",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
-          once: true
-        }
-      }
-    );
-  });
-
-riseTargets2.forEach((el) => {
-  gsap.fromTo(
-    el,
-    {
-      autoAlpha: 0,
-      y: 36
-    },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 1.6,
-      delay: 0.3, // 👈 add this
-      ease: "power3.out",
-      clearProps: "transform,opacity,visibility",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 88%",
-        once: true
-      }
-    }
-  );
-});
-riseTargets3.forEach((el, i) => {
-  gsap.fromTo(
-    el,
-    {
-      autoAlpha: 0,
-      y: 36
-    },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 1.9,
-      delay: i * 0.35, // 👈 stagger effect
-      ease: "power3.out",
-      clearProps: "transform,opacity,visibility",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 88%",
-        once: true
-      }
-    }
-  );
-});
-  footerTitleTargets.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        opacity: 0
-      },
-      {
-        opacity: 0.5,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "opacity",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 92%",
-          once: true
-        }
-      }
-    );
-  });
-
-  fadeOnlyTargets.forEach((el) => {
-    gsap.fromTo(
-      el,
-      {
-        autoAlpha: 0
-      },
-      {
-        autoAlpha: 1,
-        duration: 0.85,
-        ease: "power3.out",
-        clearProps: "opacity,visibility",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 92%",
-          once: true
-        }
-      }
-    );
-  });
-
-  ScrollTrigger.refresh();
-})();
-</script>
 <!-- ✅ REPLACE your Capabilities dropdown script with this full version
      (same behavior as you have now, but adds fade in/out when switching tabs) -->
 
-<script src="/navbar.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  /* ===================== ICONS ===================== */
+  const ICON_RIGHT_ARROW = `
+    <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  const ICON_UPRIGHT = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17L17 7M10 7h7v7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+    </svg>
+  `;
+
+  /* ===================== CONTENT ===================== */
+  const CAPABILITIES = {
+    tabs: [
+      {
+        key: "technical",
+        label: "Business Advisory Services",
+        title: "Business Advisory Services",
+        desc:
+          "Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.",
+        items: [
+          "Mergers & Acquisition Support",
+          "Talent Acquisition & Assessment",
+          "Corporate Development & Strategic Planning",
+          "Business Development & Client Strategies",
+          "Capital Acquisition",
+        ],
+      },
+      {
+        key: "advisory",
+        label: "Technical Consulting",
+        title: "Technical Consulting",
+        desc:
+          "Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.",
+        items: [
+          "NDT Level III Consulting & Support",
+          "Advanced NDT Subject Matter Experts",
+          "NDT Written Practice Review and Development",
+          "Next Level Advanced NDT Training Programs",
+          "Advanced NDT Technology Programs and Procedures",
+          "Automation, Robotics, and Advanced Imaging Systems",
+        ],
+      },
+      {
+        key: "affiliate",
+        label: "Affiliate Organizations",
+        title: "Affiliate Organizations",
+        desc:
+          "When projects demand specialized capabilities or additional bandwidth, we coordinate with proven affiliate organizations—extending coverage while maintaining the same standard of precision, accountability, and delivery.",
+        items: [
+          "Top Notch EDM Services",
+          "Sound NDT Solutions",
+          "ATCO Automated Scanning Systems",
+          "Halo NDT Technologies",
+        ],
+      },
+    ],
+  };
+
+  /* ===================== DOM ===================== */
+  const dropdownWrap = document.getElementById("navDropdown");
+  const ddLeft = document.getElementById("navDdLeft");
+  const ddRight = document.getElementById("navDdRight");
+  const navbar = document.querySelector(".navbar");
+
+  if (!dropdownWrap || !ddLeft || !ddRight) return;
+
+  /* ===================== STATE ===================== */
+  let activeKey = null;               // only "capabilities" in your case
+  let activeCapTab = "technical";     // default tab
+  let isAnimatingRight = false;
+
+  /* ===================== HELPERS ===================== */
+  function clearActiveTriggers() {
+    document
+      .querySelectorAll('.nav-link[data-dropdown].is-active')
+      .forEach(el => el.classList.remove("is-active"));
+  }
+
+  function getTab(key) {
+    return CAPABILITIES.tabs.find(t => t.key === key) || CAPABILITIES.tabs[0];
+  }
+
+  function renderLeft(tabKey) {
+    ddLeft.innerHTML = CAPABILITIES.tabs.map(t => `
+      <a
+        class="nav-dd-item is-tab ${t.key === tabKey ? "is-selected" : ""}"
+        href="#"
+        data-cap-tab="${t.key}"
+      >
+        <span>${t.label}</span>
+        ${ICON_RIGHT_ARROW}
+      </a>
+    `).join("");
+  }
+
+  function renderRight(tab) {
+    ddRight.innerHTML = `
+      <div class="nav-dd-title">${tab.title}</div>
+      <p class="nav-dd-desc">${tab.desc}</p>
+
+      <div class="nav-dd-links">
+        ${tab.items.map(item => `
+          <a class="nav-dd-greenlink" href="#services" data-dd-close>
+            <span>${item}</span>
+            ${ICON_UPRIGHT}
+          </a>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  // Small RAF tween helper
+  function tween(dur, onUpdate) {
+    return new Promise(resolve => {
+      const t0 = performance.now();
+      function frame(now) {
+        const t = Math.min(1, (now - t0) / dur);
+        onUpdate(t);
+        if (t < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  // Easing: quick-out (feels snappy)
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3.2);
+
+  // ✅ Your preferred behavior:
+  // 1) fade OUT quickly
+  // 2) swap content
+  // 3) fade IN quickly + move up slightly
+  async function swapRightQuick(nextTabKey) {
+    if (isAnimatingRight) return;
+    if (nextTabKey === activeCapTab) return;
+
+    isAnimatingRight = true;
+
+    const nextTab = getTab(nextTabKey);
+
+    // Keep dropdown open and prevent accidental clicks mid-animation
+    ddRight.style.pointerEvents = "none";
+    ddRight.style.willChange = "opacity, transform";
+
+    // --- OUT (quick) ---
+    const OUT_DUR = 95; // quick
+    await tween(OUT_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(1 - e);
+      ddRight.style.transform = `translateY(${0 + (2 * e)}px)`; // tiny sink
+    });
+
+    // --- SWAP (hidden) ---
+    renderRight(nextTab);
+
+    // reset for IN
+    ddRight.style.opacity = "0";
+    ddRight.style.transform = "translateY(8px)"; // start slightly lower
+
+    // --- IN (quick + up) ---
+    const IN_DUR = 140; // slightly longer than OUT, still quick
+    await tween(IN_DUR, (t) => {
+      const e = easeOut(t);
+      ddRight.style.opacity = String(e);
+      ddRight.style.transform = `translateY(${8 - (8 * e)}px)`; // rise into place
+    });
+
+    // cleanup
+    ddRight.style.opacity = "";
+    ddRight.style.transform = "";
+    ddRight.style.willChange = "";
+    ddRight.style.pointerEvents = "";
+
+    // update state + left selection
+    activeCapTab = nextTabKey;
+    renderLeft(activeCapTab);
+
+    isAnimatingRight = false;
+  }
+
+  /* ===================== OPEN/CLOSE ===================== */
+  function openDropdown(key) {
+    activeKey = key;
+
+    clearActiveTriggers();
+    const trigger = document.querySelector(`.nav-link[data-dropdown="${key}"]`);
+    if (trigger) trigger.classList.add("is-active");
+
+    if (key === "capabilities") {
+      renderLeft(activeCapTab);
+      renderRight(getTab(activeCapTab));
+
+      // ensure right is visible and not transformed
+      ddRight.style.opacity = "";
+      ddRight.style.transform = "";
+    }
+
+    dropdownWrap.classList.add("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDropdown() {
+    activeKey = null;
+    dropdownWrap.classList.remove("is-open");
+    dropdownWrap.setAttribute("aria-hidden", "true");
+    clearActiveTriggers();
+  }
+
+  /* ===================== EVENTS ===================== */
+
+  // Trigger click (Capabilities)
+  document.querySelectorAll(".nav-link[data-dropdown]").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const key = link.getAttribute("data-dropdown");
+      const isSame =
+        dropdownWrap.classList.contains("is-open") && activeKey === key;
+
+      if (isSame) closeDropdown();
+      else openDropdown(key);
+    });
+  });
+
+  // Inside dropdown: left tabs + right links
+  dropdownWrap.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    // Left tab click
+    const tabEl = e.target.closest("[data-cap-tab]");
+    if (tabEl) {
+      e.preventDefault();
+      swapRightQuick(tabEl.getAttribute("data-cap-tab"));
+      return;
+    }
+
+    // Right-side links close (you have data-dd-close on them)
+    const closeEl = e.target.closest("[data-dd-close]");
+    if (closeEl) closeDropdown();
+  });
+
+  // Outside click closes
+  document.addEventListener("click", (e) => {
+    if (!dropdownWrap.classList.contains("is-open")) return;
+
+    const clickedInside =
+      dropdownWrap.contains(e.target) ||
+      (navbar && navbar.contains(e.target));
+
+    if (!clickedInside) closeDropdown();
+  });
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
+  });
+
+  // Close dropdown when clicking non-dropdown nav links
+  document.querySelectorAll(".nav-link:not([data-dropdown])")
+    .forEach(link => link.addEventListener("click", () => closeDropdown()));
+});
+</script>
 
 
 <script>
@@ -4005,6 +4512,56 @@ riseTargets3.forEach((el, i) => {
   }
 </script>
 
+<script>
+(() => {
+  const wrap = document.querySelector(".intro-wrap");
+  if (!wrap) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  let current = 0;
+  let rafId = null;
+
+  function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+  function lerp(a,b,t){ return a + (b-a)*t; }
+
+  function computeTarget() {
+    const rect = wrap.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    const total = rect.height - vh;
+    if (total <= 0) return 0;
+
+    const passed = -rect.top;               // how far into the wrap
+    const progress = clamp(passed / total, 0, 1);
+
+    const maxShift = vh * 0.48;             // tune travel amount
+    return lerp(0, -maxShift, progress);    // scroll down => beam moves up
+  }
+
+  function tick(){
+    const target = computeTarget();
+
+    // ✅ Smooth follow (no bounce)
+    // higher = follows quicker, lower = more "glide"
+    const follow = 0.085; // try 0.06–0.12
+    current += (target - current) * follow;
+
+    // deadzone to prevent micro jitter at rest
+    if (Math.abs(target - current) < 0.02) current = target;
+
+    document.documentElement.style.setProperty("--beamY", `${current}px`);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  rafId = requestAnimationFrame(tick);
+
+  window.addEventListener("resize", () => {
+    // no special handling needed; computeTarget uses latest vh/rect
+  }, { passive: true });
+})();
+</script>
 
 <script>
 (() => {
@@ -4070,6 +4627,350 @@ riseTargets3.forEach((el, i) => {
 })();
 </script>
 
+
+<style>
+  /* =========================
+   HERO PINNED REVEAL
+========================= */
+.hero{
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;              /* lock hero to viewport */
+  overflow: hidden;           /* hide cards until they slide up */
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding-top: 120px;
+  padding-bottom: 0;
+}
+
+.stackflow-shell{
+  width: min(1800px, calc(100% - 40px));
+  height: 100%;
+  padding: 0 60px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.stackflow-main{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(38vh, auto) 1fr; /* text takes more space */
+  gap: clamp(20px, 2vw, 28px);
+  align-items: start;
+}
+
+.stackflow-copy{
+  grid-column: 1 / -1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: clamp(320px, 42vh, 520px); /* bigger text area */
+  padding-inline: 20px;
+  margin-top:0rem;
+}
+
+.stackflow-heading{
+  font-size: clamp(2.4rem, 6vw, 7rem);
+  max-width: 22ch;
+  margin-inline: auto;
+}
+
+.stackflow-copy p{
+  max-width: 42ch;
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+}
+
+.stackflow-grid{
+  display: grid;
+  grid-template-columns: var(--col-3) 1fr 1fr;
+  grid-template-areas: "col3 col1 col2";
+  gap: var(--gap);
+  align-items: start;
+  width: 100%;
+
+  /* starts lower so it can scroll upward */
+  transform: translateY(72vh);
+  will-change: transform;
+}
+
+@media (max-width: 900px){
+  .stackflow-main{
+    grid-template-rows: minmax(34vh, auto) 1fr;
+  }
+
+  .stackflow-grid{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "col3 col3"
+      "col1 col2";
+    transform: translateY(66vh);
+  }
+}
+
+@media (max-width: 760px){
+  .hero{
+    height: 100svh;
+    min-height: 100svh;
+    padding-top: 110px;
+  }
+
+  .stackflow-shell{
+    width: min(1600px, calc(100% - 20px));
+    padding: 0 10px 24px;
+  }
+
+  .stackflow-main{
+    grid-template-rows: minmax(32vh, auto) 1fr;
+  }
+
+  .stackflow-copy{
+    min-height: clamp(240px, 34vh, 360px);
+  }
+
+  .stackflow-grid{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "col3"
+      "col1"
+      "col2";
+    transform: translateY(58vh);
+  }
+}
+</style>
+<script>
+(() => {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  const hero = document.querySelector(".hero");
+  const copy = document.querySelector(".stackflow-copy");
+  const grid = document.querySelector(".stackflow-grid");
+
+  if (!hero || !copy || !grid) return;
+
+  function killHeroReveal() {
+    const st = ScrollTrigger.getById("heroCardsReveal");
+    if (st) st.kill();
+  }
+
+  function setupHeroReveal() {
+    killHeroReveal();
+
+    gsap.set(copy, { y: 0, opacity: 1 });
+    gsap.set(grid, {
+      y: window.innerWidth <= 760 ? window.innerHeight * 0.58 : window.innerHeight * 0.12
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        id: "heroCardsReveal",
+        trigger: hero,
+        start: "top top",
+        end: "+=140%",
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    })
+    .to(copy, {
+      y: -80,
+      opacity: 0,
+      ease: "none",
+      duration: 0.22
+    }, 0)
+    .to(grid, {
+      y: window.innerWidth <= 760 ? -140 : -920,
+      ease: "none"
+    }, 0);
+  }
+
+  setupHeroReveal();
+  window.addEventListener("resize", () => ScrollTrigger.refresh());
+})();
+</script>
+
+<script>
+(() => {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
+  // IMPORTANT:
+  // remove anything inside the pinned hero from these generic reveal groups
+  const riseTargets = gsap.utils.toArray([
+    "#criticalTitle",
+    ".feature-heading",
+    ".feature-title",
+    ".feature-text",
+    ".image-scroller-eyebrow",
+    ".scroller-copy .card-eyebrow",
+    ".scroller-copy p",
+    ".blue-cta .display-heading",
+    ".white-cta .display-heading",
+    ".ndt-grid-title",
+    ".contact-header h2",
+    ".contact-left h3",
+    ".contact-left p",
+    ".contact-right h3",
+    ".contact-form label",
+    ".contact-btn",
+    ".caps-intro-title",
+    ".caps-intro-eyebrow",
+    ".insight-grid-title",
+    ".insight-grid-eyebrow",
+    ".insight-grid-intro",
+    ".caps-panel",
+    ".stackflow-heading",
+    
+  
+  ]);
+
+  const riseTargets2 = gsap.utils.toArray([
+    // intentionally no hero items here
+    ".stackflow-link",
+    ".stackflow-text",
+    ".stackflow-card",
+   
+  ]);
+
+  const riseTargets3 = gsap.utils.toArray([
+    ".insight-card",
+    
+    
+  ]);
+  
+
+  const footerTitleTargets = gsap.utils.toArray([
+    ".footer-title"
+  ]);
+
+  const fadeOnlyTargets = gsap.utils.toArray([
+    ".footer-logo",
+    ".footer-links li",
+    ".footer-socials a"
+  ]);
+
+  riseTargets.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
+      }
+    );
+  });
+
+  riseTargets2.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1.6,
+        delay: 0.3,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
+      }
+    );
+  });
+
+  riseTargets3.forEach((el, i) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0,
+        y: 36
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1.9,
+        delay: i * 0.35,
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true
+        }
+      }
+    );
+  });
+
+  footerTitleTargets.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 0.5,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "opacity",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true
+        }
+      }
+    );
+  });
+
+  fadeOnlyTargets.forEach((el) => {
+    gsap.fromTo(el,
+      {
+        autoAlpha: 0
+      },
+      {
+        autoAlpha: 1,
+        duration: 0.85,
+        ease: "power3.out",
+        clearProps: "opacity,visibility",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          once: true
+        }
+      }
+    );
+  });
+
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
+})();
+</script>
+
+
+
+
 <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
 <script>
   (() => {
@@ -4086,153 +4987,7 @@ riseTargets3.forEach((el, i) => {
     window.lenis = lenis;
   })();
 </script>
-<style>
-.hero-topbar{
-  z-index: 5; /* highest */
-}
 
-.hero-rise-img{
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 104vh;
-  object-fit: cover;
 
-  z-index: 2;
-  pointer-events: none;
-
-  /* keep your fade */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-}
-.stackflow-shell{
-
-  z-index: 1; /* BELOW image */
-}
-
-</style>
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-const intro = document.querySelector(".intro-wrap");
-const img = document.querySelector(".hero-rise-img");
-const heading = document.querySelector(".stackflow-heading");
-
-if (intro && img) {
-  const isMobile = window.matchMedia("(max-width: 760px)").matches;
-
-  if (isMobile) {
-    gsap.set(img, {
-      yPercent: 0,
-      opacity: 1
-    });
-
-    /* keep same look, just lock it to bottom on mobile */
-    gsap.set(img, {
-      top: "auto",
-      bottom: 0
-    });
-  } else {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: intro,
-        start: "top top",
-        end: "+=150%",
-        scrub: true,
-        pin: true,
-        anticipatePin: 1
-      }
-    });
-
-    tl.fromTo(
-      img,
-      {
-        yPercent: 60,
-        opacity: 0
-      },
-      {
-        yPercent: 0,
-        opacity: 1,
-        ease: "none"
-      },
-      0
-    );
-
-    if (heading) {
-      tl.fromTo(
-        heading,
-        {
-          opacity: 1,
-          y: 0
-        },
-        {
-          opacity: 0,
-          y: -40,
-          ease: "none"
-        },
-        0
-      );
-    }
-  }
-}
-</script>
-<style>
-  @media (max-width: 760px){
-  .hero-rise-img{
-    inset: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    transform: translate(-50%, 60px); /* 👈 keep X + add Y */
-    
-  }
-}
-@media (max-width: 760px){
-  .hero{
-    min-height: 150vh;   /* 👈 makes hero taller */
-    padding-top: 130px;
-    margin-bottom:-60px; /* 👈 gives more bottom breathing room */
-    overflow: visible;
-  }
-}
-@media (max-width: 760px){
-  .stackflow-copy{
-    justify-content: flex-start;   /* 👈 move heading up */
-    padding-top: 8vh;              /* 👈 controls how high */
-    min-height: 100vh;              /* 👈 prevents it from forcing center */
-  }
-}
-@media (max-width: 760px){
-  :root{
-    --beamY: -920px; /* 👈 move beam upward */
-  }
-}
-@media (max-width: 760px){
-
-  /* 🔺 make Griffin icon larger + slightly higher */
-  .hero-topbar__center img{
-    height: clamp(70px, 25vw, 120px); /* bigger */
-  }
-
-  .hero-topbar{
-    top: 3%; /* move whole topbar slightly up */
-  }
-
-  /* 🔺 move Griffin text up */
-  #heroBottomIcon{
-    transform: translate(-50%, 0.2rem); /* was 3rem → now lifted up */
-    width: 90vw; /* optional: slightly larger presence */
-  }
-
-}
-@media (max-width: 760px){
-  .wave-divider{
-    bottom: -10px;
-    min-height: 20px;
-  }
-}
-
-</style>
 </body>
 </html>
