@@ -132,11 +132,8 @@ html{
   top:0;
  
 
-  /* ✅ height responds to WIDTH (vw) but is capped by viewport height (vh) */
-  height: clamp(140vh, 95vw, 150vh);
-
-  /* ✅ width already responds to width; make it a bit more aggressive */
-  width: clamp(850px, 45vw, 900px);
+  height: clamp(70vh, 55vw, 90vh);
+  width: clamp(500px, 32vw, 650px);
 
   object-fit: cover;
   opacity: 0.35;
@@ -903,16 +900,14 @@ html{
 #heroBottomIcon{
   position: absolute;
   left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 3rem);
+  bottom: -2rem; /* or 3rem, depending on where you want it */
+  transform: translateX(-50%);
   width: 80vw;
   max-width: 1600px;
-  height: 50vh;
   height: auto;
   z-index: 2;
   pointer-events: none;
   opacity: 1;
-  
 }
 
 /* keep your main content above it */
@@ -977,7 +972,7 @@ html{
 
             <div class="stackflow-copy">
               <h1 class="stackflow-heading">
-                What's Your <span class="text-highlight">Next Move</span> In NDT?
+                What's Your <span class="text-highlight">Next Move</span> in NDT?
               </h1>
               <!--
               <p class="stackflow-text">
@@ -1197,6 +1192,7 @@ html{
   background: #fff;
   padding: clamp(32px, 0vw, 0px) 0 40px;
   z-index: 999;
+  
 }
 
 .caps-intro-shell{
@@ -1292,7 +1288,7 @@ html{
   }
 
   .caps-intro-title{
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-size: clamp(1.5rem, 2vw, 2rem);
     max-width: 100%;
   }
 
@@ -1350,15 +1346,15 @@ html{
       <article class="stack-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
-            <img src="images/stock14.jpeg" alt="Inspection strategy">
+            <img src="images/stock7.jpeg" alt="Inspection strategy">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">NDT Level III Consulting & Support</h3>
+            <h3 class="stack-card-title">Technical Advisory & NDT Leadership</h3>
           </div>
           <div class="stack-card-content">
           <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Certified Level III expertise for inspection programs, procedures, compliance alignment, and high-stakes technical decision-making.
+             Provide senior-level technical oversight and strategic guidance across complex inspection environments. From Level III consulting to written practice development and full program design, this service ensures your inspection operations are compliant, defensible, and built for long-term performance in high-stakes environments.
             </p>
 
             <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stack-btn-inline">
@@ -1380,16 +1376,15 @@ html{
       <article class="stack-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
-            <img src="images/stock17.jpeg" alt="Inspection strategy">
+            <img src="images/stock24.jpeg" alt="Inspection strategy">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Advanced NDT Subject Matter Experts</h3>
+            <h3 class="stack-card-title">Advanced Inspection Technologies</h3>
           </div>
           <div class="stack-card-content">
           <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Provide access to experienced specialists who support complex inspections, procedure development, 
-              and critical technical decisions across advanced NDT applications.
+              Support the evaluation, selection, and integration of next-generation inspection technologies. From robotics and automation to advanced imaging systems, this service helps organizations modernize inspection capabilities, reduce risk, and improve accuracy through the right technology decisions.
             </p>
 
             <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html" class="stack-btn-inline">
@@ -1411,16 +1406,15 @@ html{
       <article class="stack-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
-            <img src="images/stock8.jpeg" alt="Technical advisory">
+            <img src="images/stock22.jpeg" alt="Technical advisory">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Automation, Robotics, and Advanced Imaging Systems</h3>
+            <h3 class="stack-card-title">Strategy, Growth & Transactions</h3>
           </div>
           <div class="stack-card-content">
              <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Support the evaluation and integration of automated inspection technologies, robotics, 
-              and advanced imaging systems to improve safety, accuracy, and efficiency.
+              Advise organizations on strategic growth initiatives, market positioning, and transaction support within the inspection and asset integrity sector. Whether navigating acquisitions, scaling operations, or refining competitive positioning, this service brings clarity and direction to critical business decisions.
             </p>
 
             <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stack-btn-inline">
@@ -1439,16 +1433,15 @@ html{
       <article class="stack-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
-            <img src="images/stock18.jpeg" alt="Program support">
+            <img src="images/stock19.jpeg" alt="Program support">
           </div>
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">NDT Written Practice Review and Development</h3>
+            <h3 class="stack-card-title">Workforce & Operational Execution</h3>
           </div>
           <div class="stack-card-content">
             <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-             Develop and refine written practices to ensure compliance with industry standards 
-             while aligning with operational realities and inspection requirements.
+             Strengthen the operational backbone of your organization through targeted workforce and execution strategies. From talent acquisition and training systems to field readiness and deployment, this service ensures your teams are equipped, aligned, and ready to perform in demanding environments.
             </p>
              <a href="/technical-consulting/ndt-written-practice-review-development.html" class="stack-btn-inline">
               Learn more
@@ -1463,119 +1456,8 @@ html{
           </div>
         </div>
       </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock23.jpeg" alt="Reliability planning">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Mergers & Acquisition Support</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Deliver technical and operational due diligence to help assess risk, 
-              validate capabilities, and support informed investment and acquisition decisions.
-            </p>
-            <a href="/business-advisory/mergers-acquisitions-support.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock5.jpeg" alt="Reliability detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock19.jpeg" alt="Field readiness">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Talent Acquisition & Assessment</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Identify, evaluate, and place qualified personnel while ensuring alignment with 
-              technical requirements, organizational culture, and long-term workforce needs.
-            </p>
-            <a href="/business-advisory/talent-acquisition-assessment.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock1.jpeg" alt="Field readiness detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock20.jpeg" alt="Training systems">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Corporate Development & Strategic Planning</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-             Guide growth initiatives, operational scaling, and long-term strategic planning 
-             with insight grounded in industry experience and market dynamics.
-            </p>
-            <a href="/business-advisory/corporate-development-strategic-planning.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock3.jpeg" alt="Training detail">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock13.jpeg" alt="Implementation support">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Business Development & Client Strategies</h3>
-          </div>
-          <div class="stack-card-content">
-            <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Strengthen market positioning and client engagement through targeted strategies
-              that support sustainable growth and long-term partnerships.
-            </p>
-
-            <a href="/business-advisory/business-development-client-strategies.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-            </div>
-            <div class="stack-card-image small">
-              <img src="images/stock4.jpeg" alt="Implementation detail">
-            </div>
-          </div>
-        </div>
-      </article>
+      
+      
       <!--
       <article class="stack-card">
         <div class="stack-card-inner">
@@ -1631,15 +1513,15 @@ html{
 
 .stack-card{
   position: relative;
-  height: 25rem;
+  height: 30rem;
   /*margin-bottom: 1.25rem;*/
 }
 
 .stack-card-inner{
   position: relative; /* not sticky */
-  height: 25rem;
+  height: 30rem;
   display: grid;
-  grid-template-columns: 28% 24% 48%;
+  grid-template-columns: 35% 30% 48%;
   align-items: stretch;
   overflow: hidden;
   border-radius: 0px;
@@ -1660,15 +1542,16 @@ html{
   height: 100%;
   object-fit: cover;
   display: block;
+  padding: 4rem 0rem;
 }
 
 .stack-card-title-wrap{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  border-left: 1px solid rgba(255,255,255,0.06);
-  border-right: 1px solid rgba(255,255,255,0.06);
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 4.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0);
+  border-right: 1px solid rgba(255, 255, 255, 0);
 }
 
 .stack-card-title{
@@ -1678,9 +1561,10 @@ html{
   letter-spacing: -0.03em;
   font-weight: 500;
   color: #fff;
-  text-align: center;
+  text-align: left;
   max-width: 16ch;
   text-wrap: balance;
+  padding: 4rem 0rem;
 }
 
 .stack-card-content{
@@ -1688,7 +1572,10 @@ html{
   grid-template-columns: 1fr 11rem;
   gap: 1rem;
   align-items: stretch;
-  padding: 1.25rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 4.5rem;
+  padding: 4rem 0rem;
 }
 
 .stack-card-text{
@@ -1834,299 +1721,586 @@ html{
 </style>
 
 
-<section class="image-scroller-section">
-<div class="container">
 
-<div class="image-scroller-head">
-<div class="image-scroller-eyebrow">Latest News</div>
 
-<div class="image-scroller-controls">
-<button class="scroller-arrow scroller-prev is-disabled" aria-label="Previous">
 
-<svg viewBox="0 0 24 24">
-<path d="M15 6l-6 6 6 6"
-fill="none"
-stroke="currentColor"
-stroke-width="2.6"
-stroke-linecap="round"
-stroke-linejoin="round"/>
-</svg>
 
-</button>
+<section class="insight-grid-section" id="news">
+  <div class="insight-grid-shell">
+    <div class="insight-grid-head">
+      <p class="insight-grid-eyebrow">Where We Operate</p>
+      <h2 class="insight-grid-title">Partnering Across the Inspection Ecosystem</h2>
+      <p class="insight-grid-intro">
+        The inspection and asset integrity landscape is shaped by multiple forces—those executing the work, those responsible for performance, and those building the technologies behind it.
+Griffin works across all three, bringing alignment, clarity, and technical leadership where it matters most.
+      </p>
+    </div>
 
-<button class="scroller-arrow scroller-next is-active" aria-label="Next">
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock13.jpeg" alt="Inspection planning">
+          </div>
+          <div class="insight-card-body">
+            <h3 class="insight-card-title">Inspection & NDT Service Providers
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </h3>
+            <p class="insight-card-text">
+              Strengthening field capabilities through Level III leadership, program development, and advanced technical support.
+            </p>
+          </div>
+        </div>
+      </article>
 
-<svg viewBox="0 0 24 24">
-<path d="M9 6l6 6-6 6"
-fill="none"
-stroke="currentColor"
-stroke-width="2.6"
-stroke-linecap="round"
-stroke-linejoin="round"/>
-</svg>
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock23.jpeg" alt="Data and technology advisory">
+          </div>
+          <div class="insight-card-body">
+            <h3 class="insight-card-title">Asset Owners & Operators
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </h3>
+            <p class="insight-card-text">
+              Providing independent advisory to improve reliability, reduce risk, and guide critical inspection decisions.
+            </p>
+          </div>
+        </div>
+      </article>
 
-</button>
-</div>
-</div>
-
-<div class="image-scroller-viewport" id="projectScroller">
-<div class="image-scroller-track">
-
-<article class="scroller-card scroller-card--red">
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>NDT Level III Consulting</span><span>01</span></div>
-
-<p>Certified Level III expertise supporting inspection programs, procedure development, compliance strategies, and technical decision-making. Our consultants work directly with your teams to ensure inspections meet industry standards while improving reliability, documentation, and operational confidence.</p>
-</div>
-</article>
-
-<article class="scroller-card scroller-card--image">
-<div class="scroller-image-wrap">
-<img src="images/stock2.jpeg">
-</div>
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>Advanced NDT Experts</span><span>02</span></div>
-
-<p>Experienced NDT subject matter experts providing guidance on advanced inspection technologies, complex inspection challenges, and system implementation. We help organizations improve inspection performance, reduce uncertainty, and build stronger technical capabilities.</p>
-</div>
-</article>
-
-<article class="scroller-card scroller-card--red">
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>NDT Written Practice</span><span>03</span></div>
-<!--<h3>NDT Written Practice</h3>-->
-<p>Comprehensive review and development of written practices designed to meet industry standards and regulatory requirements. Our team ensures documentation is clear, compliant, and aligned with your operational workflows and inspection programs.</p>
-</div>
-</article>
-
-<article class="scroller-card scroller-card--image">
-<div class="scroller-image-wrap">
-<img src="images/stock4.jpeg">
-</div>
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>Advanced NDT Training</span><span>04</span></div>
-
-<p>Structured training programs designed to advance technician knowledge and practical capability in modern inspection methods. Our courses combine technical theory with real-world application to strengthen both individual expertise and organizational competency.</p>
-</div>
-</article>
-
-<article class="scroller-card scroller-card--red">
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>NDT Technology Programs</span><span>05</span></div>
-<p>Implementation and optimization of advanced nondestructive testing technologies and procedures. We help organizations integrate modern inspection tools that improve detection capability, increase efficiency, and strengthen the reliability of inspection results.</p>
-</div>
-</article>
-
-<article class="scroller-card scroller-card--image">
-<div class="scroller-image-wrap">
-<img src="images/stock3.jpeg">
-</div>
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>Automation & Robotics</span><span>06</span></div>
-<p>Development and integration of robotic and automated inspection systems that enhance safety, repeatability, and productivity. These systems reduce manual risk while enabling consistent, high-precision inspection across complex assets and environments.</p>
-</div>
-</article>
-
-<article class="scroller-card scroller-card--red">
-<div class="scroller-copy">
-<div class="card-eyebrow"><span>Advanced Imaging Systems</span><span>07</span></div>
-
-<p>Deployment of high-resolution imaging and advanced inspection visualization systems that improve defect detection and analysis. These technologies provide clearer inspection data and support more confident decision-making during asset evaluation and maintenance planning.</p>
-</div>
-</article>
-
-</div>
-</div>
-
-<div class="scroller-progress">
-<div class="scroller-progress-bar"></div>
-</div>
-
-</div>
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock25.jpeg" alt="Operational support">
+          </div>
+          <div class="insight-card-body">
+            <h3 class="insight-card-title">Program Support
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </h3>
+            <p class="insight-card-text">
+              Aligning emerging technologies with real-world applications through validation, integration, and field insight.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
 <style>
+.insight-grid-section{
+  background:#ffffff; /* flipped */
+  color: #052330;
+  padding: clamp(72px, 2vw, 120px) 0;
+}
+
+.insight-grid-shell{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.insight-grid-head{
+  max-width: 1080px;
+  margin: 0 auto clamp(34px, 5vw, 64px);
+  text-align: center;
+}
+
+.insight-grid-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #052330; /* flipped */
+}
+
+/* Title */
+.insight-grid-title{
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  color: #052330; /* flipped */
+  max-width: 22ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Intro */
+.insight-grid-intro{
+  margin: 0 auto;
+  max-width: 80ch;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.7); /* flipped */
+}
+
+.insight-grid-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.insight-card{
+  display: flex;
+}
+
+.insight-card-box{
+  width: 100%;
+  background:#fff; /* cards now dark */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: #052330;
+}
+
+/* Hover flips to white */
+.insight-card-box:hover{
+  background:#052330;
+}
+
+/* Image */
+.insight-card-media{
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.insight-card-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Body */
+.insight-card-body{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Title */
+.insight-card-title{
+  margin: 0;
+  font-size: clamp(18px, 1.2vw, 22px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #052330; /* text on dark */
+  transition: color 0.3s ease;
+}
+
+/* Text */
+.insight-card-text{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #052330;
+  transition: color 0.3s ease;
+}
+
+/* Hover text flips */
+.insight-card-box:hover .insight-card-title,
+.insight-card-box:hover .insight-card-text{
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .insight-grid-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card-box{
+    padding: 2.25rem;
+  }
+
+  .insight-card-media{
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 760px){
+  .insight-grid-section{
+    padding: 64px 0;
+  }
+
+  .insight-grid-shell{
+    width: min(1600px, calc(100% - 24px));
+    padding: 0 16px;
+  }
+
+  .insight-grid-title,
+  .insight-grid-intro{
+    max-width: 100%;
+  }
+
+  .insight-card-box{
+    padding: 1.5rem;
+  }
+
+  .insight-card-media{
+    min-height: 220px;
+  }
+}
+.insight-card-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* arrow base */
+.title-arrow{
+  display: inline-flex;
+  color: #052330;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* arrow size */
+.title-arrow svg{
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease;
+}
+
+/* 👇 hover behavior */
+.insight-card-box:hover .title-arrow{
+  color: #F00303; /* your accent */
+  transform: translateX(6px);
+}
+
+/* subtle extra push */
+.insight-card-box:hover .title-arrow svg{
+  transform: translateX(2px);
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="image-scroller-section">
+  <div class="image-scroller-inner">
+    <div class="image-scroller-head">
+      <div class="image-scroller-eyebrow">Industry Insights & Intelligence</div>
+
+      <div class="image-scroller-controls">
+        <button class="scroller-arrow scroller-prev is-disabled" aria-label="Previous">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 6l-6 6 6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="scroller-arrow scroller-next is-active" aria-label="Next">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 6l6 6-6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-scroller-viewport" id="projectScroller">
+    <div class="image-scroller-track">
+
+      <article class="scroller-card scroller-card--red">
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>The Shift Toward Automated Inspection</span><span>01</span></div>
+          <p>Certified Level III expertise supporting inspection programs, procedure development, compliance strategies, and technical decision-making. Our consultants work directly with your teams to ensure inspections meet industry standards while improving reliability, documentation, and operational confidence.</p>
+        </div>
+      </article>
+
+      <article class="scroller-card scroller-card--image">
+        <div class="scroller-image-wrap">
+          <img src="images/stock2.jpeg" alt="">
+        </div>
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>Advanced NDT Experts</span><span>02</span></div>
+          <p>Experienced NDT subject matter experts providing guidance on advanced inspection technologies, complex inspection challenges, and system implementation. We help organizations improve inspection performance, reduce uncertainty, and build stronger technical capabilities.</p>
+        </div>
+      </article>
+
+      <article class="scroller-card scroller-card--red">
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>NDT Written Practice</span><span>03</span></div>
+          <p>Comprehensive review and development of written practices designed to meet industry standards and regulatory requirements. Our team ensures documentation is clear, compliant, and aligned with your operational workflows and inspection programs.</p>
+        </div>
+      </article>
+
+      <article class="scroller-card scroller-card--image">
+        <div class="scroller-image-wrap">
+          <img src="images/stock4.jpeg" alt="">
+        </div>
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>Advanced NDT Training</span><span>04</span></div>
+          <p>Structured training programs designed to advance technician knowledge and practical capability in modern inspection methods. Our courses combine technical theory with real-world application to strengthen both individual expertise and organizational competency.</p>
+        </div>
+      </article>
+
+      <article class="scroller-card scroller-card--red">
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>NDT Technology Programs</span><span>05</span></div>
+          <p>Implementation and optimization of advanced nondestructive testing technologies and procedures. We help organizations integrate modern inspection tools that improve detection capability, increase efficiency, and strengthen the reliability of inspection results.</p>
+        </div>
+      </article>
+
+      <article class="scroller-card scroller-card--image">
+        <div class="scroller-image-wrap">
+          <img src="images/stock3.jpeg" alt="">
+        </div>
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>Automation & Robotics</span><span>06</span></div>
+          <p>Development and integration of robotic and automated inspection systems that enhance safety, repeatability, and productivity. These systems reduce manual risk while enabling consistent, high-precision inspection across complex assets and environments.</p>
+        </div>
+      </article>
+
+      <article class="scroller-card scroller-card--red">
+        <div class="scroller-copy">
+          <div class="card-eyebrow"><span>Advanced Imaging Systems</span><span>07</span></div>
+          <p>Deployment of high-resolution imaging and advanced inspection visualization systems that improve defect detection and analysis. These technologies provide clearer inspection data and support more confident decision-making during asset evaluation and maintenance planning.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="image-scroller-inner">
+    <div class="scroller-progress">
+      <div class="scroller-progress-bar"></div>
+    </div>
+  </div>
+</section>
+<style>
+:root{
+  --section-max: 1280px;
+  --section-pad: 24px;
+}
 
 .image-scroller-section{
-background:#fff;
-color:#ffffff;
-padding:6rem 0 7rem;
-overflow:hidden;
+  background:#fff;
+  color:#ffffff;
+  padding:6rem 0 7rem;
+  overflow:hidden;
+  
+}
+
+.image-scroller-inner{
+  width:min(var(--section-max), calc(100% - (var(--section-pad) * 2)));
+  margin:0 auto;
 }
 
 .image-scroller-head{
-position:relative;
-display:flex;
-align-items:center;
-justify-content:flex-start;
-margin-bottom:2rem;
-padding:0 3rem;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  margin-bottom:2rem;
 }
 
 .image-scroller-eyebrow{
-font-size:clamp(24px,3.4vw,54px);
-font-weight:200;
-color: black;
+  font-size:clamp(24px,3.4vw,54px);
+  font-weight:200;
+  color:#000;
 }
 
 .image-scroller-controls{
-position:absolute;
-right:3rem;
-display:flex;
-gap:.75rem;
+  position:absolute;
+  right:0;
+  display:flex;
+  gap:.75rem;
 }
 
-/* CONTROLS */
-/* CONTROLS */
 .scroller-arrow{
-width:64px;
-height:64px;
-
-border-radius:14px;
-border:1px solid #d6d6d6;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-cursor:pointer;
-
-background:#fff;
-
-transition:
-background .25s ease,
-color .25s ease,
-border-color .25s ease,
-transform .15s ease;
+  width:64px;
+  height:64px;
+  border-radius:14px;
+  border:1px solid #d6d6d6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  background:#fff;
+  transition:
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    transform .15s ease;
 }
 
-/* SVG arrow */
 .scroller-arrow svg{
-width:26px;
-height:26px;
-display:block;
+  width:26px;
+  height:26px;
+  display:block;
 }
 
-/* inactive */
 .scroller-arrow.is-disabled{
-background:#e6e6e6;
-color:#ffffff;
-border-color:#e6e6e6;
-cursor:default;
+  background:#e6e6e6;
+  color:#ffffff;
+  border-color:#e6e6e6;
+  cursor:default;
 }
 
-/* active */
 .scroller-arrow.is-active{
-background:#0F3D51;
-color:#ffffff;
-border-color:#0F3D51;
+  background:#0F3D51;
+  color:#ffffff;
+  border-color:#0F3D51;
 }
-
-
 
 .image-scroller-viewport{
-overflow:hidden;
-cursor:grab;
+  overflow:hidden;
+  cursor:grab;
+  width:100%;
 }
 
 .image-scroller-track{
-display:flex;
-gap:2.4rem;
-padding-left:3rem;
-padding-right:5rem;
+  display:flex;
+  gap:2.4rem;
+
+  /* aligns first card with the left edge of the 1200px inner container */
+  padding-left:max(var(--section-pad), calc((100vw - var(--section-max)) / 2));
+  padding-right:max(var(--section-pad), calc((100vw - var(--section-max)) / 2));
 }
 
 .image-scroller-track::after{
-content:"";
-flex:0 0 5rem;
+  content:"";
+  flex:0 0 1px;
 }
 
 .scroller-card{
   position:relative;
   flex:0 0 clamp(340px, 28vw, 450px);
-  aspect-ratio: 360 / 420;   /* same proportions as before */
+  aspect-ratio:360 / 420;
   border-radius:22px;
   overflow:hidden;
 }
+
 .scroller-card--red{
-background:#f00303;
-color:white;
+  background:#f00303;
+  color:#fff;
 }
 
 .scroller-card--image{
-background:black;
+  background:#000;
 }
 
 .scroller-image-wrap{
-position:absolute;
-inset:0;
+  position:absolute;
+  inset:0;
 }
 
 .scroller-image-wrap img{
-width:100%;
-height:100%;
-object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .scroller-image-wrap::after{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.25);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.25);
 }
 
 .scroller-copy{
-position:absolute;
-inset:0;
-padding:1.4rem;
-display:flex;
-flex-direction:column;
-justify-content:flex-start;
-z-index:2;
+  position:absolute;
+  inset:0;
+  padding:1.4rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  z-index:2;
 }
 
 .card-eyebrow{
-display:flex;
-justify-content:space-between;
-margin-top: .3rem;
-margin-bottom:clamp(.8rem,1.2vw,1.4rem);
-font-size:11px;
-font-size:clamp(11px,0.9vw,15px);
-letter-spacing:.14em;
-text-transform:uppercase;
-font-weight:700;
-opacity:.9;
+  display:flex;
+  justify-content:space-between;
+  margin-top:.3rem;
+  margin-bottom:clamp(.8rem,1.2vw,1.4rem);
+  font-size:clamp(11px,0.9vw,15px);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:700;
+  opacity:.9;
 }
 
 .card-eyebrow span:last-child{
-opacity:.6;
-}
-
-.scroller-copy h3{
-margin:0 0 .6rem;
-font-size:clamp(18px,1.6vw,24px);
-font-weight:500;
-line-height:1.3;
+  opacity:.6;
 }
 
 .scroller-copy p{
-margin:0;
-font-size:clamp(18px,1.6vw,24px);
-line-height:1.45;
-max-width:28ch;
+  margin:0;
+  font-size:clamp(18px,1.6vw,24px);
+  line-height:1.45;
+  max-width:28ch;
 }
 
 .scroller-progress{
-width:calc(100% - 6rem);
-height:2px;
-background:#eee;
-margin:3rem auto 0;
+  width:100%;
+  height:2px;
+  background:#eee;
+  margin:3rem auto 0;
 }
 
 .scroller-progress-bar{
-width:8%;
-height:100%;
-background:#000;
+  width:8%;
+  height:100%;
+  background:#000;
 }
 
 .navbar{
@@ -2137,10 +2311,27 @@ background:#000;
 }
 
 .navbar.navbar--hidden{
-  transform: translateX(-50%) translateY(calc(-100% - 18px));
-  opacity: 0.98;
+  transform:translateX(-50%) translateY(calc(-100% - 18px));
+  opacity:.98;
 }
 
+@media (max-width: 900px){
+  .image-scroller-head{
+    gap:1.25rem;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .image-scroller-controls{
+    position:static;
+    right:auto;
+  }
+
+  .image-scroller-track{
+    padding-left:var(--section-pad);
+    padding-right:var(--section-pad);
+  }
+}
 </style>
 
 
@@ -4118,6 +4309,8 @@ gsap.registerPlugin(ScrollTrigger);
 const intro = document.querySelector(".intro-wrap");
 const img = document.querySelector(".hero-rise-img");
 const heading = document.querySelector(".stackflow-heading");
+const griffinText = document.querySelector("#heroBottomIcon");
+const heroTopbarCenter = document.querySelector(".hero-topbar__center");
 
 if (intro && img) {
   const isMobile = window.matchMedia("(max-width: 760px)").matches;
@@ -4128,36 +4321,85 @@ if (intro && img) {
       opacity: 1
     });
 
-    /* keep same look, just lock it to bottom on mobile */
     gsap.set(img, {
       top: "auto",
       bottom: 0
     });
+
+    if (griffinText) {
+      gsap.set(griffinText, {
+        yPercent: 0,
+        opacity: 1
+      });
+    }
+
+    if (heroTopbarCenter) {
+      gsap.set(heroTopbarCenter, {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)"
+      });
+    }
+
   } else {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: intro,
         start: "top top",
-        end: "+=150%",
+        end: "+=50%",
         scrub: true,
         pin: true,
         anticipatePin: 1
       }
     });
 
-    tl.fromTo(
-      img,
-      {
-        yPercent: 60,
-        opacity: 0
-      },
-      {
-        yPercent: 0,
-        opacity: 1,
-        ease: "none"
-      },
-      0
-    );
+tl.fromTo(
+  img,
+  {
+    yPercent: 60,
+    opacity: 0,
+    filter: "blur(12px)"   // 👈 starts soft
+  },
+  {
+    yPercent: 0,
+    opacity: 1,
+    filter: "blur(0px)",   // 👈 sharpens as it rises
+    ease: "none"
+  },
+  0
+);
+
+    if (griffinText) {
+      tl.fromTo(
+        griffinText,
+        {
+          yPercent: 120
+        },
+        {
+          yPercent: 0,
+          ease: "none"
+        },
+        0
+      );
+    }
+
+    if (heroTopbarCenter) {
+      tl.fromTo(
+        heroTopbarCenter,
+        {
+          y: -80,
+          opacity: 0,
+          filter: "blur(10px)"
+        },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          ease: "none"
+        },
+        0.08
+      );
+    }
 
     if (heading) {
       tl.fromTo(
@@ -4222,7 +4464,8 @@ if (intro && img) {
 
   /* 🔺 move Griffin text up */
   #heroBottomIcon{
-    transform: translate(-50%, 0.2rem); /* was 3rem → now lifted up */
+     bottom: 1.5rem; /* or 3rem, depending on where you want it */
+  transform: translateX(-50%);
     width: 90vw; /* optional: slightly larger presence */
   }
 
@@ -4233,7 +4476,28 @@ if (intro && img) {
     min-height: 20px;
   }
 }
+.wave-divider{
+  position: absolute;
+  left: 0;
+  bottom: -2px;         /* was -1px */
+  width: 100%;
+  height: auto;
+  min-height: 120px;
+  display: block;
+  line-height: 0;       /* helps kill inline/svg gap */
+  z-index: 3;
+  pointer-events: none;
+}
 
+.caps-intro-section{
+  position: relative;
+  background: #fff;
+  margin-top: -2px;     /* overlap upward slightly */
+  padding: clamp(32px, 0vw, 0px) 0 40px;
+  z-index: 4;
+}
 </style>
+
+
 </body>
 </html>
