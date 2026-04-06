@@ -2154,8 +2154,8 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
 }
 
 .image-scroller-eyebrow{
-  font-size:clamp(24px,3.4vw,54px);
-  font-weight:200;
+  font-size: clamp(1.1rem, 1.7vw, 1.7rem);
+  font-weight:400;
   color:#000;
 }
 
@@ -4318,7 +4318,8 @@ if (intro && img) {
   if (isMobile) {
     gsap.set(img, {
       yPercent: 0,
-      opacity: 1
+      opacity: 1,
+      filter: "blur(0px)"
     });
 
     gsap.set(img, {
@@ -4328,8 +4329,7 @@ if (intro && img) {
 
     if (griffinText) {
       gsap.set(griffinText, {
-        yPercent: 0,
-        opacity: 1
+        yPercent: 0
       });
     }
 
@@ -4346,28 +4346,47 @@ if (intro && img) {
       scrollTrigger: {
         trigger: intro,
         start: "top top",
-        end: "+=50%",
+        end: "+=150%",
         scrub: true,
         pin: true,
         anticipatePin: 1
       }
     });
 
-tl.fromTo(
-  img,
-  {
-    yPercent: 60,
-    opacity: 0,
-    filter: "blur(12px)"   // 👈 starts soft
-  },
-  {
-    yPercent: 0,
-    opacity: 1,
-    filter: "blur(0px)",   // 👈 sharpens as it rises
-    ease: "none"
-  },
-  0
-);
+if (heroTopbarCenter) {
+  tl.fromTo(
+    heroTopbarCenter,
+    {
+      y: -100,
+      opacity: 0,
+      filter: "blur(10px)"
+    },
+    {
+      y: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      ease: "none",
+      duration: 0.15 // 👈 finishes fast (25% of scroll)
+    },
+    0
+  );
+}
+
+    tl.fromTo(
+      img,
+      {
+        yPercent: 60,
+        opacity: 0,
+        filter: "blur(12px)"
+      },
+      {
+        yPercent: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        ease: "none"
+      },
+      0.2
+    );
 
     if (griffinText) {
       tl.fromTo(
@@ -4379,25 +4398,7 @@ tl.fromTo(
           yPercent: 0,
           ease: "none"
         },
-        0
-      );
-    }
-
-    if (heroTopbarCenter) {
-      tl.fromTo(
-        heroTopbarCenter,
-        {
-          y: -80,
-          opacity: 0,
-          filter: "blur(10px)"
-        },
-        {
-          y: 0,
-          opacity: 1,
-          filter: "blur(0px)",
-          ease: "none"
-        },
-        0.08
+        0.2
       );
     }
 
@@ -4413,7 +4414,7 @@ tl.fromTo(
           y: -40,
           ease: "none"
         },
-        0
+        0.1
       );
     }
   }
