@@ -1,5 +1,6 @@
 <!-- TEST MARKER ADVISORY-123 -->
 <div class="bottom-nav-wrap">
+<div class="bottom-nav-outer">
   <button
     class="bottom-nav"
     id="bottomNav"
@@ -277,5 +278,5 @@
   </div>
 </div>
 
-  
+</div>
 </div>
