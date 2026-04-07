@@ -624,10 +624,10 @@
 
   appearance: none;
   border: 0;
-  background: rgba(18, 129, 226, 0);
-  padding: 10px 14px;
+  background: #0e4861;
+  padding: 14px 24px;
   margin: 0 0 10px;
-  border-radius: var(--card-radius);
+  border-radius: 5px;
   cursor: pointer;
 
   color: #ffffff;
@@ -635,7 +635,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding-left: 0;
+
 
   transition:
     transform .18s ease,
@@ -656,7 +656,7 @@
 
 .bottom-nav-menu__back:hover{
   transform: translateY(-1px);
-  background: rgba(86, 119, 133, 0);
+  background: rgba(86, 119, 133, 0.421);
   color: #ffffff;
 }
 
@@ -933,10 +933,10 @@
 
   .bottom-nav-menu__back{
     
-    font-size: clamp(10px, 0.8vw, 11px);
+    font-size: clamp(12px, 1vw, 16px);
     gap: 8px;
     margin: 0;
-    padding: 0;
+    padding: 10px 16px;
     margin-left: -4px;
   }
 
@@ -950,7 +950,7 @@
   }
 
   .bottom-nav-menu__subitem{
-    font-size: clamp(11px, 3vw, 16px);
+    font-size: clamp(18px, 3vw, 16px);
     line-height: 1;
    
   }
@@ -1122,6 +1122,7 @@
   .bottom-nav-menu__col--primary{
     order: 1;
   }
+  
 
   /* socials + reach us under menu in a row */
   .bottom-nav-menu__meta{
