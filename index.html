@@ -1605,6 +1605,7 @@ html{
 .stack-card:nth-child(7) .stack-card-inner{ z-index: 7; }
 .stack-card:nth-child(8) .stack-card-inner{ z-index: 8; }
 
+/* ================= MOBILE OPTIMIZATION ================= */
 @media (max-width: 1100px){
   .stack-card,
   .stack-card-inner{
@@ -1617,7 +1618,11 @@ html{
   }
 
   .stack-card-image.main{
-    height: 220px;
+    height: 240px;
+  }
+
+  .stack-card-image img{
+    padding: 0; /* remove image padding */
   }
 
   .stack-card-title-wrap{
@@ -1625,40 +1630,125 @@ html{
     border-left: 0;
     border-right: 0;
     border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 0;
+    padding: 1.1rem 1rem 0.35rem; /* tighter */
   }
 
   .stack-card-title{
     text-align: left;
     max-width: none;
+    padding: 0; /* remove desktop spacing */
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    line-height: 0.98;
   }
 
   .stack-card-content{
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0 1rem 1.1rem; /* tighter */
   }
 
-  .stack-card-image.small{
-    height: 180px;
-  }
-}
-
-@media (max-width: 760px){
-  .stack-cards-shell{
-    width: min(1600px, calc(100% - 24px));
-    padding: 0 12px;
-  }
-
-  .stack-card{
-    margin-bottom: 1rem;
-  }
-
-  .stack-card-title-wrap,
-  .stack-card-content{
-    padding: 1rem;
+  .stack-card-text-wrap{
+    align-content: start;
   }
 
   .stack-card-text{
     font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+  }
+
+  .stack-card-image.small{
+    display: none;
+  }
+}
+
+@media (max-width: 760px){
+  .stack-cards-section{
+    padding: 0;
+  }
+
+  .stack-cards-shell{
+    width: 100%;
+    padding: 0; /* no outer padding */
+  }
+
+  .stack-card{
+    margin-bottom: 0.75rem; /* tighter stack */
+  }
+
+  .stack-card-inner{
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+
+  .stack-card-image.main{
+    width: 100%;
+    height: 220px;
+  }
+
+  .stack-card-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0; /* full width pic */
+  }
+
+  .stack-card-title-wrap{
+    padding: 0.9rem 0.9rem 0.2rem;
+  }
+
+  .stack-card-title{
+    font-size: 1.35rem;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+  }
+
+  .stack-card-content{
+    padding: 0 0.9rem 0.95rem;
+    gap: 0.6rem;
+  }
+
+  .stack-card-text{
+    font-size: 0.93rem;
+    line-height: 1.5;
+    margin-bottom: 0.7rem;
+  }
+
+  .stack-btn-inline{
+    margin-top: 0.2rem;
+    padding: 0.48rem 1rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px){
+  .stack-card-image.main{
+    height: 200px;
+  }
+
+  .stack-card-title-wrap{
+    padding: 0.8rem 0.8rem 0.15rem;
+  }
+
+  .stack-card-title{
+    font-size: 1.2rem;
+  }
+
+  .stack-card-content{
+    padding: 0 0.8rem 0.85rem;
+  }
+
+  .stack-card-text{
+    font-size: 0.9rem;
+    line-height: 1.48;
+    margin-bottom: 0.65rem;
+  }
+
+  .stack-btn-inline{
+    padding: 0.46rem 0.9rem;
+    font-size: 0.8rem;
   }
 }
 .stack-card-text-wrap{
@@ -2011,126 +2101,158 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
 
 
 
-<section class="insight-grid-section industries-section">
-  <div class="insight-grid-shell">
-    <div class="insight-grid-head">
-      <p class="insight-grid-eyebrow">Industries Served</p>
-      <h2 class="insight-grid-title">Delivering Across Critical Infrastructure Sectors</h2>
-      <p class="insight-grid-intro">
-        Griffin supports asset-intensive industries where inspection, reliability, and risk management are mission-critical. Our experience spans sectors with the highest demands for safety, compliance, and performance.
+<section class="industries-split-section">
+  <div class="industries-split-shell">
+
+    <!-- LEFT CONTENT -->
+    <div class="industries-split-left">
+      <p class="industries-eyebrow">Industries Served</p>
+      <h2 class="industries-title">
+        Supporting Critical Infrastructure
+      </h2>
+      <p class="industries-intro">
+        We support asset-intensive industries where inspection, asset integrity, and risk management are critical to safe operation, regulatory compliance, and sustained performance.
       </p>
     </div>
 
-    <div class="industries-grid">
+    <!-- RIGHT GRID -->
+    <div class="industries-split-right">
 
-      <!-- Oil & Gas -->
-      <div class="industry-tile">
+      <div class="industry-row">
         <div class="industry-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M12 2C12 2 6 9 6 13a6 6 0 0 0 12 0c0-4-6-11-6-11z"/>
           </svg>
         </div>
-        <h3>Oil & Gas</h3>
+        <span>Oil & Gas</span>
       </div>
 
-      <!-- Petrochemical -->
-      <div class="industry-tile">
+      <div class="industry-row">
         <div class="industry-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M10 2v6l-4 6a6 6 0 1 0 12 0l-4-6V2"/>
           </svg>
         </div>
-        <h3>Petrochemical</h3>
+        <span>Petrochemical</span>
       </div>
 
-      <!-- Power Generation -->
-      <div class="industry-tile">
+      <div class="industry-row">
         <div class="industry-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
           </svg>
         </div>
-        <h3>Power Generation</h3>
+        <span>Power Generation</span>
       </div>
 
-      <!-- Nuclear -->
-      <div class="industry-tile">
+      <div class="industry-row">
         <div class="industry-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <circle cx="12" cy="12" r="2"/>
             <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>
           </svg>
         </div>
-        <h3>Nuclear</h3>
+        <span>Nuclear</span>
       </div>
 
-      <!-- Heavy Manufacturing -->
-      <div class="industry-tile">
+      <div class="industry-row">
         <div class="industry-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M14 3v4h4M5 7h14v14H5z"/>
           </svg>
         </div>
-        <h3>Heavy Manufacturing</h3>
+        <span>Heavy Manufacturing</span>
       </div>
 
-      <!-- Infrastructure & Defense -->
-      <div class="industry-tile">
+      <div class="industry-row">
         <div class="industry-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
           </svg>
         </div>
-        <h3>Infrastructure & Defense</h3>
+        <span>Infrastructure & Defense</span>
       </div>
 
     </div>
+
   </div>
 </section>
 
 <style>
-/* Grid */
-.industries-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin-top: 40px;
+.industries-split-section{
+  padding: clamp(72px, 8vw, 120px) 0;
+  background: #ffffff;
 }
 
-/* Tile */
-.industry-tile{
+.industries-split-shell{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+/* LEFT */
+.industries-eyebrow{
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #052330;
+  margin-bottom: 14px;
+}
+
+.industries-title{
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  color: #052330;
+  margin-bottom: 18px;
+  max-width: 18ch;
+}
+
+.industries-intro{
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(0,0,0,0.7);
+  max-width: 46ch;
+}
+
+/* RIGHT */
+.industries-split-right{
   display: flex;
   flex-direction: column;
+  border-top: 1px solid rgba(5,35,48,0.1);
+}
+
+.industry-row{
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 48px 24px;
-  border: 1px solid rgba(5, 35, 48, 0.08);
-  background: #fff;
-  text-align: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(5,35,48,0.1);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
-/* Hover */
-.industry-tile:hover{
-  background: #052330;
+.industry-row:hover{
+  transform: translateX(6px);
 }
 
-.industry-tile:hover h3{
-  color: #ffffff;
+.industry-row:hover .industry-icon{
+  color: #F00303;
 }
 
-.industry-tile:hover .industry-icon{
-  color: #F00303; /* accent */
-  transform: translateY(-4px);
-}
-
-/* Icon */
+/* ICON */
 .industry-icon{
-  width: 40px;
-  height: 40px;
-  margin-bottom: 16px;
+  width: 28px;
+  height: 28px;
   color: #052330;
+  flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
@@ -2139,30 +2261,29 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   height: 100%;
 }
 
-/* Title */
-.industry-tile h3{
-  margin: 0;
-  font-size: 18px;
-  font-weight: 400;
+/* TEXT */
+.industry-row span{
+  font-size: 16px;
   letter-spacing: -0.02em;
   color: #052330;
-  transition: color 0.3s ease;
 }
 
 /* Responsive */
-@media (max-width: 1100px){
-  .industries-grid{
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 600px){
-  .industries-grid{
+@media (max-width: 900px){
+  .industries-split-shell{
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .industries-title{
+    max-width: 100%;
+  }
+
+  .industries-intro{
+    max-width: 100%;
   }
 }
 </style>
-
 
 <section class="why-firm-feature">
   <img class="why-firm-feature__image" src="/images/stock8.jpeg" alt="Industrial inspection and strategy background">
@@ -2803,9 +2924,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
 }
 */
 </style>-->
-
 <section class="ndt-grid-section">
-
   <h2 class="display-heading ndt-grid-title">
     Our Partners in Industrial Inspection & Asset Integrity
   </h2>
@@ -2813,27 +2932,37 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   <div class="ndt-box-row">
 
     <div class="ndt-box">
+      <span class="box-glow"></span>
       <span class="fade-right"></span>
       <img src="images/partner-logo1.png" alt="Partner Logo 1" class="partner-logo is-blur">
     </div>
 
     <div class="ndt-box">
+      <span class="box-glow"></span>
+      <span class="fade-right"></span>
       <img src="images/partner-logo2.png" alt="Partner Logo 2" class="partner-logo is-blur">
     </div>
 
     <div class="ndt-box">
+      <span class="box-glow"></span>
+      <span class="fade-right"></span>
       <img src="images/partner-logo1.png" alt="Partner Logo 1" class="partner-logo">
     </div>
 
     <div class="ndt-box">
+      <span class="box-glow"></span>
+      <span class="fade-right"></span>
       <img src="images/partner-logo2.png" alt="Partner Logo 2" class="partner-logo">
     </div>
 
     <div class="ndt-box">
+      <span class="box-glow"></span>
+      <span class="fade-right"></span>
       <img src="images/partner-logo1.png" alt="Partner Logo 1" class="partner-logo is-blur">
     </div>
 
     <div class="ndt-box">
+      <span class="box-glow"></span>
       <span class="fade-right"></span>
       <span class="right-edge"></span>
       <img src="images/partner-logo2.png" alt="Partner Logo 2" class="partner-logo is-blur">
@@ -2858,69 +2987,45 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
     <span class="dot" style="--x:100%; --y:100%;"></span>
 
   </div>
-
 </section>
 
 <style>
 .ndt-grid-section{
   background:#fff;
-  padding:20px 24px;
-  padding-bottom: 120px;
+  padding:80px 24px 120px;
 }
 
 .ndt-grid-title{
   text-align:center;
-  color:#111;
   max-width:1000px;
   margin:0 auto 170px;
-  line-height:1.15;
-  font-size: clamp(2.4rem, 3.8vw, 3.5rem);
-  line-height: 0.97;
-  letter-spacing: -0.035em;
-  font-weight: 500;
+  font-size:clamp(2.4rem, 3.8vw, 3.5rem);
+  line-height:0.97;
+  letter-spacing:-0.035em;
+  font-weight:500;
   color:#052330;
 }
 
-.text-accent{
-  position:relative;
-  display:inline-block;
-}
-
-.text-accent::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0.08em;
-  height:0.34em;
-  background:#8fd3ff;
-  transform:skewX(-8deg);
-  z-index:-1;
-}
-
-.ndt-box-wrap{
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
 .ndt-box-row{
-  --line: 2px;
-  --dot: 10px;
-  --box-h: 180px;
-  --fade-h: 130px;
-  --ink: #111;
+  --line:2px;
+  --dot:10px;
+  --box-h:180px;
+  --fade-h:130px;
+  --idle:#111;
+  --active:#0b3a59;
+  --edge-idle:rgba(17,17,17,0.24);
+  --edge-active:rgba(17, 94, 146, 0.38);
 
-  width: 1200px;
-  max-width: none;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  position: relative;
-
-  left: 50%;
-  transform: translateX(-50%);
+  width:1200px;
+  max-width:none;
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
 }
-/* bottom ghost horizontal row */
+
+/* keep your bottom ghost horizontal row */
 .ndt-box-row::after{
   content:"";
   position:absolute;
@@ -2945,19 +3050,51 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
     rgba(0,0,0,0.55) 86%,
     transparent 100%
   );
+  pointer-events:none;
 }
 
-/* base box style */
 .ndt-box{
+  --ink: var(--idle);
+  --edge-ink: var(--edge-idle);
+  --box-glow-x:50%;
+  --box-glow-y:50%;
+
   position:relative;
   height:var(--box-h);
   border-top:var(--line) solid var(--ink);
   border-bottom:var(--line) solid var(--ink);
   border-left:var(--line) solid var(--ink);
   background:none;
+  overflow:visible; /* important: keep top/bottom ghost fades visible */
+  isolation:isolate;
 }
 
-/* logos: centered without affecting box layout */
+/* local glow, clipped so it does NOT spill outside the box */
+.box-glow{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  overflow:hidden;
+  border-radius:0;
+}
+
+.box-glow::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle 220px at var(--box-glow-x) var(--box-glow-y),
+      rgba(143,211,255,0.34) 0%,
+      rgba(143,211,255,0.18) 30%,
+      rgba(143,211,255,0.08) 48%,
+      transparent 70%
+    );
+}
+
+/* logos */
 .partner-logo{
   position:absolute;
   top:50%;
@@ -2968,7 +3105,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   max-width:82%;
   max-height:62px;
   object-fit:contain;
-  z-index:1;
+  z-index:3;
   pointer-events:none;
 }
 
@@ -2977,7 +3114,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   opacity:0.7;
 }
 
-/* left-side ghost verticals */
+/* left side ghost verticals */
 .ndt-box::before{
   content:"";
   position:absolute;
@@ -2987,9 +3124,11 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   height:var(--fade-h);
   background:linear-gradient(
     to top,
-    rgba(17,17,17,0.95),
-    rgba(17,17,17,0)
+    var(--ink) 0%,
+    rgba(17,17,17,0) 100%
   );
+  z-index:2;
+  pointer-events:none;
 }
 
 .ndt-box::after{
@@ -3001,15 +3140,19 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   height:var(--fade-h);
   background:linear-gradient(
     to bottom,
-    rgba(17,17,17,0.95),
-    rgba(17,17,17,0)
+    var(--ink) 0%,
+    rgba(17,17,17,0) 100%
   );
+  z-index:2;
+  pointer-events:none;
 }
 
-/* right-side ghost verticals */
+/* right side ghost verticals */
 .fade-right{
   position:absolute;
   inset:0;
+  z-index:2;
+  pointer-events:none;
 }
 
 .fade-right::before{
@@ -3021,8 +3164,8 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   height:var(--fade-h);
   background:linear-gradient(
     to top,
-    rgba(17,17,17,0.95),
-    rgba(17,17,17,0)
+    var(--ink) 0%,
+    rgba(17,17,17,0) 100%
   );
 }
 
@@ -3035,12 +3178,12 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   height:var(--fade-h);
   background:linear-gradient(
     to bottom,
-    rgba(17,17,17,0.95),
-    rgba(17,17,17,0)
+    var(--ink) 0%,
+    rgba(17,17,17,0) 100%
   );
 }
 
-/* visible right edge for last box */
+/* final right edge */
 .right-edge{
   position:absolute;
   top:0;
@@ -3049,6 +3192,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   height:100%;
   background:var(--ink);
   z-index:5;
+  pointer-events:none;
 }
 
 /* dots */
@@ -3057,49 +3201,49 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
   width:var(--dot);
   height:var(--dot);
   border-radius:50%;
-  background:var(--ink);
+  background:var(--idle);
   left:var(--x);
   top:var(--y);
   transform:translate(-50%,-50%);
   z-index:10;
+  pointer-events:none;
+  box-shadow:0 0 0 0 rgba(143,211,255,0);
 }
 
-/* LEFT SIDE */
+/* LEFT SIDE special box */
 .ndt-box:first-child{
-  border-left:var(--line) solid #1111113d;
+  border-left:var(--line) solid var(--edge-ink);
   border-top:none;
   border-bottom:none;
   background:
-    linear-gradient(to right, #1111113d 0px, #111 25vw) top left / 100% var(--line) no-repeat,
-    linear-gradient(to right, #1111113d 0px, #111 25vw) bottom left / 100% var(--line) no-repeat;
+    linear-gradient(to right, var(--edge-ink) 0px, var(--ink) 25vw) top left / 100% var(--line) no-repeat,
+    linear-gradient(to right, var(--edge-ink) 0px, var(--ink) 25vw) bottom left / 100% var(--line) no-repeat;
 }
 
 .ndt-box:first-child::before{
   background:linear-gradient(
     to top,
-    #1111113d,
-    rgba(17,17,17,0)
+    var(--edge-ink) 0%,
+    rgba(17,17,17,0) 100%
   );
 }
 
 .ndt-box:first-child::after{
   background:linear-gradient(
     to bottom,
-    #1111113d,
-    rgba(17,17,17,0)
+    var(--edge-ink) 0%,
+    rgba(17,17,17,0) 100%
   );
 }
 
-/* RIGHT SIDE */
-/* RIGHT SIDE — exact mirror, clearly visible */
+/* RIGHT SIDE special box */
 .ndt-box:last-of-type{
   border-top:none !important;
   border-bottom:none !important;
   border-right:none !important;
-
   background-image:
-    linear-gradient(to left, #1111113d 0px, #111 25vw),
-    linear-gradient(to left, #1111113d 0px, #111 25vw) !important;
+    linear-gradient(to left, var(--edge-ink) 0px, var(--ink) 25vw),
+    linear-gradient(to left, var(--edge-ink) 0px, var(--ink) 25vw) !important;
   background-position:
     top right,
     bottom right !important;
@@ -3111,31 +3255,221 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
     no-repeat !important;
 }
 
-/* far-right ghost line above */
 .ndt-box:last-of-type .fade-right::before{
-  background: linear-gradient(
+  background:linear-gradient(
     to top,
-    #1111113d 0%,
+    var(--edge-ink) 0%,
     rgba(17,17,17,0) 100%
   ) !important;
 }
 
-/* far-right ghost line below */
 .ndt-box:last-of-type .fade-right::after{
-  background: linear-gradient(
+  background:linear-gradient(
     to bottom,
-    #1111113d 0%,
+    var(--edge-ink) 0%,
     rgba(17,17,17,0) 100%
   ) !important;
 }
 
 .ndt-box:last-of-type .right-edge{
-  background:#1111113d !important;
+  background:var(--edge-ink) !important;
+}
+
+@media (max-width:1024px){
+  .ndt-box-row{
+    --line:1px;
+    --dot:5px;
+    --box-h:160px;
+    --fade-h:80px;
+    width:1000px;
+    margin:0;
+    padding:0;
+  }
+
+  .ndt-grid-title{
+    margin:0 auto 100px;
+    font-size:clamp(2rem, 3.2vw, 3.2rem);
+  }
+
+  .partner-logo{
+    max-width:78%;
+    max-height:54px;
+  }
+
+  .box-glow::before{
+    background:
+      radial-gradient(
+        circle 90px at var(--box-glow-x) var(--box-glow-y),
+        rgba(143,211,255,0.34) 0%,
+        rgba(143,211,255,0.18) 30%,
+        rgba(143,211,255,0.08) 48%,
+        transparent 70%
+      );
+  }
 }
 </style>
 
-<section class="contact-section">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+(() => {
+  const row = document.querySelector(".ndt-box-row");
+  if (!row) return;
 
+  const boxes = Array.from(row.querySelectorAll(".ndt-box"));
+  const dots = Array.from(row.querySelectorAll(".dot"));
+
+  const ACTIVE = "#8fd3ff";
+  const ACTIVE_EDGE = "rgba(143,211,255,0.38)";
+  const IDLE = "#111";
+  const IDLE_EDGE = "rgba(17,17,17,0.24)";
+
+  function getBoxCornerDots(index) {
+    return [
+      dots[index],       // top-left
+      dots[index + 1],   // top-right
+      dots[index + 7],   // bottom-left
+      dots[index + 8]    // bottom-right
+    ].filter(Boolean);
+  }
+
+  function lightBox(index) {
+    const box = boxes[index];
+    const glow = box.querySelector(".box-glow");
+    const logo = box.querySelector(".partner-logo");
+    const cornerDots = getBoxCornerDots(index);
+
+    gsap.to(box, {
+      "--ink": ACTIVE,
+      "--edge-ink": ACTIVE_EDGE,
+      duration: 0.22,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    gsap.to(glow, {
+      opacity: 1,
+      duration: 0.2,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    gsap.to(cornerDots, {
+      backgroundColor: ACTIVE,
+      boxShadow: "0 0 0 6px rgba(143,211,255,0.16)",
+      duration: 0.22,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    if (logo) {
+      if (logo.classList.contains("is-blur")) {
+        gsap.to(logo, {
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 0.25,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      } else {
+        gsap.to(logo, {
+          opacity: 1,
+          duration: 0.25,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    }
+  }
+
+  function resetBox(index) {
+    const box = boxes[index];
+    const glow = box.querySelector(".box-glow");
+    const logo = box.querySelector(".partner-logo");
+    const cornerDots = getBoxCornerDots(index);
+
+    gsap.to(box, {
+      "--ink": IDLE,
+      "--edge-ink": IDLE_EDGE,
+      duration: 0.28,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    gsap.to(glow, {
+      opacity: 0,
+      duration: 0.24,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    gsap.to(box, {
+      "--box-glow-x": "50%",
+      "--box-glow-y": "50%",
+      duration: 0.28,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    gsap.to(cornerDots, {
+      backgroundColor: IDLE,
+      boxShadow: "0 0 0 0 rgba(143,211,255,0)",
+      duration: 0.28,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+
+    if (logo) {
+      if (logo.classList.contains("is-blur")) {
+        gsap.to(logo, {
+          filter: "blur(4px)",
+          opacity: 0.7,
+          duration: 0.28,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      } else {
+        gsap.to(logo, {
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 0.28,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    }
+  }
+
+  boxes.forEach((box, index) => {
+    box.addEventListener("mouseenter", () => {
+      lightBox(index);
+    });
+
+    box.addEventListener("mousemove", (e) => {
+      const rect = box.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      gsap.to(box, {
+        "--box-glow-x": x + "%",
+        "--box-glow-y": y + "%",
+        duration: 0.14,
+        ease: "power2.out",
+        overwrite: true
+      });
+    });
+
+    box.addEventListener("mouseleave", () => {
+      resetBox(index);
+    });
+  });
+})();
+</script>
+
+
+
+
+
+<section class="contact-section">
   <div class="contact-header">
     <h2>
       <span class="text-highlight">Contact</span> Us

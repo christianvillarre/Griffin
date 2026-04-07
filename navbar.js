@@ -17,6 +17,7 @@ function initNavbar() {
 
   let isOpen = false;
   let currentPanel = "main";
+  let defaultPanel = "main"; // <-- add this
 
   const menuPanels = menu.querySelectorAll(".bottom-nav-menu__panel");
 
@@ -74,6 +75,45 @@ function initNavbar() {
     label.textContent = prettyName || "Home";
   }
 
+  // <-- add this
+function detectDefaultPanel() {
+  let path = window.location.pathname;
+
+  if (path.endsWith("/")) {
+    path += "index.html";
+  }
+
+  const file = path.split("/").pop();
+
+  const technicalConsultingPages = [
+    "ndt-level-iii-consulting-support.html",
+    "advanced-ndt-subject-matter-experts.html",
+    "ndt-written-practice-review-development.html",
+    "advanced-ndt-training.html",
+    "advanced-ndt-programs-procedures.html",
+    "automation-robotics-imaging-systems.html"
+  ];
+
+  const businessAdvisoryPages = [
+    "mergers-acquisitions-support.html",
+    "talent-acquisition-assessment.html",
+    "corporate-development-strategic-planning.html",
+    "business-development-client-strategies.html",
+    "capital-acquisition.html"
+  ];
+
+  const affiliatePages = [
+    "top-notch-edm.html",
+    "sound-ndt-solutions.html",
+    "sound-ndt.html"
+  ];
+
+  if (technicalConsultingPages.includes(file)) return "consulting";   // ✅ FIX
+  if (businessAdvisoryPages.includes(file)) return "advisory";       // ✅ FIX
+  if (affiliatePages.includes(file)) return "affiliates";
+
+  return "main";
+}
   function getPanelItems(panelName) {
     const panel = menu.querySelector(`.bottom-nav-menu__panel[data-panel="${panelName}"]`);
     return panel ? panel.querySelectorAll("*") : [];
@@ -90,7 +130,7 @@ function initNavbar() {
   }
 
   function resetMenuToMain() {
-    showMenuPanel("main");
+    showMenuPanel(defaultPanel); // <-- change this
   }
 
   function getAnimatedItems() {
@@ -194,8 +234,8 @@ function initNavbar() {
       onComplete: () => {
         nav.classList.remove("is-open");
         menu.classList.remove("is-open");
-        resetMenuToMain();
-        currentPanel = "main";
+        currentPanel = defaultPanel; // <-- change this
+        showMenuPanel(defaultPanel); // <-- change this
         menu.style.display = "none";
 
         gsap.set(menu, { clearProps: "all" });
@@ -241,6 +281,11 @@ function initNavbar() {
   }
 
   setCurrentPageName();
+
+  // <-- add this
+  defaultPanel = detectDefaultPanel();
+  currentPanel = defaultPanel;
+  showMenuPanel(defaultPanel);
 
   nav.addEventListener("click", (e) => {
     e.stopPropagation();
