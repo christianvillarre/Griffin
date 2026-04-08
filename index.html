@@ -18,976 +18,650 @@
 </head>
 <style>
   :root{
-    --bg:#ffffff;
-    --ink:#111111;
+    --bg: #ffffff;
+    --ink: #111111;
 
-    --square: 96;   /* px */
-    --gap: 8;       /* px */
-    --rectW: 254;   /* px */
-    --rectH: 96;    /* px */
+    --square: 96;
+    --gap: 8;
+    --rectW: 254;
+    --rectH: 96;
+    --ovalW: 800;
 
-    --ovalW: 800;   /* wider side images */
-    --beamY: 0px; /* ✅ driven by JS */
+    --beamY: 0px; /* driven by JS */
+    --col-3: 2.15fr;
+    --stackflow-gap: clamp(20px, 1vw, 22px);
+    --stackflow-card-h: clamp(280px, 28vw, 450px);
+    --stackflow-stack-gap: 1rem;
   }
 
   *{ box-sizing:border-box; }
-  html,body{ height:100%; }
-html{
-  scroll-behavior: auto; /* Locomotive handles smoothness */
-  scroll-padding-top: var(--nav-offset);
-}
- html.lenis,
-  html.lenis body {
+
+  html,
+  body{
+    height: 100%;
+  }
+
+  html{
+    scroll-behavior: auto;
+    scroll-padding-top: var(--nav-offset);
+  }
+
+  html.lenis,
+  html.lenis body{
     height: auto;
   }
 
-  .lenis.lenis-smooth {
+  .lenis.lenis-smooth{
     scroll-behavior: auto !important;
   }
+
   body{
-    margin:0;
+    margin: 0;
     font-family: 'Zalando Sans', sans-serif;
-    background: var(--bg);
+    background: #052330;
     color: var(--ink);
     overflow-x: hidden;
-     background: #052330;
   }
 
+  #site{
+    min-height: 100vh;
+    padding: 0;
+  }
 
-  /* ---------- Site ---------- */
-#site{
-  min-height: 100vh;
-  padding: 0;
-}
-  /* =========================================================
-     ✅ NEW: 200vh BACKGROUND WRAP (Hero + next section)
-     - black base for 200vh
-     - diagonal "radial-ish" blue band limited to ~20%–70% height
-     - wave indent into next WHITE section
-     ========================================================= */
-.intro-wrap{
-  position: relative;
-  overflow: hidden;
-  background:#000;
-  padding-bottom: 4rem;
-}
+  /* =========================
+     INTRO / HERO WRAP
+  ========================= */
+  .intro-wrap{
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    padding-bottom: 0;
+  }
 
-/* ONE full-width diagonal beam */
-/* ONE full-width diagonal beam (guaranteed to reach across any screen) */
-
-/* ONE full-width diagonal beam (guaranteed to reach across any screen) */
-.intro-wrap::before{
-  content:"";
-  position:absolute;
-  z-index:1;
-
-  width: 520vmax;
-  height: 520vmax;
-
-  left: 50%;
-  top: 100%;
-  overflow: hidden;
-
-  /* ✅ add var offset (moves beam up/down smoothly) */
-  transform: translate(-45%, calc(-55% + var(--beamY))) rotate(-115deg);
-  transform-origin: center;
-
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 44%,
-    rgba(18, 83, 136, 0.776) 48%,
-    rgba(33, 94, 144, 0.769)  50%,
-    rgba(19, 78, 126, 0.677) 52%,
-    transparent 56%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 18%,
-    black 22%,
-    black 70%,
-    transparent 74%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 18%,
-    black 22%,
-    black 70%,
-    transparent 74%,
-    transparent 100%
-  );
-
-  pointer-events:none;
-  z-index: 0;
-}
-
-.side-img{
-  position:absolute;
-  top:0;
-
-  height: clamp(70vh, 55vw, 90vh);
-  width: clamp(500px, 32vw, 850px);
-
-  object-fit: contain;   /* changed from cover */
-  object-position: center;
-  opacity: 0.35;
-  z-index: 1;
-  pointer-events:none;
-
-  --edgeInset: clamp(0px, (900px - 100vw) * 0.18, 160px);
-}
-/* push inward from edges */
-/* Move images toward center instead of edges */
-/* ============================= */
-/* Default: 1600px and wider */
-/* Stick to sides (no offset) */
-/* ============================= */
-
-.side-img--left{
-  left: 0;
-  transform: none;
-  transform: translateX(-10%);
-}
-
-.side-img--right{
-  right: 0;
-  left: auto;
-  transform: none;
-  transform: translateX(10%);
-}
-
-/* ============================= */
-/* Under 1600px: center-style */
-/* ============================= */
-
-@media (max-width: 1599px){
-  .side-img--left{
+  .intro-wrap::before{
+    content: "";
+    position: absolute;
     left: 50%;
-    right: auto;
-    transform: translateX(-120%);
+    top: 100%;
+    width: 520vmax;
+    height: 520vmax;
+    z-index: 0;
+    pointer-events: none;
+    transform: translate(-45%, calc(-55% + var(--beamY))) rotate(-115deg);
+    transform-origin: center;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 44%,
+      rgba(18, 83, 136, 0.776) 48%,
+      rgba(33, 94, 144, 0.769) 50%,
+      rgba(19, 78, 126, 0.677) 52%,
+      transparent 56%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 18%,
+      black 22%,
+      black 70%,
+      transparent 74%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 18%,
+      black 22%,
+      black 70%,
+      transparent 74%,
+      transparent 100%
+    );
+  }
+
+  .intro-wrap::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.302);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* =========================
+     HERO
+  ========================= */
+  .hero{
+    position: relative;
+    overflow: visible;
+    min-height: 100svh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero > *{
+    position: relative;
+    z-index: 3;
+    color: #fff;
+  }
+
+  .hero::before{
+    z-index: 2;
+  }
+
+  #heroGrid{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #heroDropIcon{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -140%);
+    width: clamp(120px, 50vh, 480px);
+    height: auto;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  #heroBottomIcon{
+    position: absolute;
+    left: 50%;
+    bottom: -2rem;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-width: 1600px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 1;
+  }
+
+  #heroTitle,
+  .hero-scroll-indicator,
+  #criticalTitle{
+    display: none;
+  }
+
+  /* =========================
+     SIDE IMAGES
+  ========================= */
+  .side-img{
+    position: absolute;
+    top: 0;
+    height: clamp(70vh, 55vw, 90vh);
+    width: clamp(500px, 42vw, 650px);
+    object-fit: contain;
+    object-position: center;
+    opacity: 0.35;
+    z-index: 1;
+    pointer-events: none;
+    --edgeInset: clamp(0px, (900px - 100vw) * 0.18, 160px);
+  }
+
+  .side-img--left{
+    left: 0;
+    transform: translateX(-10%);
   }
 
   .side-img--right{
-    left: 50%;
-    right: auto;
-    transform: translateX(20%);
+    right: 0;
+    left: auto;
+    transform: translateX(10%);
   }
-}
 
-  /* wave indent (white) into next section */
-.wave-divider {
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: auto;
-  min-height: 120px;
-  z-index: 3;
-  pointer-events: none;
-  display: block;
-}
-  .wave-divider path{ fill:#fff; }
+  /* =========================
+     WAVE / NEXT SECTION
+  ========================= */
+  .wave-divider{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    min-height: 0;
+    z-index: 3;
+    pointer-events: none;
+    display: block;
+    line-height: 0;
+  }
 
-  /* ---------- HERO (no more 200vh ::after background) ---------- */
-.hero{
-  position: relative;
-  overflow: visible;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;      /* vertical centering */
-  justify-content: center;  /* centers shell horizontally if needed */
-  padding-top: 150px;
-  padding-bottom: 120px;
-  text-align: center;
- 
-}
-  /* optional subtle tint over the bg (keep it light) */
-/* ✅ ONE overlay for the entire 200vh area (prevents the seam) */
-.intro-wrap::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(0, 0, 0, 0.302);
-  z-index: 0;
-  pointer-events:none;
-}
-  .hero > *{
+  .wave-divider path{
+    fill: #fff;
+  }
+
+  .caps-intro-section{
     position: relative;
-    z-index: 2;
-    color: white;
+    background: #fff;
+    margin-top: -2px;
+    padding: clamp(32px, 0vw, 0px) 0 40px;
+    z-index: 4;
   }
 
-
-#heroTitle{
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  max-width: 24ch;
-}
-  .hero p{
-    margin:0 0 20px;
-    font-size:18px;
-    opacity:.78;
-    max-width:65ch;
+  /* =========================
+     TYPE / MISC
+  ========================= */
+  .text-highlight{
+    background: linear-gradient(90deg, #F00303 0%, rgb(19, 75, 99) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
   }
 
-  .card-row{
-    display:grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap:16px;
-    margin-top:28px;
-    width: min(1000px, 100%);
-  }
-  .card{
-    border:1px solid rgba(255,255,255,.22);
-    border-radius:16px;
-    padding:16px;
-   
-    min-height:120px;
-    color: rgba(255,255,255,0.92);
-  }
-
-  /* first spacer INSIDE the 200vh wrap (dark) */
-.spacer--dark{
-   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(24px, 4vw, 48px);
-  padding: 0 20px;           /* ✅ prevents edge clipping on small screens */
-
-  color: #fff;
-}
-
-  /* white sections AFTER the wave */
-  .spacer--white{
-    height:120vh;
-    max-width:1000px;
-    margin:24px auto;
-    border-radius:18px;
-    background:#fff;
-    border:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color: rgba(0,0,0,0.65);
-    font-weight:600;
-    letter-spacing:.02em;
-  }
-
-  @media (max-width: 900px){
-    .card-row{ grid-template-columns: 1fr; }
-  }
-
-  /* ---------- SVG Loader Overlay ---------- */
-  #loaderSvg{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:9999;
-    display:block;
-    pointer-events:none;
-  }
-  #criticalTitle{
+  .display-heading{
+    font-size: clamp(34px, 7vw, 56px);
+    line-height: 1.05;
     margin: 0;
-  font-size: clamp(2rem, 5vw, 4.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  max-width: 24ch;
-}
-</style>
-<body>
+    letter-spacing: -0.02em;
+    font-weight: 200;
+  }
 
-<div id="site-navbar"></div>
+  .stackflow-sr{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
 
-<style>
+  .hero-scroll-indicator{
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(60px, 8vw, 120px);
+  }
 
+  .hero-chevron{
+    width: 116px;
+    height: 116px;
+  }
 
-.text-highlight {
-  background: linear-gradient(90deg, #F00303 0%,rgb(19, 75, 99) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  font-weight: 900;
- 
-}
-.hero-scroll-indicator{
-  margin-top: 0px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width: clamp(60px, 8vw, 120px);
+  .hero-chevron path{
+    stroke: #ffffff;
+  }
 
-}
+  /* =========================
+     STACKFLOW LAYOUT
+  ========================= */
+  .stackflow-shell{
+    position: relative;
+    z-index: 3;
+    width: min(1800px, calc(100% - 40px));
+    max-width: none;
+    padding: 0 20px;
+  }
 
-.hero-chevron{
-  width: 116px;
-  height: 116px;
-}
+  .stackflow-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-.hero-chevron path{
-  stroke: #ffffff; /* army green */
-}
+  .stackflow-grid{
+    display: grid;
+    grid-template-columns: var(--col-3) 1fr 1fr;
+    grid-template-areas: "col3 col1 col2";
+    gap: var(--stackflow-gap);
+    align-items: start;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: clamp(6vh, 12vw, 30vh);
+  }
 
+  .stackflow-col{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 0;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+  }
 
-/* ✅ Canvas overlay: above background, below content */
-#heroGrid{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;            /* sits above background */
-  pointer-events: none;  /* doesn't block clicks */
-}
+  .stackflow-col--1{ grid-area: col1; }
+  .stackflow-col--2{ grid-area: col2; }
+  .stackflow-col--3{ grid-area: col3; }
 
-/* your overlay tint stays above canvas */
-.hero::before{
-  z-index: 2;
-}
-
-
-/* canvas / overlay layering */
-#heroGrid{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero::before{
-  z-index: 2;
-}
-
-.hero > *{
-  position: relative;
-  z-index: 3;
-}
-
-#heroDropIcon{
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, -140%);
-  width: clamp(120px, 50vh, 480px);
-  height: auto;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.display-heading{
-  font-size: clamp(34px, 7vw, 56px);
-  line-height: 1.05;
-  margin: 0;
-  letter-spacing: -0.02em;
-  font-weight: 200;
-  
-}
-
-.stackflow-sr{
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-
-.stackflow-heading{
-  margin: 0;
-  color: #fff;
-  font-size: clamp(2.4rem, 4.5vw, 6.5rem);
-  line-height: 0.97;
-  letter-spacing: -0.035em;
-  
-  margin-bottom: 2rem;
-  font-weight: 300;
-
-  
-}
-
-
-.stackflow-link{
-  margin-top: 24px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  width: fit-content;
-
-  color: #F00303;
-  text-decoration: none;
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1;
-
-  position: relative;
-
-  transition:
-    color .25s cubic-bezier(.22,1,.36,1),
-    transform .25s cubic-bezier(.22,1,.36,1);
-}
-
-/* subtle animated underline */
-.stackflow-link::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-4px;
-  width:100%;
-  height:1px;
-  background: currentColor;
-  color: #ff0505;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s cubic-bezier(.22,1,.36,1);
-}
-
-/* arrow */
-.stackflow-link svg{
-  width: 22px;
-  height: 22px;
-  transition: transform .3s cubic-bezier(.22,1,.36,1);
-  color: #ffffff;
-}
-
-/* hover */
-.stackflow-link:hover{
-  color: #ffffff;
-  transform: translateX(4px);
-}
-
-.stackflow-link:hover::after{
-  transform: scaleX(1);
-}
-
-.stackflow-link:hover svg{
-  transform: translateX(6px);
-   color: #F00303;
-}
-/* =========================
-   HERO LAYOUT
-========================= */
-:root{
-  --col-3: 2.15fr;
-  --gap: clamp(20px, 1vw, 22px);
-}
-
-.stackflow-shell{
-  position: relative;
-  z-index: 3;
-  width: min(1800px, calc(100% - 40px));
-  padding: 0 20px;
-  max-width: none;
- 
-}
-.stackflow-main{
+  .stackflow-copy{
   display: flex;
   flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-  margin-top: 5rem;
-}
-
-/* full-width text row */
-.stackflow-copy{
-  grid-column: 1 / -1;
-  text-align: center;
-  padding-top: 0.5rem;
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0;
-  width: auto; /* fixed invalid value */
+  align-items: center;   /* centers everything horizontally */
+  text-align: center;    /* centers text */
 }
 
 .stackflow-copy p{
-  font-size: clamp(0.8rem, 1.7vw, 1.7rem);
+  font-size: clamp(0.8rem, 1.4vw, 1.4rem);
   max-width: 60ch;
-  opacity: 1 !important;
-  font-weight: 200;
+  margin: 0 auto;        /* 🔥 this is key */
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-.stackflow-link{
-  margin-top: 24px;
-}
-
-/* all 3 columns together */
-.stackflow-grid{
-  display: grid;
-  grid-template-columns: var(--col-3) 1fr 1fr;
-  grid-template-areas: "col3 col1 col2";
-  gap: var(--gap);
-  align-items: start;
-  
-  width: 100%;
- 
-  margin: 0 auto;
-  margin-bottom: clamp(6vh, 12vw, 30vh);
-  
-}
-
-.stackflow-col--1{ grid-area: col1; }
-.stackflow-col--2{ grid-area: col2; }
-.stackflow-col--3{ grid-area: col3; }
-
-.stackflow-col{
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 0;
-}
-
-.stackflow-col--1,
-.stackflow-col--2,
-.stackflow-col--3{
-  position: relative;
-  top: auto;
-  right: auto;
-  width: auto;
-}
-
-/* =========================
-   HERO TYPOGRAPHY
-========================= */
-.stackflow-kicker{
-  margin: 0 0 14px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-/* =========================
-   CARDS
-========================= */
-.stackflow-card{
-  position: relative;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 0;
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.785);
-  isolation: isolate;
-  opacity: 1;
-  transition: transform .5s ease, filter .3s ease;
-
-}
-.stackflow-card::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.219) 0%,
-    rgba(0, 0, 0, 0.261) 42%,
-    rgba(0, 0, 0, 0.391) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-  transition: opacity .3s ease, background .3s ease;
-}
-
-.stackflow-card img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 9s ease, filter 9s ease;
-}
-
-.stackflow-meta{
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
-  z-index: 2;
-  color: #fff;
-  text-align: left;
-}
-
-.stackflow-eyebrow{
-  margin: 0 0 6px;
-  font-size: clamp(0.8rem, 0.8vw, 1rem) !important;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.899);
-}
-
-.stackflow-meta,
-.stackflow-title,
-.stackflow-title2,
-.stackflow-copy p,
-.stackflow-heading{
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.stackflow-title{
-  margin: 0;
-  font-size: 20px;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: #fff;
-  font-weight: 200;
-}
-
-.stackflow-title2{
-  margin: 0;
-  font-size: clamp(1.2rem,2vw, 2.1rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: #fff;
-  font-weight: 400;
-  max-width: 22ch;
-}
-.larger {
-  font-size: clamp(1.5rem,2.2vw, 2.9rem);
-}
-
-
-.stackflow-card:hover{
-  transform: scale(0.99);
-}
-
-.stackflow-card:hover img{
-  transform: scale(1.2);
-}
-
-
-/* heights */
-:root{
-  --stackflow-card-h: clamp(280px, 28vw, 450px);
-  --stackflow-stack-gap: 1rem;
-}
-
-/* all regular cards same height */
-.stackflow-h-sm1,
-.stackflow-h-sm2,
-.stackflow-h-md1,
-.stackflow-h-md2{
-  min-height: var(--stackflow-card-h);
-}
-
-/* lg + xl = one full stacked column height */
-.stackflow-h-lg{
-  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.42);
-}
-
-.stackflow-h-xl{
-  min-height: calc((var(--stackflow-card-h) * 2 + var(--stackflow-stack-gap)) * 0.58);
-}
-
-.stackflow-card--topmeta .stackflow-meta{
-  top: 18px;
-  bottom: auto;
-}
-
-.stackflow-card--solid{
-  background: #F00303;
-  opacity: 1;
-  box-shadow: none;
-}
-
-.stackflow-card--solid img{
-  display: none;
-}
-
-.stackflow-card--solid::after{
-  display: none;
-}
-
-.stackflow-card--solid .stackflow-meta{
-  top: 18px;
-  bottom: auto;
-}
-.stackflow-card--solid.stackflow-h-lg{
-  min-height: unset;
-  height: auto;
-}
-
-.stackflow-card--solid .stackflow-meta{
-  position: relative;
-  inset: auto;
-  padding: 24px;
-}
-
-.stackflow-card--solid{
-  display: flex;
-  align-items: stretch;
-}
-/* =========================
-   SUBSCRIBE BLOCK
-========================= */
-.stackflow-subscribe{
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  padding: 0;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.07);
-  border: none;
-  min-height: 100px;
-  align-content: center;
-  align-items: center;
-}
-
-.stackflow-subscribe input{
-  width: 100%;
-  min-width: 0;
-  height: 56px;
-  padding: 0 16px;
-  border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.92);
-  color: #000;
-  font-family: inherit;
-  font-size: 18px;
-  outline: none;
-}
-
-.stackflow-subscribe input::placeholder{
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.stackflow-subscribe button{
-  height: 56px;
-  width: auto;
-  min-width: 160px;
-  max-width: 100%;
-  padding: 0 18px;
-  border: none;
-  border-radius: 14px;
-  background: #052330;
-  color: #fff;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform .2s ease, background .2s ease;
-  white-space: nowrap;
-}
-
-.stackflow-subscribe button:hover{
-  transform: translateY(-1px);
-  background: #c90202;
-}
-
-/* =========================
-   SECTION / SPACER
-========================= */
-
-
-.spacer--dark{
-  min-height: 55vh;
-  padding-top: 180px;
-  align-items: flex-start;
-}
-
-#heroTitle,
-.hero-scroll-indicator,
-#criticalTitle{
-  display: none;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1180px){
-  .stackflow-shell{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .stackflow-copy{
-    grid-column: 1 / 3;
-    min-height: 420px;
-  }
-
-  .stackflow-col--1{
-    grid-column: 1 / 2;
-  }
-
-  .stackflow-col--2{
-    grid-column: 2 / 3;
-  }
-
-  .stackflow-col--3{
-    grid-column: 1 / 3;
-    grid-row: auto;
-  }
-
-  .stackflow-h-xl{
-    min-height: 520px;
-  }
-}
-
-@media (max-width: 900px){
-  .stackflow-subscribe{
-    grid-template-columns: 1fr;
-  }
-
-  .stackflow-subscribe button{
-    width: 100%;
+  .stackflow-meta,
+  .stackflow-title,
+  .stackflow-title2,
+  .stackflow-copy p,
+  .stackflow-heading{
     min-width: 0;
-  }
-}
-
-@media (max-width: 760px){
-  .hero{
-    padding-top: 130px;
-    padding-bottom: 80px;
+    overflow-wrap: anywhere;
   }
 
-  .stackflow-shell{
-    width: min(1600px, calc(100% - 24px));
-    grid-template-columns: 1fr;
+  .stackflow-kicker{
+    margin: 0 0 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
   }
 
-  .stackflow-copy,
-  .stackflow-col--1,
-  .stackflow-col--2,
-  .stackflow-col--3{
-    grid-column: auto;
-    grid-row: auto;
+  .stackflow-heading{
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.4rem, 4vw, 6.5rem);
+    line-height: 0.97;
+    letter-spacing: -0.035em;
+    margin-bottom: 2rem;
+    font-weight: 300;
   }
 
-  .stackflow-h-sm1,
-  .stackflow-h-sm2,
-  .stackflow-h-md1,
-  .stackflow-h-md2,
-  .stackflow-h-lg{
-    min-height: 230px;
+  .stackflow-link{
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    position: relative;
+    color: #F00303;
+    text-decoration: none;
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    transition:
+      color .25s cubic-bezier(.22,1,.36,1),
+      transform .25s cubic-bezier(.22,1,.36,1);
   }
 
-  .stackflow-h-xl{
-    min-height: 420px;
+  .stackflow-link::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s cubic-bezier(.22,1,.36,1);
   }
 
-  .stackflow-subscribe{
-    min-height: 200px;
+  .stackflow-link svg{
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    transition: transform .3s cubic-bezier(.22,1,.36,1);
+  }
+
+  .stackflow-link:hover{
+    color: #ffffff;
+    transform: translateX(4px);
+  }
+
+  .stackflow-link:hover::after{
+    transform: scaleX(1);
+  }
+
+  .stackflow-link:hover svg{
+    transform: translateX(6px);
+    color: #F00303;
+  }
+
+  
+
+  /* =========================
+     OTHER SECTIONS
+  ========================= */
+  .card-row{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 16px;
+    margin-top: 28px;
+    width: min(1000px, 100%);
+  }
+
+  .card{
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 16px;
+    padding: 16px;
+    min-height: 120px;
+    color: rgba(255,255,255,0.92);
   }
 
   .spacer--dark{
-    min-height: 34vh;
-    padding-top: 70px;
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 180px 20px 0;
   }
+
+  .spacer--white{
+    height: 120vh;
+    max-width: 1000px;
+    margin: 24px auto;
+    border-radius: 18px;
+    background: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.65);
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+
+  #loaderSvg{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: block;
+    pointer-events: none;
+  }
+  .hero-topbar{
+  z-index: 5; /* highest */
 }
-#heroBottomIcon{
+
+.hero-rise-img{
   position: absolute;
-  left: 50%;
-  bottom: -2rem; /* or 3rem, depending on where you want it */
-  transform: translateX(-50%);
-  width: 80vw;
-  max-width: 1600px;
-  height: auto;
+  inset: 0;
+  width: 100vw;
+  height: 104vh;
+  object-fit: cover;
+
   z-index: 2;
   pointer-events: none;
-  opacity: 1;
+
+  /* keep your fade */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+}
+.stackflow-shell{
+
+  z-index: 1; /* BELOW image */
 }
 
-/* keep your main content above it */
-.stackflow-main{
-  display: flex;
-  flex-direction: column;
-}
+  /* =========================
+     <= 1599px
+  ========================= */
+  @media (max-width: 1599px){
+    .side-img{
+      height: clamp(70vh, 65vw, 100vh);
+      width: clamp(500px, 82vw, 750px);
+      object-fit: cover;
+      --edgeInset: clamp(0px, (1200px - 200vw) * 1.18, 160px);
+    }
+
+    .side-img--left{
+      left: 50%;
+      right: auto;
+      transform: translateX(-120%);
+    }
+
+    .side-img--right{
+      left: 50%;
+      right: auto;
+      transform: translateX(20%);
+    }
+
+    .hero-topbar{
+      top: 10%;
+    }
+
+   
+    .stackflow-heading{
+      margin-top: 0rem;
+      margin-bottom: 1rem;
+    }
+      .stackflow-copy p{
+      font-size: clamp(0.8rem, 1.2vw, 1.2rem);
+     
+      margin-bottom: 0rem;
+    }
+  }
+
+  /* =========================
+     <= 1180px
+  ========================= */
+  @media (max-width: 1180px){
+    .stackflow-shell{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stackflow-copy{
+      grid-column: 1 / 3;
+      min-height: 420px;
+    }
+
+    .stackflow-col--1{
+      grid-column: 1 / 2;
+    }
+
+    .stackflow-col--2{
+      grid-column: 2 / 3;
+    }
+
+    .stackflow-col--3{
+      grid-column: 1 / 3;
+      grid-row: auto;
+    }
+
+    .stackflow-h-xl{
+      min-height: 520px;
+    }
+  
+  }
+
+  /* =========================
+     <= 900px
+  ========================= */
+  @media (max-width: 900px){
+    .card-row{
+      grid-template-columns: 1fr;
+    }
+
+    .stackflow-subscribe{
+      grid-template-columns: 1fr;
+    }
+
+    .stackflow-subscribe button{
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  /* =========================
+     <= 760px
+  ========================= */
+  @media (max-width: 760px){
+    :root{
+      --beamY: -620px;
+    }
+
+    .hero{
+      min-height: 140vh;
+      padding-top: 100px;
+      margin-bottom: -20px;
+      overflow: visible;
+    }
+
+    .hero-rise-img{
+      inset: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: auto;
+      height: 84vh;
+    }
 
 
+    .stackflow-shell{
+      width: min(1600px, calc(100% - 24px));
+      grid-template-columns: 1fr;
+    }
+
+    .stackflow-copy{
+      justify-content: flex-start;
+      padding-top: 3vh;
+      min-height: 100vh;
+    }
+
+    .stackflow-copy,
+    .stackflow-col--1,
+    .stackflow-col--2,
+    .stackflow-col--3{
+      grid-column: auto;
+      grid-row: auto;
+    }
 
 
+    #heroBottomIcon{
+      bottom: 1.5rem;
+      transform: translateX(-50%);
+      width: 90vw;
+    }
 
-.stackflow-heading{
-  margin-top: 0;
-}
-
-.hero{
-  padding-top: 0;
-}
-
+    .wave-divider{
+      bottom: -10px;
+      min-height: 20px;
+      height: auto;
+    }
+  }
 </style>
-
- <div id="scroll-container">
-  <main id="site">
-
-    <section class="intro-wrap" id="home">
-       <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
-    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
-    
-      <div class="hero">
-        <video class="hero-rise-img" autoplay muted loop playsinline>
-          <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/griffin_red_waves1.mp4" type="video/mp4">
-        </video>
-        <div class="hero-topbar">
-        <!-- Center Logo -->
-        <div class="hero-topbar__center">
-          <img src="images/GriffinIcon.png" alt="Griffin Integrity">
-        </div>
-      </div>
-
-         <img id="heroBottomIcon" src="images/GriffinText.png" alt="" aria-hidden="true">
-        <div class="stackflow-shell">
-          <div class="stackflow-main">
-
-            <div class="stackflow-copy">
-              <h1 class="stackflow-heading">
-                What's Your <span class="text-highlight">Next Move</span> in NDT?
-              </h1>
-             
-              <p class="stackflow-text">
-                We connect industry leaders with technical experts, combining advisory, consulting, and advanced inspection insight to drive confident decisions.
-              </p>
-              
-              <a href="/capabilities" class="stackflow-link">
-                <span>Explore Capabilities</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 17L17 7M10 7h7v7"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-              </svg>
-              </a>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-
-      <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
-       <path
-  d="M0,80 C240,80 480,120 720,120 C960,120 1200,80 1440,80 L1440,180 L0,180 Z"
-  fill="#ffffff">
-</path>
-      </svg>
-    </section>
-
-
-</div>
-
     <style>
 .hero-topbar{
   position: absolute;
@@ -1006,7 +680,7 @@ html{
 }
 
 .hero-topbar__center img{
-  height: clamp(28px, 8vw, 142px);
+  height: clamp(120px, 9vw, 222px);
   width: auto;
 }
 
@@ -1141,7 +815,87 @@ html{
   position: relative;
   z-index: 2;
 }
+/* =========================
+     <= 760px
+  ========================= */
+  @media (max-width: 760px){
+   
+
+    .hero-topbar{
+      top: 4%;
+    }
+
+    .hero-topbar__center img{
+      height: clamp(70px, 25vw, 120px);
+      width: auto;
+    }
+
+  }
 </style>
+
+<body>
+
+<div id="site-navbar"></div>
+
+
+ <div id="scroll-container">
+  <main id="site">
+
+    <section class="intro-wrap" id="home">
+       <img class="side-img side-img--left" src="images/Griffin wing LT.png" alt="" aria-hidden="true">
+    <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
+    
+      <div class="hero">
+        <video class="hero-rise-img" autoplay muted loop playsinline>
+          <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/griffin_red_waves1.mp4" type="video/mp4">
+        </video>
+        <div class="hero-topbar">
+        <!-- Center Logo -->
+        <div class="hero-topbar__center">
+          <img src="images/GriffinIcon.png" alt="Griffin Integrity">
+        </div>
+      </div>
+
+         <img id="heroBottomIcon" src="images/GriffinText.png" alt="" aria-hidden="true">
+        <div class="stackflow-shell">
+          <div class="stackflow-main">
+
+            <div class="stackflow-copy">
+              <h1 class="stackflow-heading">
+                What's Your <span class="text-highlight">Next Move</span> in NDT?
+              </h1>
+             
+              <p class="stackflow-text">
+                We connect industry leaders with technical experts, combining advisory, consulting, and advanced inspection insight to drive confident decisions.
+              </p>
+              
+              <a href="/capabilities" class="stackflow-link">
+                <span>Explore Capabilities</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17L17 7M10 7h7v7"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+              </svg>
+              </a>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <svg class="wave-divider" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+       <path
+  d="M0,80 C240,80 480,120 720,120 C960,120 1200,80 1440,80 L1440,180 L0,180 Z"
+  fill="#ffffff">
+</path>
+      </svg>
+    </section>
+</div>
+
 
    
 
@@ -1315,7 +1069,162 @@ html{
 
 
 
+<section class="expertise-section">
+  <div class="expertise-intro">
+    <p class="expertise-kicker">Executive Leadership</p>
+    <h2>Experience at global scale.</h2>
+    <p>
+      Senior executive and enterprise engineering leader with deep experience across
+      industrial inspection, asset integrity, pipeline and LNG infrastructure, and
+      global quality services.
+    </p>
+  </div>
 
+  <div class="expertise-grid">
+    <article class="expertise-card expertise-card--dark">
+      <div class="expertise-number">60+</div>
+      <p class="expertise-label">Years of combined leadership experience across engineering, inspection, integrity, and enterprise operations.</p>
+    </article>
+
+    <article class="expertise-card expertise-card--red">
+      <div class="expertise-number">14+</div>
+      <p class="expertise-label">Countries where global operations, teams, and service delivery were directed and scaled.</p>
+    </article>
+
+    <article class="expertise-card expertise-card--light">
+      <div class="expertise-number">$100M+</div>
+      <p class="expertise-label">P&amp;L responsibility managed across multi-national business units and complex service organizations.</p>
+    </article>
+
+    <article class="expertise-card expertise-card--blue">
+      <div class="expertise-number">$250M+</div>
+      <p class="expertise-label">Capital programs led across pipeline, LNG, infrastructure, and large-scale transformation initiatives.</p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .expertise-section{
+  padding: clamp(64px, 9vw, 140px) 20px;
+  background: #061c26;
+  color: #fff;
+}
+
+.expertise-intro{
+  max-width: 900px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.expertise-kicker{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+}
+
+.expertise-intro h2{
+  margin: 0 0 16px;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+}
+
+.expertise-intro p{
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: rgba(255,255,255,0.82);
+}
+
+.expertise-grid{
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.expertise-card{
+  position: relative;
+  padding: 34px 30px 30px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 34px) 0,
+    100% 34px,
+    100% 100%,
+    34px 100%,
+    0 calc(100% - 34px)
+  );
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+}
+
+.expertise-card:nth-child(2){
+  margin-top: 42px;
+}
+
+.expertise-card:nth-child(4){
+  margin-top: 42px;
+}
+
+.expertise-card--dark{
+  background: #0d2b38;
+}
+
+.expertise-card--red{
+  background: #f00303;
+  color: #fff;
+}
+
+.expertise-card--light{
+  background: #f5f1ea;
+  color: #111;
+}
+
+.expertise-card--blue{
+  background: #123f56;
+}
+
+.expertise-number{
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+.expertise-label{
+  margin: 18px 0 0;
+  max-width: 28ch;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.9;
+}
+
+@media (max-width: 800px){
+  .expertise-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-card:nth-child(2),
+  .expertise-card:nth-child(4){
+    margin-top: 0;
+  }
+
+  .expertise-card{
+    min-height: 200px;
+  }
+}
+</style>
 
 
 
@@ -1323,150 +1232,263 @@ html{
   <div class="stack-cards-shell">
     <div class="stack-cards-stage">
 
-      <article class="stack-card">
+      <!-- PRACTICE AREA 1 INTRO -->
+      <article class="stack-card stack-card-practice practice-1-intro">
+        <div class="stack-card-inner stack-card-inner-practice">
+          <div class="stack-card-practice-content">
+            <p class="stack-card-eyebrow">Practice Area 01</p>
+            <h2 class="stack-card-practice-title">Technical Consulting</h2>
+            <p class="stack-card-practice-text">
+              Advanced technical advisory services supporting inspection quality, code compliance, asset integrity, and next-generation NDT capabilities.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRACTICE AREA 1 / CARD 1 -->
+      <article class="stack-card practice-1-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
             <img src="images/stock1.jpeg" alt="Inspection strategy">
           </div>
+
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Technical Advisory & NDT Leadership</h3>
-          </div>
-          <div class="stack-card-content">
-          <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-             Provide senior-level technical oversight across complex inspection environments. From Level III consulting to written practice development and full program design, we ensure your inspection operations are compliant, defensible, and built for long-term performance.
-            </p>
-
-            <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="stack-card-image small">
-            <img src="images/stock2.jpeg" alt="Inspection detail">
-          </div>
-
-        </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock24.jpeg" alt="Inspection strategy">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Advanced Inspection Technologies</h3>
-          </div>
-          <div class="stack-card-content">
-          <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Evaluate and implement next-generation inspection technologies; from robotics and automation to advanced imaging systems. We help organizations modernize capabilities, reduce risk, and improve accuracy through the right technology decisions.
-            </p>
-
-            <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="stack-card-image small">
-            <img src="images/stock2.jpeg" alt="Inspection detail">
-          </div>
-
-        </div>
-        </div>
-      </article>
-
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock5.jpeg" alt="Technical advisory">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Strategy, Growth & Transactions</h3>
-          </div>
-          <div class="stack-card-content">
-             <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Support strategic growth, market positioning, and transaction initiatives within the inspection and asset integrity sector. Whether scaling operations or navigating acquisitions, we bring clarity to high-impact business decisions.
-            </p>
-
-            <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a></div>
-            <div class="stack-card-image small">
-              <img src="images/stock3.jpeg" alt="Technical detail">
+            <div class="stack-card-title-group">
+              <h3 class="stack-card-title">Technical Advisory &amp; NDT Leadership</h3>
+              <ul class="stack-card-links">
+                <li>
+                  <a href="/technical-consulting/ndt-level-iii-consulting-support.html">
+                    <span>NDT Level III Consulting &amp; Support</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html">
+                    <span>Advanced NDT Subject Matter Experts</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/technical-consulting/ndt-written-practice-review-development.html">
+                    <span>NDT Written Practice Review and Development</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span>Advanced NDT Training Programs</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </article>
 
-      <article class="stack-card">
-        <div class="stack-card-inner">
-          <div class="stack-card-image main">
-            <img src="images/stock19.jpeg" alt="Program support">
-          </div>
-          <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Workforce & Operational Execution</h3>
-          </div>
           <div class="stack-card-content">
             <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-             Strengthen your operational foundation through targeted workforce and execution strategies. From talent development to field readiness, we ensure your teams are aligned, capable, and prepared to perform in demanding environments.
-            </p>
-             <a href="/technical-consulting/ndt-written-practice-review-development.html" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
+              <p class="stack-card-text">
+                Independent senior technical guidance for inspection programs, procedure qualification, compliance, and complex problem-solving. We help organizations strengthen inspection quality, technical defensibility, and long-term program performance.
+              </p>
+
+              <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stack-btn-inline">
+                Learn more
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
             </div>
+
             <div class="stack-card-image small">
-              <img src="images/stock4.jpeg" alt="Program detail">
+              <img src="images/stock2.jpeg" alt="Inspection detail">
             </div>
           </div>
         </div>
       </article>
-      
-      
-      <!--
-      <article class="stack-card">
+
+      <!-- PRACTICE AREA 1 / CARD 2 -->
+      <article class="stack-card practice-1-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
-            <img src="images/stock4.jpeg" alt="Long-term performance">
+            <img src="images/stock24.jpeg" alt="Advanced inspection technologies">
           </div>
+
           <div class="stack-card-title-wrap">
-            <h3 class="stack-card-title">Capital Acquisition</h3>
+            <div class="stack-card-title-group">
+              <h3 class="stack-card-title">Advanced Inspection Technologies</h3>
+              <ul class="stack-card-links">
+                <li>
+                  <a href="#">
+                    <span>Advanced NDT Technology Programs and Procedures</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/technical-consulting/automation-robotics-imaging-systems.html">
+                    <span>Automation, Robotics, and Advanced Imaging Systems</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
+
           <div class="stack-card-content">
             <div class="stack-card-text-wrap">
-            <p class="stack-card-text">
-              Support capital planning and funding strategies with guidance that aligns technical programs, 
-              growth initiatives, and investment priorities with long-term business objectives.
-            </p>
-            <a href="#" class="stack-btn-inline">
-              Learn more
-              <svg viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H9M17 7V15" />
-              </svg>
-            </a>
+              <p class="stack-card-text">
+                Development and review of inspection methodologies, qualification plans, and implementation strategies for advanced NDT applications. We help modernize inspection capabilities through the right mix of technology, procedure, and field execution.
+              </p>
+
+              <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stack-btn-inline">
+                Learn more
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
             </div>
+
             <div class="stack-card-image small">
-              <img src="images/stock5.jpeg" alt="Long-term performance detail">
+              <img src="images/stock2.jpeg" alt="Advanced technology detail">
             </div>
           </div>
         </div>
-      </article>-->
-      
+      </article>
+
+      <!-- PRACTICE AREA 2 INTRO -->
+      <article class="stack-card stack-card-practice practice-2-intro">
+        <div class="stack-card-inner stack-card-inner-practice">
+          <div class="stack-card-practice-content">
+            <p class="stack-card-eyebrow">Practice Area 02</p>
+            <h2 class="stack-card-practice-title">Business Advisory Services</h2>
+            <p class="stack-card-practice-text">
+              Strategic advisory support for industrial service organizations, investors, and leadership teams operating in complex and highly regulated markets.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRACTICE AREA 2 / CARD 3 -->
+      <article class="stack-card practice-2-card">
+        <div class="stack-card-inner">
+          <div class="stack-card-image main">
+            <img src="images/stock5.jpeg" alt="Strategy growth and transactions">
+          </div>
+
+          <div class="stack-card-title-wrap">
+            <div class="stack-card-title-group">
+              <h3 class="stack-card-title">Strategy, Growth &amp; Transactions</h3>
+              <ul class="stack-card-links">
+                <li>
+                  <a href="#">
+                    <span>Mergers &amp; Acquisition Support</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span>Corporate Development &amp; Strategic Planning</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span>Business Development &amp; Client Strategies</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span>Capital Acquisition</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
+              <p class="stack-card-text">
+                Strategic advisory support for acquisitions, growth planning, market positioning, and capital readiness. We help leadership teams and investors navigate high-impact decisions with stronger technical and commercial context.
+              </p>
+
+              <a href="#" class="stack-btn-inline">
+                Learn more
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="stack-card-image small">
+              <img src="images/stock3.jpeg" alt="Strategy detail">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRACTICE AREA 2 / CARD 4 -->
+      <article class="stack-card practice-2-card">
+        <div class="stack-card-inner">
+          <div class="stack-card-image main">
+            <img src="images/stock19.jpeg" alt="Talent and workforce strategy">
+          </div>
+
+          <div class="stack-card-title-wrap">
+            <div class="stack-card-title-group">
+              <h3 class="stack-card-title">Talent &amp; Workforce Strategy</h3>
+              <ul class="stack-card-links">
+                <li>
+                  <a href="#">
+                    <span>Talent Acquisition &amp; Assessment</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H9M17 7V15" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="stack-card-content">
+            <div class="stack-card-text-wrap">
+              <p class="stack-card-text">
+                Advisory support for identifying, evaluating, and strengthening technical and leadership talent. We help organizations build the workforce capabilities needed to execute, scale, and compete effectively.
+              </p>
+
+              <a href="#" class="stack-btn-inline">
+                Learn more
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="stack-card-image small">
+              <img src="images/stock4.jpeg" alt="Talent strategy detail">
+            </div>
+          </div>
+        </div>
+      </article>
 
     </div>
   </div>
@@ -1476,43 +1498,82 @@ html{
 .stack-cards-section{
   position: relative;
   background: #08151d;
-  padding: 0 0 0rem;
+  padding: 0;
 }
 
 .stack-cards-shell{
-  width: min(100vw, calc(100% - 0px));
+  width: 100%;
   margin: 0 auto;
-  /*padding: 0 20px;*/  
 }
 
-.stack-cards-track{
+.stack-cards-stage{
   position: relative;
-  padding-top: 2rem;
-  padding-bottom: 8rem;
- 
 }
 
 .stack-card{
   position: relative;
   height: 30rem;
-  /*margin-bottom: 1.25rem;*/
-  
-  
 }
 
 .stack-card-inner{
-  position: relative; /* not sticky */
+  position: relative;
   height: 30rem;
   display: grid;
   grid-template-columns: 35% 30% 48%;
   align-items: stretch;
   overflow: hidden;
-  border-radius: 0px;
+  border-radius: 0;
   background: #0d1d27;
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 18px 50px rgba(0,0,0,0.18);
   will-change: transform;
-  
+}
+
+.stack-card-inner-practice{
+  display: block;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
+    #10222d;
+  border-color: rgba(255,255,255,0.09);
+}
+
+.stack-card-practice-content{
+  width: 100%;
+  max-width: 2200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 4.5rem;
+}
+
+.stack-card-eyebrow{
+  margin: 0 0 1rem 0;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255,255,255,0.52);
+}
+
+.stack-card-practice-title{
+  margin: 0;
+  font-size: clamp(2.8rem, 8.6vw, 9.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+  color: #fff;
+  max-width: 80ch;
+  text-wrap: balance;
+}
+
+.stack-card-practice-text{
+  margin: 1.5rem 0 0 0;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.82);
+  max-width: 54ch;
 }
 
 .stack-card-image{
@@ -1526,7 +1587,7 @@ html{
   height: 100%;
   object-fit: cover;
   display: block;
-  padding: 4rem 0rem;
+  padding: 4rem 0;
 }
 
 .stack-card-title-wrap{
@@ -1534,8 +1595,11 @@ html{
   align-items: flex-start;
   justify-content: flex-start;
   padding-left: 4.5rem;
-  border-left: 1px solid rgba(255, 255, 255, 0);
-  border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+.stack-card-title-group{
+  width: 100%;
+  padding: 4rem 0;
 }
 
 .stack-card-title{
@@ -1548,24 +1612,74 @@ html{
   text-align: left;
   max-width: 16ch;
   text-wrap: balance;
-  padding: 4rem 0rem;
+}
+
+.stack-card-links{
+  margin: 1.1rem 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  max-width: 23rem;
+}
+
+.stack-card-links li{
+  margin: 0;
+}
+
+.stack-card-links a{
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  color: rgba(255,255,255,0.76);
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+  min-width: 0;
+}
+
+.stack-card-links a span{
+  display: inline-block;
+  line-height: 1.45;
+}
+
+.stack-card-links svg{
+  width: 12px;
+  height: 12px;
+  stroke: rgba(255,255,255,0.6);
+  stroke-width: 1.6;
+  fill: none;
+  flex-shrink: 0;
+  margin-top: 0.28rem;
+  transition: transform 0.25s ease, stroke 0.25s ease;
+}
+
+.stack-card-links a:hover{
+  color: #fff;
+}
+
+.stack-card-links a:hover svg{
+  transform: translate(2px, -2px);
+  stroke: #fff;
 }
 
 .stack-card-content{
   display: grid;
   grid-template-columns: 1fr 11rem;
   gap: 1rem;
-  align-items: stretch;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-left: 4.5rem;
-  padding: 4rem 0rem;
-  
+  padding: 4rem 0;
+}
+
+.stack-card-text-wrap{
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  min-width: 0;
 }
 
 .stack-card-text{
-  margin: 0;
-  align-self: center;
+  margin: 0 0 1rem 0;
   font-size: 0.98rem;
   line-height: 1.6;
   color: rgba(255,255,255,0.76);
@@ -1580,36 +1694,19 @@ html{
   display: none;
 }
 
-/* older cards lower, newer cards higher */
-.stack-card:nth-child(1) .stack-card-inner{ z-index: 1; }
-.stack-card:nth-child(2) .stack-card-inner{ z-index: 2; }
-.stack-card:nth-child(3) .stack-card-inner{ z-index: 3; }
-.stack-card:nth-child(4) .stack-card-inner{ z-index: 4; }
-.stack-card:nth-child(5) .stack-card-inner{ z-index: 5; }
-.stack-card:nth-child(6) .stack-card-inner{ z-index: 6; }
-.stack-card:nth-child(7) .stack-card-inner{ z-index: 7; }
-.stack-card:nth-child(8) .stack-card-inner{ z-index: 8; }
-
-/* button */
 .stack-btn-inline{
   display: inline-flex;
   align-items: center;
-  
   gap: 0.35rem;
-
   margin-top: 0.6rem;
-
   background: #0F3D51;
   padding: 0.5rem 1.2rem;
   border-radius: 6px;
-
   font-size: 0.85rem;
   color: rgba(255,255,255,0.7);
   text-decoration: none;
   white-space: nowrap;
-
-  width: fit-content; /* ensures no stretching */
-
+  width: fit-content;
   transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -1630,22 +1727,18 @@ html{
   stroke: #fff;
   transform: translate(2px, -2px);
 }
-.stack-card-text-wrap{
-  display: grid;
-  align-content: center;   /* vertical centering */
-  justify-items: start;    /* left align children */
-  min-width: 0;
-}
 
-.stack-card-text{
-  margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.76);
-  max-width: 54ch;
-  margin-bottom: 1rem;
-}
-/* ================= MOBILE OPTIMIZATION ================= */
+/* z-index ladder */
+.stack-card:nth-child(1) .stack-card-inner{ z-index: 1; }
+.stack-card:nth-child(2) .stack-card-inner{ z-index: 2; }
+.stack-card:nth-child(3) .stack-card-inner{ z-index: 3; }
+.stack-card:nth-child(4) .stack-card-inner{ z-index: 4; }
+.stack-card:nth-child(5) .stack-card-inner{ z-index: 5; }
+.stack-card:nth-child(6) .stack-card-inner{ z-index: 6; }
+.stack-card:nth-child(7) .stack-card-inner{ z-index: 7; }
+.stack-card:nth-child(8) .stack-card-inner{ z-index: 8; }
+
+/* tablet + mobile */
 @media (max-width: 1100px){
   .stack-card,
   .stack-card-inner{
@@ -1657,27 +1750,47 @@ html{
     transform: none !important;
   }
 
+  .stack-card-inner-practice{
+    display: block;
+  }
+
+  .stack-card-practice-content{
+    padding: 3rem 1rem 2rem;
+  }
+
+  .stack-card-practice-title{
+    max-width: none;
+    font-size: clamp(2.1rem, 9vw, 3.8rem);
+    line-height: 0.94;
+  }
+
+  .stack-card-practice-text{
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 100%;
+  }
+
   .stack-card-image.main{
     height: 240px;
   }
 
   .stack-card-image img{
-    padding: 0; /* remove image padding */
+    padding: 0;
   }
 
   .stack-card-title-wrap{
     justify-content: flex-start;
-    border-left: 0;
-    border-right: 0;
     border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 0;
-    padding: 1.1rem 1rem 0.35rem; /* tighter */
+    padding: 1.1rem 1rem 0.35rem;
+  }
+
+  .stack-card-title-group{
+    padding: 0;
   }
 
   .stack-card-title{
     text-align: left;
     max-width: none;
-    padding: 0; /* remove desktop spacing */
     font-size: clamp(1.3rem, 5vw, 1.8rem);
     line-height: 0.98;
   }
@@ -1685,7 +1798,7 @@ html{
   .stack-card-content{
     grid-template-columns: 1fr;
     gap: 0.75rem;
-    padding: 0 1rem 1.1rem; /* tighter */
+    padding: 0 1rem 1.1rem;
   }
 
   .stack-card-text-wrap{
@@ -1696,6 +1809,11 @@ html{
     font-size: 0.95rem;
     line-height: 1.55;
     margin-bottom: 0.75rem;
+  }
+
+  .stack-card-links{
+    max-width: 100%;
+    margin-top: 0.8rem;
   }
 
   .stack-card-image.small{
@@ -1710,11 +1828,12 @@ html{
 
   .stack-cards-shell{
     width: 100%;
-    padding: 0; /* no outer padding */
+    padding: 0;
   }
 
   .stack-card{
-    margin-bottom: 0.75rem; /* tighter stack */
+    margin: 0;
+    border: none;
   }
 
   .stack-card-inner{
@@ -1732,17 +1851,15 @@ html{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    padding: 0; /* full width pic */
+    padding: 0;
   }
 
   .stack-card-title-wrap{
     padding: 0.9rem 0.9rem 0.2rem;
   }
 
-  .stack-card-title{
-    font-size: 1.35rem;
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+  .stack-card-practice-content{
+    padding: 2.4rem 0.9rem 1.8rem;
   }
 
   .stack-card-content{
@@ -1761,10 +1878,6 @@ html{
     padding: 0.48rem 1rem;
     font-size: 0.82rem;
   }
-  .stack-card {
-    margin: 0;
-    border: none;
-  }
 }
 
 @media (max-width: 480px){
@@ -1774,6 +1887,14 @@ html{
 
   .stack-card-title-wrap{
     padding: 2rem 2rem 0.05rem;
+  }
+
+  .stack-card-practice-content{
+    padding: 2.5rem 2rem 1.5rem;
+  }
+
+  .stack-card-practice-title{
+    font-size: 2.5rem;
   }
 
   .stack-card-title{
@@ -1796,12 +1917,7 @@ html{
     margin-bottom: 2rem;
   }
 }
-
-
-
 </style>
-
-
 
 
 
@@ -1809,36 +1925,29 @@ html{
 <section class="insight-grid-section" id="news">
   <div class="insight-grid-shell">
     <div class="insight-grid-head">
-      <p class="insight-grid-eyebrow">Where We Operate</p>
-      <h2 class="insight-grid-title">Partnering Across the Inspection Ecosystem</h2>
+      <p class="insight-grid-eyebrow">Who We Help</p>
+      <h2 class="insight-grid-title">Choose the Path That Fits Your Business</h2>
       <p class="insight-grid-intro">
-        The inspection and asset integrity landscape is shaped by those executing the work, those accountable for performance, and those building the technologies behind it.
-
-        Griffin works across all three, bringing alignment, clarity, and technical leadership where it matters most.
+        Griffin supports technical, operational, and strategic decisions across the inspection and asset integrity market. Select the pathway that best matches your organization and see how we help solve problems, reduce risk, and create measurable outcomes.
       </p>
     </div>
 
-    <div class="insight-grid-cards">
+    <div class="insight-grid-cards insight-grid-cards--four">
       <article class="insight-card">
         <div class="insight-card-box">
           <div class="insight-card-media">
             <img src="images/stock13.jpeg" alt="Inspection planning">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Inspection & NDT Service Providers
+            <h3 class="insight-card-title">For Inspection & NDT Service Providers
               <span class="title-arrow">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </h3>
             <p class="insight-card-text">
-              Strengthening field capabilities through Level III leadership, program development, and advanced technical support.
+              When delivery quality, technical leadership, training, or program consistency become limiting factors, we help strengthen your operation through Level III support, written practice development, advanced training, and inspection program guidance so you can improve execution, credibility, and growth readiness.
             </p>
           </div>
         </div>
@@ -1847,23 +1956,18 @@ html{
       <article class="insight-card">
         <div class="insight-card-box">
           <div class="insight-card-media">
-            <img src="images/stock12.jpeg" alt="Data and technology advisory">
+            <img src="images/stock12.jpeg" alt="Asset reliability advisory">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Asset Owners & Operators
+            <h3 class="insight-card-title">For Asset Owners & Operators
               <span class="title-arrow">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </h3>
             <p class="insight-card-text">
-              Providing independent advisory to improve reliability, reduce risk, and guide critical inspection decisions.
+              When you need more confidence in inspection strategy, vendor capability, or technical decisions, we provide independent advisory support that helps reduce risk, improve reliability, and ensure your inspection programs are aligned with operational performance.
             </p>
           </div>
         </div>
@@ -1872,23 +1976,38 @@ html{
       <article class="insight-card">
         <div class="insight-card-box">
           <div class="insight-card-media">
-            <img src="images/stock22.jpeg" alt="Operational support">
+            <img src="images/stock22.jpeg" alt="Technology commercialization support">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Technology & Program Support
+            <h3 class="insight-card-title">For Technology Companies
               <span class="title-arrow">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </h3>
             <p class="insight-card-text">
-              Aligning emerging technologies with real-world applications through validation, integration, and field insight.
+              When innovative inspection technologies need real-world validation, market alignment, or industry adoption, we help bridge the gap between product capability and field application so you can sharpen positioning, improve usability, and accelerate commercial traction.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="images/stock25.jpeg" alt="Mergers and acquisitions strategy">
+          </div>
+          <div class="insight-card-body">
+            <h3 class="insight-card-title">For Investors, M&A & Strategic Buyers
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </h3>
+            <p class="insight-card-text">
+              When evaluating acquisitions, growth opportunities, or strategic investments in the inspection sector, we provide market, technical, and operational insight that helps you assess capability, identify risk, and make more informed transaction decisions.
             </p>
           </div>
         </div>
@@ -1898,10 +2017,10 @@ html{
 </section>
 
 <style>
-.insight-grid-section{
-  background:#ffffff; /* flipped */
+  .insight-grid-section{
+  background: #ffffff;
   color: #052330;
-  padding: clamp(72px, 2vw, 120px) 0;
+  padding: clamp(72px, 6vw, 120px) 0;
 }
 
 .insight-grid-shell{
@@ -1922,58 +2041,58 @@ html{
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #052330; /* flipped */
+  color: #052330;
 }
 
-/* Title */
 .insight-grid-title{
   margin: 0 0 18px;
   font-size: clamp(2.4rem, 3.8vw, 3.5rem);
   line-height: 0.97;
   letter-spacing: -0.035em;
   font-weight: 500;
-  color: #052330; /* flipped */
-  max-width: 22ch;
+  color: #052330;
+  max-width: 28ch;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Intro */
 .insight-grid-intro{
   margin: 0 auto;
-  max-width: 80ch;
+  max-width: 78ch;
   font-size: 16px;
   line-height: 1.65;
-  color: rgba(0, 0, 0, 0.7); /* flipped */
+  color: rgba(0, 0, 0, 0.7);
 }
 
-.insight-grid-cards{
+.insight-grid-cards,
+.insight-grid-cards--four{
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
+  align-items: stretch;
 }
 
 .insight-card{
   display: flex;
+  min-width: 0;
 }
 
 .insight-card-box{
   width: 100%;
-  background:#fff; /* cards now dark */
+  background: #fff;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
   color: #052330;
+  height: 100%;
 }
 
-/* Hover flips to white */
 .insight-card-box:hover{
-  background:#052330;
+  background: #052330;
 }
 
-/* Image */
 .insight-card-media{
   width: 100%;
   height: 220px;
@@ -1988,25 +2107,30 @@ html{
   display: block;
 }
 
-/* Body */
 .insight-card-body{
   display: flex;
   flex-direction: column;
   gap: 12px;
+  flex: 1;
 }
 
-/* Title */
 .insight-card-title{
   margin: 0;
   font-size: clamp(18px, 1.2vw, 22px);
   line-height: 1.15;
   letter-spacing: -0.02em;
   font-weight: 400;
-  color: #052330; /* text on dark */
+  color: #052330;
   transition: color 0.3s ease;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  /* 🔑 FIX */
+  flex-wrap: nowrap;
 }
 
-/* Text */
 .insight-card-text{
   margin: 0;
   font-size: 15px;
@@ -2015,27 +2139,50 @@ html{
   transition: color 0.3s ease;
 }
 
-/* Hover text flips */
 .insight-card-box:hover .insight-card-title,
 .insight-card-box:hover .insight-card-text{
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
 }
 
-/* Responsive */
-@media (max-width: 1100px){
-  .insight-grid-cards{
-    grid-template-columns: 1fr;
+.title-arrow{
+  display: inline-flex;
+  color: #052330;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.title-arrow svg{
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease;
+}
+
+.insight-card-box:hover .title-arrow{
+  color: #F00303;
+  transform: translateX(6px);
+}
+
+.insight-card-box:hover .title-arrow svg{
+  transform: translateX(2px);
+}
+
+/* Optional subtle equal-height feel for longer copy */
+.insight-card-text{
+  max-width: 34ch;
+}
+
+/* 2-column tablet */
+@media (max-width: 1200px){
+  .insight-grid-cards,
+  .insight-grid-cards--four{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .insight-card-box{
-    padding: 2.25rem;
-  }
-
-  .insight-card-media{
-    min-height: 300px;
+    padding: 1.25rem;
   }
 }
 
+/* 1-column mobile */
 @media (max-width: 760px){
   .insight-grid-section{
     padding: 60px 0;
@@ -2052,48 +2199,51 @@ html{
     max-width: 100%;
   }
 
-  .insight-card-box{
-    padding: 1.5rem;
+  .insight-grid-cards,
+  .insight-grid-cards--four{
+    grid-template-columns: 1fr;
   }
+
   .insight-card{
     padding: 0;
   }
 
+  .insight-card-box{
+    padding: 1.5rem;
+  }
+
   .insight-card-media{
     min-height: 220px;
+    height: 220px;
+  }
+
+  .insight-card-title{
+    font-size: 1.3rem;
+  }
+
+  .insight-card-text{
+    font-size: 0.96rem;
+    line-height: 1.6;
+    max-width: 100%;
   }
 }
-.insight-card-title{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* arrow base */
-.title-arrow{
-  display: inline-flex;
-  color: #052330;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-/* arrow size */
-.title-arrow svg{
-  width: 22px;
-  height: 22px;
-  transition: transform 0.3s ease;
-}
-
-/* 👇 hover behavior */
-.insight-card-box:hover .title-arrow{
-  color: #F00303; /* your accent */
-  transform: translateX(6px);
-}
-
-/* subtle extra push */
-.insight-card-box:hover .title-arrow svg{
-  transform: translateX(2px);
-}
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2282,6 +2432,344 @@ html{
 </style>
 
 
+<!-- =========================
+   WHY GRIFFIN
+========================= -->
+<section class="why-griffin-section">
+  <div class="why-griffin-shell">
+    <div class="why-griffin-head">
+      <p class="why-griffin-eyebrow">Why Griffin Integrity Solutions</p>
+      <h2 class="why-griffin-title">Technical Depth. Strategic Perspective.</h2>
+      <p class="why-griffin-text">
+        Our advisory model combines senior industry leadership experience with access to a broader
+        network of technical specialists and industry professionals. This structure allows Griffin
+        Integrity Solutions to bring the right expertise to each engagement without presenting as
+        a one-dimensional consultancy.
+      </p>
+    </div>
+
+    <div class="why-griffin-grid">
+      <article class="why-griffin-card">
+        <h3>Industry Expertise</h3>
+        <p>
+          Deep experience across industrial inspection, asset integrity, construction quality,
+          and critical infrastructure.
+        </p>
+      </article>
+
+      <article class="why-griffin-card">
+        <h3>Strategic Advisory</h3>
+        <p>
+          Support for owners, operators, service providers, and investors navigating growth,
+          risk, technology, and market change.
+        </p>
+      </article>
+
+      <article class="why-griffin-card">
+        <h3>Collaborative Expert Network</h3>
+        <p>
+          Multidisciplinary capability across NDT, pipeline systems, fabrication quality,
+          monitoring technologies, and corporate strategy.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+   CLIENT ECOSYSTEM
+========================= -->
+<section class="client-ecosystem-section">
+  <div class="client-ecosystem-shell">
+    <div class="client-ecosystem-head">
+      <p class="client-ecosystem-eyebrow">Client Ecosystem</p>
+      <h2 class="client-ecosystem-title">Who We Serve</h2>
+    </div>
+
+    <div class="client-ecosystem-grid">
+      <article class="client-ecosystem-card">
+        <h3>Owner-Operators</h3>
+        <p>
+          Advisory support for asset performance, integrity priorities, operating risk,
+          and long-term infrastructure strategy.
+        </p>
+      </article>
+
+      <article class="client-ecosystem-card">
+        <h3>Private Equity &amp; Strategic Investors</h3>
+        <p>
+          Independent technical and market perspective for diligence, growth evaluation,
+          operational improvement, and investment decisions.
+        </p>
+      </article>
+
+      <article class="client-ecosystem-card">
+        <h3>Service Providers</h3>
+        <p>
+          Strategic guidance for positioning, expansion, operational alignment,
+          technical credibility, and differentiated market growth.
+        </p>
+      </article>
+
+      <article class="client-ecosystem-card">
+        <h3>EPC / Fabrication Organizations</h3>
+        <p>
+          Expertise supporting quality execution, project delivery, inspection planning,
+          and compliance across complex build environments.
+        </p>
+      </article>
+
+      <article class="client-ecosystem-card">
+        <h3>Technology Developers</h3>
+        <p>
+          Commercial and technical perspective for solution alignment, market adoption,
+          industry relevance, and strategic introduction to the right stakeholders.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* =========================
+   WHY GRIFFIN
+========================= */
+.why-griffin-section{
+  background: #fff;
+  padding: clamp(72px, 8vw, 120px) 0;
+}
+
+.why-griffin-shell{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.why-griffin-head{
+  max-width: 980px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.why-griffin-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.why-griffin-title{
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4.2vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  color: #111;
+  max-width: 12ch;
+}
+
+.why-griffin-text{
+  margin: 0;
+  max-width: 68ch;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(17,17,17,0.78);
+}
+
+.why-griffin-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.why-griffin-card{
+  position: relative;
+  min-height: 280px;
+  padding: 28px 26px 24px;
+  background: #f6f3ee;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 28px) 0,
+    100% 28px,
+    100% 100%,
+    28px 100%,
+    0 calc(100% - 28px)
+  );
+  box-shadow: 0 18px 40px rgba(0,0,0,0.05);
+}
+
+.why-griffin-card:nth-child(2){
+  margin-top: 36px;
+}
+
+.why-griffin-card h3{
+  margin: 0 0 18px;
+  font-size: clamp(1.25rem, 1.5vw, 1.7rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: #111;
+  max-width: 14ch;
+}
+
+.why-griffin-card p{
+  margin: 0;
+  max-width: 28ch;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(17,17,17,0.82);
+}
+
+/* =========================
+   CLIENT ECOSYSTEM
+========================= */
+.client-ecosystem-section{
+  background: #fff;
+  padding: 0 0 clamp(72px, 8vw, 120px);
+}
+
+.client-ecosystem-shell{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.client-ecosystem-head{
+  max-width: 980px;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.client-ecosystem-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.client-ecosystem-title{
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  color: #111;
+}
+
+.client-ecosystem-grid{
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.client-ecosystem-card{
+  min-height: 220px;
+  padding: 24px 22px 20px;
+  background: #0d2b38;
+  color: #fff;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 24px) 0,
+    100% 24px,
+    100% 100%,
+    24px 100%,
+    0 calc(100% - 24px)
+  );
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.client-ecosystem-card:nth-child(2),
+.client-ecosystem-card:nth-child(4){
+  margin-top: 34px;
+}
+
+.client-ecosystem-card:nth-child(3){
+  background: #f00303;
+}
+
+.client-ecosystem-card:nth-child(5){
+  background: #f5f1ea;
+  color: #111;
+}
+
+.client-ecosystem-card h3{
+  margin: 0 0 18px;
+  font-size: clamp(1.05rem, 1.2vw, 1.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  max-width: 12ch;
+}
+
+.client-ecosystem-card p{
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  opacity: 0.92;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1200px){
+  .why-griffin-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .why-griffin-card:nth-child(2){
+    margin-top: 0;
+  }
+
+  .client-ecosystem-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .client-ecosystem-card:nth-child(2),
+  .client-ecosystem-card:nth-child(4){
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 760px){
+  .why-griffin-section{
+    padding: 64px 0;
+  }
+
+  .client-ecosystem-section{
+    padding: 0 0 64px;
+  }
+
+  .why-griffin-shell,
+  .client-ecosystem-shell{
+    width: min(1600px, calc(100% - 24px));
+    padding: 0 16px;
+  }
+
+  .why-griffin-title,
+  .client-ecosystem-title{
+    max-width: 100%;
+  }
+
+  .why-griffin-card,
+  .client-ecosystem-card{
+    min-height: auto;
+  }
+
+  .client-ecosystem-grid{
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 
 <section class="griffin-bold-section invert">
   <div class="griffin-bold-container">
@@ -2299,22 +2787,22 @@ html{
 
       <div class="griffin-bold-card">
         <h3>Service-provider first</h3>
-        <p>We focus on inspection companies — not just asset owners.</p>
+        <p>We focus on inspection companies and the way they actually operate in the field.</p>
       </div>
 
       <div class="griffin-bold-card">
-        <h3>Deep technical grounding</h3>
-        <p>Advanced NDT knowledge shaped by real field conditions.</p>
+        <h3>Deep NDT expertise</h3>
+        <p>Grounded in real inspection methods like ultrasonic testing, radiography, magnetic particle, and penetrant testing.</p>
       </div>
 
       <div class="griffin-bold-card">
-        <h3>Market clarity</h3>
-        <p>We understand how providers, owners, and tech actually connect.</p>
+        <h3>Advanced inspection insight</h3>
+        <p>We understand how teams apply phased array, eddy current, and visual inspection in real-world asset environments.</p>
       </div>
 
       <div class="griffin-bold-card">
         <h3>Execution over theory</h3>
-        <p>Practical guidance that works in the real world.</p>
+        <p>Practical guidance shaped by field conditions, technician workflows, and the demands of industrial inspection.</p>
       </div>
 
     </div>
@@ -2389,7 +2877,7 @@ html{
   font-size: 14px;
   line-height: 1.6;
   color: rgba(255,255,255,0.75);
-  max-width: 28ch;
+  max-width: 32ch;
 }
 
 /* RESPONSIVE */
@@ -2409,8 +2897,6 @@ html{
   }
 }
 </style>
-
-
 
 <!--
 <section class="why-firm-feature">
@@ -2626,7 +3112,6 @@ By aligning technical insight with market realities, we deliver practical guidan
   }
 }
 </style>-->
-
 
 
 <!--
@@ -2944,11 +3429,6 @@ By aligning technical insight with market realities, we deliver practical guidan
 </style>-->
 
 
-
-
-
-
-
 <!--
   <section class="blue-cta">
   <h2 class="display-heading">
@@ -3051,6 +3531,8 @@ By aligning technical insight with market realities, we deliver practical guidan
 }
 */
 </style>-->
+
+
 <section class="ndt-grid-section">
   <h2 class="display-heading ndt-grid-title">
     Our Partners in Industrial Inspection & Asset Integrity
@@ -4451,7 +4933,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!section || !cards.length) return;
 
-  cards.forEach((card, index) => {
+  cards.forEach((card) => {
     const inner = card.querySelector(".stack-card-inner");
 
     ScrollTrigger.create({
@@ -4464,7 +4946,6 @@ document.addEventListener("DOMContentLoaded", () => {
       invalidateOnRefresh: true
     });
 
-    // optional subtle depth cue as each card becomes pinned
     ScrollTrigger.create({
       trigger: card,
       start: "top top",
@@ -5108,28 +5589,7 @@ riseTargets3.forEach((el, i) => {
   })();
 </script>
 <style>
-.hero-topbar{
-  z-index: 5; /* highest */
-}
 
-.hero-rise-img{
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 104vh;
-  object-fit: cover;
-
-  z-index: 2;
-  pointer-events: none;
-
-  /* keep your fade */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-}
-.stackflow-shell{
-
-  z-index: 1; /* BELOW image */
-}
 
 </style>
 <script>
@@ -5226,122 +5686,6 @@ if (intro && img) {
   }
 }
 </script>
-<style>
-  @media (max-width: 1600px){
-      .hero-topbar{
-    top: 10%; /* move whole topbar slightly up */
-  }
-  .hero-topbar__center img{
-  height: clamp(28px, 9vw, 642px);
-  width: auto;
-}
-  
-  .stackflow-heading{
-
-    margin-top: 10rem;
-  }
-.side-img{
-  position:absolute;
-  top:0;
- 
-
-  height: clamp(70vh, 65vw, 100vh);
-  width: clamp(500px, 82vw, 750px);
-
-  object-fit: cover;
-  opacity: 0.35;
-  z-index: 1;
-  pointer-events:none;
-
-  /* ✅ keep your inset logic */
-  --edgeInset: clamp(0px, (1200px - 200vw) * 1.18, 160px);
-}
-    
-  }
-  @media (max-width: 760px){
-  .hero-rise-img{
-    inset: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-
-    
-  }
-
-}
-@media (max-width: 760px){
-  .hero{
-    min-height: 150vh;   /* 👈 makes hero taller */
-    padding-top: 130px;
-    margin-bottom:-60px; /* 👈 gives more bottom breathing room */
-    overflow: visible;
-  }
-}
-@media (max-width: 760px){
-  .stackflow-copy{
-    justify-content: flex-start;   /* 👈 move heading up */
-    padding-top: 8vh;              /* 👈 controls how high */
-    min-height: 100vh;              /* 👈 prevents it from forcing center */
-  }
-}
-@media (max-width: 760px){
-  :root{
-    --beamY: -920px; /* 👈 move beam upward */
-  }
-}
-@media (max-width: 760px){
-
-  /* 🔺 make Griffin icon larger + slightly higher */
-  .hero-topbar__center img{
-    height: clamp(70px, 25vw, 120px); /* bigger */
-  }
-
-  .hero-topbar{
-    top: 6%; /* move whole topbar slightly up */
-  }
-/* CENTER LOGO — true center of viewport */
-
-
-  /* 🔺 move Griffin text up */
-  #heroBottomIcon{
-     bottom: 1.5rem; /* or 3rem, depending on where you want it */
-  transform: translateX(-50%);
-    width: 90vw; /* optional: slightly larger presence */
-  }
-
-}
-@media (max-width: 760px){
-  .wave-divider{
-    bottom: -10px;
-    min-height: 20px;
-  }
-  .stackflow-heading {
-    margin-top: 0rem;
-  }
-}
-.wave-divider{
-  position: absolute;
-  left: 0;
-  bottom: -2px;         /* was -1px */
-  width: 100%;
-  height: auto;
-  min-height: 120px;
-  display: block;
-  line-height: 0;       /* helps kill inline/svg gap */
-  z-index: 3;
-  pointer-events: none;
-}
-
-.caps-intro-section{
-  position: relative;
-  background: #fff;
-  margin-top: -2px;     /* overlap upward slightly */
-  padding: clamp(32px, 0vw, 0px) 0 40px;
-  z-index: 4;
-}
-</style>
-
 
 </body>
 </html>
