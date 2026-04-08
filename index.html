@@ -126,24 +126,21 @@ html{
   z-index: 0;
 }
 
-/* side images (img3/img4) responsive: narrower + more inset on small screens */
 .side-img{
   position:absolute;
   top:0;
- 
 
   height: clamp(70vh, 55vw, 90vh);
-  width: clamp(500px, 32vw, 650px);
+  width: clamp(500px, 32vw, 850px);
 
-  object-fit: cover;
+  object-fit: contain;   /* changed from cover */
+  object-position: center;
   opacity: 0.35;
   z-index: 1;
   pointer-events:none;
 
-  /* ✅ keep your inset logic */
   --edgeInset: clamp(0px, (900px - 100vw) * 0.18, 160px);
 }
-
 /* push inward from edges */
 /* Move images toward center instead of edges */
 /* ============================= */
@@ -420,7 +417,7 @@ html{
   
   margin-bottom: 2rem;
   font-weight: 300;
-  margin-bottom: 5rem;
+
   
 }
 
@@ -500,11 +497,12 @@ html{
  
 }
 .stackflow-main{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(28px, 3vw, 42px);
-  width: 100%;
-  
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
 }
 
 /* full-width text row */
@@ -522,8 +520,8 @@ html{
 }
 
 .stackflow-copy p{
-  font-size: clamp(0.8rem, 1.7vw, 2rem);
-  max-width: 40ch;
+  font-size: clamp(0.8rem, 1.7vw, 1.7rem);
+  max-width: 50ch;
   opacity: 1 !important;
   font-weight: 200;
 }
@@ -916,27 +914,9 @@ html{
   flex-direction: column;
 }
 
-.stackflow-copy{
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0;
-}
 
-.stackflow-grid{
-  width: 100%;
-  
-  
-  margin-top: -40vh; /* tweak this */
-  margin-bottom: 25vh;
-}
 
-.stackflow-copy{
-  padding-top: 0;
-}
+
 
 .stackflow-heading{
   margin-top: 0;
@@ -974,9 +954,9 @@ html{
               <h1 class="stackflow-heading">
                 What's Your <span class="text-highlight">Next Move</span> in NDT?
               </h1>
-              <!--
+             
               <p class="stackflow-text">
-                We bring asset integrity, strategy, and execution together so you don’t need to second guess.
+                We connect industry leaders with technical experts to deliver advisory, consulting, and advanced inspection insight.
               </p>
               
               <a href="/capabilities" class="stackflow-link">
@@ -989,7 +969,7 @@ html{
                   stroke-linecap="round"
                   stroke-linejoin="round"/>
               </svg>
-              </a>-->
+              </a>
             </div>
 
 
@@ -1346,7 +1326,7 @@ html{
       <article class="stack-card">
         <div class="stack-card-inner">
           <div class="stack-card-image main">
-            <img src="images/stock7.jpeg" alt="Inspection strategy">
+            <img src="images/stock1.jpeg" alt="Inspection strategy">
           </div>
           <div class="stack-card-title-wrap">
             <h3 class="stack-card-title">Technical Advisory & NDT Leadership</h3>
@@ -1354,7 +1334,7 @@ html{
           <div class="stack-card-content">
           <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-             Provide senior-level technical oversight and strategic guidance across complex inspection environments. From Level III consulting to written practice development and full program design, this service ensures your inspection operations are compliant, defensible, and built for long-term performance in high-stakes environments.
+             Provide senior-level technical oversight across complex inspection environments. From Level III consulting to written practice development and full program design, we ensure your inspection operations are compliant, defensible, and built for long-term performance.
             </p>
 
             <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="stack-btn-inline">
@@ -1384,7 +1364,7 @@ html{
           <div class="stack-card-content">
           <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Support the evaluation, selection, and integration of next-generation inspection technologies. From robotics and automation to advanced imaging systems, this service helps organizations modernize inspection capabilities, reduce risk, and improve accuracy through the right technology decisions.
+              Evaluate and implement next-generation inspection technologies; from robotics and automation to advanced imaging systems. We help organizations modernize capabilities, reduce risk, and improve accuracy through the right technology decisions.
             </p>
 
             <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html" class="stack-btn-inline">
@@ -1414,7 +1394,7 @@ html{
           <div class="stack-card-content">
              <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-              Advise organizations on strategic growth initiatives, market positioning, and transaction support within the inspection and asset integrity sector. Whether navigating acquisitions, scaling operations, or refining competitive positioning, this service brings clarity and direction to critical business decisions.
+              Support strategic growth, market positioning, and transaction initiatives within the inspection and asset integrity sector. Whether scaling operations or navigating acquisitions, we bring clarity to high-impact business decisions.
             </p>
 
             <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="stack-btn-inline">
@@ -1441,7 +1421,7 @@ html{
           <div class="stack-card-content">
             <div class="stack-card-text-wrap">
             <p class="stack-card-text">
-             Strengthen the operational backbone of your organization through targeted workforce and execution strategies. From talent acquisition and training systems to field readiness and deployment, this service ensures your teams are equipped, aligned, and ready to perform in demanding environments.
+             Strengthen your operational foundation through targeted workforce and execution strategies. From talent development to field readiness, we ensure your teams are aligned, capable, and prepared to perform in demanding environments.
             </p>
              <a href="/technical-consulting/ndt-written-practice-review-development.html" class="stack-btn-inline">
               Learn more
@@ -1502,19 +1482,22 @@ html{
 .stack-cards-shell{
   width: min(100vw, calc(100% - 0px));
   margin: 0 auto;
-  /*padding: 0 20px;*/
+  /*padding: 0 20px;*/  
 }
 
 .stack-cards-track{
   position: relative;
   padding-top: 2rem;
   padding-bottom: 8rem;
+ 
 }
 
 .stack-card{
   position: relative;
   height: 30rem;
   /*margin-bottom: 1.25rem;*/
+  
+  
 }
 
 .stack-card-inner{
@@ -1529,6 +1512,7 @@ html{
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 18px 50px rgba(0,0,0,0.18);
   will-change: transform;
+  
 }
 
 .stack-card-image{
@@ -1576,6 +1560,7 @@ html{
   justify-content: flex-start;
   padding-left: 4.5rem;
   padding: 4rem 0rem;
+  
 }
 
 .stack-card-text{
@@ -1827,8 +1812,9 @@ html{
       <p class="insight-grid-eyebrow">Where We Operate</p>
       <h2 class="insight-grid-title">Partnering Across the Inspection Ecosystem</h2>
       <p class="insight-grid-intro">
-        The inspection and asset integrity landscape is shaped by multiple forces—those executing the work, those responsible for performance, and those building the technologies behind it.
-Griffin works across all three, bringing alignment, clarity, and technical leadership where it matters most.
+        The inspection and asset integrity landscape is shaped by those executing the work, those accountable for performance, and those building the technologies behind it.
+
+        Griffin works across all three, bringing alignment, clarity, and technical leadership where it matters most.
       </p>
     </div>
 
@@ -1886,10 +1872,10 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
       <article class="insight-card">
         <div class="insight-card-box">
           <div class="insight-card-media">
-            <img src="images/stock21.jpeg" alt="Operational support">
+            <img src="images/stock22.jpeg" alt="Operational support">
           </div>
           <div class="insight-card-body">
-            <h3 class="insight-card-title">Program Support
+            <h3 class="insight-card-title">Technology & Program Support
               <span class="title-arrow">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M9 6l6 6-6 6"
@@ -2121,7 +2107,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
         Supporting Critical Infrastructure
       </h2>
       <p class="industries-intro">
-        We support asset-intensive industries where inspection, asset integrity, and risk management are critical to safe operation, regulatory compliance, and sustained performance.
+        We support asset-intensive industries where inspection, integrity, and risk management are critical to safe operation, regulatory compliance, and sustained performance.
       </p>
     </div>
 
@@ -2295,6 +2281,138 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
 }
 </style>
 
+
+
+<section class="griffin-bold-section invert">
+  <div class="griffin-bold-container">
+
+    <!-- TOP -->
+    <div class="griffin-bold-header">
+      <p class="griffin-bold-eyebrow">What Sets Griffin Apart</p>
+      <h2 class="griffin-bold-title">
+        Built for the realities of inspection firms
+      </h2>
+    </div>
+
+    <!-- CARDS -->
+    <div class="griffin-bold-grid">
+
+      <div class="griffin-bold-card">
+        <h3>Service-provider first</h3>
+        <p>We focus on inspection companies — not just asset owners.</p>
+      </div>
+
+      <div class="griffin-bold-card">
+        <h3>Deep technical grounding</h3>
+        <p>Advanced NDT knowledge shaped by real field conditions.</p>
+      </div>
+
+      <div class="griffin-bold-card">
+        <h3>Market clarity</h3>
+        <p>We understand how providers, owners, and tech actually connect.</p>
+      </div>
+
+      <div class="griffin-bold-card">
+        <h3>Execution over theory</h3>
+        <p>Practical guidance that works in the real world.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* INVERTED SECTION */
+.griffin-bold-section.invert{
+  padding: clamp(20px, 2vw, 40px) 0;
+  background: #052330;
+}
+
+.griffin-bold-section.invert .griffin-bold-container{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+/* HEADER */
+.griffin-bold-section.invert .griffin-bold-header{
+  margin-bottom: clamp(50px, 7vw, 80px);
+}
+
+.griffin-bold-section.invert .griffin-bold-eyebrow{
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 16px;
+}
+
+.griffin-bold-section.invert .griffin-bold-title{
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  color: #ffffff;
+  max-width: 16ch;
+}
+
+/* GRID */
+.griffin-bold-section.invert .griffin-bold-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* CARD */
+.griffin-bold-section.invert .griffin-bold-card{
+  padding: 28px 24px;
+  border-top: 2px solid rgba(255,255,255,0.4);
+  transition: all 0.25s ease;
+}
+
+.griffin-bold-section.invert .griffin-bold-card:hover{
+  transform: translateY(-6px);
+  border-color: #F00303;
+}
+
+/* TEXT */
+.griffin-bold-section.invert .griffin-bold-card h3{
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.griffin-bold-section.invert .griffin-bold-card p{
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  max-width: 28ch;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px){
+  .griffin-bold-section.invert .griffin-bold-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .griffin-bold-section.invert .griffin-bold-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .griffin-bold-section.invert .griffin-bold-title{
+    max-width: 100%;
+  }
+}
+</style>
+
+
+
+<!--
 <section class="why-firm-feature">
   <img class="why-firm-feature__image" src="/images/stock8.jpeg" alt="Industrial inspection and strategy background">
 
@@ -2303,7 +2421,11 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
       <p class="why-firm-feature__eyebrow">Why Partner With Griffin Integrity Solutions?</p>
       <h2>Positioned at the Intersection of Strategy, Technical Insight, and Industry Reality</h2>
       <p class="why-firm-feature__intro">
-        Griffin Integrity Solutions sits at the intersection of technical expertise, strategic advisory, and real world industry experience. While most consulting firms focus on asset owners like oil companies and utilities, Griffin is uniquely positioned to support the inspection service providers themselves, a segment that is often overlooked. By combining deep technical knowledge with a clear understanding of market pressures, Griffin delivers practical guidance that helps inspection companies grow, compete, and operate more effectively.
+        Griffin Integrity Solutions combines deep technical expertise with real-world industry experience and strategic advisory.
+
+While most consulting firms focus on asset owners, Griffin is uniquely positioned to support inspection service providers—a critical but often overlooked segment of the market.
+
+By aligning technical insight with market realities, we deliver practical guidance that helps inspection organizations grow, compete, and operate more effectively.
       </p>
 
       <div class="why-firm-feature__points">
@@ -2335,7 +2457,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
             </svg>
           </div>
           <div class="why-firm-feature__point-text">
-            <h3>Strategic understanding of fragmented inspection markets</h3>
+            <h3>Strategic understanding of inspection markets</h3>
             <p>Insight into how service providers, asset owners, and technology players intersect.</p>
           </div>
         </div>
@@ -2348,7 +2470,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
             </svg>
           </div>
           <div class="why-firm-feature__point-text">
-            <h3>Practical guidance for adoption, compliance, and growth</h3>
+            <h3>Practical, execution-focused guidance</h3>
             <p>Recommendations grounded in implementation realities, risk, compliance, and long-term value.</p>
           </div>
         </div>
@@ -2419,7 +2541,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
 .why-firm-feature__card h2{
   margin: 0 0 16px;
   color: #111111;
-  font-size: clamp(1.9rem, 2.9vw, 3rem);
+  font-size: clamp(1.9rem, 2.5vw, 2.5rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 400;
@@ -2469,7 +2591,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
 .why-firm-feature__point-text h3{
   margin: 0 0 6px;
   color: #111111;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.18;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -2503,12 +2625,7 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
     max-width: 100%;
   }
 }
-</style>
-
-
-
-
-
+</style>-->
 
 
 
@@ -3496,11 +3613,9 @@ Griffin works across all three, bringing alignment, clarity, and technical leade
     <div class="contact-left">
       <h3>Reach Out to Learn More About Griffin Integrity Solutions</h3>
       <p>
-        If you’d like to learn more about Griffin Integrity Solutions,
-        our advanced NDT expertise, consulting capabilities, or how we
-        can support your organization’s compliance and technical initiatives,
-        we’d be glad to connect. Our team is ready to provide clarity,
-        guidance, and practical solutions tailored to your needs.
+        If you’d like to learn more about Griffin Integrity Solutions, our technical advisory capabilities, or how we can support your organization, we’d be glad to connect.
+
+        Our team provides clear, practical guidance tailored to your operational and strategic needs.
       </p>
     </div>
 
@@ -4758,6 +4873,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".insight-grid-title",
     ".insight-grid-eyebrow",
     ".insight-grid-intro",
+    
  
     
   ]);
@@ -5021,9 +5137,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const intro = document.querySelector(".intro-wrap");
 const img = document.querySelector(".hero-rise-img");
-const heading = document.querySelector(".stackflow-heading");
+const stackflowMain = document.querySelector(".stackflow-main");
 const griffinText = document.querySelector("#heroBottomIcon");
-const heroTopbarCenter = document.querySelector(".hero-topbar__center");
 
 if (intro && img) {
   const isMobile = window.matchMedia("(max-width: 760px)").matches;
@@ -5045,14 +5160,14 @@ if (intro && img) {
         yPercent: 0
       });
     }
-/*
-    if (heroTopbarCenter) {
-      gsap.set(heroTopbarCenter, {
-        y: 0,
+
+    if (stackflowMain) {
+      gsap.set(stackflowMain, {
         opacity: 1,
+        y: 0,
         filter: "blur(0px)"
       });
-    } */
+    }
 
   } else {
     const tl = gsap.timeline({
@@ -5065,25 +5180,6 @@ if (intro && img) {
         anticipatePin: 1
       }
     });
-/*
-if (heroTopbarCenter) {
-  tl.fromTo(
-    heroTopbarCenter,
-    {
-      y: -100,
-      opacity: 0,
-      filter: "blur(10px)"
-    },
-    {
-      y: 0,
-      opacity: 1,
-      filter: "blur(0px)",
-      ease: "none",
-      duration: 0.15 // 👈 finishes fast (25% of scroll)
-    },
-    0
-  );
-}*/
 
     tl.fromTo(
       img,
@@ -5115,16 +5211,13 @@ if (heroTopbarCenter) {
       );
     }
 
-    if (heading) {
-      tl.fromTo(
-        heading,
-        {
-          opacity: 1,
-          y: 0
-        },
+    if (stackflowMain) {
+      tl.to(
+        stackflowMain,
         {
           opacity: 0,
-          y: -40,
+          y: -36,
+          filter: "blur(8px)",
           ease: "none"
         },
         0.1

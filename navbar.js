@@ -129,8 +129,37 @@ function detectDefaultPanel() {
     currentPanel = targetName;
   }
 
+  function highlightCurrentNavItem() {
+  let path = window.location.pathname;
+
+  if (path.endsWith("/")) {
+    path += "index.html";
+  }
+
+  const file = path.split("/").pop();
+
+  // Find all links inside the menu
+  const links = menu.querySelectorAll("a");
+
+  links.forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (!href) return;
+
+    // Normalize href (handle relative paths)
+    const linkFile = href.split("/").pop();
+
+    if (linkFile === file) {
+      link.classList.add("is-active"); // 👈 add class
+    } else {
+      link.classList.remove("is-active");
+    }
+  });
+}
+
   function resetMenuToMain() {
     showMenuPanel(defaultPanel); // <-- change this
+
   }
 
   function getAnimatedItems() {
@@ -286,6 +315,7 @@ function detectDefaultPanel() {
   defaultPanel = detectDefaultPanel();
   currentPanel = defaultPanel;
   showMenuPanel(defaultPanel);
+  highlightCurrentNavItem();
 
   nav.addEventListener("click", (e) => {
     e.stopPropagation();

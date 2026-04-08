@@ -151,8 +151,8 @@
 
 .service-intro h2{
   margin: 0;
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-  line-height: 0.95;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  line-height: 1.1;
   letter-spacing: -0.04em;
   font-weight: 300;
   color: var(--ink);
@@ -163,143 +163,139 @@
 }
 
     /* ================= HOW WE HELP ================= */
-    .help-section{
-      
-      background:#fff;
-      
-    }
+/* ================= HOW WE HELP ================= */
+.help-section{
+  background:#fff;
+}
 
-    .help-head{
-      margin-bottom: clamp(24px, 3vw, 46px);
-      border-top:1px solid black;
-    }
+.help-head{
+  margin-bottom: clamp(24px, 3vw, 46px);
+  border-top:1px solid black;
+}
 
-    .help-head .service-eyebrow{
-      color:#777;
-      margin-bottom:14px;
-     
-    }
+.help-head h2{
+  margin:0;
+  font-size: clamp(1.8rem, 2vw, 2.2rem);
+  line-height:0.96;
+  letter-spacing:-0.035em;
+  font-weight:300;
+  max-width:26ch;
+  margin-top: 24px;
+}
 
-    .help-head h2{
-      margin:0;
-      font-size: clamp(1.8rem, 2vw, 2.2rem);
-      line-height:0.96;
-      letter-spacing:-0.035em;
-      font-weight:300;
-      max-width:26ch;
-       margin-top: 24px;
-    }
+/* GRID */
+.help-grid--grouped{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:0;
+}
 
-    .help-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:0;
-      /*border-top:1px solid var(--line);
-      border-left:1px solid var(--line);*/
-    }
+/* CARD (back to original feel) */
+.help-card--group{
+  padding: 28px 26px 34px;
+  min-height: 280px;
+  transition: background .25s ease, color .25s ease;
+}
 
-    .help-card{
-      padding: 28px 26px 30px;
-      /*border-right:1px solid var(--line);
-      border-bottom:1px solid var(--line);*/
-      min-height: 250px;
-      transition: background .25s ease, color .25s ease;
-    }
+.help-card--group:hover{
+  background:#7777771b;
+}
 
-    .help-card:hover{
-      background:#7777771b;
-      color:#000000;
-    }
+/* EYEBROW */
+.help-card__eyebrow{
+  color:#777;
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
 
-    .help-card:hover .help-card__title,
-    .help-card:hover .help-list li{
-      color:#000000;
-    }
+/* TITLE */
+.help-card__title{
+  margin:0 0 22px;
+  font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+  line-height:1.2;
+  font-weight:600;
+  color:#111;
+  max-width:22ch;
+}
 
-    .help-card:hover .help-arrow{
-      color:var(--red);
-      transform: translateX(4px);
-    }
+/* GROUP LIST */
+.help-group-list{
+  display:grid;
+  gap:18px;
+}
 
-    .help-card__title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin:0 0 18px;
-      font-size: clamp(1.05rem, 1.15vw, 1.25rem);
-      line-height:1.2;
-      font-weight:600;
-      color:#111;
-      transition: color .25s ease;
-    }
+/* INDIVIDUAL SERVICE */
+.help-service h4{
+  margin:0 0 6px;
+  font-size:15px;
+  font-weight:600;
+  color:#111;
+}
 
-    .help-arrow{
-      flex:0 0 auto;
-      width:22px;
-      height:22px;
-      color:#111;
-      transition: color .25s ease, transform .25s ease;
-    }
+.help-service p{
+  margin:0;
+  font-size:14.5px;
+  line-height:1.6;
+  color:rgba(17,17,17,0.72);
+}
 
-    .help-list{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:12px;
-    }
+/* SUBTLE DIVIDERS (optional but nice) */
+.help-service{
+  position:relative;
+  padding-left:14px;
+}
 
-    .help-list li{
-      position:relative;
-      padding-left:18px;
-      font-size:15px;
-      line-height:1.6;
-      color:rgba(17,17,17,0.78);
-      transition: color .25s ease;
-    }
+.help-service::before{
+  content:"•";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--red);
+  font-size:14px;
+  line-height:1.6;
+}
 
-    .help-list li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      color:var(--red);
-      font-size:16px;
-      line-height:1.6;
-    }
+/* RESPONSIVE */
+@media (max-width: 1180px){
+  .help-grid--grouped{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-    @media (max-width: 1180px){
-      .help-grid{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
+@media (max-width: 700px){
+  .help-grid--grouped{
+    grid-template-columns: 1fr;
+  }
 
-    @media (max-width: 980px){
-      .service-intro__grid{
-        grid-template-columns: 1fr;
-      }
+  .help-card--group{
+    min-height:auto;
+  }
 
-      .service-intro__copy h2,
-      .service-intro__copy p{
-        max-width:100%;
-      }
-    }
+  .page-wrap{
+    width:min(var(--page-max), calc(100% - 24px));
+  }
+  .service-intro{
+  width: 100%;
+  background: #fff;
+  padding: clamp(20px, 8vw, 100px) 1rem;
+  position: relative; /* 👈 add this */
+  margin-bottom: 4rem;
+}
+  .service-intro h2{
+  margin: 0;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  color: var(--ink);
+  max-width: 58ch;
 
-    @media (max-width: 700px){
-      .page-wrap,
-      .service-hero__inner{
-        width:min(var(--page-max), calc(100% - 24px));
-      }
-
-      .help-grid{
-        grid-template-columns: 1fr;
-      }
-
-      .help-card{
-        min-height:auto;
-      }
-    }
+  border-left: 4px solid var(--red);
+  padding-left: 24px;
+}
+}
   </style>
 </head>
 <body>
@@ -310,7 +306,7 @@
  <div id="scroll-container">
 <main>
 <section class="service-top-image">
-  <img src="/images/TC1.jpg" alt="NDT consulting support">
+  <img src="/images/stock14.jpeg" alt="NDT consulting support">
 
   <!-- ADD THIS -->
   <!--<div class="service-top-image__title">
@@ -562,30 +558,33 @@
       
 
       <h2>
-        Certified NDT Level III expertise to optimize inspection programs, ensure compliance, and guide critical decisions. We deliver clear, reliable support for complex environments—helping you operate with confidence, accuracy, and control.
+        Griffin Integrity provides independent Level III consulting to support inspection programs, technical decision-making, and compliance requirements across industries. Our approach focuses on improving reliability, strengthening documentation clarity, and ensuring alignment with applicable codes and standards—delivering practical, field-aligned solutions that enhance consistency, accountability, and overall program performance.
       </h2>
 
     </div>
   </div>
 </section>
 
-
+<!--
 <section class="help-section" id="ndt-consulting">
   <div class="page-wrap">
     <div class="head-info">
-      <!--<h2>NDT Level III Consulting and Support</h2>-->
+     <h2>NDT Level III Consulting and Support</h2>
     </div>
     
     <div class="help-text-block">
       <p>
-        Griffin Integrity provides independent Level III consulting designed to strengthen inspection programs, support critical technical decisions, and ensure full compliance with applicable codes and standards across industries. Our approach focuses on improving reliability, enhancing documentation clarity, and aligning your operations with best practices and regulatory expectations.
-
-Services include procedure development and review, written practice guidance, personnel qualification system design, audit preparation, and ongoing technical advisory. Each engagement is structured to integrate seamlessly with your existing operations while elevating consistency, accountability, and overall program performance.
+        Griffin Integrity provides independent Level III consulting to support inspection programs, technical decision-making, 
+        and compliance requirements across industries, with a focus on strengthening reliability, improving 
+        documentation clarity, and ensuring alignment with applicable codes and standards. Support includes 
+        procedure development and review, written practice guidance, personnel qualification systems, audit 
+        preparation, and ongoing technical advisory, with engagements structured to integrate seamlessly with 
+        existing operations while elevating consistency, accountability, and overall program performance.
         
       </p>
     </div>
   </div>
-</section>
+</section>-->
 
 <style>
 
@@ -612,128 +611,440 @@ Services include procedure development and review, written practice guidance, pe
 }
 </style>
 
-  <section class="help-section" id="how-we-help">
-    <div class="page-wrap">
-      <div class="help-head">
-        <!--<p class="service-eyebrow">How We Help Clients</p>-->
-        <h2>How We Help Clients</h2>
-      </div>
 
-      <div class="help-grid">
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Procedure Review
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Ensures NDT procedures align with applicable codes and client requirements while improving clarity, consistency, and field usability. Focuses on eliminating ambiguity and strengthening execution flow.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Written Practice Support
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Develops and refines employer-based written practices to meet standards and operational needs. Emphasizes clear documentation, consistent structure, and defensibility during audits.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Program Oversight
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Provides Level III oversight to strengthen inspection governance, approval workflows, and overall program integrity. Ensures consistent technical quality and accountability.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Audit Readiness
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Prepares teams for audits by reviewing records, qualifications, and compliance. Identifies gaps early and supports corrective actions to prevent findings.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Personnel Qualification
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Improves qualification systems by standardizing training, evaluations, and progression. Supports exams, practicals, and documentation for consistency.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Technical Troubleshooting
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Addresses complex or recurring inspection issues with expert guidance on method selection, interpretation, and problem-solving.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Client Representation
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Represents inspection interests in client discussions by translating technical issues into clear, actionable direction.</p>
-          </ul>
-        </article>
 
-        <article class="help-card">
-          <h3 class="help-card__title">
-            Continuous Improvement
-            <span class="help-arrow">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </h3>
-          <div class="help-list">
-            <p>Drives ongoing improvements in inspection reliability, reporting consistency, and overall program effectiveness.</p>
-          </ul>
-        </article>
-      </div>
+<!--
+<section class="help-section" id="how-we-help">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>How We Help Clients</h2>
     </div>
-  </section>
+
+    <div class="help-grid help-grid--grouped">
+      <article class="help-card help-card--group">
+        <div class="help-card__eyebrow">Program Foundation</div>
+        <h3 class="help-card__title">Build the systems that make quality repeatable</h3>
+
+        <div class="help-group-list">
+          <div class="help-service">
+            <h4>Procedure Review</h4>
+            <p>Ensures NDT procedures align with applicable codes and client requirements while improving clarity, consistency, and field usability.</p>
+          </div>
+
+          <div class="help-service">
+            <h4>Written Practice Support</h4>
+            <p>Develops and refines employer-based written practices to meet standards and operational needs with clear, defensible documentation.</p>
+          </div>
+
+          <div class="help-service">
+            <h4>Personnel Qualification</h4>
+            <p>Improves qualification systems by standardizing training, evaluations, progression, exams, practicals, and supporting records.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="help-card help-card--group">
+        <div class="help-card__eyebrow">Oversight & Compliance</div>
+        <h3 class="help-card__title">Strengthen control, accountability, and audit confidence</h3>
+
+        <div class="help-group-list">
+          <div class="help-service">
+            <h4>Program Oversight</h4>
+            <p>Provides Level III oversight to strengthen inspection governance, approval workflows, and overall program integrity.</p>
+          </div>
+
+          <div class="help-service">
+            <h4>Audit Readiness</h4>
+            <p>Prepares teams for audits by reviewing records, qualifications, and compliance while identifying gaps before findings occur.</p>
+          </div>
+
+          <div class="help-service">
+            <h4>Client Representation</h4>
+            <p>Represents inspection interests in client discussions by translating technical issues into clear, actionable direction.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="help-card help-card--group">
+        <div class="help-card__eyebrow">Performance & Support</div>
+        <h3 class="help-card__title">Solve issues faster and improve long-term execution</h3>
+
+        <div class="help-group-list">
+          <div class="help-service">
+            <h4>Technical Troubleshooting</h4>
+            <p>Addresses complex or recurring inspection issues with expert guidance on method selection, interpretation, and problem-solving.</p>
+          </div>
+
+          <div class="help-service">
+            <h4>Continuous Improvement</h4>
+            <p>Drives ongoing improvements in inspection reliability, reporting consistency, and overall program effectiveness.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>-->
+
+<section class="gi-how-tabs" id="how-we-help">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>How We Help Clients</h2>
+    </div>
+    <div class="gi-how-tabs__inner">
+<!--
+      <div class="gi-how-tabs__header-wrap">
+        <div class="gi-how-tabs__header">
+          <span class="gi-how-tabs__eyebrow">How We Help</span>
+          <h2>Structured Level III Support Across Your Inspection Program</h2>
+          <p>
+            Griffin Integrity provides targeted consulting across key areas of your inspection program,
+            helping improve documentation, strengthen compliance, and support more effective execution
+            from program development through ongoing technical oversight.
+          </p>
+        </div>
+
+        <div class="gi-how-tabs__cta">
+          <p>
+            Need support with procedures, compliance, or technical oversight?
+            Connect with Griffin Integrity for practical Level III guidance tailored to your operation.
+          </p>
+
+          <a href="/contact" class="gi-how-tabs__cta-btn">
+            Connect with an Advisor
+            <span class="gi-how-tabs__arrow">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>-->
+
+      <div class="gi-how-tabs__nav" role="tablist" aria-label="How We Help Tabs">
+        <button class="gi-how-tabs__tab is-active" data-gi-tab="program" type="button">Program Development</button>
+        <button class="gi-how-tabs__tab" data-gi-tab="oversight" type="button">Oversight & Compliance</button>
+        <button class="gi-how-tabs__tab" data-gi-tab="support" type="button">Technical Support</button>
+      </div>
+
+      <div class="gi-how-tabs__panel is-active" id="gi-tab-program">
+        <div class="gi-how-tabs__grid">
+          <div class="gi-how-tabs__card">
+            <h3>Procedure Development & Review</h3>
+            <p>
+              Ensure procedures align with applicable requirements while improving clarity,
+              consistency, and field usability across your operation.
+            </p>
+          </div>
+
+          <div class="gi-how-tabs__card">
+            <h3>Written Practice Development</h3>
+            <p>
+              Build and refine written practices that are structured, defensible, and aligned
+              with both standards and employer-specific needs.
+            </p>
+          </div>
+
+          <div class="gi-how-tabs__card">
+            <h3>Personnel Qualification Systems</h3>
+            <p>
+              Standardize training, evaluations, progression, and qualification records to support
+              consistency and long-term program integrity.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gi-how-tabs__panel" id="gi-tab-oversight">
+        <div class="gi-how-tabs__grid">
+          <div class="gi-how-tabs__card">
+            <h3>Program Oversight</h3>
+            <p>
+              Strengthen inspection governance, approval workflows, and technical accountability
+              through independent Level III oversight.
+            </p>
+          </div>
+
+          <div class="gi-how-tabs__card">
+            <h3>Audit Preparation</h3>
+            <p>
+              Review qualifications, records, and compliance documentation to identify gaps early
+              and reduce audit risk before findings occur.
+            </p>
+          </div>
+
+          <div class="gi-how-tabs__card">
+            <h3>Client Representation</h3>
+            <p>
+              Support technical discussions with clients by translating inspection issues into
+              clear, actionable direction and defensible decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gi-how-tabs__panel" id="gi-tab-support">
+        <div class="gi-how-tabs__grid">
+          <div class="gi-how-tabs__card">
+            <h3>Technical Troubleshooting</h3>
+            <p>
+              Resolve complex or recurring inspection challenges with experienced guidance on
+              methods, interpretation, and practical problem-solving.
+            </p>
+          </div>
+
+          <div class="gi-how-tabs__card">
+            <h3>Method Selection & Interpretation</h3>
+            <p>
+              Gain support in choosing appropriate NDT methods and interpreting findings in a way
+              that aligns with both standards and operational realities.
+            </p>
+          </div>
+
+          <div class="gi-how-tabs__card">
+            <h3>Ongoing Technical Advisory</h3>
+            <p>
+              Maintain access to responsive Level III support as your inspection program evolves,
+              expands, or encounters new technical demands.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .gi-how-tabs {
+    
+    background: #fff;
+  }
+
+  .gi-how-tabs__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+   
+  }
+
+  .gi-how-tabs__header-wrap {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+
+  .gi-how-tabs__header {
+    max-width: 760px;
+  }
+
+  .gi-how-tabs__eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #F00303;
+  }
+
+  .gi-how-tabs__header h2 {
+    margin: 0 0 14px;
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 300;
+    color: #111;
+    max-width: 15ch;
+  }
+
+  .gi-how-tabs__header p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(17,17,17,0.75);
+    max-width: 62ch;
+  }
+
+  .gi-how-tabs__cta {
+    background: #f8f9fb;
+    padding: 24px;
+    border: 1px solid rgba(17,17,17,0.06);
+  }
+
+  .gi-how-tabs__cta p {
+    margin: 0 0 16px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(17,17,17,0.75);
+  }
+
+  .gi-how-tabs__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #111;
+    transition: color 0.3s ease;
+  }
+
+  .gi-how-tabs__cta-btn:hover {
+    color: var(--navy);
+  }
+
+  .gi-how-tabs__arrow {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .gi-how-tabs__cta-btn:hover .gi-how-tabs__arrow {
+    transform: translateX(4px);
+    color: #F00303;
+  }
+
+  .gi-how-tabs__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid rgba(17,17,17,0.08);
+    padding-bottom: 14px;
+  }
+
+  .gi-how-tabs__tab {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 10px 0;
+    margin-right: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(17,17,17,0.55);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.25s ease;
+  }
+
+  .gi-how-tabs__tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    width: 100%;
+    height: 2px;
+    background: #F00303;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .gi-how-tabs__tab:hover {
+    color: #111;
+  }
+
+  .gi-how-tabs__tab.is-active {
+    color: #111;
+  }
+
+  .gi-how-tabs__tab.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .gi-how-tabs__panel {
+    display: none;
+  }
+
+  .gi-how-tabs__panel.is-active {
+    display: block;
+  }
+
+  .gi-how-tabs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .gi-how-tabs__card {
+    background: #f8f9fba3;
+    padding: 28px 24px;
+    border: 1px solid rgba(17, 17, 17, 0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gi-how-tabs__card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+  }
+
+  .gi-how-tabs__card h3 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: #111;
+  }
+
+  .gi-how-tabs__card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(17,17,17,0.75);
+  }
+
+  @media (max-width: 900px) {
+    .gi-how-tabs {
+      padding: 0 1.25rem;
+    }
+
+    .gi-how-tabs__header-wrap,
+    .gi-how-tabs__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gi-how-tabs__tab {
+      margin-right: 16px;
+    }
+
+    .gi-how-tabs__header h2 {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const section = document.querySelector('.gi-how-tabs');
+    if (!section) return;
+
+    const tabs = section.querySelectorAll('.gi-how-tabs__tab');
+    const panels = section.querySelectorAll('.gi-how-tabs__panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-gi-tab');
+
+        tabs.forEach(t => t.classList.remove('is-active'));
+        panels.forEach(panel => panel.classList.remove('is-active'));
+
+        tab.classList.add('is-active');
+        section.querySelector('#gi-tab-' + target).classList.add('is-active');
+      });
+    });
+  })();
+</script>
 
 <section class="feature-split-section">
   <div class="page-wrap">
@@ -741,22 +1052,21 @@ Services include procedure development and review, written practice guidance, pe
 
       <!-- LEFT: IMAGE -->
       <div class="feature-split__media">
-        <img src="/images/stock4.jpeg" alt="Inspection in progress">
+        <img src="/images/stock11.jpeg" alt="Inspection in progress">
       </div>
 
       <!-- RIGHT: CONTENT -->
       <div class="feature-split__content">
-        <h2>Field-Driven Inspection Support</h2>
+        <h2>Built to Support Inspection Programs with Clarity and Confidence</h2>
         <p>
-          Deliver practical, field-aligned inspection solutions backed by Level III expertise.
-          This approach bridges the gap between written requirements and real-world execution,
-          improving reliability, clarity, and decision-making across your program.
+          Griffin Integrity combines technical expertise, field practicality, and program-level support
+          to help clients improve reliability, strengthen compliance, and make better inspection decisions.
         </p>
 
         <a href="#" class="feature-split__link">
-          Learn More
+          Contact a Consultant
           <span class="help-arrow">
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9 6l6 6-6 6"
                 fill="none"
                 stroke="currentColor"
@@ -771,117 +1081,115 @@ Services include procedure development and review, written practice guidance, pe
     </div>
   </div>
 </section>
+
 <style>
   .feature-split-section{
-  background:#ffffff;
-  padding: clamp(12px, 2vw, 40px) 0;
-}
+    background:#ffffff;
+    padding: clamp(12px, 2vw, 40px) 0;
+  }
 
-.feature-split{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 4vw, 40px);
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding:2rem 2rem;
-  
-}
-
-/* IMAGE */
-.feature-split__media{
-  width: 100%;
-  height: 100%;
-}
-
-.feature-split__media img{
-  width: 100%;
-  height: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-/* CONTENT */
-.feature-split__content{
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.feature-split__content h2{
-  margin: 0;
-  font-size: clamp(1.5rem, 2vw, 2.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  font-weight: 300;
-  color: #111;
-  max-width: 18ch;
-}
-
-.feature-split__content p{
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.65;
-  color: rgba(17,17,17,0.75);
-  max-width: 50ch;
-}
-
-/* LINK */
-.feature-split__link{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #111;
-  transition: color 0.3s ease;
-}
-
-.feature-split__link:hover{
-  color: var(--navy);
-}
-
-.feature-split__link .help-arrow{
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.feature-split__link:hover .help-arrow{
-  transform: translateX(4px);
-  color: #F00303;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px){
   .feature-split{
-    grid-template-columns: 1fr;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(32px, 4vw, 40px);
+    align-items:flex-start;
+    max-width:1200px;
+    margin:0 auto;
+    padding:2rem 2rem;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+    border-radius:0;
+  }
+
+  .feature-split:hover{
+    transform:translateY(-1px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  }
+
+  /* IMAGE */
+  .feature-split__media{
+    width:100%;
+    align-self:flex-start;
   }
 
   .feature-split__media img{
-    max-height: 320px;
+    width:100%;
+    height:auto;
+    max-height:300px;
+    object-fit:cover;
+    display:block;
   }
-}
-.feature-split{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 4vw, 40px);
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
 
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  border-radius: 0px;
-}
+  /* CONTENT */
+  .feature-split__content{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
 
-/* HOVER EFFECT */
-.feature-split:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
-</style>  
+  .feature-split__content h2{
+    margin:0;
+    font-size:clamp(1.5rem, 2vw, 2.4rem);
+    line-height:1.05;
+    letter-spacing:-0.03em;
+    font-weight:300;
+    color:#111;
+    max-width:18ch;
+  }
 
+  .feature-split__content p{
+    margin:0;
+    font-size:16px;
+    line-height:1.65;
+    color:rgba(17,17,17,0.75);
+    max-width:50ch;
+  }
+
+  /* LINK */
+  .feature-split__link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    font-size:15px;
+    font-weight:600;
+    text-decoration:none;
+    color:#111;
+    transition:color 0.3s ease;
+  }
+
+  .feature-split__link:hover{
+    color:var(--navy);
+  }
+
+  .feature-split__link .help-arrow{
+    transition:transform 0.3s ease, color 0.3s ease;
+  }
+
+  .feature-split__link:hover .help-arrow{
+    transform:translateX(4px);
+    color:#F00303;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px){
+    .feature-split{
+      grid-template-columns:1fr;
+      padding:1.5rem 1.25rem;
+    }
+
+    .feature-split__media{
+      order:1;
+    }
+
+    .feature-split__content{
+      order:2;
+    }
+
+    .feature-split__media img{
+      max-height:320px;
+    }
+  }
+</style>
 <section class="insight-grid-section" id="news">
   <div class="page-wrap">
   <div class="insight-grid-shell">

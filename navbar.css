@@ -1305,3 +1305,6 @@
     width: 44px;
   }
 }
+.bottom-nav-menu a.is-active {
+  color: red;
+}
