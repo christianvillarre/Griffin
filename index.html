@@ -1837,7 +1837,94 @@ margin: 0 0 18px;
   }
 }
 </style>
+<style>
+  /* keep arrow pinned instead of drifting when link text wraps */
+.stack-card-links a{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12px;
+  align-items: start;
+  column-gap: 0.55rem;
+  width: 100%;
+  min-width: 0;
+}
 
+.stack-card-links a span{
+  min-width: 0;
+  display: block;
+}
+
+.stack-card-links svg{
+  margin-top: 0.34rem;
+  justify-self: end;
+}
+
+/* give mobile cards more breathing room without feeling cramped */
+@media (max-width: 760px){
+  .stack-card-title-wrap{
+    padding: 1rem 1rem 0.35rem;
+  }
+
+  .stack-card-content{
+    padding: 0 1rem 1.1rem;
+    gap: 0.8rem;
+  }
+
+  .stack-card-links{
+    gap: 0.65rem;
+    margin-top: 0.9rem;
+  }
+
+  .stack-card-links a{
+    padding: 0.15rem 0;
+  }
+
+  .stack-card-title{
+    font-size: clamp(1.2rem, 5.2vw, 1.55rem);
+    line-height: 1.05;
+  }
+
+  .stack-card-text{
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px){
+  .stack-card-practice-content{
+    padding: 2rem 1rem 1.4rem;
+  }
+
+  .stack-card-title-wrap{
+    padding: 1rem 1rem 0.3rem;
+  }
+
+  .stack-card-content{
+    padding: 0 1rem 1rem;
+  }
+
+  .stack-card-practice-title{
+    font-size: clamp(2rem, 10vw, 2.6rem);
+    line-height: 0.95;
+  }
+
+  .stack-card-title{
+    font-size: 1.35rem;
+    line-height: 1.08;
+  }
+
+  .stack-card-text{
+    font-size: 0.94rem;
+    line-height: 1.58;
+    margin-top: 2rem;
+  }
+
+  .stack-btn-inline{
+    font-size: 0.9rem;
+    padding: 0.62rem 1rem;
+    margin-bottom: 1rem;
+  }
+}
+</style>
 
 
 <!--
