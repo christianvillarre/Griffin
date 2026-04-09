@@ -2366,7 +2366,7 @@ margin: 0 0 18px;
 }
 
 .why-griffin-partner-image{
-  width: clamp(200px, 12vw, 420px);
+  width: clamp(175px, 12vw, 420px);
   aspect-ratio: 1 / 1;
   background: #f6f3ee;
   border-radius: 10px;
@@ -2630,7 +2630,19 @@ margin: 0 0 18px;
   }
 
   .why-griffin-partners{
-    margin-top: 20px;
+    margin-top: -20px;
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .why-griffin-partner{
+    flex: 1;
+  }
+
+  .why-griffin-partner-image{
+    width: 100%;
+    max-width: none; /* remove clamp restriction */
   }
 }
 </style>
