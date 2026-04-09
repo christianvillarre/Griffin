@@ -378,7 +378,7 @@
   .stackflow-heading{
     margin: 0;
     color: #fff;
-    font-size: clamp(3.4rem, 5vw, 6.5rem);
+    font-size: clamp(3.4rem, 5vw, 4.5rem);
     line-height: 0.97;
     letter-spacing: -0.035em;
     margin-bottom: 2rem;
@@ -862,15 +862,15 @@
 
             <div class="stackflow-copy">
               <h1 class="stackflow-heading">
-                What's Your <span class="text-highlight">Next Move</span> in NDT?
+                Connect with the <span class="text-highlight">Right Experts</span> in NDT.
               </h1>
              
               <p class="stackflow-text">
-                We connect industry leaders with technical experts, combining advisory, consulting, and advanced inspection insight to drive confident decisions.
+                We connect industry leaders with the right technical experts, combining advisory, consulting, and advanced inspection insight to drive confident decisions.
               </p>
               
               <a href="/capabilities" class="stackflow-link">
-                <span>Talk to a Consultant</span>
+                <span>Get Connected Now</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M7 17L17 7M10 7h7v7"
                   fill="none"
@@ -908,7 +908,8 @@
       </h2>
 
       <h2 class="caps-intro-title">
-        By bringing clarity, alignment, and execution to complex technical decisions, Griffin connects the right expertise, perspective, and strategy at the moments that matter most.
+        We don’t perform inspections or deploy generic consulting teams.
+        We identify the right expertise, align it to your challenge, and support you in making informed, high-impact decisions.
       </h2>
 
       <a href="/capabilities" class="page-link">
@@ -935,7 +936,7 @@
 }
 
 .caps-intro-copy {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -1155,7 +1156,7 @@ margin: 0 0 18px;
       <article class="stack-card stack-card-practice practice-1-intro">
         <div class="stack-card-inner stack-card-inner-practice">
           <div class="stack-card-practice-content">
-            <p class="stack-card-eyebrow">Practice Area 01</p>
+            <!--<p class="stack-card-eyebrow">Practice Area 01</p>-->
             <h2 class="stack-card-practice-title">Technical Consulting</h2>
             <p class="stack-card-practice-text">
               Advanced technical advisory services supporting inspection quality, code compliance, asset integrity, and next-generation NDT capabilities.
@@ -1288,7 +1289,7 @@ margin: 0 0 18px;
       <article class="stack-card stack-card-practice practice-2-intro">
         <div class="stack-card-inner stack-card-inner-practice">
           <div class="stack-card-practice-content">
-            <p class="stack-card-eyebrow">Practice Area 02</p>
+            <!--<p class="stack-card-eyebrow">Practice Area 02</p>-->
             <h2 class="stack-card-practice-title">Business Advisory Services</h2>
             <p class="stack-card-practice-text">
               Strategic advisory support for industrial service organizations, investors, and leadership teams operating in complex and highly regulated markets.
@@ -2239,14 +2240,34 @@ margin: 0 0 18px;
 
 <section class="why-griffin-section">
   <div class="why-griffin-shell">
-    <div class="why-griffin-head">
-      <p class="why-griffin-eyebrow">Why Griffin Integrity Solutions</p>
-      <h2 class="why-griffin-title">Not a Traditional Consultancy</h2>
-      <p class="why-griffin-text">
-       We don’t deliver generic recommendations or theoretical frameworks.
-We provide practical, field-informed guidance that improves inspection performance, strengthens technical defensibility, and drives better decisions in high-stakes environments.
-      </p>
+    <div class="why-griffin-top">
+  
+  <div class="why-griffin-head">
+    <p class="why-griffin-eyebrow">Why Griffin Integrity Solutions</p>
+    <h2 class="why-griffin-title">Not a Traditional Consultancy</h2>
+    <p class="why-griffin-text">
+      We don’t deliver generic recommendations or theoretical frameworks.
+      We connect you with experienced professionals who provide practical, field-informed insight, and support you in making better decisions in high-stakes environments.
+    </p>
+  </div>
+
+  <div class="why-griffin-partners">
+    <div class="why-griffin-partner">
+      <div class="why-griffin-partner-image">
+        <img src="/images/professional1.jpeg" alt="Partner Logo 1">
+      </div>
+      <span>Technical Advisors</span>
     </div>
+
+    <div class="why-griffin-partner">
+      <div class="why-griffin-partner-image">
+        <img src="/images/professional2.jpeg" alt="Partner Logo 1">
+      </div>
+      <span>Subject Matter Experts</span>
+    </div>
+  </div>
+
+</div>
 
     <div class="why-griffin-grid">
       <article class="why-griffin-card">
@@ -2321,6 +2342,46 @@ We provide practical, field-informed guidance that improves inspection performan
 </section>
 
 <style>
+  .why-griffin-top{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.why-griffin-partners{
+  display: flex;
+  gap: 18px;
+}
+
+.why-griffin-partner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.why-griffin-partner-image{
+  width: clamp(200px, 12vw, 420px);
+  aspect-ratio: 1 / 1;
+  background: #f6f3ee;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.why-griffin-partner-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.why-griffin-partner span{
+  font-size: 0.8rem;
+  color: rgba(17,17,17,0.8);
+}
   /* =========================
    WHY GRIFFIN
 ========================= */
@@ -2361,7 +2422,7 @@ We provide practical, field-informed guidance that improves inspection performan
 
 .why-griffin-text{
   margin: 0;
-  max-width: 68ch;
+  max-width: 48ch;
   font-size: clamp(1rem, 1.15vw, 1.15rem);
   line-height: 1.7;
   color: rgba(17,17,17,0.78);
@@ -2419,8 +2480,9 @@ We provide practical, field-informed guidance that improves inspection performan
    CLIENT ECOSYSTEM
 ========================= */
 .client-ecosystem-section{
-  background: #fff;
+  background: #052330;
   padding: 0 0 clamp(72px, 8vw, 120px);
+  padding-top:clamp(72px, 4vw, 120px);
 }
 
 .client-ecosystem-shell{
@@ -2440,7 +2502,7 @@ We provide practical, field-informed guidance that improves inspection performan
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #777;
+  color: #ffffff;
 }
 
 .client-ecosystem-title{
@@ -2449,7 +2511,7 @@ We provide practical, field-informed guidance that improves inspection performan
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 300;
-  color: #111;
+  color: #ffffff;
 }
 
 .client-ecosystem-grid{
@@ -2559,6 +2621,15 @@ We provide practical, field-informed guidance that improves inspection performan
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 760px){
+  .why-griffin-top{
+    grid-template-columns: 1fr;
+  }
+
+  .why-griffin-partners{
+    margin-top: 20px;
+  }
+}
 </style>
 
 
@@ -2582,9 +2653,9 @@ We provide practical, field-informed guidance that improves inspection performan
 
     <!-- LEFT CONTENT -->
     <div class="industries-split-left">
-      <p class="industries-eyebrow">Industries Served</p>
+      <p class="industries-eyebrow">Industries We Serve</p>
       <h2 class="industries-title">
-        Focused on critical infrastructure where failure is not an option
+        Critical Infrastructure
       </h2>
       <p class="industries-intro">
         We support asset-intensive industries where inspection, integrity, and risk management are critical to safe operation, regulatory compliance, and sustained performance.
@@ -2776,11 +2847,10 @@ We provide practical, field-informed guidance that improves inspection performan
 
       <!-- RIGHT: CONTENT -->
       <div class="image-left-feature-content">
-        <p class="image-left-feature-eyebrow">Looking Forward</p>
-        <h2 class="image-left-feature-title">NDT in the Age of AI</h2>
+        <p class="image-left-feature-eyebrow">Next-Generation Inspection</p>
+        <h2 class="image-left-feature-title">Inspection 4.0 Technology Stack</h2>
         <p class="image-left-feature-text">
-          Artficial intelligence is only as effective as the data and workflows behind it.
-          We connect advanced analytics with real inspection processes, ensuring new technologies integrate with technician workflows, procedures, and asset integrity programs.
+          Advanced NDT, automation, and AI are transforming how inspection is performed and how decisions are made. We connect organizations with experts who understand how these technologies work together in real-world environments.
         </p>
       </div>
 
