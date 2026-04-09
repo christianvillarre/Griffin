@@ -1043,11 +1043,13 @@
 }
 
 .expertise-intro h2{
-  margin: 14px 0 26px;
-  font-size: clamp(2.2rem, 5vw, 5rem);
+margin: 0 0 18px;
+  font-size: clamp(2rem, 4.2vw, 4.5rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
-  font-weight: 500;
+  font-weight: 300;
+  color: #ffffff;
+  max-width: 52ch;
 }
 
 .expertise-intro p{
@@ -1838,7 +1840,7 @@
 
 
 
-
+<!--
 <section class="insight-grid-section" id="news">
   <div class="insight-grid-shell">
     <div class="insight-grid-head">
@@ -2144,214 +2146,9 @@
     max-width: 100%;
   }
 }
-</style>
+</style>-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="industries-split-section">
-  <div class="industries-split-shell">
-
-    <!-- LEFT CONTENT -->
-    <div class="industries-split-left">
-      <p class="industries-eyebrow">Industries Served</p>
-      <h2 class="industries-title">
-        Supporting Critical Infrastructure
-      </h2>
-      <p class="industries-intro">
-        We support asset-intensive industries where inspection, integrity, and risk management are critical to safe operation, regulatory compliance, and sustained performance.
-      </p>
-    </div>
-
-    <!-- RIGHT GRID -->
-    <div class="industries-split-right">
-
-      <div class="industry-row">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M12 2C12 2 6 9 6 13a6 6 0 0 0 12 0c0-4-6-11-6-11z"/>
-          </svg>
-        </div>
-        <span>Oil & Gas</span>
-      </div>
-
-      <div class="industry-row">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M10 2v6l-4 6a6 6 0 1 0 12 0l-4-6V2"/>
-          </svg>
-        </div>
-        <span>Petrochemical</span>
-      </div>
-
-      <div class="industry-row">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
-          </svg>
-        </div>
-        <span>Power Generation</span>
-      </div>
-
-      <div class="industry-row">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="12" cy="12" r="2"/>
-            <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>
-          </svg>
-        </div>
-        <span>Nuclear</span>
-      </div>
-
-      <div class="industry-row">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M14 3v4h4M5 7h14v14H5z"/>
-          </svg>
-        </div>
-        <span>Heavy Manufacturing</span>
-      </div>
-
-      <div class="industry-row">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
-          </svg>
-        </div>
-        <span>Infrastructure & Defense</span>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<style>
-.industries-split-section{
-  padding: clamp(72px, 8vw, 120px) 0;
-  background: #ffffff;
-}
-
-.industries-split-shell{
-  width: min(1400px, calc(100% - 40px));
-  margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 60px);
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
-}
-
-/* LEFT */
-.industries-eyebrow{
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #052330;
-  margin-bottom: 14px;
-}
-
-.industries-title{
-  font-size: clamp(2.2rem, 3.4vw, 3rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: #052330;
-  margin-bottom: 18px;
-  max-width: 18ch;
-}
-
-.industries-intro{
-  font-size: 16px;
-  line-height: 1.65;
-  color: rgba(0,0,0,0.7);
-  max-width: 46ch;
-}
-
-/* RIGHT */
-.industries-split-right{
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid rgba(5,35,48,0.1);
-}
-
-.industry-row{
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(5,35,48,0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.industry-row:hover{
-  transform: translateX(6px);
-}
-
-.industry-row:hover .industry-icon{
-  color: #F00303;
-}
-
-/* ICON */
-.industry-icon{
-  width: 28px;
-  height: 28px;
-  color: #052330;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-
-.industry-icon svg{
-  width: 100%;
-  height: 100%;
-}
-
-/* TEXT */
-.industry-row span{
-  font-size: 16px;
-  letter-spacing: -0.02em;
-  color: #052330;
-}
-
-/* Responsive */
-@media (max-width: 900px){
-  .industries-split-shell{
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .industries-title{
-    max-width: 100%;
-  }
-
-  .industries-intro{
-    max-width: 100%;
-  }
-}
-</style>
-
-
-<!-- =========================
-   WHY GRIFFIN
-========================= -->
 <section class="why-griffin-section">
   <div class="why-griffin-shell">
     <div class="why-griffin-head">
@@ -2393,9 +2190,7 @@
   </div>
 </section>
 
-<!-- =========================
-   CLIENT ECOSYSTEM
-========================= -->
+
 <section class="client-ecosystem-section">
   <div class="client-ecosystem-shell">
     <div class="client-ecosystem-head">
@@ -2483,7 +2278,7 @@
   letter-spacing: -0.04em;
   font-weight: 300;
   color: #111;
-  max-width: 12ch;
+  max-width: 17ch;
 }
 
 .why-griffin-text{
@@ -2687,6 +2482,207 @@
   }
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="industries-split-section">
+  <div class="industries-split-shell">
+
+    <!-- LEFT CONTENT -->
+    <div class="industries-split-left">
+      <p class="industries-eyebrow">Industries Served</p>
+      <h2 class="industries-title">
+        Supporting Critical Infrastructure
+      </h2>
+      <p class="industries-intro">
+        We support asset-intensive industries where inspection, integrity, and risk management are critical to safe operation, regulatory compliance, and sustained performance.
+      </p>
+    </div>
+
+    <!-- RIGHT GRID -->
+    <div class="industries-split-right">
+
+      <div class="industry-row">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 2C12 2 6 9 6 13a6 6 0 0 0 12 0c0-4-6-11-6-11z"/>
+          </svg>
+        </div>
+        <span>Oil & Gas</span>
+      </div>
+
+      <div class="industry-row">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M10 2v6l-4 6a6 6 0 1 0 12 0l-4-6V2"/>
+          </svg>
+        </div>
+        <span>Petrochemical</span>
+      </div>
+
+      <div class="industry-row">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
+          </svg>
+        </div>
+        <span>Power Generation</span>
+      </div>
+
+      <div class="industry-row">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>
+          </svg>
+        </div>
+        <span>Nuclear</span>
+      </div>
+
+      <div class="industry-row">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M14 3v4h4M5 7h14v14H5z"/>
+          </svg>
+        </div>
+        <span>Heavy Manufacturing</span>
+      </div>
+
+      <div class="industry-row">
+        <div class="industry-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
+          </svg>
+        </div>
+        <span>Infrastructure & Defense</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.industries-split-section{
+  padding: clamp(72px, 8vw, 120px) 0;
+  background: #ffffff;
+}
+
+.industries-split-shell{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 60px);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+/* LEFT */
+.industries-eyebrow{
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.industries-title{
+ margin: 0;
+  font-size: clamp(2rem, 4.2vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 300;
+  color: #111;
+}
+
+.industries-intro{
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(0,0,0,0.7);
+  max-width: 46ch;
+}
+
+/* RIGHT */
+.industries-split-right{
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(5,35,48,0.1);
+}
+
+.industry-row{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(5,35,48,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.industry-row:hover{
+  transform: translateX(6px);
+}
+
+.industry-row:hover .industry-icon{
+  color: #F00303;
+}
+
+/* ICON */
+.industry-icon{
+  width: 28px;
+  height: 28px;
+  color: #052330;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.industry-icon svg{
+  width: 100%;
+  height: 100%;
+}
+
+/* TEXT */
+.industry-row span{
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: #052330;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .industries-split-shell{
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .industries-title{
+    max-width: 100%;
+  }
+
+  .industries-intro{
+    max-width: 100%;
+  }
+}
+</style>
+
+
 
 <section class="griffin-bold-section invert">
   <div class="griffin-bold-container">
