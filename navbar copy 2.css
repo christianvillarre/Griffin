@@ -2,10 +2,10 @@
 
 :root{
   --topbar-h: 84px;
-  --topbar-bg: rgb(255, 255, 255);
-  --topbar-bg-strong: rgb(255, 255, 255);
+  --topbar-bg: rgba(0, 32, 46, 0.88);
+  --topbar-bg-strong: rgba(0, 32, 46, 0.94);
   --topbar-border: rgba(255, 255, 255, 0.009);
-  --topbar-text: rgba(0, 32, 46, 0.88);
+  --topbar-text: rgba(255,255,255,0.92);
   --topbar-text-soft: rgba(255,255,255,0.76);
   --topbar-hover: #f00303;
   --topbar-pad-x: 5rem;
@@ -87,7 +87,7 @@
   width: 22px;
   height: 2px;
   border-radius: 999px;
-  background: rgba(0, 32, 46, 0.88);
+  background: #ffffff;
 }
 
 /* logo - no box */
@@ -262,7 +262,7 @@
 
 .topbar-dropdown__title{
   margin: 0 0 12px;
-  color: rgba(0, 32, 46, 0.88);
+  color: #ffffff;
   font-size: 20px;
   font-weight: 600;
   line-height: 1;
@@ -272,7 +272,7 @@
 .topbar-dropdown__desc{
   margin: 0;
   max-width: 42ch;
-  color: rgba(0, 32, 46, 0.88);
+  color: var(--topbar-text-soft);
   font-size: 13px;
   line-height: 1.5;
 }

@@ -1,282 +1,128 @@
-<!-- TEST MARKER ADVISORY-123 -->
-<div class="bottom-nav-wrap">
-<div class="bottom-nav-outer">
-  <button
-    class="bottom-nav"
-    id="bottomNav"
-    type="button"
-    aria-expanded="false"
-    aria-controls="bottomNavMenu"
-    aria-label="Open navigation"
-  >
-    <span class="bottom-nav__content">
-      <span class="bottom-nav__brand">
-        <img
-          src="/images/Griffin Integrity Logo wt.png"
-          alt="Griffin Integrity"
-        />
-      </span>
+<!-- SECOND NAVBAR VERSION -->
+<header class="topbar-nav-wrap">
+  <div class="topbar-nav">
 
-      <span class="bottom-nav__home">Home</span>
+    <!-- LEFT CLUSTER -->
+    <div class="topbar-nav__left">
+      <button
+        class="topbar-nav__menu-btn"
+        id="topbarMenuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <span class="bottom-nav__toggle" aria-hidden="true">
-        <span class="bottom-nav__line"></span>
-        <span class="bottom-nav__line"></span>
-        <span class="bottom-nav__line"></span>
-      </span>
-    </span>
+      <a href="/" class="topbar-nav__logo-box" aria-label="Griffin Integrity home">
+        <img src="/images/Griffin Integrity Logo Red_Blue.png" alt="Griffin Integrity" />
+      </a>
+    </div>
 
-    <span class="bottom-nav__x" aria-hidden="true">
-      <span></span>
-      <span></span>
-    </span>
-  </button>
-  
-  <div class="bottom-nav-menu" id="bottomNavMenu" aria-hidden="true">
-  <div class="bottom-nav-menu__box">
-    <div class="bottom-nav-menu__top">
-      <!-- MAIN MENU -->
-      <!-- MAIN MENU -->
-      <div class="bottom-nav-menu__panel is-active" data-panel="main">
-        <div class="bottom-nav-menu__main-headings">
-          <div class="bottom-nav-menu__eyebrow">Menu</div>
-          <div class="bottom-nav-menu__meta-headings">
-            <div class="bottom-nav-menu__eyebrow">Socials</div>
-            <div class="bottom-nav-menu__eyebrow">Reach Us</div>
-          </div>
-        </div>
-
-        <div class="bottom-nav-menu__content-grid">
-          <div class="bottom-nav-menu__col bottom-nav-menu__col--primary">
-            <nav class="bottom-nav-menu__nav" aria-label="Primary">
-              <a href="/" class="bottom-nav-menu__item">Home</a>
-              <button class="bottom-nav-menu__item bottom-nav-menu__trigger" type="button" data-target="consulting">Technical Consulting
-                <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6"fill="none"stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>
-              </button>
-              <button class="bottom-nav-menu__item bottom-nav-menu__trigger" type="button" data-target="advisory">Advisory Services
-                <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6"fill="none"stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>
-              </button>
-              <button class="bottom-nav-menu__item bottom-nav-menu__trigger" type="button" data-target="affiliates">Affiliate Organizations
-                <svg class="dd-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6"fill="none"stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>
-              </button>
-              <a href="/about.html" class="bottom-nav-menu__item">About</a>
-              <a href="/news.html" class="bottom-nav-menu__item">News</a>
-              <a href="/contact.html" class="bottom-nav-menu__item">Contact</a>
-            </nav>
-          </div>
-
-          <div class="bottom-nav-menu__col bottom-nav-menu__col--secondary">
-            <div class="bottom-nav-menu__meta">
-              <div class="bottom-nav-menu__meta-left">
-                <a href="/privacy.html" class="bottom-nav-menu__mini">LinkedIn</a>
-                <a href="/careers.html" class="bottom-nav-menu__mini">Facebook</a>
-              </div>
-
-              <div class="bottom-nav-menu__meta-right">
-                <a href="tel:5551234567" class="bottom-nav-menu__contact-link">(555) 123-4567</a>
-                <a href="mailto:info@griffinintegrity.com" class="bottom-nav-menu__contact-link">info@griffinintegrity.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    <!-- RIGHT CLUSTER -->
+    <nav class="topbar-nav__links" aria-label="Primary navigation">
+      <div class="topbar-nav__item has-dd" data-dd="consulting">
+        <a href="/technical-consulting.html" class="topbar-nav__link">
+          Technical Consulting
+          <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
 
-      <!-- CONSULTING -->
-     <!-- CONSULTING -->
-<div class="bottom-nav-menu__panel" data-panel="consulting">
-  <!--<div class="bottom-nav-menu__eyebrow">Technical Consulting</div>-->
+      <div class="topbar-nav__item has-dd" data-dd="advisory">
+        <a href="/advisory-services.html" class="topbar-nav__link">
+          Advisory Services
+          <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
 
-  <div class="bottom-nav-menu__content-grid">
-    <div class="bottom-nav-menu__col bottom-nav-menu__col--primary">
-      <h4 class="bottom-nav-menu__panel-title">Technical Consulting</h4>
+      <div class="topbar-nav__item has-dd" data-dd="affiliates">
+        <a href="/affiliates.html" class="topbar-nav__link">
+          Affiliate Organizations
+          <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
 
-      <p class="bottom-nav-menu__panel-note">
-        Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.
-      </p>
-      <button class="bottom-nav-menu__back" type="button" data-target="main">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Main Menu</span>
-      </button>
-    </div>
+      <div class="topbar-nav__item">
+        <a href="/about.html" class="topbar-nav__link">About</a>
+      </div>
 
+      <div class="topbar-nav__item">
+        <a href="/news.html" class="topbar-nav__link">News</a>
+      </div>
 
+      <div class="topbar-nav__item">
+        <a href="/contact.html" class="topbar-nav__link">Contact</a>
+      </div>
+    </nav>
+  </div>
 
-    <div class="bottom-nav-menu__col bottom-nav-menu__col--secondary">
-      <nav class="bottom-nav-menu__nav" aria-label="Consulting">
-        <div class="bottom-nav-menu__sublist">
-          <a href="/technical-consulting/ndt-level-iii-consulting-support.html" class="bottom-nav-menu__subitem">
-            <span>NDT Level III Consulting &amp; Support</span>
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html" class="bottom-nav-menu__subitem">
-            <span>Advanced NDT Subject Matter Experts</span>
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="/technical-consulting/ndt-written-practice-review-development.html" class="bottom-nav-menu__subitem">
-            <span>NDT Written Practice Review and Development</span>
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="/technical-consulting/advanced-ndt-training.html" class="bottom-nav-menu__subitem">
-            <span>Next Level Advanced NDT Training Programs</span>
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="/technical-consulting/advanced-ndt-programs-procedures.html" class="bottom-nav-menu__subitem">
-            <span>Advanced NDT Technology Programs and Procedures</span>
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-
-          <a href="/technical-consulting/automation-robotics-imaging-systems.html" class="bottom-nav-menu__subitem">
-            <span>Automation, Robotics, and Advanced Imaging Systems</span>
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+  <!-- DROPDOWNS -->
+  <div class="topbar-dropdowns">
+    <div class="topbar-dropdown" data-panel="consulting">
+      <div class="topbar-dropdown__inner">
+        <div class="topbar-dropdown__intro">
+          <!--<div class="topbar-dropdown__eyebrow">Technical Consulting</div>-->
+          <h4 class="topbar-dropdown__title">Technical Consulting</h4>
+          <p class="topbar-dropdown__desc">
+            Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.
+          </p>
         </div>
-      </nav>
-    </div>
-  </div>
-</div>
-      <!-- ADVISORY -->
-    <div class="bottom-nav-menu__panel" data-panel="advisory">
-  <div class="bottom-nav-menu__content-grid">
-    <div class="bottom-nav-menu__col bottom-nav-menu__col--primary">
-      <h4 class="bottom-nav-menu__panel-title">Business Advisory Services</h4>
 
-      <p class="bottom-nav-menu__panel-note">
-       Our advanced NDT experts bring decades of field experience across critical infrastructure and regulated industries. We support organizations with high-level technical guidance, failure analysis insight, and practical solutions aligned with codes, specifications, and operational realities.
-      </p>
-      <button class="bottom-nav-menu__back" type="button" data-target="main">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Main Menu</span>
-      </button>
-    </div>
-
-
-
-    <!-- RIGHT -->
-    <div class="bottom-nav-menu__col bottom-nav-menu__col--secondary">
-      <nav class="bottom-nav-menu__nav" aria-label="Advisory">
-        <div class="bottom-nav-menu__sublist">
-          <a href="/business-advisory/mergers-acquisitions-support.html" class="bottom-nav-menu__subitem">
-            Mergers & Acquisition Support
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/business-advisory/talent-acquisition-assessment.html" class="bottom-nav-menu__subitem">
-            Talent Acquisition & Assessment
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/business-advisory/corporate-development-strategic-planning.html" class="bottom-nav-menu__subitem">
-            Corporate Development & Strategic Planning
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/business-advisory/business-development-client-strategies.html" class="bottom-nav-menu__subitem">
-            Business Development & Client Strategies
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/business-advisory/capital-acquisition.html" class="bottom-nav-menu__subitem">
-            Capital Acquisition
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+        <div class="topbar-dropdown__links">
+          <a href="/technical-consulting/ndt-level-iii-consulting-support.html">NDT Level III Consulting &amp; Support</a>
+          <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html">Advanced NDT Subject Matter Experts</a>
+          <a href="/technical-consulting/ndt-written-practice-review-development.html">NDT Written Practice Review and Development</a>
+          <a href="/technical-consulting/advanced-ndt-training.html">Next Level Advanced NDT Training Programs</a>
+          <a href="/technical-consulting/advanced-ndt-programs-procedures.html">Advanced NDT Technology Programs and Procedures</a>
+          <a href="/technical-consulting/automation-robotics-imaging-systems.html">Automation, Robotics, and Advanced Imaging Systems</a>
         </div>
-      </nav>
-    </div>
-  </div>
-</div>
-
-      <!-- AFFILIATES -->
-<div class="bottom-nav-menu__panel" data-panel="affiliates">
-
-
-  <div class="bottom-nav-menu__content-grid">
-    <div class="bottom-nav-menu__col bottom-nav-menu__col--primary">
-      <h4 class="bottom-nav-menu__panel-title">Affiliate Organizations</h4>
-
-      <p class="bottom-nav-menu__panel-note">
-       Our trusted affiliate partners extend our capabilities across specialized disciplines, delivering complementary services and innovative solutions. Through these strategic relationships, we connect clients with proven expertise, ensuring seamless support across complex projects and evolving operational needs.
-      </p>
-      <button class="bottom-nav-menu__back" type="button" data-target="main">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Main Menu</span>
-      </button>
+      </div>
     </div>
 
-    <!-- RIGHT -->
-    <div class="bottom-nav-menu__col bottom-nav-menu__col--secondary">
-      <nav class="bottom-nav-menu__nav" aria-label="Affiliates">
-        <div class="bottom-nav-menu__sublist">
-          <a href="/affiliates/top-notch-edm.html" class="bottom-nav-menu__subitem">
-            Top Notch EDM Services
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/affiliates/sound-ndt-solutions.html" class="bottom-nav-menu__subitem">
-            Sound NDT Solutions
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/affiliates/atco-automated-scanning.html" class="bottom-nav-menu__subitem">
-            ATCO Automated Scanning Systems
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/affiliates/halo-ndt-technologies.html" class="bottom-nav-menu__subitem">
-            Halo NDT Technologies
-            <svg class="bottom-nav-menu__subitem-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+    <div class="topbar-dropdown" data-panel="advisory">
+      <div class="topbar-dropdown__inner">
+        <div class="topbar-dropdown__intro">
+          <!--<div class="topbar-dropdown__eyebrow">Advisory Services</div>-->
+          <h4 class="topbar-dropdown__title">Business Advisory Services</h4>
+          <p class="topbar-dropdown__desc">
+            Strategic advisory support for growth, transactions, leadership alignment, and operational execution across the industrial inspection ecosystem.
+          </p>
         </div>
-      </nav>
+
+        <div class="topbar-dropdown__links">
+          <a href="/business-advisory/mergers-acquisitions-support.html">Mergers &amp; Acquisition Support</a>
+          <a href="/business-advisory/talent-acquisition-assessment.html">Talent Acquisition &amp; Assessment</a>
+          <a href="/business-advisory/corporate-development-strategic-planning.html">Corporate Development &amp; Strategic Planning</a>
+          <a href="/business-advisory/business-development-client-strategies.html">Business Development &amp; Client Strategies</a>
+          <a href="/business-advisory/capital-acquisition.html">Capital Acquisition</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar-dropdown" data-panel="affiliates">
+      <div class="topbar-dropdown__inner">
+        <div class="topbar-dropdown__intro">
+          <!--<div class="topbar-dropdown__eyebrow">Affiliate Organizations</div>-->
+          <h4 class="topbar-dropdown__title">Affiliate Organizations</h4>
+          <p class="topbar-dropdown__desc">
+            Our trusted affiliate partners extend our capabilities across specialized disciplines, delivering complementary services and innovative solutions.
+          </p>
+        </div>
+
+        <div class="topbar-dropdown__links">
+          <a href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
+          <a href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
+          <a href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
+          <a href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-
-
-    </div>
-    <!--
-    <div class="bottom-nav-menu__bottom">
-      <a href="/contact.html" class="bottom-nav-menu__cta">Contact</a>
-    </div>-->
-  </div>
-</div>
-
-</div>
-</div>
+</header>

@@ -253,7 +253,7 @@
      TYPE / MISC
   ========================= */
   .text-highlight{
-    background: linear-gradient(90deg, #F00303 0%, rgb(34, 157, 209) 100%);
+    background: linear-gradient(90deg, #F00303 0%, rgb(19, 75, 99) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -495,36 +495,23 @@
     display: block;
     pointer-events: none;
   }
-
+  .hero-topbar{
+  z-index: 5; /* highest */
+}
 
 .hero-rise-img{
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: auto;
-
+  inset: 0;
   width: 100vw;
   height: 104vh;
   object-fit: cover;
-  object-position: center 30%; /* push visible area down */
-  opacity: 0.2;
-  z-index: 1;
+
+  z-index: 2;
   pointer-events: none;
 
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 55%,
-    black 75%
-  );
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 55%,
-    black 75%
-  );
+  /* keep your fade */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
 }
 .stackflow-shell{
 
@@ -868,7 +855,7 @@
 
 .hero-inline-images img{
   width: 100%;
-  height: clamp(180px, 18vw, 360px);
+  height: clamp(180px, 18vw, 460px);
   object-fit: cover;
   border-radius: 10px;
 
@@ -903,9 +890,7 @@
     <img class="side-img side-img--right" src="images/Griffin wing RT.png" alt="" aria-hidden="true">
     
       <div class="hero">
-        <video class="hero-rise-img" autoplay muted loop playsinline>
-          <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/griffin_red_waves1.mp4" type="video/mp4">
-        </video>
+
         <div class="stackflow-shell">
           <div class="stackflow-main">
 
@@ -1566,7 +1551,7 @@ margin: 0 0 18px;
 
 .stack-card-title-wrap{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding-left: 4.5rem;
 }
@@ -1640,7 +1625,7 @@ margin: 0 0 18px;
   display: grid;
   grid-template-columns: 1fr 11rem;
   gap: 1rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 4rem 4rem;
 }

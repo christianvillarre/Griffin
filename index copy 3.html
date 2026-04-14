@@ -74,7 +74,7 @@
   .intro-wrap{
     position: relative;
     overflow: hidden;
-    background: #0F3D51;
+    background: #000;
     padding-bottom: 0;
   }
 
@@ -137,10 +137,10 @@
     min-height: 100svh;
     min-height: 100dvh;
     display: flex;
-    align-items: flex-start;  /* 🔥 push content to top */
+    align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 20vh;
+    padding-top: 0;
     padding-bottom: 0;
   }
 
@@ -204,7 +204,7 @@
     width: clamp(500px, 42vw, 650px);
     object-fit: contain;
     object-position: center;
-    opacity: 0.15;
+    opacity: 0.35;
     z-index: 1;
     pointer-events: none;
     --edgeInset: clamp(0px, (900px - 100vw) * 0.18, 160px);
@@ -253,7 +253,7 @@
      TYPE / MISC
   ========================= */
   .text-highlight{
-    background: linear-gradient(90deg, #F00303 0%, rgb(34, 157, 209) 100%);
+    background: linear-gradient(90deg, #F00303 0%, rgb(19, 75, 99) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -307,15 +307,13 @@
     width: min(1800px, calc(100% - 40px));
     max-width: none;
     padding: 0 20px;
-    
   }
 
   .stackflow-main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* 🔥 aligns to top */
-      margin-bottom: 8rem;
+    justify-content: center;
   }
 
   .stackflow-grid{
@@ -349,7 +347,6 @@
   flex-direction: column;
   align-items: center;   /* centers everything horizontally */
   text-align: center;    /* centers text */
-  
 }
 
 .stackflow-copy p{
@@ -495,36 +492,23 @@
     display: block;
     pointer-events: none;
   }
-
+  .hero-topbar{
+  z-index: 5; /* highest */
+}
 
 .hero-rise-img{
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: auto;
-
+  inset: 0;
   width: 100vw;
   height: 104vh;
   object-fit: cover;
-  object-position: center 30%; /* push visible area down */
-  opacity: 0.2;
-  z-index: 1;
+
+  z-index: 2;
   pointer-events: none;
 
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 55%,
-    black 75%
-  );
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 55%,
-    black 75%
-  );
+  /* keep your fade */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
 }
 .stackflow-shell{
 
@@ -852,42 +836,6 @@
     }
 
   }
-
-
-
-  .hero-inline-images{
-  margin-top: 2.5rem;
-  
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-
-  width: min(1200px, 100%);
-
-}
-
-.hero-inline-images img{
-  width: 100%;
-  height: clamp(180px, 18vw, 360px);
-  object-fit: cover;
-  border-radius: 10px;
-
-  /* match your hero vibe */
-  opacity: 0.9;
-  transition: transform .4s ease, opacity .4s ease;
-}
-
-.hero-inline-images img:hover{
-  transform: scale(1.03);
-  opacity: 1;
-}
-
-/* mobile */
-@media (max-width: 760px){
-  .hero-inline-images{
-    grid-template-columns: 1fr;
-  }
-}
 </style>
 
 <body>
@@ -906,6 +854,14 @@
         <video class="hero-rise-img" autoplay muted loop playsinline>
           <source src="https://pub-8ad7c216262d47949e23e21b73c678fc.r2.dev/griffin_red_waves1.mp4" type="video/mp4">
         </video>
+        <div class="hero-topbar">
+        <!-- Center Logo -->
+        <div class="hero-topbar__center">
+          <img src="images/GriffinIcon.png" alt="Griffin Integrity">
+        </div>
+      </div>
+
+         <img id="heroBottomIcon" src="images/GriffinText.png" alt="" aria-hidden="true">
         <div class="stackflow-shell">
           <div class="stackflow-main">
 
@@ -929,12 +885,6 @@
                   stroke-linejoin="round"/>
               </svg>
               </a>
-
-
-              <div class="hero-inline-images">
-                <img src="/images/stock12.jpeg" alt="">
-                <img src="/images/stock17.jpeg" alt="">
-              </div>
             </div>
 
 
@@ -1566,7 +1516,7 @@ margin: 0 0 18px;
 
 .stack-card-title-wrap{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding-left: 4.5rem;
 }
@@ -1640,7 +1590,7 @@ margin: 0 0 18px;
   display: grid;
   grid-template-columns: 1fr 11rem;
   gap: 1rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 4rem 4rem;
 }
@@ -6031,7 +5981,100 @@ riseTargets3.forEach((el, i) => {
 
 
 </style>
+<script>
+gsap.registerPlugin(ScrollTrigger);
 
+const intro = document.querySelector(".intro-wrap");
+const img = document.querySelector(".hero-rise-img");
+const stackflowMain = document.querySelector(".stackflow-main");
+const griffinText = document.querySelector("#heroBottomIcon");
+
+if (intro && img) {
+  const isMobile = window.matchMedia("(max-width: 760px)").matches;
+
+  if (isMobile) {
+    gsap.set(img, {
+      yPercent: 0,
+      opacity: 1,
+      filter: "blur(0px)"
+    });
+
+    gsap.set(img, {
+      top: "auto",
+      bottom: 0
+    });
+
+    if (griffinText) {
+      gsap.set(griffinText, {
+        yPercent: 0
+      });
+    }
+
+    if (stackflowMain) {
+      gsap.set(stackflowMain, {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)"
+      });
+    }
+
+  } else {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: intro,
+        start: "top top",
+        end: "+=150%",
+        scrub: true,
+        pin: true,
+        anticipatePin: 1
+      }
+    });
+
+    tl.fromTo(
+      img,
+      {
+        yPercent: 60,
+        opacity: 0,
+        filter: "blur(12px)"
+      },
+      {
+        yPercent: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        ease: "none"
+      },
+      0.2
+    );
+
+    if (griffinText) {
+      tl.fromTo(
+        griffinText,
+        {
+          yPercent: 120
+        },
+        {
+          yPercent: 0,
+          ease: "none"
+        },
+        0.2
+      );
+    }
+
+    if (stackflowMain) {
+      tl.to(
+        stackflowMain,
+        {
+          opacity: 0,
+          y: -36,
+          filter: "blur(8px)",
+          ease: "none"
+        },
+        0.1
+      );
+    }
+  }
+}
+</script>
 
 </body>
 </html>
