@@ -1,33 +1,17 @@
-const DROPDOWN_ALIGNMENT_MIN = 1600;
-
-function shouldUsePerItemDropdownAlignment() {
-  return window.innerWidth >= DROPDOWN_ALIGNMENT_MIN;
-}
-
-function syncDropdownLinksStart(triggerItem = null) {
+function syncDropdownLinksStart(triggerItem) {
   const wrap = document.querySelector(".topbar-nav-wrap");
-  if (!wrap) return;
+  if (!wrap || !triggerItem) return;
 
   const wrapRect = wrap.getBoundingClientRect();
+  const itemRect = triggerItem.getBoundingClientRect();
 
-  // large screens: align to hovered/open item
-  if (shouldUsePerItemDropdownAlignment() && triggerItem) {
-    const itemRect = triggerItem.getBoundingClientRect();
-    const start = itemRect.left - wrapRect.left;
-    document.documentElement.style.setProperty("--dropdown-links-start", `${start}px`);
-    return;
-  }
-
-  // smaller screens: use original first-link alignment
-  const firstLink = document.querySelector(".topbar-nav__links .topbar-nav__link");
-  if (!firstLink) return;
-
-  const linkRect = firstLink.getBoundingClientRect();
-  const start = linkRect.left - wrapRect.left;
+  const start = itemRect.left - wrapRect.left;
   document.documentElement.style.setProperty("--dropdown-links-start", `${start}px`);
 }
 
-function runDropdownSync(triggerItem = null) {
+function runDropdownSync(triggerItem) {
+  if (!triggerItem) return;
+
   syncDropdownLinksStart(triggerItem);
 
   requestAnimationFrame(() => {
@@ -64,8 +48,6 @@ function initTopbarVersion() {
 
     dropdownItems.forEach((item) => item.classList.remove("is-open"));
     dropdowns.forEach((panel) => panel.classList.remove("is-open"));
-
-    runDropdownSync();
   }
 
   function openPanel(name) {
@@ -84,7 +66,10 @@ function initTopbarVersion() {
     });
 
     activeDropdownItem = matchedItem;
-    runDropdownSync(activeDropdownItem);
+
+    if (activeDropdownItem) {
+      runDropdownSync(activeDropdownItem);
+    }
   }
 
   function scheduleClose(delay = 90) {
@@ -138,10 +123,10 @@ function initTopbarVersion() {
   });
 
   function rerunActiveSync() {
-    runDropdownSync(activeDropdownItem);
+    if (activeDropdownItem) {
+      runDropdownSync(activeDropdownItem);
+    }
   }
-
-  runDropdownSync();
 
   window.addEventListener("load", rerunActiveSync);
   window.addEventListener("resize", rerunActiveSync);

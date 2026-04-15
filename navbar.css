@@ -8,7 +8,7 @@
   --topbar-text: rgba(0, 32, 46, 0.88);
   --topbar-text-soft: rgba(255,255,255,0.76);
   --topbar-hover: #f00303;
-  --topbar-pad-x: 5rem;
+  --topbar-pad-x: 2rem;
   --topbar-link-gap: 28px;
   --topbar-z: 300;
   
@@ -52,8 +52,8 @@
 
 .topbar-nav__left{
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: flex-end;
+  gap: 44px;
   flex: 0 0 auto;
   min-width: 0;
 }
@@ -85,7 +85,7 @@
 .topbar-nav__menu-btn span{
   display: block;
   width: 22px;
-  height: 2px;
+  height: 3px;
   border-radius: 999px;
   background: rgba(0, 32, 46, 0.88);
 }
@@ -100,9 +100,10 @@
 
 .topbar-nav__logo-box img{
   display: block;
-  height: 42px;
+  height: 48px;
   width: auto;
   object-fit: contain;
+  margin-bottom: 2px;
 }
 
 /* ===================== RIGHT SIDE LINKS ===================== */
@@ -114,7 +115,7 @@
 
   /* 👇 this aligns to your page content */
   padding-left: calc((100vw - 1400px) / 2);
-  margin-left: 2rem;
+  margin-left: 0rem;
 }
 
 .topbar-nav__item{
@@ -284,7 +285,7 @@
   grid-template-columns: repeat(2, minmax(240px, 1fr));
   gap: 12px 26px;
   align-items: start;
-  margin-left: 5rem;
+  margin-left: 2rem;
 }
 
 .topbar-dropdown__links a{
@@ -345,7 +346,16 @@ body{
 */
 
 /* ===================== TABLET ===================== */
+@media (max-width: 1400px){
+  :root{
+    --topbar-link-gap: 20px;
+    --topbar-pad-x: 18px;
+  }
+  .topbar-nav__left {
+    margin-right: 2rem;
+  }
 
+}
 @media (max-width: 1200px){
   :root{
     --topbar-link-gap: 20px;

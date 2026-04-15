@@ -1,40 +1,26 @@
-const DROPDOWN_ALIGNMENT_MIN = 1600;
-
-function shouldUsePerItemDropdownAlignment() {
-  return window.innerWidth >= DROPDOWN_ALIGNMENT_MIN;
-}
-
-function syncDropdownLinksStart(triggerItem = null) {
+function syncDropdownLinksStart() {
   const wrap = document.querySelector(".topbar-nav-wrap");
-  if (!wrap) return;
+  const firstLink = document.querySelector(".topbar-nav__links .topbar-nav__link");
+
+  if (!wrap || !firstLink) return;
 
   const wrapRect = wrap.getBoundingClientRect();
-
-  // large screens: align to hovered/open item
-  if (shouldUsePerItemDropdownAlignment() && triggerItem) {
-    const itemRect = triggerItem.getBoundingClientRect();
-    const start = itemRect.left - wrapRect.left;
-    document.documentElement.style.setProperty("--dropdown-links-start", `${start}px`);
-    return;
-  }
-
-  // smaller screens: use original first-link alignment
-  const firstLink = document.querySelector(".topbar-nav__links .topbar-nav__link");
-  if (!firstLink) return;
-
   const linkRect = firstLink.getBoundingClientRect();
+
   const start = linkRect.left - wrapRect.left;
   document.documentElement.style.setProperty("--dropdown-links-start", `${start}px`);
 }
 
-function runDropdownSync(triggerItem = null) {
-  syncDropdownLinksStart(triggerItem);
+function runDropdownSync() {
+  // run now
+  syncDropdownLinksStart();
 
+  // run again after layout settles
   requestAnimationFrame(() => {
-    syncDropdownLinksStart(triggerItem);
+    syncDropdownLinksStart();
 
     requestAnimationFrame(() => {
-      syncDropdownLinksStart(triggerItem);
+      syncDropdownLinksStart();
     });
   });
 }
@@ -50,7 +36,6 @@ function initTopbarVersion() {
   const dropdowns = wrap.querySelectorAll(".topbar-dropdown");
 
   let closeTimer = null;
-  let activeDropdownItem = null;
 
   function clearCloseTimer() {
     if (closeTimer) {
@@ -60,31 +45,22 @@ function initTopbarVersion() {
   }
 
   function closeAll() {
-    activeDropdownItem = null;
-
     dropdownItems.forEach((item) => item.classList.remove("is-open"));
     dropdowns.forEach((panel) => panel.classList.remove("is-open"));
-
-    runDropdownSync();
   }
 
   function openPanel(name) {
     clearCloseTimer();
 
-    let matchedItem = null;
-
     dropdownItems.forEach((item) => {
-      const isActive = item.dataset.dd === name;
-      item.classList.toggle("is-open", isActive);
-      if (isActive) matchedItem = item;
+      item.classList.toggle("is-open", item.dataset.dd === name);
     });
 
     dropdowns.forEach((panel) => {
       panel.classList.toggle("is-open", panel.dataset.panel === name);
     });
 
-    activeDropdownItem = matchedItem;
-    runDropdownSync(activeDropdownItem);
+    runDropdownSync();
   }
 
   function scheduleClose(delay = 90) {
@@ -137,17 +113,16 @@ function initTopbarVersion() {
     }
   });
 
-  function rerunActiveSync() {
-    runDropdownSync(activeDropdownItem);
-  }
-
+  // critical: sync right after init
   runDropdownSync();
 
-  window.addEventListener("load", rerunActiveSync);
-  window.addEventListener("resize", rerunActiveSync);
+  // sync after full page load too
+  window.addEventListener("load", runDropdownSync);
+  window.addEventListener("resize", runDropdownSync);
 
+  // if fonts load late, sync again
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(rerunActiveSync).catch(() => {});
+    document.fonts.ready.then(runDropdownSync).catch(() => {});
   }
 
   return true;
