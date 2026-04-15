@@ -534,6 +534,7 @@ body{
   .topbar-nav__logo-box{
     position: relative;
     z-index: 40;
+    
   }
 
   .topbar-mobile-menu{
@@ -567,6 +568,7 @@ body{
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     background: #fff;
+     padding: 0rem 0.5rem;
 
     opacity: 0;
     visibility: hidden;
@@ -607,7 +609,7 @@ body{
 
     color: rgba(0, 32, 46, 0.88);
     text-decoration: none;
-    text-transform: uppercase;
+    text-transform: none;
     text-align: left;
 
     font-size: 13px;
@@ -618,6 +620,23 @@ body{
     cursor: pointer;
     appearance: none;
   }
+.topbar-mobile-menu__item.is-sub{
+  min-height: 60px;
+  padding: 0;
+
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: none;
+
+  color: rgba(0, 32, 46, 0.75);
+  border-bottom: 1px solid rgba(0, 32, 46, 0.05);
+}
+
+/* subtle indent */
+.topbar-mobile-menu__nav .is-sub{
+  padding-left: 6px;
+}
 
   .topbar-mobile-menu__item svg{
     width: 18px;
@@ -703,7 +722,7 @@ body{
   }
 
   .topbar-mobile-menu__item{
-    min-height: 54px;
-    font-size: 12px;
+    min-height: 74px;
+    font-size: 22px;
   }
 }
