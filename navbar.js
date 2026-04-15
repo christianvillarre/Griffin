@@ -1,7 +1,12 @@
 const DROPDOWN_ALIGNMENT_MIN = 1600;
+const MOBILE_BREAKPOINT = 860;
 
 function shouldUsePerItemDropdownAlignment() {
   return window.innerWidth >= DROPDOWN_ALIGNMENT_MIN;
+}
+
+function isMobileNav() {
+  return window.innerWidth <= MOBILE_BREAKPOINT;
 }
 
 function syncDropdownLinksStart(triggerItem = null) {
@@ -10,7 +15,6 @@ function syncDropdownLinksStart(triggerItem = null) {
 
   const wrapRect = wrap.getBoundingClientRect();
 
-  // large screens: align to hovered/open item
   if (shouldUsePerItemDropdownAlignment() && triggerItem) {
     const itemRect = triggerItem.getBoundingClientRect();
     const start = itemRect.left - wrapRect.left;
@@ -18,7 +22,6 @@ function syncDropdownLinksStart(triggerItem = null) {
     return;
   }
 
-  // smaller screens: use original first-link alignment
   const firstLink = document.querySelector(".topbar-nav__links .topbar-nav__link");
   if (!firstLink) return;
 
@@ -49,14 +52,58 @@ function initTopbarVersion() {
   const simpleItems = wrap.querySelectorAll(".topbar-nav__item:not(.has-dd)");
   const dropdowns = wrap.querySelectorAll(".topbar-dropdown");
 
+  const menuBtn = document.getElementById("topbarMenuBtn");
+  const mobileMenu = document.getElementById("topbarMobileMenu");
+  const mobileScreens = mobileMenu ? mobileMenu.querySelectorAll(".topbar-mobile-menu__screen") : [];
+  const mobileOpenButtons = mobileMenu ? mobileMenu.querySelectorAll("[data-mobile-open]") : [];
+  const mobileBackButtons = mobileMenu ? mobileMenu.querySelectorAll("[data-mobile-back]") : [];
+
   let closeTimer = null;
   let activeDropdownItem = null;
+  let mobileMenuOpen = false;
 
   function clearCloseTimer() {
     if (closeTimer) {
       clearTimeout(closeTimer);
       closeTimer = null;
     }
+  }
+
+  function showMobileScreen(name) {
+    if (!mobileMenu) return;
+
+    mobileScreens.forEach((screen) => {
+      screen.classList.toggle("is-active", screen.dataset.screen === name);
+    });
+  }
+
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+
+    mobileMenuOpen = true;
+    wrap.classList.add("is-mobile-menu-open");
+    document.body.classList.add("topbar-mobile-lock");
+    menuBtn?.setAttribute("aria-label", "Close menu");
+    menuBtn?.setAttribute("aria-expanded", "true");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    showMobileScreen("main");
+  }
+
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+
+    mobileMenuOpen = false;
+    wrap.classList.remove("is-mobile-menu-open");
+    document.body.classList.remove("topbar-mobile-lock");
+    menuBtn?.setAttribute("aria-label", "Open menu");
+    menuBtn?.setAttribute("aria-expanded", "false");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    showMobileScreen("main");
+  }
+
+  function toggleMobileMenu() {
+    if (mobileMenuOpen) closeMobileMenu();
+    else openMobileMenu();
   }
 
   function closeAll() {
@@ -95,30 +142,89 @@ function initTopbarVersion() {
   dropdownItems.forEach((item) => {
     const name = item.dataset.dd;
 
-    item.addEventListener("mouseenter", () => openPanel(name));
-    item.addEventListener("mouseleave", () => scheduleClose());
-    item.addEventListener("focusin", () => openPanel(name));
+    item.addEventListener("mouseenter", () => {
+      if (isMobileNav()) return;
+      openPanel(name);
+    });
+
+    item.addEventListener("mouseleave", () => {
+      if (isMobileNav()) return;
+      scheduleClose();
+    });
+
+    item.addEventListener("focusin", () => {
+      if (isMobileNav()) return;
+      openPanel(name);
+    });
   });
 
   simpleItems.forEach((item) => {
-    item.addEventListener("mouseenter", closeAll);
-    item.addEventListener("focusin", closeAll);
+    item.addEventListener("mouseenter", () => {
+      if (isMobileNav()) return;
+      closeAll();
+    });
+
+    item.addEventListener("focusin", () => {
+      if (isMobileNav()) return;
+      closeAll();
+    });
   });
 
   dropdowns.forEach((panel) => {
-    panel.addEventListener("mouseenter", clearCloseTimer);
-    panel.addEventListener("mouseleave", () => scheduleClose());
+    panel.addEventListener("mouseenter", () => {
+      if (isMobileNav()) return;
+      clearCloseTimer();
+    });
+
+    panel.addEventListener("mouseleave", () => {
+      if (isMobileNav()) return;
+      scheduleClose();
+    });
   });
 
-  wrap.addEventListener("mouseleave", () => scheduleClose(0));
-  wrap.addEventListener("mouseenter", clearCloseTimer);
+  wrap.addEventListener("mouseleave", () => {
+    if (isMobileNav()) return;
+    scheduleClose(0);
+  });
+
+  wrap.addEventListener("mouseenter", () => {
+    if (isMobileNav()) return;
+    clearCloseTimer();
+  });
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener("click", () => {
+      if (!isMobileNav()) return;
+      toggleMobileMenu();
+    });
+  }
+
+  mobileOpenButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const screen = btn.dataset.mobileOpen;
+      if (!screen) return;
+      showMobileScreen(screen);
+    });
+  });
+
+  mobileBackButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      showMobileScreen("main");
+    });
+  });
 
   document.addEventListener("click", (e) => {
-    if (!wrap.contains(e.target)) closeAll();
+    if (!wrap.contains(e.target)) {
+      closeAll();
+      if (mobileMenuOpen) closeMobileMenu();
+    }
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeAll();
+    if (e.key === "Escape") {
+      closeAll();
+      if (mobileMenuOpen) closeMobileMenu();
+    }
   });
 
   const currentPath = window.location.pathname.endsWith("/")
@@ -138,13 +244,22 @@ function initTopbarVersion() {
   });
 
   function rerunActiveSync() {
-    runDropdownSync(activeDropdownItem);
+    if (!isMobileNav()) {
+      runDropdownSync(activeDropdownItem);
+    }
+  }
+
+  function handleResize() {
+    if (!isMobileNav() && mobileMenuOpen) {
+      closeMobileMenu();
+    }
+    rerunActiveSync();
   }
 
   runDropdownSync();
 
   window.addEventListener("load", rerunActiveSync);
-  window.addEventListener("resize", rerunActiveSync);
+  window.addEventListener("resize", handleResize);
 
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(rerunActiveSync).catch(() => {});

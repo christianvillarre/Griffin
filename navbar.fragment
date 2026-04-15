@@ -125,4 +125,93 @@
       </div>
     </div>
   </div>
+
+
+  <!-- MOBILE FULL MENU -->
+  <div class="topbar-mobile-menu" id="topbarMobileMenu" aria-hidden="true">
+    <div class="topbar-mobile-menu__screen is-active" data-screen="main">
+      <nav class="topbar-mobile-menu__nav" aria-label="Mobile primary navigation">
+        <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="consulting">
+          <span>Technical Consulting</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="advisory">
+          <span>Advisory Services</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="affiliates">
+          <span>Affiliate Organizations</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <a class="topbar-mobile-menu__item" href="/about.html">About</a>
+        <a class="topbar-mobile-menu__item" href="/news.html">News</a>
+        <a class="topbar-mobile-menu__item" href="/contact.html">Contact</a>
+      </nav>
+    </div>
+
+    <div class="topbar-mobile-menu__screen" data-screen="consulting">
+      <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to menu</span>
+      </button>
+
+      <nav class="topbar-mobile-menu__nav" aria-label="Technical Consulting submenu">
+        <a class="topbar-mobile-menu__item" href="/technical-consulting.html">Technical Consulting</a>
+        <a class="topbar-mobile-menu__item" href="/technical-consulting/ndt-level-iii-consulting-support.html">NDT Level III Consulting &amp; Support</a>
+        <a class="topbar-mobile-menu__item" href="/technical-consulting/advanced-ndt-subject-matter-experts.html">Advanced NDT Subject Matter Experts</a>
+        <a class="topbar-mobile-menu__item" href="/technical-consulting/ndt-written-practice-review-development.html">NDT Written Practice Review and Development</a>
+        <a class="topbar-mobile-menu__item" href="/technical-consulting/advanced-ndt-training.html">Next Level Advanced NDT Training Programs</a>
+        <a class="topbar-mobile-menu__item" href="/technical-consulting/advanced-ndt-programs-procedures.html">Advanced NDT Technology Programs and Procedures</a>
+        <a class="topbar-mobile-menu__item" href="/technical-consulting/automation-robotics-imaging-systems.html">Automation, Robotics, and Advanced Imaging Systems</a>
+      </nav>
+    </div>
+
+    <div class="topbar-mobile-menu__screen" data-screen="advisory">
+      <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to menu</span>
+      </button>
+
+      <nav class="topbar-mobile-menu__nav" aria-label="Advisory Services submenu">
+        <a class="topbar-mobile-menu__item" href="/advisory-services.html">Advisory Services</a>
+        <a class="topbar-mobile-menu__item" href="/business-advisory/mergers-acquisitions-support.html">Mergers &amp; Acquisition Support</a>
+        <a class="topbar-mobile-menu__item" href="/business-advisory/talent-acquisition-assessment.html">Talent Acquisition &amp; Assessment</a>
+        <a class="topbar-mobile-menu__item" href="/business-advisory/corporate-development-strategic-planning.html">Corporate Development &amp; Strategic Planning</a>
+        <a class="topbar-mobile-menu__item" href="/business-advisory/business-development-client-strategies.html">Business Development &amp; Client Strategies</a>
+        <a class="topbar-mobile-menu__item" href="/business-advisory/capital-acquisition.html">Capital Acquisition</a>
+      </nav>
+    </div>
+
+    <div class="topbar-mobile-menu__screen" data-screen="affiliates">
+      <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to menu</span>
+      </button>
+
+      <nav class="topbar-mobile-menu__nav" aria-label="Affiliate Organizations submenu">
+        <a class="topbar-mobile-menu__item" href="/affiliates.html">Affiliate Organizations</a>
+        <a class="topbar-mobile-menu__item" href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
+        <a class="topbar-mobile-menu__item" href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
+        <a class="topbar-mobile-menu__item" href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
+        <a class="topbar-mobile-menu__item" href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
+      </nav>
+    </div>
+  </div>
+
+
 </header>
