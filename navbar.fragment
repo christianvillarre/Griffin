@@ -213,5 +213,87 @@
     </div>
   </div>
 
+<!-- DESKTOP MENU OVERLAY -->
+<div class="topbar-desktop-menu" id="topbarDesktopMenu" aria-hidden="true">
+  <div class="topbar-desktop-menu__inner">
+    <div class="topbar-desktop-menu__left" role="tablist" aria-label="Desktop menu sections">
+      <button class="topbar-desktop-menu__main is-active" type="button" data-desktop-menu="consulting" aria-selected="true">
+        Technical Consulting
+      </button>
 
+      <button class="topbar-desktop-menu__main" type="button" data-desktop-menu="advisory" aria-selected="false">
+        Advisory Services
+      </button>
+
+      <button class="topbar-desktop-menu__main" type="button" data-desktop-menu="affiliates" aria-selected="false">
+        Affiliate Organizations
+      </button>
+
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/about.html">
+        About
+      </a>
+
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/news.html">
+        News
+      </a>
+
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/contact.html">
+        Contact
+      </a>
+    </div>
+
+    <div class="topbar-desktop-menu__right">
+      <div class="topbar-desktop-menu__panel is-active" data-desktop-panel="consulting">
+        <div class="topbar-desktop-menu__eyebrow">Technical Consulting</div>
+        <h4 class="topbar-desktop-menu__title">Technical Consulting</h4>
+        <p class="topbar-desktop-menu__desc">
+          Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.
+        </p>
+
+        <div class="topbar-desktop-menu__links">
+          <a href="/technical-consulting.html">Technical Consulting Overview</a>
+          <a href="/technical-consulting/ndt-level-iii-consulting-support.html">NDT Level III Consulting &amp; Support</a>
+          <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html">Advanced NDT Subject Matter Experts</a>
+          <a href="/technical-consulting/ndt-written-practice-review-development.html">NDT Written Practice Review and Development</a>
+          <a href="/technical-consulting/advanced-ndt-training.html">Next Level Advanced NDT Training Programs</a>
+          <a href="/technical-consulting/advanced-ndt-programs-procedures.html">Advanced NDT Technology Programs and Procedures</a>
+          <a href="/technical-consulting/automation-robotics-imaging-systems.html">Automation, Robotics, and Advanced Imaging Systems</a>
+        </div>
+      </div>
+
+      <div class="topbar-desktop-menu__panel" data-desktop-panel="advisory">
+        <div class="topbar-desktop-menu__eyebrow">Business Advisory</div>
+        <h4 class="topbar-desktop-menu__title">Advisory Services</h4>
+        <p class="topbar-desktop-menu__desc">
+          Strategic advisory support for growth, transactions, leadership alignment, and operational execution across the industrial inspection ecosystem.
+        </p>
+
+        <div class="topbar-desktop-menu__links">
+          <a href="/advisory-services.html">Advisory Services Overview</a>
+          <a href="/business-advisory/mergers-acquisitions-support.html">Mergers &amp; Acquisition Support</a>
+          <a href="/business-advisory/talent-acquisition-assessment.html">Talent Acquisition &amp; Assessment</a>
+          <a href="/business-advisory/corporate-development-strategic-planning.html">Corporate Development &amp; Strategic Planning</a>
+          <a href="/business-advisory/business-development-client-strategies.html">Business Development &amp; Client Strategies</a>
+          <a href="/business-advisory/capital-acquisition.html">Capital Acquisition</a>
+        </div>
+      </div>
+
+      <div class="topbar-desktop-menu__panel" data-desktop-panel="affiliates">
+        <div class="topbar-desktop-menu__eyebrow">Affiliate Organizations</div>
+        <h4 class="topbar-desktop-menu__title">Affiliate Organizations</h4>
+        <p class="topbar-desktop-menu__desc">
+          Our trusted affiliate partners extend our capabilities across specialized disciplines, delivering complementary services and innovative solutions.
+        </p>
+
+        <div class="topbar-desktop-menu__links">
+          <a href="/affiliates.html">Affiliates Overview</a>
+          <a href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
+          <a href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
+          <a href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
+          <a href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </header>

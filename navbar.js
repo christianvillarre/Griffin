@@ -15,6 +15,7 @@ function syncDropdownLinksStart(triggerItem = null) {
 
   const wrapRect = wrap.getBoundingClientRect();
 
+  // large screens: align to hovered/open item
   if (shouldUsePerItemDropdownAlignment() && triggerItem) {
     const itemRect = triggerItem.getBoundingClientRect();
     const start = itemRect.left - wrapRect.left;
@@ -22,6 +23,7 @@ function syncDropdownLinksStart(triggerItem = null) {
     return;
   }
 
+  // smaller screens: use original first-link alignment
   const firstLink = document.querySelector(".topbar-nav__links .topbar-nav__link");
   if (!firstLink) return;
 
@@ -53,14 +55,20 @@ function initTopbarVersion() {
   const dropdowns = wrap.querySelectorAll(".topbar-dropdown");
 
   const menuBtn = document.getElementById("topbarMenuBtn");
+
   const mobileMenu = document.getElementById("topbarMobileMenu");
   const mobileScreens = mobileMenu ? mobileMenu.querySelectorAll(".topbar-mobile-menu__screen") : [];
   const mobileOpenButtons = mobileMenu ? mobileMenu.querySelectorAll("[data-mobile-open]") : [];
   const mobileBackButtons = mobileMenu ? mobileMenu.querySelectorAll("[data-mobile-back]") : [];
 
+  const desktopMenu = document.getElementById("topbarDesktopMenu");
+  const desktopMainItems = desktopMenu ? desktopMenu.querySelectorAll("[data-desktop-menu]") : [];
+  const desktopPanels = desktopMenu ? desktopMenu.querySelectorAll("[data-desktop-panel]") : [];
+
   let closeTimer = null;
   let activeDropdownItem = null;
   let mobileMenuOpen = false;
+  let desktopMenuOpen = false;
 
   function clearCloseTimer() {
     if (closeTimer) {
@@ -69,44 +77,7 @@ function initTopbarVersion() {
     }
   }
 
-  function showMobileScreen(name) {
-    if (!mobileMenu) return;
-
-    mobileScreens.forEach((screen) => {
-      screen.classList.toggle("is-active", screen.dataset.screen === name);
-    });
-  }
-
-  function openMobileMenu() {
-    if (!mobileMenu) return;
-
-    mobileMenuOpen = true;
-    wrap.classList.add("is-mobile-menu-open");
-    document.body.classList.add("topbar-mobile-lock");
-    menuBtn?.setAttribute("aria-label", "Close menu");
-    menuBtn?.setAttribute("aria-expanded", "true");
-    mobileMenu.setAttribute("aria-hidden", "false");
-    showMobileScreen("main");
-  }
-
-  function closeMobileMenu() {
-    if (!mobileMenu) return;
-
-    mobileMenuOpen = false;
-    wrap.classList.remove("is-mobile-menu-open");
-    document.body.classList.remove("topbar-mobile-lock");
-    menuBtn?.setAttribute("aria-label", "Open menu");
-    menuBtn?.setAttribute("aria-expanded", "false");
-    mobileMenu.setAttribute("aria-hidden", "true");
-    showMobileScreen("main");
-  }
-
-  function toggleMobileMenu() {
-    if (mobileMenuOpen) closeMobileMenu();
-    else openMobileMenu();
-  }
-
-  function closeAll() {
+  function closeAllDropdowns() {
     activeDropdownItem = null;
 
     dropdownItems.forEach((item) => item.classList.remove("is-open"));
@@ -136,66 +107,161 @@ function initTopbarVersion() {
 
   function scheduleClose(delay = 90) {
     clearCloseTimer();
-    closeTimer = setTimeout(closeAll, delay);
+    closeTimer = setTimeout(closeAllDropdowns, delay);
+  }
+
+  function showMobileScreen(name) {
+    if (!mobileMenu) return;
+
+    mobileScreens.forEach((screen) => {
+      screen.classList.toggle("is-active", screen.dataset.screen === name);
+    });
+  }
+
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+
+    mobileMenuOpen = true;
+    wrap.classList.add("is-mobile-menu-open");
+    document.body.classList.add("topbar-mobile-lock");
+    menuBtn?.setAttribute("aria-label", "Close menu");
+    menuBtn?.setAttribute("aria-expanded", "true");
+    mobileMenu.setAttribute("aria-hidden", "false");
+
+    showMobileScreen("main");
+    closeAllDropdowns();
+    closeDesktopMenu();
+  }
+
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+
+    mobileMenuOpen = false;
+    wrap.classList.remove("is-mobile-menu-open");
+    document.body.classList.remove("topbar-mobile-lock");
+    mobileMenu.setAttribute("aria-hidden", "true");
+
+    if (!desktopMenuOpen) {
+      menuBtn?.setAttribute("aria-label", "Open menu");
+      menuBtn?.setAttribute("aria-expanded", "false");
+    }
+
+    showMobileScreen("main");
+  }
+
+  function toggleMobileMenu() {
+    if (mobileMenuOpen) closeMobileMenu();
+    else openMobileMenu();
+  }
+
+  function setDesktopActive(name) {
+    if (!desktopMenu) return;
+
+    desktopMainItems.forEach((item) => {
+      const active = item.dataset.desktopMenu === name;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    desktopPanels.forEach((panel) => {
+      panel.classList.toggle("is-active", panel.dataset.desktopPanel === name);
+    });
+  }
+
+  function openDesktopMenu() {
+    if (!desktopMenu) return;
+
+    desktopMenuOpen = true;
+    wrap.classList.add("is-desktop-menu-open");
+    menuBtn?.setAttribute("aria-label", "Close menu");
+    menuBtn?.setAttribute("aria-expanded", "true");
+    desktopMenu.setAttribute("aria-hidden", "false");
+
+    setDesktopActive("consulting");
+    closeAllDropdowns();
+    closeMobileMenu();
+  }
+
+  function closeDesktopMenu() {
+    if (!desktopMenu) return;
+
+    desktopMenuOpen = false;
+    wrap.classList.remove("is-desktop-menu-open");
+    desktopMenu.setAttribute("aria-hidden", "true");
+
+    if (!mobileMenuOpen) {
+      menuBtn?.setAttribute("aria-label", "Open menu");
+      menuBtn?.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  function toggleDesktopMenu() {
+    if (desktopMenuOpen) closeDesktopMenu();
+    else openDesktopMenu();
   }
 
   dropdownItems.forEach((item) => {
     const name = item.dataset.dd;
 
     item.addEventListener("mouseenter", () => {
-      if (isMobileNav()) return;
+      if (isMobileNav() || desktopMenuOpen) return;
       openPanel(name);
     });
 
     item.addEventListener("mouseleave", () => {
-      if (isMobileNav()) return;
+      if (isMobileNav() || desktopMenuOpen) return;
       scheduleClose();
     });
 
     item.addEventListener("focusin", () => {
-      if (isMobileNav()) return;
+      if (isMobileNav() || desktopMenuOpen) return;
       openPanel(name);
     });
   });
 
   simpleItems.forEach((item) => {
     item.addEventListener("mouseenter", () => {
-      if (isMobileNav()) return;
-      closeAll();
+      if (isMobileNav() || desktopMenuOpen) return;
+      closeAllDropdowns();
     });
 
     item.addEventListener("focusin", () => {
-      if (isMobileNav()) return;
-      closeAll();
+      if (isMobileNav() || desktopMenuOpen) return;
+      closeAllDropdowns();
     });
   });
 
   dropdowns.forEach((panel) => {
     panel.addEventListener("mouseenter", () => {
-      if (isMobileNav()) return;
+      if (isMobileNav() || desktopMenuOpen) return;
       clearCloseTimer();
     });
 
     panel.addEventListener("mouseleave", () => {
-      if (isMobileNav()) return;
+      if (isMobileNav() || desktopMenuOpen) return;
       scheduleClose();
     });
   });
 
   wrap.addEventListener("mouseleave", () => {
-    if (isMobileNav()) return;
+    if (isMobileNav() || desktopMenuOpen) return;
     scheduleClose(0);
   });
 
   wrap.addEventListener("mouseenter", () => {
-    if (isMobileNav()) return;
+    if (isMobileNav() || desktopMenuOpen) return;
     clearCloseTimer();
   });
 
-  if (menuBtn && mobileMenu) {
+  if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      if (!isMobileNav()) return;
-      toggleMobileMenu();
+      if (isMobileNav()) {
+        if (desktopMenuOpen) closeDesktopMenu();
+        toggleMobileMenu();
+      } else {
+        if (mobileMenuOpen) closeMobileMenu();
+        toggleDesktopMenu();
+      }
     });
   }
 
@@ -213,17 +279,41 @@ function initTopbarVersion() {
     });
   });
 
+  desktopMainItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const name = item.dataset.desktopMenu;
+      if (!name) return;
+      setDesktopActive(name);
+    });
+
+    item.addEventListener("focusin", () => {
+      const name = item.dataset.desktopMenu;
+      if (!name) return;
+      setDesktopActive(name);
+    });
+
+    item.addEventListener("click", () => {
+      const name = item.dataset.desktopMenu;
+      if (!name) return;
+      setDesktopActive(name);
+    });
+  });
+
   document.addEventListener("click", (e) => {
     if (!wrap.contains(e.target)) {
-      closeAll();
+      closeAllDropdowns();
+
       if (mobileMenuOpen) closeMobileMenu();
+      if (desktopMenuOpen) closeDesktopMenu();
     }
   });
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      closeAll();
+      closeAllDropdowns();
+
       if (mobileMenuOpen) closeMobileMenu();
+      if (desktopMenuOpen) closeDesktopMenu();
     }
   });
 
@@ -244,7 +334,7 @@ function initTopbarVersion() {
   });
 
   function rerunActiveSync() {
-    if (!isMobileNav()) {
+    if (!isMobileNav() && !desktopMenuOpen) {
       runDropdownSync(activeDropdownItem);
     }
   }
@@ -253,6 +343,11 @@ function initTopbarVersion() {
     if (!isMobileNav() && mobileMenuOpen) {
       closeMobileMenu();
     }
+
+    if (isMobileNav() && desktopMenuOpen) {
+      closeDesktopMenu();
+    }
+
     rerunActiveSync();
   }
 
