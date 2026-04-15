@@ -6033,7 +6033,45 @@ riseTargets3.forEach((el, i) => {
 
 
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
 
+  document.querySelectorAll(".expertise-number").forEach((el) => {
+
+    const text = el.textContent;
+    const hasPlus = text.includes("+");
+    const hasDollar = text.includes("$");
+
+    const target = parseFloat(text.replace(/[^0-9.]/g, ""));
+    const obj = { val: 0 };
+
+    // 🎯 random duration (different finish times)
+    const randomDuration = gsap.utils.random(1.2, 4); // fast → slow mix
+
+    gsap.to(obj, {
+      val: target,
+      duration: randomDuration,
+      ease: "power3.out",
+
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%",
+        once: true
+      },
+
+      onUpdate: () => {
+        let value = Math.floor(obj.val);
+
+        if (hasDollar) value = "$" + value;
+        if (hasPlus) value = value + "+";
+
+        el.textContent = value;
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
