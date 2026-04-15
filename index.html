@@ -6039,18 +6039,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".expertise-number").forEach((el) => {
 
-    const text = el.textContent;
-    const hasPlus = text.includes("+");
-    const hasDollar = text.includes("$");
+    const text = el.textContent.trim();
 
-    const target = parseFloat(text.replace(/[^0-9.]/g, ""));
+    // extract parts
+    const prefix = text.match(/^\D+/)?.[0] || "";   // $ etc
+    const suffix = text.match(/[a-zA-Z+]+$/)?.[0] || ""; // M+ etc
+    const number = parseFloat(text.replace(/[^0-9.]/g, ""));
+
     const obj = { val: 0 };
 
-    // 🎯 random duration (different finish times)
-    const randomDuration = gsap.utils.random(1.2, 4); // fast → slow mix
+    const randomDuration = gsap.utils.random(1.2, 4);
 
     gsap.to(obj, {
-      val: target,
+      val: number,
       duration: randomDuration,
       ease: "power3.out",
 
@@ -6061,12 +6062,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
 
       onUpdate: () => {
-        let value = Math.floor(obj.val);
-
-        if (hasDollar) value = "$" + value;
-        if (hasPlus) value = value + "+";
-
-        el.textContent = value;
+        const value = Math.floor(obj.val);
+        el.textContent = `${prefix}${value}${suffix}`;
       }
     });
   });
