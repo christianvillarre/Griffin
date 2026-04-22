@@ -86,25 +86,37 @@ function initTopbarVersion() {
     runDropdownSync();
   }
 
-  function openPanel(name) {
-    clearCloseTimer();
+function openPanel(name) {
+  clearCloseTimer();
 
-    let matchedItem = null;
+  let matchedItem = null;
+  let matchedPanel = null;
 
-    dropdownItems.forEach((item) => {
-      const isActive = item.dataset.dd === name;
-      item.classList.toggle("is-open", isActive);
-      if (isActive) matchedItem = item;
-    });
+  dropdownItems.forEach((item) => {
+    const isActive = item.dataset.dd === name;
+    item.classList.toggle("is-open", isActive);
+    if (isActive) matchedItem = item;
+  });
 
-    dropdowns.forEach((panel) => {
-      panel.classList.toggle("is-open", panel.dataset.panel === name);
-    });
+  dropdowns.forEach((panel) => {
+    const isActive = panel.dataset.panel === name;
+    panel.classList.toggle("is-open", isActive);
+    if (isActive) matchedPanel = panel;
+  });
 
-    activeDropdownItem = matchedItem;
-    runDropdownSync(activeDropdownItem);
-  }
+if (matchedItem && matchedPanel) {
+  const wrapRect = wrap.getBoundingClientRect();
+  const link = matchedItem.querySelector(".topbar-nav__link");
+  const linkRect = link.getBoundingClientRect();
 
+  const INNER_PAD_LEFT = 28; // must match CSS padding-left
+  const left = (linkRect.left - wrapRect.left) - INNER_PAD_LEFT;
+
+  matchedPanel.style.left = `${left}px`;
+}
+
+  activeDropdownItem = matchedItem;
+}
   function scheduleClose(delay = 90) {
     clearCloseTimer();
     closeTimer = setTimeout(closeAllDropdowns, delay);
