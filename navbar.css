@@ -606,17 +606,17 @@ body{
 
     padding: 0;
     border: 0;
-    border-bottom: 1px solid rgba(0, 32, 46, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.935);
     background: transparent;
 
-    color: rgba(0, 32, 46, 0.88);
+    color: rgba(0, 0, 0, 0.88);
     text-decoration: none;
     text-transform: none;
     text-align: left;
 
     font-size: 22px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.02em;
     line-height: 1.25;
 
     cursor: pointer;
@@ -628,11 +628,11 @@ body{
 
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   text-transform: none;
 
-  color: rgba(0, 32, 46, 0.75);
-  border-bottom: 1px solid rgba(0, 32, 46, 0.05);
+  color: rgba(0, 0, 0, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.91);
 }
 
 /* subtle indent */
@@ -669,10 +669,10 @@ body{
     background: #fff;
 
     color: rgba(0, 32, 46, 0.88);
-    text-transform: uppercase;
-    font-size: 11px;
+  
+    font-size: 16px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.02em;
     cursor: pointer;
     appearance: none;
   }
