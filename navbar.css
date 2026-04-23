@@ -571,7 +571,7 @@ body{
     -webkit-overflow-scrolling: touch;
     background: #fff;
      padding: 0rem 0.5rem;
-
+    background: #f8f8f8;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -581,6 +581,7 @@ body{
       opacity .22s ease,
       transform .22s ease,
       visibility .22s ease;
+      
   }
 
   .topbar-mobile-menu__screen.is-active{
@@ -594,6 +595,7 @@ body{
     display: flex;
     flex-direction: column;
     padding: 18px 18px 40px;
+    
   }
 
   .topbar-mobile-menu__item{
@@ -606,8 +608,8 @@ body{
 
     padding: 0;
     border: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.935);
-    background: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.058);
+    background: #f8f8f8;
 
     color: rgba(0, 0, 0, 0.88);
     text-decoration: none;
@@ -615,12 +617,13 @@ body{
     text-align: left;
 
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.02em;
     line-height: 1.25;
 
     cursor: pointer;
     appearance: none;
+    font-family: 'zalando sans', sans-serif;
   }
 .topbar-mobile-menu__item.is-sub{
   min-height: 70px;
@@ -632,7 +635,7 @@ body{
   text-transform: none;
 
   color: rgba(0, 0, 0, 0.75);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.91);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.066);
 }
 
 /* subtle indent */
@@ -647,7 +650,7 @@ body{
   }
 
   .topbar-mobile-menu__item.has-children{
-    color: rgba(0, 32, 46, 0.88);
+    color: rgba(0, 0, 0, 0.88);
   }
 
   .topbar-mobile-menu__item:hover,
@@ -668,18 +671,18 @@ body{
     border-bottom: 1px solid rgba(0, 32, 46, 0.12);
     background: #fff;
 
-    color: rgba(0, 32, 46, 0.88);
-  
+    color: rgb(0, 32, 46);
+
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.02em;
     cursor: pointer;
     appearance: none;
   }
 
   .topbar-mobile-menu__back svg{
-    width: 17px;
-    height: 17px;
+    width: 20px;
+    height: 20px;
     flex: 0 0 auto;
   }
 
