@@ -244,7 +244,7 @@
 
     <div class="topbar-desktop-menu__right">
       <div class="topbar-desktop-menu__panel is-active" data-desktop-panel="consulting">
-        <div class="topbar-desktop-menu__eyebrow">Technical Consulting</div>
+        <!--<div class="topbar-desktop-menu__eyebrow">Technical Consulting</div>-->
         <h4 class="topbar-desktop-menu__title">Technical Consulting</h4>
         <p class="topbar-desktop-menu__desc">
           Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.
@@ -262,8 +262,8 @@
       </div>
 
       <div class="topbar-desktop-menu__panel" data-desktop-panel="advisory">
-        <div class="topbar-desktop-menu__eyebrow">Business Advisory</div>
-        <h4 class="topbar-desktop-menu__title">Advisory Services</h4>
+        <!--<div class="topbar-desktop-menu__eyebrow">Business Advisory</div>-->
+        <h4 class="topbar-desktop-menu__title">Business Advisory Services</h4>
         <p class="topbar-desktop-menu__desc">
           Strategic advisory support for growth, transactions, leadership alignment, and operational execution across the industrial inspection ecosystem.
         </p>
