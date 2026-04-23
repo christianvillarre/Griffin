@@ -891,7 +891,7 @@
 
       <article class="who-serve-card">
         <div class="who-serve-image">
-          <img src="/images/stock19.jpeg" alt="Service Providers">
+          <img src="/images/stock15.jpeg" alt="Service Providers">
         </div>
         <div class="who-serve-body">
           <h3>Service Providers</h3>
@@ -1298,7 +1298,7 @@
     <div class="split-feature-box">
 
       <div class="split-feature-media">
-        <img src="/images/stock28.jpeg" alt="Industrial inspection and advisory">
+        <img src="/images/stock32.jpeg" alt="Industrial inspection and advisory">
       </div>
 
       <div class="split-feature-content">
@@ -1343,7 +1343,7 @@
 .split-feature-box{
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  background:#0f3d51;
+  background:#ffffff;
   border:0px solid rgba(0,0,0,0.08);
   overflow:hidden;
 }
@@ -1363,7 +1363,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#52aaf2;
+  background:#52aaf2b3;
 }
 
 .split-feature-textbox{
@@ -1441,6 +1441,375 @@
 }
 </style>
 
+
+
+
+
+
+
+
+
+<section class="gif-framework-section">
+  <div class="gif-framework-inner">
+    <div class="gif-framework-header">
+      <h2>The Griffin Integrity Framework</h2>
+    </div>
+
+    <div class="gif-framework-tabs">
+      <button class="gif-framework-tab active">
+        <span class="gif-framework-number">1</span>
+
+        <div class="gif-framework-title-closed">Evaluate</div>
+
+        <div class="gif-framework-content">
+          <h3>Evaluate</h3>
+          <p>
+            Evaluate the full picture before action is taken. This phase focuses on understanding current
+            conditions, technical constraints, operational realities, inspection challenges, risk exposure,
+            existing procedures, and the larger business context so decisions begin from a grounded,
+            experience-driven point of view rather than assumptions.
+          </p>
+        </div>
+      </button>
+
+      <button class="gif-framework-tab">
+        <span class="gif-framework-number">2</span>
+
+        <div class="gif-framework-title-closed">Align</div>
+
+        <div class="gif-framework-content">
+          <h3>Align</h3>
+          <p>
+            Align stakeholders, priorities, and technical direction around the same objective. This step
+            ensures that business goals, compliance requirements, field execution, and long-term integrity
+            strategy are working together so the path forward is clear, realistic, and supported across teams.
+          </p>
+        </div>
+      </button>
+
+      <button class="gif-framework-tab">
+        <span class="gif-framework-number">3</span>
+
+        <div class="gif-framework-title-closed">Select</div>
+
+        <div class="gif-framework-content">
+          <h3>Select</h3>
+          <p>
+            Select the right tools, methods, technologies, and strategic approach for the application. Rather
+            than defaulting to what is familiar, this phase focuses on choosing what best fits the actual
+            challenge, performance expectations, risk profile, and operational environment.
+          </p>
+        </div>
+      </button>
+
+      <button class="gif-framework-tab">
+        <span class="gif-framework-number">4</span>
+
+        <div class="gif-framework-title-closed">Implement</div>
+
+        <div class="gif-framework-content">
+          <h3>Implement</h3>
+          <p>
+            Implement with structure, discipline, and technical clarity. This phase turns strategy into
+            execution through procedures, deployment planning, team coordination, and hands-on guidance so the
+            selected solution is applied effectively in the field and within the organization.
+          </p>
+        </div>
+      </button>
+
+      <button class="gif-framework-tab">
+        <span class="gif-framework-number">5</span>
+
+        <div class="gif-framework-title-closed">Optimize</div>
+
+        <div class="gif-framework-content">
+          <h3>Optimize</h3>
+          <p>
+            Optimize performance through refinement, feedback, and real-world learning. Once implementation is
+            underway, this stage focuses on improving efficiency, strengthening reliability, reducing friction,
+            and uncovering opportunities to create stronger long-term results.
+          </p>
+        </div>
+      </button>
+
+      <button class="gif-framework-tab">
+        <span class="gif-framework-number">6</span>
+
+        <div class="gif-framework-title-closed">Measure</div>
+
+        <div class="gif-framework-content">
+          <h3>Measure</h3>
+          <p>
+            Measure outcomes to confirm effectiveness and guide future decisions. This final phase looks at
+            technical performance, operational impact, business value, and strategic results so improvements can
+            be validated and momentum can continue with confidence.
+          </p>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const frameworkTabs = document.querySelectorAll('.gif-framework-tab');
+
+  frameworkTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      frameworkTabs.forEach(item => item.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+
+<style>
+.gif-framework-section{
+  padding: 110px 24px;
+  background: #ffffff;
+  color: #000000;
+  overflow: hidden;
+ font-family:'Zalando Sans', sans-serif;
+}
+
+.gif-framework-inner{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gif-framework-header{
+  margin-bottom: 42px;
+}
+
+.gif-framework-header h2{
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+.gif-framework-tabs{
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  min-height: 430px;
+}
+
+.gif-framework-tab{
+  position: relative;
+  flex: 0.8;
+  min-width: 108px;
+  min-height: 430px;
+  border: 1px solid rgba(255,255,255,0.08);
+    border-right: 1px #000000 solid;
+  border-radius: 0px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
+  color: #000000;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  padding: 26px 18px 22px;
+  transition:
+    flex 0.5s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.gif-framework-tab:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.16);
+  border-right: 6px #000000 solid;
+}
+
+.gif-framework-tab.active{
+  flex: 2.5;
+  padding: 26px 28px 28px;
+ border-right: 6px #000000 solid;
+
+}
+
+.gif-framework-number{
+  position: absolute;
+  left: 0px;
+  top: 10px;
+  z-index: 4;
+  font-size: 33px;
+  font-weight: 800;
+
+  color: rgba(41, 41, 41, 0.509);
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.gif-framework-tab.active .gif-framework-number{
+  left: 0x;
+  top: 14px;
+  color: #000000;
+}
+
+.gif-framework-title-closed{
+  position: absolute;
+  right: 10%;
+  bottom: 26px;
+  transform: translateX(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  transform-origin: center;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgba(0, 0, 0, 0.92);
+  opacity: 1;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.gif-framework-tab.active .gif-framework-title-closed{
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.gif-framework-content{
+  position: absolute;
+
+  right: 28px;
+  top: 72px;
+  opacity: 0;
+  transform: none;
+  transition: opacity 0.1s ease;
+  transition-delay: 0s;
+  pointer-events: none;
+}
+
+.gif-framework-tab.active .gif-framework-content{
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.4s;
+  pointer-events: auto;
+}
+
+.gif-framework-tab:not(.active) .gif-framework-content{
+  opacity: 0;
+  transform: none;
+  pointer-events: none;
+}
+
+.gif-framework-content h3{
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  font-family: "zalando sans", sans-serif;
+}
+
+.gif-framework-content p{
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(0,0,0,0.68);
+  max-width: 52ch;
+  font-family: "zalando sans", sans-serif;
+}
+
+
+
+@media (max-width: 1100px){
+  .gif-framework-tabs{
+    min-height: 380px;
+    gap: 14px;
+  }
+
+  .gif-framework-tab{
+    min-height: 380px;
+  }
+
+  .gif-framework-tab.active{
+    flex: 2.1;
+  }
+
+  .gif-framework-content{
+    top: 68px;
+  }
+
+  .gif-framework-content h3{
+    font-size: 32px;
+  }
+
+  .gif-framework-content p{
+    font-size: 14px;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 900px){
+  .gif-framework-tabs{
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .gif-framework-tab,
+  .gif-framework-tab.active{
+    min-height: 94px;
+    width: 100%;
+    flex: unset;
+    padding: 20px 22px;
+  }
+
+  .gif-framework-number{
+    left: 22px;
+    top: 18px;
+  }
+
+  .gif-framework-tab.active .gif-framework-number{
+    left: 22px;
+    top: 18px;
+  }
+
+  .gif-framework-title-closed{
+    left: 64px;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: initial;
+    font-size: 20px;
+  }
+
+  .gif-framework-content{
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin-top: 34px;
+  }
+
+  .gif-framework-tab.active{
+    min-height: 250px;
+  }
+
+  .gif-framework-content h3{
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+}
+
+.gif-framework-title-closed{
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.gif-framework-number{
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.38);
+  font-family: "zalando sans", sans-serif;
+}
+</style>
+
+
+
+
+</main></div>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="/navbar.js"></script>

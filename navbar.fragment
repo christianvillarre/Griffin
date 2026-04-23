@@ -279,7 +279,7 @@
       </div>
 
       <div class="topbar-desktop-menu__panel" data-desktop-panel="affiliates">
-        <div class="topbar-desktop-menu__eyebrow">Affiliate Organizations</div>
+         <!--<div class="topbar-desktop-menu__eyebrow">Affiliate Organizations</div>-->
         <h4 class="topbar-desktop-menu__title">Affiliate Organizations</h4>
         <p class="topbar-desktop-menu__desc">
           Our trusted affiliate partners extend our capabilities across specialized disciplines, delivering complementary services and innovative solutions.
