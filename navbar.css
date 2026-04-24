@@ -23,6 +23,7 @@
    
 }
 
+
 /* wrapper */
 .topbar-nav-wrap{
   position: fixed;
@@ -571,9 +572,9 @@ body{
     inset: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: #fff;
+        background: #f8f8f8;
      padding: 0rem 0.5rem;
-    background: #f8f8f8;
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -1150,4 +1151,32 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 .topbar-nav-wrap.is-desktop-menu-open .topbar-nav__logo-box img,
 .topbar-nav-wrap:has(.topbar-dropdown.is-open) .topbar-nav__logo-box img{
   filter: none; /* 🔥 restores original image */
+}
+
+@media (max-width: 860px){
+
+  /* stop navbar turning teal on mobile */
+  .topbar-nav-wrap:hover .topbar-nav,
+  .topbar-nav-wrap.is-desktop-menu-open .topbar-nav,
+  .topbar-nav-wrap:has(.topbar-dropdown.is-open) .topbar-nav{
+    background: #fff !important;
+    border-bottom-color: var(--topbar-border) !important;
+  }
+
+  /* keep text dark */
+  .topbar-nav-wrap:hover .topbar-nav__link,
+  .topbar-nav-wrap.is-desktop-menu-open .topbar-nav__link{
+    color: var(--topbar-text) !important;
+  }
+
+  /* keep hamburger dark */
+  .topbar-nav-wrap:hover .topbar-nav__menu-btn span,
+  .topbar-nav-wrap.is-desktop-menu-open .topbar-nav__menu-btn span{
+    background: rgba(0, 32, 46, 0.88) !important;
+  }
+
+  /* keep logo dark */
+  .topbar-nav__logo-box img{
+    filter: brightness(0) saturate(100%) invert(18%) sepia(35%) saturate(900%) hue-rotate(160deg) brightness(90%) contrast(95%) !important;
+  }
 }
