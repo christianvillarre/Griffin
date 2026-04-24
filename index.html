@@ -231,22 +231,22 @@
   }
 
 .simple-slider-block{
-  position: relative;
+  display: grid;
   width: 100%;
-  min-height: 520px; /* image + text room */
-  overflow: visible;
 }
 
 .simple-slide{
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1; /* 🔥 stack slides */
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
+  transition: opacity 1.2s ease;
 }
 
 .simple-slide.active{
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
   z-index: 2;
 }
 .simple-img-wrap{
@@ -538,7 +538,28 @@
     .simple-card{
       padding:22px;
     }
+
+
   }
+  @media (max-width: 760px){
+  .simple-slider-block{
+    min-height: 0 !important;
+    padding-bottom: 4rem;
+  }
+
+  .simple-img-wrap{
+    height: 260px !important;
+  }
+
+  .simple-slide img{
+    height: 100% !important;
+  }
+
+  .simple-slide h3,
+  .simple-slide-title{
+    margin-top: 14px !important;
+  }
+}
 </style>
 
 </head>
@@ -877,11 +898,12 @@
 /* responsive */
 @media (max-width: 1100px){
   .expertise-section{
-  background:#000000;
+  background:#063b58;
   color:#fff;
   padding:clamp(0px, 10vw, 0px) 0;
   padding-bottom: 80px;
 }
+
 
   .expertise-grid{
     grid-template-columns:repeat(2, 1fr);
@@ -1195,7 +1217,7 @@
   .industry-item{
   font-size:1rem;
   font-weight:500;
-  color:#111;
+  color:rgba(0, 32, 46, 0.88);
   line-height:1.35;
 }
   .services-tabs-section{
