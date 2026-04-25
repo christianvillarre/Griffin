@@ -55,7 +55,7 @@
 
 .topbar-nav__left{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 14px;
   flex: 0 0 auto;
   min-width: 0;
@@ -78,6 +78,7 @@
   cursor: pointer;
   flex: 0 0 auto;
   transition: transform .18s ease, opacity .18s ease;
+  transform: translateY(2px);
 }
 
 .topbar-nav__menu-btn:hover{
