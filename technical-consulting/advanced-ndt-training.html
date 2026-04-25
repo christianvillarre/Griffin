@@ -308,9 +308,10 @@
  
  <div id="scroll-container">
 <main>
+  <div class="hero-spacer">
 <section class="service-top-image">
-  <img src="/images/stock7.jpeg" alt="NDT consulting support">
-</section>
+  <img src="/images/stock31.jpeg" alt="NDT consulting support">
+</section></div>
 
 <section class="service-split-section">
   <div class="service-split-card">
@@ -348,33 +349,34 @@
 
 <style>
 .service-top-image{
-  width: 100%;
-  height: clamp(320px, 45vw, 45vh);
+  width: min(1400px, calc(100% - 40px)); /* 👈 max 1400 */
+  margin: 0 auto; /* 👈 centers the whole block */
+
+  height: clamp(320px, 45vw, 400px);
   position: relative;
   overflow: hidden;
-  background: #0d1d27;
+  background: #ffffff;
   box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+    margin-bottom: 2rem;
 }
-
 .service-top-image img{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
-  
-}
 
+}
+  .hero-spacer{
+  padding-top: 7rem;
+}
 .service-split-section{
   width: 100%;
   background: linear-gradient(
     to right,
-    #0d1d27 0%,
-    #0d1d27 36%,
-    #ffffff 36%,
+    #063959 0%,
+    #063959 calc(50% - 168px),
+    #ffffff calc(50% - 168px),
     #ffffff 100%
   );
 }
@@ -391,13 +393,14 @@
 
 .service-split-title{
   padding: clamp(1.75rem, 3vw, 3rem);
-  background: #0d1d27;
+  background: #063959;
   color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: clamp(220px, 20vw, 320px);
 }
+
 
 .service-split-content{
   padding: clamp(1.75rem, 3vw, 3rem);

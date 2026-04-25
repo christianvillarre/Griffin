@@ -66,63 +66,7 @@
 
    
     /* ================= ABOUT HERO ================= */
-    .service-top-image{
-      width: 100%;
-      height: clamp(420px, 58vw, 80vh);
-      position: relative;
-      overflow: hidden;
-      background: #0d1d27;
-      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
-    }
 
-    .service-top-image img{
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.72;
-    }
-
-    .service-top-image::after{
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,0.18) 0%,
-        rgba(0,0,0,0.24) 50%,
-        rgba(0,0,0,0.56) 100%
-      );
-    }
-
-    .service-top-image__title{
-      position: absolute;
-      left: 50%;
-      bottom: clamp(30px, 5vw, 56px);
-      transform: translateX(-50%);
-      width: min(1200px, calc(100% - 40px));
-      z-index: 2;
-    }
-
-    .service-eyebrow{
-      margin:0 0 14px;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,0.76);
-    }
-
-    .service-top-image__title h1{
-      margin: 0;
-      color: #fff;
-      font-size: clamp(2.5rem, 5vw, 5.5rem);
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      line-height: 0.95;
-      max-width: 14ch;
-    }
 
     /* ================= FULL WIDTH INTRO BAND ================= */
     .service-split-section{
@@ -705,26 +649,231 @@
   <div id="scroll-container">
     <main>
 
-<!-- ABOUT HERO -->
-<section class="service-top-image" id="about">
-  <img src="/images/stock12.jpeg" alt="Talent acquisition and assessment advisory">
+<div class="hero-spacer">
+<section class="service-top-image">
+  <img src="/images/stock41.jpeg" alt="NDT consulting support">
+</section></div>
 
-  <div class="service-top-image__title">
-    <p class="service-eyebrow">Business Advisory Services</p>
-    <h1>Talent Acquisition &amp; Assessment</h1>
-  </div>
-</section>
+<section class="service-split-section">
+  <div class="service-split-card">
+    <div class="service-split-title">
+      <!--<p class="service-eyebrow dark">Technical Consulting</p>-->
+      <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">›</span>
 
-<!-- FULL WIDTH DESCRIPTION WITH BLUEBG3 -->
-<section class="service-split-section about-intro-band">
-  <div class="about-intro-band__inner">
-    <div class="service-split-content about-intro-band__content">
+        <a href="/technical-consulting">Advisory Services</a>
+        
+      </nav>
+      <h1 class="service-title-box">
+        Talent Acquisition & Assessment
+      </h1>
+    </div>
+    
+    <div class="service-split-content">
+      
       <p class="service-subtitle-dark">
         Griffin Integrity helps organizations identify, evaluate, and secure the right talent for critical roles with a focus on technical fit, leadership capability, and long-term organizational value.
       </p>
+
+      <a href="#how-we-help" class="page-link">
+        <span>See How We Help</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+          <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
+
+
+
+<style>
+.service-top-image{
+  width: min(1400px, calc(100% - 40px)); /* 👈 max 1400 */
+  margin: 0 auto; /* 👈 centers the whole block */
+
+  height: clamp(320px, 45vw, 400px);
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+    margin-bottom: 2rem;
+    opacity: 1;
+}
+.service-top-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+   opacity: 1 !important;
+
+}
+  .hero-spacer{
+  padding-top: 7rem;
+}
+.service-split-section{
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #063959 0%,
+    #063959 calc(50% - 168px),
+    #ffffff calc(50% - 168px),
+    #ffffff 100%
+  );
+}
+
+.service-split-card{
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 36% 64%;
+  background: #fff;
+  overflow: hidden;
+  
+}
+
+.service-split-title{
+  padding: clamp(1.75rem, 3vw, 3rem);
+  background: #063959;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(220px, 20vw, 320px);
+}
+
+.service-split-content{
+  padding: clamp(1.75rem, 3vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  background: #fff;
+}
+
+.service-eyebrow.dark{
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.service-title-box{
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3.3rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+  color: #fff;
+  max-width: 10ch;
+  text-wrap: balance;
+}
+
+.service-subtitle-dark{
+  margin: 0;
+  max-width: 40ch;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.75;
+  color: rgba(17,17,17,0.72);
+  font-weight: 300;
+}
+
+.page-link{
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  color: var(--red);
+  text-decoration: none;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.page-link svg{
+  width: 18px;
+  height: 18px;
+  transition: transform .2s ease;
+}
+
+.page-link:hover{
+  transform: translateX(2px);
+}
+
+.page-link:hover svg{
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px){
+  .service-split-section{
+    background: #ffffff;
+  }
+
+  .service-split-card{
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .service-split-title,
+  .service-split-content{
+    min-height: auto;
+  }
+
+  .service-title-box{
+    max-width: none;
+  }
+}
+.breadcrumb{
+  position: static; /* 👈 key fix */
+  transform: none;
+  width: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  padding-bottom: 20px;
+}
+
+.breadcrumb a{
+  color: #cccccc;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb a:hover{
+  opacity: 1;
+  color: var(--red);
+}
+
+.breadcrumb-sep{
+  opacity: 0.4;
+}
+
+.breadcrumb-current{
+  color: #999; /* 👈 greyed out */
+  pointer-events: none;
+}
+
+.breadcrumb{
+  margin-bottom: 0;
+}
+</style>
+
+
 
 <!-- 2 GRID TITLE TEXT -->
 <section class="about-two-grid">

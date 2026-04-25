@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Griffin Integrity</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+  <link rel="stylesheet" href="/navbar.css" />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1200px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .page-link{
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      color: var(--red);
+      text-decoration: none;
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .page-link svg{
+      width:18px;
+      height:18px;
+      transition: transform .2s ease;
+    }
+
+    .page-link:hover{
+      transform: translateX(2px);
+    }
+
+    .page-link:hover svg{
+      transform: translateX(3px);
+    }
+
+   
+
+    /* ================= ABOUT HERO ================= */
+    .service-top-image{
+      width: 100%;
+      height: clamp(420px, 58vw, 80vh);
+      position: relative;
+      overflow: hidden;
+      background: #0d1d27;
+      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+    }
+
+    .service-top-image img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.72;
+    }
+
+    .service-top-image::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.24) 50%,
+        rgba(0,0,0,0.56) 100%
+      );
+    }
+
+    .service-top-image__title{
+      position: absolute;
+      left: 50%;
+      bottom: clamp(30px, 5vw, 56px);
+      transform: translateX(-50%);
+      width: min(1200px, calc(100% - 40px));
+      z-index: 2;
+    }
+
+    .service-eyebrow{
+      margin:0 0 14px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.76);
+    }
+
+    .service-top-image__title h1{
+      margin: 0;
+      color: #fff;
+      font-size: clamp(2.5rem, 5vw, 5.5rem);
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+      max-width: 14ch;
+    }
+
+    /* ================= FULL WIDTH INTRO BAND ================= */
+    .service-split-section{
+      width: 100%;
+    }
+
+    .about-intro-band{
+      background:
+        linear-gradient(rgba(5,35,48,0.74), rgba(5,35,48,0.74)),
+        url("/images/bluebg3.png") center/cover no-repeat;
+    }
+
+    .about-intro-band__inner{
+      width: 100%;
+    }
+
+    .service-split-content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .about-intro-band__content{
+      width: 100%;
+      max-width: none;
+      min-height: clamp(240px, 28vw, 360px);
+      padding: clamp(70px, 10vw, 120px) clamp(24px, 7vw, 90px);
+      align-items: center;
+      text-align: center;
+    }
+
+    .service-subtitle-dark{
+      margin: 0;
+      max-width: 60ch;
+      font-size: clamp(1.15rem, 1.75vw, 1.75rem);
+      line-height: 1.75;
+      color: rgba(255,255,255,0.92);
+      font-weight: 300;
+    }
+
+    /* ================= 2 GRID TEXT ================= */
+    .about-two-grid{
+      background: #fff;
+      padding: clamp(72px, 8vw, 110px) 0;
+    }
+
+    .about-two-grid__grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(32px, 5vw, 70px);
+    }
+
+    .about-two-grid__item h2{
+      margin: 0 0 18px;
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      font-weight: 400;
+      color: #111;
+    }
+
+    .about-two-grid__item p{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(17,17,17,0.76);
+      max-width: 50ch;
+    }
+
+    /* ================= TEXT BLOCK ================= */
+    .help-section{
+      background:#fff;
+    }
+
+    .help-head{
+      margin-bottom: clamp(24px, 3vw, 46px);
+      border-top:1px solid black;
+    }
+
+    .help-head h2{
+      margin:0;
+      font-size: clamp(1.8rem, 2vw, 2.2rem);
+      line-height:0.96;
+      letter-spacing:-0.035em;
+      font-weight:300;
+      max-width:26ch;
+      margin-top: 24px;
+    }
+
+    .help-text-block{
+      width: 100%;
+      margin-bottom: 5rem;
+      column-count: 2;
+      column-gap: 60px;
+      column-fill: balance;
+      font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height: 1.8;
+      color: rgba(17,17,17,0.8);
+    }
+
+    .help-text-block p{
+      margin: 0;
+    }
+
+    /* ================= VALUE GRID ================= */
+    .help-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:0;
+    }
+
+    .help-card{
+      padding: 28px 26px 30px;
+      min-height: 250px;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .help-card:hover{
+      background:#7777771b;
+      color:#000000;
+    }
+
+    .help-card:hover .help-card__title,
+    .help-card:hover .help-list p{
+      color:#000000;
+    }
+
+    .help-card:hover .help-arrow{
+      color:var(--red);
+      transform: translateX(4px);
+    }
+
+    .help-card__title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 18px;
+      font-size: clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height:1.2;
+      font-weight:600;
+      color:#111;
+      transition: color .25s ease;
+    }
+
+    .help-arrow{
+      flex:0 0 auto;
+      width:22px;
+      height:22px;
+      color:#111;
+      transition: color .25s ease, transform .25s ease;
+    }
+
+    .help-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .help-list p{
+      margin: 0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,0.78);
+      transition: color .25s ease;
+    }
+
+    /* ================= IMAGE FEATURE SECTION ================= */
+    .about-end-feature{
+  position: relative;
+  min-height: clamp(460px, 55vw, 760px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.about-end-feature__image{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.about-end-feature::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(5,35,48,0.28) 0%,
+    rgba(5,35,48,0.34) 30%,
+    rgba(255,255,255,0.00) 72%,
+    rgba(255,255,255,1) 100%
+  );
+  z-index: 1;
+}
+
+.about-end-feature__overlay{
+  position: relative;
+  z-index: 2;
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.about-end-feature__card{
+  width: min(430px, 46%);
+  background: rgba(255,255,255,0.96);
+  padding: clamp(28px, 4vw, 42px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.about-end-feature__card h2{
+  margin: 0 0 14px;
+  color: #111;
+  font-size: clamp(1.7rem, 2.5vw, 2.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  max-width: 14ch;
+}
+
+.about-end-feature__card p{
+  margin: 0;
+  color: rgba(17,17,17,0.76);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 900px){
+  .about-end-feature{
+    min-height: 560px;
+    align-items: end;
+    padding-bottom: 28px;
+  }
+
+  .about-end-feature::after{
+    background: linear-gradient(
+      180deg,
+      rgba(5,35,48,0.32) 0%,
+      rgba(5,35,48,0.18) 35%,
+      rgba(255,255,255,0.88) 100%
+    );
+  }
+
+  .about-end-feature__card{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+    /* ================= BOTTOM 2 GRID ================= */
+    .about-bottom-grid{
+      background: #fff;
+      padding: clamp(60px, 7vw, 100px) 0;
+    }
+
+    .about-bottom-grid__grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: clamp(28px, 4vw, 60px);
+      border-top: 1px solid rgba(17,17,17,0.1);
+      padding-top: 32px;
+    }
+
+    .about-bottom-grid__item h3{
+      margin: 0 0 14px;
+      font-size: clamp(1.2rem, 1.7vw, 1.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #111;
+    }
+
+    .about-bottom-grid__item p{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(17,17,17,0.74);
+      max-width: 48ch;
+    }
+
+    /* ================= INSIGHT SECTION ================= */
+    .insight-grid-section{
+      background:#ffffff;
+      color:#111111;
+      padding: clamp(72px, 5vw, 120px) 0;
+    }
+
+    .insight-grid-cards{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .insight-card{
+      display: flex;
+    }
+
+    .insight-card-box{
+      width: 100%;
+      background:#ffffff;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .insight-card-box:hover{
+      background: var(--navy);
+    }
+
+    .insight-card-media{
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .insight-card-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .insight-card-body{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .insight-card-title{
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin: 0;
+      font-size: clamp(18px, 1.2vw, 22px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: #111111;
+      transition: color 0.3s ease;
+    }
+
+    .insight-card-text{
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(17,17,17,0.78);
+      transition: color 0.3s ease;
+    }
+
+    .insight-card-box:hover .insight-card-title,
+    .insight-card-box:hover .insight-card-text{
+      color: #ffffff;
+    }
+
+    .title-arrow{
+      display: inline-flex;
+      color: #111111;
+      transition: color 0.3s ease, transform 0.3s ease;
+      transform: translateY(0px);
+    }
+
+    .insight-card-box:hover .title-arrow{
+      color: #F00303;
+    }
+
+    .title-arrow svg{
+      width: 26px;
+      height: 26px;
+    }
+
+    /* ================= EXPLORE LINKS ================= */
+    .explore-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px 40px;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+    }
+
+    .explore-link{
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      color: #111;
+      padding: 10px 0;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .explore-link:hover{
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .explore-link .help-arrow{
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .explore-link:hover .help-arrow{
+      transform: translateX(4px);
+      color: #F00303;
+    }
+
+    /* ================= CTA ================= */
+    .advisor-cta-section{
+      padding: 0 0 5rem;
+      background: #fff;
+    }
+
+    .advisor-cta{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      border-top: 1px solid rgba(17,17,17,0.08);
+    }
+
+    .advisor-cta__content h2{
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 300;
+      color: #111;
+    }
+
+    .advisor-cta__button{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 0 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid #111;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .advisor-cta__button:hover{
+      background: var(--navy);
+      border-color: var(--navy);
+      transform: translateY(-1px);
+    }
+
+    .advisor-cta__icon{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .advisor-cta__icon svg{
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 1180px){
+      .help-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1100px){
+      .insight-grid-cards{
+        grid-template-columns: 1fr;
+      }
+
+      .insight-card-box{
+        padding: 2.25rem;
+      }
+
+      .insight-card-media{
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 900px){
+      .about-two-grid__grid,
+      .about-bottom-grid__grid{
+        grid-template-columns: 1fr;
+      }
+
+      .about-end-feature{
+        min-height: 560px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(5,35,48,0.32) 0%,
+            rgba(5,35,48,0.18) 35%,
+            rgba(255,255,255,0.88) 100%
+          ),
+          url("/images/stock4.png") center/cover no-repeat;
+        align-items: end;
+        padding-bottom: 28px;
+      }
+
+      .about-end-feature__card{
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .about-intro-band__content{
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 768px){
+      .help-text-block{
+        column-count: 1;
+      }
+
+      .explore-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .advisor-cta{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2.25rem 0;
+      }
+
+      .advisor-cta__button{
+        width: auto;
+      }
+    }
+
+    @media (max-width: 700px){
+      .page-wrap,
+      .service-top-image__title{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .help-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .help-card{
+        min-height:auto;
+      }
+    }
+
+    @media (max-width: 760px){
+      .insight-grid-section{
+        padding: 64px 0;
+      }
+
+      .insight-card-box{
+        padding: 1.5rem;
+      }
+
+      .insight-card-media{
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ <!-- NAVBAR -->
+<div id="site-navbar"></div>
+
+
+  <div id="scroll-container">
+    <main>
+
+ <!-- ABOUT HERO -->
+<section class="service-top-image" id="about">
+  <img src="/images/stock13.jpeg" alt="Business development and client strategy advisory">
+
+  <div class="service-top-image__title">
+    <p class="service-eyebrow">Business Advisory Services</p>
+    <h1>Business Development &amp; Client Strategies</h1>
+  </div>
+</section>
+
+<!-- FULL WIDTH DESCRIPTION WITH BLUEBG3 -->
+<section class="service-split-section about-intro-band">
+  <div class="about-intro-band__inner">
+    <div class="service-split-content about-intro-band__content">
+      <p class="service-subtitle-dark">
+        Griffin Integrity helps organizations strengthen how they pursue opportunities, engage clients, and position their services with greater clarity, consistency, and strategic intent.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 GRID TITLE TEXT -->
+<section class="about-two-grid">
+  <div class="page-wrap">
+    <div class="about-two-grid__grid">
+      <div class="about-two-grid__item">
+        <h2>What We Support</h2>
+        <p>
+          We support organizations looking to improve how they generate opportunities, communicate value, and build stronger client relationships across competitive and evolving markets.
+        </p>
+      </div>
+
+      <div class="about-two-grid__item">
+        <h2>How We Approach It</h2>
+        <p>
+          Our approach focuses on aligning business development efforts with real capabilities, market positioning, and client expectations so growth is intentional, repeatable, and sustainable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESCRIPTION SECTION -->
+<section class="help-section" id="company-overview">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Our Approach</h2>
+    </div>
+
+    <div class="help-text-block">
+      <p>
+        Griffin Integrity supports organizations in strengthening their business development strategies by bringing structure, clarity, and practical insight to how opportunities are identified, pursued, and converted. We help clients move beyond reactive growth efforts by aligning strategy, messaging, and execution with real business strengths and market demand.
+        <br><br>
+        Our work focuses on improving how organizations position themselves, communicate their value, and engage with clients in a way that builds trust and long-term relationships. This includes refining go-to-market approaches, improving consistency across messaging, and helping teams pursue the right opportunities with greater discipline and confidence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE CARDS -->
+<section class="help-section" id="what-clients-can-expect">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>How We Help Clients</h2>
+    </div>
+
+    <div class="help-grid">
+
+      <article class="help-card">
+        <h3 class="help-card__title">
+          Opportunity Strategy
+          <span class="help-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </h3>
+        <div class="help-list">
+          <p>
+            Define how opportunities are identified, prioritized, and pursued to ensure business development efforts are focused on the highest-value targets.
+          </p>
+        </div>
+      </article>
+
+      <article class="help-card">
+        <h3 class="help-card__title">
+          Market Positioning
+          <span class="help-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </h3>
+        <div class="help-list">
+          <p>
+            Strengthen how your organization is positioned in the market by clarifying capabilities, differentiators, and the value you deliver to clients.
+          </p>
+        </div>
+      </article>
+
+      <article class="help-card">
+        <h3 class="help-card__title">
+          Client Engagement Strategy
+          <span class="help-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </h3>
+        <div class="help-list">
+          <p>
+            Improve how your team engages with clients through clearer communication, stronger alignment, and a more structured approach to relationship development.
+          </p>
+        </div>
+      </article>
+
+      <article class="help-card">
+        <h3 class="help-card__title">
+          Proposal and Messaging Alignment
+          <span class="help-arrow">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </h3>
+        <div class="help-list">
+          <p>
+            Align proposals, presentations, and communications so they clearly reflect your capabilities, differentiate your offering, and resonate with client priorities.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- END IMAGE SECTION WITH LEFT BOX -->
+<section class="about-end-feature">
+  <img class="about-end-feature__image" src="/images/stock3.jpeg" alt="Client strategy and business growth">
+
+  <div class="about-end-feature__overlay">
+    <div class="about-end-feature__card">
+      <h2>Stronger Positioning. Better Opportunities.</h2>
+      <p>
+        We help organizations approach growth with greater clarity, stronger alignment, and a more disciplined strategy for winning and retaining the right clients.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 GRID UNDER IMAGE -->
+<section class="about-bottom-grid">
+  <div class="page-wrap">
+    <div class="about-bottom-grid__grid">
+      <div class="about-bottom-grid__item">
+        <h3>Our Focus</h3>
+        <p>
+          Supporting organizations that want to improve how they generate opportunities, communicate value, and build long-term client relationships.
+        </p>
+      </div>
+
+      <div class="about-bottom-grid__item">
+        <h3>Our Commitment</h3>
+        <p>
+          Delivering practical advisory support that helps teams operate with greater consistency, confidence, and strategic direction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRA SECTION -->
+<section class="insight-grid-section" id="insights">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Related Insights</h2>
+    </div>
+
+    <div class="insight-grid-cards">
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock1.jpeg" alt="Market positioning strategy">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Market Positioning
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Learn how stronger positioning helps organizations stand out and win higher-value opportunities.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock2.jpeg" alt="Client engagement strategy">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Client Engagement
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Explore how more structured engagement improves trust, alignment, and long-term relationships.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock3.jpeg" alt="Business growth strategy">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Growth Strategy
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              See how disciplined strategy helps organizations pursue growth with greater clarity and consistency.
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="advisor-cta-section" id="connect-advisor">
+  <div class="page-wrap">
+    <div class="advisor-cta">
+      <div class="advisor-cta__content">
+        <h2>Connect With Griffin</h2>
+      </div>
+
+      <a href="mailto:you@example.com" class="advisor-cta__button">
+        <span class="advisor-cta__icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </span>
+        <span>Contact Us</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+    </main>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="/navbar.js"></script>
+<script src="/load-navbar.js"></script>
+  
+
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const lenis = new Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.1,
+        anchors: {
+          offset: 110
+        }
+      });
+
+      window.lenis = lenis;
+    })();
+  </script>
+
+</body>
+</html>
