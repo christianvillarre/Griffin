@@ -16,15 +16,21 @@
       </button>
 
       <a href="/" class="topbar-nav__logo-box" aria-label="Griffin Integrity home">
-        <img src="/images/GriffinText.png" alt="Griffin Integrity" />
+        <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
       </a>
     </div>
 
     <!-- RIGHT CLUSTER -->
+     
     <nav class="topbar-nav__links" aria-label="Primary navigation">
+      
+      <div class="topbar-nav__item">
+        <a href="/about.html" class="topbar-nav__link">About</a>
+      </div>
+
       <div class="topbar-nav__item has-dd" data-dd="consulting">
         <a href="/technical-consulting.html" class="topbar-nav__link">
-          Technical Consulting
+          Capabilities
           <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -33,29 +39,28 @@
 
       <div class="topbar-nav__item has-dd" data-dd="advisory">
         <a href="/advisory-services.html" class="topbar-nav__link">
-          Advisory Services
+          Industries
           <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+      </div>
+
+      <div class="topbar-nav__item">
+        <a href="/about.html" class="topbar-nav__link">Insights</a>
       </div>
 
       <div class="topbar-nav__item has-dd" data-dd="affiliates">
         <a href="/affiliates.html" class="topbar-nav__link">
-          Affiliate Organizations
+          Network
           <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
       </div>
 
-      <div class="topbar-nav__item">
-        <a href="/about.html" class="topbar-nav__link">About</a>
-      </div>
 
-      <div class="topbar-nav__item">
-        <a href="/news.html" class="topbar-nav__link">News</a>
-      </div>
+      
 
       <div class="topbar-nav__item">
         <a href="/contact.html" class="topbar-nav__link">Contact</a>
@@ -75,14 +80,33 @@
           </p>
         </div>
 
-        <div class="topbar-dropdown__links">
-          <a href="/technical-consulting/ndt-level-iii-consulting-support.html">NDT Level III Consulting &amp; Support</a>
-          <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html">Advanced NDT Subject Matter Experts</a>
-          <a href="/technical-consulting/ndt-written-practice-review-development.html">NDT Written Practice Review and Development</a>
-          <a href="/technical-consulting/advanced-ndt-training.html">Next Level Advanced NDT Training Programs</a>
-          <a href="/technical-consulting/advanced-ndt-programs-procedures.html">Advanced NDT Technology Programs and Procedures</a>
-          <a href="/technical-consulting/automation-robotics-imaging-systems.html">Automation, Robotics, and Advanced Imaging Systems</a>
-        </div>
+<div class="topbar-dropdown__links capabilities-columns">
+
+  <div class="cap-group">
+    <h5>Technical Advisory</h5>
+    <div class="cap-grid">
+      <a href="#">Advanced NDT Technologies & Application Subject Matter Experts</a>
+      <a href="#">Inspection Program Development & Optimization</a>
+      <a href="#">NDT Level III & Regulatory Code Compliance Advisory</a>
+      <a href="#">Application Specific NDT Procedures & Technology Integration</a>
+      <a href="#">Automation, Robotics & Digital Inspection and Monitoring Systems</a>
+      <a href="#">Technical Training & Workforce Development</a>
+    </div>
+  </div>
+
+  <div class="cap-group">
+    <h5>Strategy & Investment Advisory</h5>
+    <div class="cap-grid">
+      <a href="#">Corporate Strategy & Growth Planning</a>
+      <a href="#">M&A Due Diligence & Transaction Support</a>
+      <a href="#">Business Development & Market Strategy</a>
+      <a href="#">Project Management</a>
+      <a href="#">Talent Assessment & Leadership Advisory</a>
+      <a href="#">Capital Strategy & Investment Support</a>
+    </div>
+  </div>
+
+</div>
       </div>
     </div>
 

@@ -104,7 +104,7 @@
 
 .topbar-nav__logo-box img{
   display: block;
-  height: 40px;
+  height: 55px;
   width: auto;
   object-fit: contain;
   margin-bottom: 2px;
@@ -1179,5 +1179,102 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   /* keep logo dark */
   .topbar-nav__logo-box img{
     filter: brightness(0) saturate(100%) invert(18%) sepia(35%) saturate(900%) hue-rotate(160deg) brightness(90%) contrast(95%) !important;
+  }
+}
+
+
+@media (min-width: 861px){
+
+  .topbar-nav{
+    position: relative;
+  }
+
+  .topbar-nav__links{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: min(100%, var(--content-max));
+    justify-content: center;
+
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+}
+
+/* Capabilities only */
+/* outer layout = 2 groups */
+.capabilities-columns{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  width: 100%;
+}
+/* each group */
+.cap-group{
+  display: flex;
+  flex-direction: column;
+}
+.cap-group{
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+}
+/* titles */
+.cap-group h5{
+  margin-bottom: 12px;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+  margin-top: 0;
+}
+
+/* THIS creates 2 columns inside each group */
+.cap-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns per group */
+  gap: 12px 32px;
+  width: 100%;
+}
+/* links */
+.cap-grid a{
+  width: 100%;
+}
+/* Full-width Capabilities dropdown only */
+.topbar-dropdown[data-panel="consulting"]{
+  left: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Make the teal box full width */
+.topbar-dropdown[data-panel="consulting"] .topbar-dropdown__inner{
+  width: 100% !important;
+  max-width: none !important;
+
+  padding: 36px 38px !important; /* 🔥 fixed edge padding */
+}
+
+.topbar-dropdown[data-panel="consulting"] .capabilities-columns{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  gap: 80px;
+}
+
+/* Capabilities responsive layout */
+@media (max-width: 1600px){
+  /* KEEP groups side-by-side */
+  .topbar-dropdown[data-panel="consulting"] .capabilities-columns{
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  /* Collapse EACH group to 1 column */
+  .topbar-dropdown[data-panel="consulting"] .cap-grid{
+    grid-template-columns: 1fr;
   }
 }
