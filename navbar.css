@@ -1223,12 +1223,13 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 /* titles */
 .cap-group h5{
-  margin-bottom: 12px;
-  font-size: 11px;
+  margin-bottom: 29px;
+  font-size: 15px;
   letter-spacing: .14em;
-  text-transform: uppercase;
+  font-family: "zalando sans", sans-serif!important;
   color: rgba(255,255,255,.65);
   margin-top: 0;
+  font-weight: 400;
 }
 
 /* THIS creates 2 columns inside each group */
