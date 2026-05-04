@@ -1278,4 +1278,7 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   .topbar-dropdown[data-panel="consulting"] .cap-grid{
     grid-template-columns: 1fr;
   }
+  .cap-grid{
+    gap: 12px 32px;
+  }
 }
