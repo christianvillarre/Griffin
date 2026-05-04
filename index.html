@@ -1134,7 +1134,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 <section class="gif-framework-section">
   <div class="gif-framework-inner">
     <div class="gif-framework-header">
-      <h2>How We Work</h2>
+      <h2>Our Approach</h2>
     </div>
 
     <div class="gif-framework-tabs">
@@ -1146,10 +1146,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         <div class="gif-framework-content">
           <h3>Evaluate</h3>
           <p>
-            Evaluate the full picture before action is taken. This phase focuses on understanding current
-            conditions, technical constraints, operational realities, inspection challenges, risk exposure,
-            existing procedures, and the larger business context so decisions begin from a grounded,
-            experience-driven point of view rather than assumptions.
+          Assess current inspection programs, asset integrity strategies, and technology utilization to identify inefficiencies, gaps, and misalignment with risk and cost objectives.
           </p>
         </div>
       </button>
@@ -1162,9 +1159,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         <div class="gif-framework-content">
           <h3>Align</h3>
           <p>
-            Align stakeholders, priorities, and technical direction around the same objective. This step
-            ensures that business goals, compliance requirements, field execution, and long-term integrity
-            strategy are working together so the path forward is clear, realistic, and supported across teams.
+            Align stakeholders across operations, engineering, and executive leadership to ensure inspection strategy reflects both operational realities and capital priorities.
           </p>
         </div>
       </button>
@@ -1177,9 +1172,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         <div class="gif-framework-content">
           <h3>Select</h3>
           <p>
-            Select the right tools, methods, technologies, and strategic approach for the application. Rather
-            than defaulting to what is familiar, this phase focuses on choosing what best fits the actual
-            challenge, performance expectations, risk profile, and operational environment.
+            Evaluate and select appropriate NDT technologies, inspection methodologies, and service models based on asset risk, application fit, and return on investment—not market hype.
           </p>
         </div>
       </button>
@@ -1192,9 +1185,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         <div class="gif-framework-content">
           <h3>Implement</h3>
           <p>
-            Implement with structure, discipline, and technical clarity. This phase turns strategy into
-            execution through procedures, deployment planning, team coordination, and hands-on guidance so the
-            selected solution is applied effectively in the field and within the organization.
+            Support disciplined implementation of inspection programs and technologies, ensuring integration with existing workflows, standards, and field execution capabilities.
           </p>
         </div>
       </button>
@@ -1207,9 +1198,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         <div class="gif-framework-content">
           <h3>Optimize</h3>
           <p>
-            Optimize performance through refinement, feedback, and real-world learning. Once implementation is
-            underway, this stage focuses on improving efficiency, strengthening reliability, reducing friction,
-            and uncovering opportunities to create stronger long-term results.
+            Continuously refine inspection scope, frequency, and methodologies to improve effectiveness while reducing unnecessary spend and operational disruption.
           </p>
         </div>
       </button>
@@ -1222,9 +1211,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         <div class="gif-framework-content">
           <h3>Measure</h3>
           <p>
-            Measure outcomes to confirm effectiveness and guide future decisions. This final phase looks at
-            technical performance, operational impact, business value, and strategic results so improvements can
-            be validated and momentum can continue with confidence.
+            Establish performance metrics and financial benchmarks to quantify inspection program effectiveness, validate technology investments, and support ongoing decision-making.
           </p>
         </div>
       </button>
@@ -1573,6 +1560,17 @@ Griffin also supports the evaluation and implementation of advanced and emerging
   opacity: 0;
   transform: translateX(10px);
 }
+
+/* Default (dark arrow) */
+.gif-framework-tab:not(.active)::after{
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Hover = red */
+.gif-framework-tab:not(.active):hover::after{
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23f00303' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
 </style>
 <section class="services-tabs-section">
   <div class="services-tabs-shell">
