@@ -449,7 +449,7 @@ body{
   .topbar-nav__menu-btn{
     width: 30px;
     height: 30px;
-    margin-top: 0.6rem;
+    transform: translateY(6px);
   }
 
   .topbar-nav__menu-btn span{
