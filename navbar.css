@@ -78,7 +78,7 @@
   cursor: pointer;
   flex: 0 0 auto;
   transition: transform .18s ease, opacity .18s ease;
-  transform: translateY(2px);
+  transform: translateY(15px);
 }
 
 .topbar-nav__menu-btn:hover{
@@ -449,6 +449,7 @@ body{
   .topbar-nav__menu-btn{
     width: 30px;
     height: 30px;
+    margin-top: 0.6rem;
   }
 
   .topbar-nav__menu-btn span{
@@ -456,7 +457,7 @@ body{
   }
 
   .topbar-nav__logo-box img{
-    height: 30px;
+    height: 40px;
   }
 }
 
@@ -1281,4 +1282,22 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   .cap-grid{
     gap: 12px 32px;
   }
+}
+.topbar-desktop-menu__capabilities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 24px;
+}
+
+.cap-col__title {
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.cap-col__title:hover {
+  text-decoration: underline;
 }

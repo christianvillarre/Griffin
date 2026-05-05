@@ -152,113 +152,174 @@
 
 
   <!-- MOBILE FULL MENU -->
-  <div class="topbar-mobile-menu" id="topbarMobileMenu" aria-hidden="true">
-    <div class="topbar-mobile-menu__screen is-active" data-screen="main">
-      <nav class="topbar-mobile-menu__nav" aria-label="Mobile primary navigation">
-        <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="consulting">
-          <span>Technical Consulting</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+  <!-- MOBILE FULL MENU -->
+<div class="topbar-mobile-menu" id="topbarMobileMenu" aria-hidden="true">
+  <div class="topbar-mobile-menu__screen is-active" data-screen="main">
+    <nav class="topbar-mobile-menu__nav" aria-label="Mobile primary navigation">
 
-        <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="advisory">
-          <span>Advisory Services</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+      <a class="topbar-mobile-menu__item" href="/about.html">About</a>
 
-        <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="affiliates">
-          <span>Affiliate Organizations</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <a class="topbar-mobile-menu__item" href="/about.html">About</a>
-        <a class="topbar-mobile-menu__item" href="/news.html">News</a>
-        <a class="topbar-mobile-menu__item" href="/contact.html">Contact</a>
-      </nav>
-    </div>
-
-    <div class="topbar-mobile-menu__screen" data-screen="consulting">
-      <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="consulting">
+        <span>Capabilities</span>
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Back to menu</span>
       </button>
 
-      <nav class="topbar-mobile-menu__nav" aria-label="Technical Consulting submenu">
-        <!--<a class="topbar-mobile-menu__item is-sub" href="/technical-consulting.html">Technical Consulting</a>-->
-        <a class="topbar-mobile-menu__item is-sub" href="/technical-consulting/ndt-level-iii-consulting-support.html">NDT Level III Consulting &amp; Support</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/technical-consulting/advanced-ndt-subject-matter-experts.html">Advanced NDT Subject Matter Experts</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/technical-consulting/ndt-written-practice-review-development.html">NDT Written Practice Review and Development</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/technical-consulting/advanced-ndt-training.html">Next Level Advanced NDT Training Programs</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/technical-consulting/advanced-ndt-programs-procedures.html">Advanced NDT Technology Programs and Procedures</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/technical-consulting/automation-robotics-imaging-systems.html">Automation, Robotics, and Advanced Imaging Systems</a>
-      </nav>
-    </div>
-
-    <div class="topbar-mobile-menu__screen" data-screen="advisory">
-      <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="advisory">
+        <span>Industries</span>
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Back to menu</span>
       </button>
 
-      <nav class="topbar-mobile-menu__nav" aria-label="Advisory Services submenu">
-        <!--<a class="topbar-mobile-menu__item is-sub" href="/advisory-services.html">Advisory Services</a>-->
-        <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/mergers-acquisitions-support.html">Mergers &amp; Acquisition Support</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/talent-acquisition-assessment.html">Talent Acquisition &amp; Assessment</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/corporate-development-strategic-planning.html">Corporate Development &amp; Strategic Planning</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/business-development-client-strategies.html">Business Development &amp; Client Strategies</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/capital-acquisition.html">Capital Acquisition</a>
-      </nav>
-    </div>
+      <a class="topbar-mobile-menu__item" href="/insights.html">Insights</a>
 
-    <div class="topbar-mobile-menu__screen" data-screen="affiliates">
-      <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="affiliates">
+        <span>Network</span>
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Back to menu</span>
       </button>
 
-      <nav class="topbar-mobile-menu__nav" aria-label="Affiliate Organizations submenu">
-        <!--<a class="topbar-mobile-menu__item is-sub" href="/affiliates.html">Affiliate Organizations</a>-->
-        <a class="topbar-mobile-menu__item is-sub" href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
-        <a class="topbar-mobile-menu__item is-sub" href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
-      </nav>
-    </div>
+      <a class="topbar-mobile-menu__item" href="/contact.html">Contact</a>
+    </nav>
   </div>
 
+  <!-- CAPABILITIES: SECOND PAGE -->
+  <div class="topbar-mobile-menu__screen" data-screen="consulting">
+    <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Back to menu</span>
+    </button>
+
+    <nav class="topbar-mobile-menu__nav" aria-label="Capabilities submenu">
+
+      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="technical-advisory">
+        <span>Technical Advisory</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="strategy-business-advisory">
+        <span>Strategy &amp; Business Advisory</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+    </nav>
+  </div>
+
+  <!-- TECHNICAL ADVISORY: THIRD PAGE -->
+  <div class="topbar-mobile-menu__screen" data-screen="technical-advisory">
+    <button class="topbar-mobile-menu__back" type="button" data-mobile-open="consulting">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Back to capabilities</span>
+    </button>
+
+    <nav class="topbar-mobile-menu__nav" aria-label="Technical Advisory submenu">
+      <a class="topbar-mobile-menu__item is-sub" href="/technical-advisory.html">Technical Advisory Overview</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Advanced NDT Technologies &amp; Application Subject Matter Experts</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Inspection Program Development &amp; Optimization</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">NDT Level III &amp; Regulatory Code Compliance Advisory</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Application Specific NDT Procedures &amp; Technology Integration</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Automation, Robotics &amp; Digital Inspection and Monitoring Systems</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Technical Training &amp; Workforce Development</a>
+    </nav>
+  </div>
+
+  <!-- STRATEGY & BUSINESS ADVISORY: THIRD PAGE -->
+  <div class="topbar-mobile-menu__screen" data-screen="strategy-business-advisory">
+    <button class="topbar-mobile-menu__back" type="button" data-mobile-open="consulting">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Back to capabilities</span>
+    </button>
+
+    <nav class="topbar-mobile-menu__nav" aria-label="Strategy and Business Advisory submenu">
+      <a class="topbar-mobile-menu__item is-sub" href="/strategy-business-advisory.html">Strategy &amp; Business Advisory Overview</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Corporate Strategy &amp; Growth Planning</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">M&amp;A Due Diligence &amp; Transaction Support</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Business Development &amp; Market Strategy</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Project Management</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Talent Assessment &amp; Leadership Advisory</a>
+      <a class="topbar-mobile-menu__item is-sub" href="#">Capital Strategy &amp; Investment Support</a>
+    </nav>
+  </div>
+
+  <!-- INDUSTRIES -->
+  <div class="topbar-mobile-menu__screen" data-screen="advisory">
+    <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Back to menu</span>
+    </button>
+
+    <nav class="topbar-mobile-menu__nav" aria-label="Industries submenu">
+      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/mergers-acquisitions-support.html">Oil &amp; Gas/Petrochemical</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/talent-acquisition-assessment.html">Power Generation</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/corporate-development-strategic-planning.html">Pipeline (Transmission)</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/business-development-client-strategies.html">Fabrication &amp; Construction</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/capital-acquisition.html">Aerospace/Defense</a>
+    </nav>
+  </div>
+
+  <!-- NETWORK -->
+  <div class="topbar-mobile-menu__screen" data-screen="affiliates">
+    <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Back to menu</span>
+    </button>
+
+    <nav class="topbar-mobile-menu__nav" aria-label="Network submenu">
+      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
+      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
+    </nav>
+  </div>
+</div>
+
+
+
+
+
+<!-- DESKTOP MENU OVERLAY -->
 <!-- DESKTOP MENU OVERLAY -->
 <div class="topbar-desktop-menu" id="topbarDesktopMenu" aria-hidden="true">
   <div class="topbar-desktop-menu__inner">
-    <div class="topbar-desktop-menu__left" role="tablist" aria-label="Desktop menu sections">
-      <button class="topbar-desktop-menu__main is-active" type="button" data-desktop-menu="consulting" aria-selected="true">
-        Technical Consulting
+
+    <!-- LEFT SIDE -->
+    <div class="topbar-desktop-menu__left" role="tablist">
+
+      <button class="topbar-desktop-menu__main is-active" data-desktop-menu="consulting">
+        Capabilities
       </button>
 
-      <button class="topbar-desktop-menu__main" type="button" data-desktop-menu="advisory" aria-selected="false">
-        Advisory Services
+      <button class="topbar-desktop-menu__main" data-desktop-menu="advisory">
+        Industries
       </button>
 
-      <button class="topbar-desktop-menu__main" type="button" data-desktop-menu="affiliates" aria-selected="false">
-        Affiliate Organizations
+      <button class="topbar-desktop-menu__main" data-desktop-menu="affiliates">
+        Network
       </button>
 
       <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/about.html">
         About
       </a>
 
-      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/news.html">
-        News
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/insights.html">
+        Insights
       </a>
 
       <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/contact.html">
@@ -266,57 +327,93 @@
       </a>
     </div>
 
+    <!-- RIGHT SIDE -->
     <div class="topbar-desktop-menu__right">
+
+      <!-- ================= -->
+      <!-- CAPABILITIES PANEL -->
+      <!-- ================= -->
       <div class="topbar-desktop-menu__panel is-active" data-desktop-panel="consulting">
-        <!--<div class="topbar-desktop-menu__eyebrow">Technical Consulting</div>-->
-        <h4 class="topbar-desktop-menu__title">Technical Consulting</h4>
+
+        <h4 class="topbar-desktop-menu__title">Capabilities</h4>
         <p class="topbar-desktop-menu__desc">
-          Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.
+          Technical and strategic advisory services across industrial inspection, asset integrity, and advanced NDT environments.
         </p>
 
-        <div class="topbar-desktop-menu__links">
-          <a href="/technical-consulting.html">Technical Consulting Overview</a>
-          <a href="/technical-consulting/ndt-level-iii-consulting-support.html">NDT Level III Consulting &amp; Support</a>
-          <a href="/technical-consulting/advanced-ndt-subject-matter-experts.html">Advanced NDT Subject Matter Experts</a>
-          <a href="/technical-consulting/ndt-written-practice-review-development.html">NDT Written Practice Review and Development</a>
-          <a href="/technical-consulting/advanced-ndt-training.html">Next Level Advanced NDT Training Programs</a>
-          <a href="/technical-consulting/advanced-ndt-programs-procedures.html">Advanced NDT Technology Programs and Procedures</a>
-          <a href="/technical-consulting/automation-robotics-imaging-systems.html">Automation, Robotics, and Advanced Imaging Systems</a>
+        <div class="topbar-desktop-menu__capabilities">
+
+          <!-- COLUMN 1 -->
+          <div class="cap-col">
+            <a href="/technical-advisory.html" class="cap-col__title">
+              Technical Advisory
+            </a>
+
+            <div class="topbar-desktop-menu__links">
+              <a href="#">Advanced NDT Technologies & Application SMEs</a>
+              <a href="#">Inspection Program Development</a>
+              <a href="#">NDT Level III & Compliance</a>
+              <a href="#">Technology Integration</a>
+              <a href="#">Automation & Robotics</a>
+              <a href="#">Training & Workforce</a>
+            </div>
+          </div>
+
+          <!-- COLUMN 2 -->
+          <div class="cap-col">
+            <a href="/strategy-business-advisory.html" class="cap-col__title">
+              Strategy & Business Advisory
+            </a>
+
+            <div class="topbar-desktop-menu__links">
+              <a href="#">Corporate Strategy & Growth</a>
+              <a href="#">M&A Due Diligence</a>
+              <a href="#">Market Strategy</a>
+              <a href="#">Project Management</a>
+              <a href="#">Leadership Advisory</a>
+              <a href="#">Capital Strategy</a>
+            </div>
+          </div>
+
         </div>
       </div>
 
+      <!-- ================= -->
+      <!-- INDUSTRIES PANEL -->
+      <!-- ================= -->
       <div class="topbar-desktop-menu__panel" data-desktop-panel="advisory">
-        <!--<div class="topbar-desktop-menu__eyebrow">Business Advisory</div>-->
-        <h4 class="topbar-desktop-menu__title">Business Advisory Services</h4>
+
+        <h4 class="topbar-desktop-menu__title">Industries</h4>
         <p class="topbar-desktop-menu__desc">
-          Strategic advisory support for growth, transactions, leadership alignment, and operational execution across the industrial inspection ecosystem.
+          We support operators, investors, and service providers across critical infrastructure, industrial assets, and inspection-driven environments—bringing technical expertise and strategic insight to each sector we serve.
         </p>
 
         <div class="topbar-desktop-menu__links">
-          <a href="/advisory-services.html">Advisory Services Overview</a>
-          <a href="/business-advisory/mergers-acquisitions-support.html">Mergers &amp; Acquisition Support</a>
-          <a href="/business-advisory/talent-acquisition-assessment.html">Talent Acquisition &amp; Assessment</a>
-          <a href="/business-advisory/corporate-development-strategic-planning.html">Corporate Development &amp; Strategic Planning</a>
-          <a href="/business-advisory/business-development-client-strategies.html">Business Development &amp; Client Strategies</a>
-          <a href="/business-advisory/capital-acquisition.html">Capital Acquisition</a>
+          <a href="#">Oil & Gas / Petrochemical</a>
+          <a href="#">Power Generation</a>
+          <a href="#">Pipeline (Transmission)</a>
+          <a href="#">Fabrication & Construction</a>
+          <a href="#">Aerospace / Defense</a>
         </div>
       </div>
 
+      <!-- ================= -->
+      <!-- NETWORK PANEL -->
+      <!-- ================= -->
       <div class="topbar-desktop-menu__panel" data-desktop-panel="affiliates">
-         <!--<div class="topbar-desktop-menu__eyebrow">Affiliate Organizations</div>-->
-        <h4 class="topbar-desktop-menu__title">Affiliate Organizations</h4>
+
+        <h4 class="topbar-desktop-menu__title">Network</h4>
         <p class="topbar-desktop-menu__desc">
-          Our trusted affiliate partners extend our capabilities across specialized disciplines, delivering complementary services and innovative solutions.
+          Our network of trusted partners extends our capabilities across specialized disciplines, enabling integrated solutions, broader reach, and seamless execution across complex projects.
         </p>
 
         <div class="topbar-desktop-menu__links">
-          <a href="/affiliates.html">Affiliates Overview</a>
           <a href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
           <a href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
           <a href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
           <a href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
         </div>
       </div>
+
     </div>
   </div>
 </div>
