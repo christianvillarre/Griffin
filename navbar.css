@@ -683,6 +683,7 @@ body{
     letter-spacing: 0.02em;
     cursor: pointer;
     appearance: none;
+    font-family: "zalando sans", sans-serif;
   }
 
   .topbar-mobile-menu__back svg{
