@@ -921,6 +921,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
 
 <section class="gif-framework-section">
+    <div class="simple-shell">
   <div class="gif-framework-inner">
     <div class="gif-framework-header">
       <h2>Our Approach</h2>
@@ -1032,6 +1033,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
 
   </div>
+  </div>
 </section>
 
 <script>
@@ -1117,8 +1119,8 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
 .gif-framework-tab{
   position: relative;
-  flex: 0.8;
-  min-width: 108px;
+    flex: 1.2; /* was 0.8 */
+  min-width: 182px; /* was 108px */
 
   border: 1px solid rgba(255,255,255,0.08);
     border-right: 1px #000000 solid;
@@ -1138,7 +1140,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
 
 .gif-framework-tab.active{
-  flex: 2.5;
+  flex: 1.85; /* was 2.5 */
   padding: 26px 28px 28px;
  border-right: 2px #000000 solid;
 
@@ -1180,9 +1182,27 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 }
 
 .gif-framework-title-closed{
-  font-size: 40px;
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  position:absolute;
+
+  left:0px;
+  top:82px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  transform:none !important;
+  writing-mode:initial !important;
+
+  font-size:30px;
+  font-weight:500;
+  letter-spacing:-0.04em;
+  line-height:1;
+
+  color:rgba(0,0,0,0.92);
+
+  opacity:1 !important;
+  white-space:nowrap;
 }
 
 .gif-framework-tab.active .gif-framework-title-closed{
@@ -1424,7 +1444,102 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 .gif-framework-tab:not(.active):hover::after{
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23f00303' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
+/* =========================
+   DESKTOP = INLINE ARROW
+========================= */
 
+@media (min-width: 901px){
+
+  /* remove old side arrow */
+  .gif-framework-tab::after{
+    display:none !important;
+  }
+
+  .gif-framework-title-closed{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    text-align:center;
+  }
+
+  .gif-framework-tab.active .gif-framework-title-closed{
+    inset:auto;
+
+    left:0;
+    top:82px;
+
+    justify-content:flex-start;
+    text-align:left;
+  }
+
+  /* inline arrow */
+  .gif-framework-tab:not(.active) .gif-framework-title-closed::after{
+    content:"";
+
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+
+    background:no-repeat center / contain;
+
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+    transition:opacity .25s ease, transform .25s ease;
+  }
+
+  .gif-framework-tab:not(.active):hover .gif-framework-title-closed::after{
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23f00303' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+}
+
+
+/* =========================
+   MOBILE = SIDE DOWN ARROW
+========================= */
+
+@media (max-width: 900px){
+
+  /* remove inline arrow */
+  .gif-framework-title-closed::after{
+    display:none !important;
+  }
+
+  /* restore side arrow */
+  .gif-framework-tab:not(.active)::after{
+    content:"";
+    position:absolute;
+
+    width:58px;
+    height:58px;
+
+    background:no-repeat center / contain;
+
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+    opacity:0.9;
+
+    transform:rotate(90deg);
+
+    left:auto;
+    right:12px;
+
+    top:50%;
+    margin-top:-10px;
+
+    transition:transform .25s ease, opacity .25s ease;
+  }
+
+  .gif-framework-tab.active::after{
+    opacity:0;
+    transform:rotate(90deg) translateX(10px);
+  }
+
+}
 @media (max-width: 900px){
 
   .gif-framework-tab:not(.active)::after{
