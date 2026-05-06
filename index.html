@@ -1073,9 +1073,9 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 }
 
 .gif-framework-inner{
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0rem 0.5rem;
+  width:min(1400px, calc(100% - 48px));
+  margin:0 auto;
+  padding:0 1rem;
 }
 
 .gif-framework-header{
@@ -1133,7 +1133,19 @@ Griffin also supports the evaluation and implementation of advanced and emerging
   align-items: stretch;
   min-height: 300px;
 }
+@media (max-width: 760px){
+  .gif-framework-inner{
+    width:min(100%, calc(100% - 8px));
+    padding:0 0rem;
+  }
+}
+@media (max-width:760px){
 
+  .gif-framework-inner{
+    padding:0;
+  }
+
+}
 .gif-framework-tab{
   position: relative;
     flex: 1.2; /* was 0.8 */
@@ -1384,9 +1396,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
     line-height: 1.6;
     max-width: none;
   }
-  .gif-framework-inner {
-    padding: 0rem .2rem;
-  }
+
 }
 
 .gif-framework-number{
