@@ -922,7 +922,11 @@ Griffin also supports the evaluation and implementation of advanced and emerging
   <div class="gif-framework-inner">
     <div class="gif-framework-header">
       <h2>Our Approach</h2>
+      <p>
+      We employ a structured framework to align inspection strategy, technology adoption, and capital allocation to measurable outcomes:
+      </p>
     </div>
+    
 
     <div class="gif-framework-tabs">
       <button class="gif-framework-tab active">
@@ -1003,6 +1007,28 @@ Griffin also supports the evaluation and implementation of advanced and emerging
         </div>
       </button>
     </div>
+
+
+    <div class="gif-framework-challenge">
+  <div class="gif-framework-challenge-left">
+    <h2>The Challenge</h2>
+
+    <p>
+      Griffin works with operators, executives, and investors to align inspection strategy, technology adoption, and capital allocation to measurable performance outcomes.
+    </p>
+  </div>
+
+  <div class="gif-framework-challenge-right">
+    <ul>
+      <li>Many operators increase inspection scope without improving outcomes</li>
+      <li>Budgets grow, but risk visibility doesn’t improve proportionally</li>
+      <li>Technology adoption often adds cost, not clarity</li>
+      <li>The issue is not inspection volume—but program design and alignment</li>
+    </ul>
+  </div>
+</div>
+
+
   </div>
 </section>
 
@@ -1032,17 +1058,54 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 }
 
 .gif-framework-header{
-  margin-bottom: 42px;
+  max-width:none;
+  display:grid;
+  grid-template-columns:minmax(0,.7fr) minmax(0,1fr);
+  gap:48px;
+  align-items:start;
+  margin-bottom:68px;
 }
 
 .gif-framework-header h2{
-  margin: 0;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-weight: 500;
+  margin:0 0 14px;
+  font-size:clamp(2rem, 4vw, 3.2rem);
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  font-weight:500;
+  color:#111;
 }
 
+.gif-framework-header p{
+  margin:0;
+  font-size:1.22rem !important;
+  line-height:1.2;
+  color:#444;
+  max-width:60ch;
+}
+
+@media (max-width: 760px){
+  .gif-framework-header{
+    max-width:760px;
+    margin-bottom:36px;
+    grid-template-columns:none;
+  }
+
+  .gif-framework-header h2{
+    margin:0 0 -24px;
+    font-size:clamp(2rem, 4vw, 3.2rem);
+    line-height:1.05;
+    letter-spacing:-0.03em;
+    font-weight:500;
+    color:#111;
+  }
+
+  .gif-framework-header p{
+    font-size:1.02rem !important;
+    line-height:1.2;
+    color:#444;
+    max-width:60ch;
+  }
+}
 .gif-framework-tabs{
   display: flex;
   gap: 18px;
@@ -1225,12 +1288,13 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
   /* CLOSED TABS = SHORTER */
   .gif-framework-tab{
-    min-height: 132px;
+    min-height: 212px;
+    margin-bottom: 30px;
   }
 
   /* OPEN TAB = TALLER */
   .gif-framework-tab.active{
-    min-height: 320px;
+    min-height: 280px;
     padding: 18px 20px 22px;
     border-right: 0;
     border-bottom: 2px solid #000;
@@ -1276,7 +1340,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
   }
 
   .gif-framework-content p{
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
     max-width: none;
   }
@@ -1358,10 +1422,131 @@ Griffin also supports the evaluation and implementation of advanced and emerging
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='%23f00303' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
+@media (max-width: 900px){
+
+  .gif-framework-tab:not(.active)::after{
+    transform: rotate(90deg);
+
+    left: auto;
+    right: 12px;
+
+    top: 50%;
+    margin-top: -40px;
+  }
+
+  .gif-framework-tab.active::after{
+    transform: rotate(90deg) translateX(10px);
+  }
+
+}
+
 </style>
 
 
+<style>
+.gif-framework-challenge{
+  margin-top:72px;
+  padding-top:48px;
+  /*border-top:1px solid rgba(0,0,0,0.12);*/
 
+  display:grid;
+  grid-template-columns:minmax(0,.7fr) minmax(0,1fr);
+  gap:48px;
+  align-items:start;
+}
+
+.gif-framework-challenge h2{
+  margin:0 0 28px;
+  font-size:clamp(2rem, 4vw, 3.2rem);
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  font-weight:500;
+  color:#111;
+}
+
+.gif-framework-challenge p{
+  margin:0;
+  font-size:1.22rem;
+  line-height:1.2;
+  color:#444;
+  max-width:60ch;
+}
+
+.gif-framework-challenge ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.gif-framework-challenge li{
+  position:relative;
+  padding-left:22px;
+  font-size:1.22rem;
+  line-height:1.45;
+  color:#111;
+  font-weight:400;
+}
+
+.gif-framework-challenge li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:13px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#111;
+}
+
+@media (max-width:760px){
+  .gif-framework-challenge{
+    margin-top:42px;
+    padding-top:32px;
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .gif-framework-challenge h2{
+    margin:0;
+  }
+
+  .gif-framework-challenge p{
+    font-size:1.02rem;
+    line-height:1.2;
+  }
+
+  .gif-framework-challenge li{
+    font-size:0.98rem;
+    line-height:1.45;
+  }
+}
+@media (max-width:760px){
+
+  .gif-framework-challenge{
+    grid-template-columns:1fr;
+  }
+
+  .gif-framework-challenge-left{
+    display:contents;
+  }
+
+  .gif-framework-challenge h2{
+    order:1;
+  }
+
+  .gif-framework-challenge-right{
+    order:2;
+  }
+
+  .gif-framework-challenge p{
+    order:3;
+  }
+
+}
+</style>
 
 
 
