@@ -799,7 +799,7 @@
     <div class="section-head who-serve-head light">
       <div>
        
-        <h2>About Griffin <br>Integrity Solutions</h2>
+        <h2>About Griffin Integrity Solutions</h2>
       </div>
 
       <div>
@@ -925,7 +925,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
     <div class="gif-framework-header">
       <h2>Our Approach</h2>
       <p>
-      We employ a structured framework to align inspection strategy, technology adoption, and capital allocation to measurable outcomes:
+      We apply a structured, experience-driven framework to align inspection strategy, technology adoption, and capital allocation to measurable operational and financial outcomes.
       </p>
     </div>
     
@@ -1011,23 +1011,21 @@ Griffin also supports the evaluation and implementation of advanced and emerging
     </div>
 
 
-    <div class="gif-framework-challenge">
-<div class="gif-framework-challenge-left">
-  <h2>The Challenge</h2>
-</div>
+<div class="gif-framework-challenge">
+  <div class="gif-framework-challenge-head">
+    <h2>The Challenge: Why this Matters</h2>
 
-<div class="gif-framework-challenge-right">
-  <ul>
-    <li>Many operators increase inspection scope without improving outcomes</li>
-    <li>Budgets grow, but risk visibility doesn’t improve proportionally</li>
-    <li>Technology adoption often adds cost, not clarity</li>
-    <li>The issue is not inspection volume—but program design and alignment</li>
-  </ul>
+    <p>
+      Griffin Integrity works with operators, engineers, executives, and investors to bring structure and discipline to inspection and asset integrity programs—aligning strategy, technology, and capital decisions to measurable operational performance and financial returns.
+    </p>
+  </div>
 
-  <p>
-    Griffin works with operators, executives, and investors to align inspection strategy, technology adoption, and capital allocation to measurable performance outcomes.
-  </p>
-</div>
+  <div class="gif-framework-challenge-boxes">
+    <div class="challenge-box">Many operators increase inspection scope without improving outcomes</div>
+    <div class="challenge-box">Budgets grow, but risk visibility doesn’t improve proportionally</div>
+    <div class="challenge-box">Technology adoption often adds cost, not clarity</div>
+    <div class="challenge-box">The issue is not inspection volume—but program design and alignment</div>
+  </div>
 </div>
 
 
@@ -1046,24 +1044,7 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 </script>
 
 <style>
-  .gif-framework-challenge-right p{
-  margin:34px 0 0;
 
-  font-size:1.2rem!important;
-  line-height:1.7;
-  color:#444;
-  max-width:58ch;
-  font-weight:400;
-}
-@media (max-width:760px){
-
-  .gif-framework-challenge-right p{
-    margin-top:26px;
-    font-size:1.02rem;
-    line-height:1.5;
-  }
-
-}
 .gif-framework-section{
   padding: 110px 24px;
   background: #ffffff;
@@ -1089,10 +1070,10 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
 .gif-framework-header h2{
   margin:0 0 14px;
-  font-size:clamp(2rem, 4vw, 3.2rem);
+  font-size:clamp(2rem, 2vw, 2.2rem);
   line-height:1.05;
   letter-spacing:-0.03em;
-  font-weight:500;
+  font-weight:400;
   color:#111;
 }
 
@@ -1113,10 +1094,10 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
   .gif-framework-header h2{
     margin:0 0 -24px;
-    font-size:clamp(2rem, 4vw, 3.2rem);
+    font-size:clamp(2rem, 2vw, 2.2rem);
     line-height:1.05;
     letter-spacing:-0.03em;
-    font-weight:500;
+    font-weight:400;
     color:#111;
   }
 
@@ -1590,113 +1571,94 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 
 </style>
 
-
-<style>
-.gif-framework-challenge{
+  <STYLE>
+    .gif-framework-challenge{
   margin-top:72px;
   padding-top:48px;
-  /*border-top:1px solid rgba(0,0,0,0.12);*/
+}
 
+.gif-framework-challenge-head{
   display:grid;
   grid-template-columns:minmax(0,.7fr) minmax(0,1fr);
   gap:48px;
   align-items:start;
+  margin-bottom:34px;
 }
 
 .gif-framework-challenge h2{
-  margin:0 0 28px;
-  font-size:clamp(2rem, 4vw, 3.2rem);
+  margin:0;
+  font-size:clamp(2rem, 2vw, 2.2rem);
   line-height:1.05;
   letter-spacing:-0.03em;
-  font-weight:500;
+  font-weight:400;
   color:#111;
 }
 
 .gif-framework-challenge p{
   margin:0;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size:1.2rem !important;
+  line-height:1.7;
   color:#444;
-  max-width:60ch;
-  font-weight: 400;
+  max-width:58ch;
+  font-weight:400;
 }
 
-.gif-framework-challenge ul{
-  margin:0;
-  padding:0;
-  list-style:none;
-  display:flex;
-  flex-direction:column;
+.gif-framework-challenge-boxes{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
   gap:18px;
-  margin-bottom: 2rem;
+  width:100%;
 }
 
-.gif-framework-challenge li{
-  position:relative;
-  padding-left:22px;
-  font-size:1.22rem;
-  line-height:1.45;
+.challenge-box{
+  border:1px solid rgba(0, 0, 0, 0);
+  background:#f2f2f2;
+  padding:28px 24px;
+  min-height:120px;
+  display:flex;
+  align-items:flex-start; 
+
+  font-size:1.12rem;
+  line-height:1.35;
   color:#111;
   font-weight:400;
 }
 
-.gif-framework-challenge li::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:13px;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#111;
+@media (max-width:1100px){
+  .gif-framework-challenge-boxes{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
 }
 
 @media (max-width:760px){
   .gif-framework-challenge{
     margin-top:42px;
     padding-top:32px;
-    grid-template-columns:1fr;
-    gap:28px;
   }
 
-  .gif-framework-challenge h2{
-    margin:0;
+  .gif-framework-challenge-head{
+    grid-template-columns:1fr;
+    gap:24px;
+    margin-bottom:28px;
   }
 
   .gif-framework-challenge p{
-    font-size: 1.02rem !important;
-    line-height:1.2;
-  }
-
-  .gif-framework-challenge li{
-    font-size:0.98rem;
+    font-size:1.02rem !important;
     line-height:1.45;
   }
-}
-@media (max-width:760px){
 
-  .gif-framework-challenge{
+  .gif-framework-challenge-boxes{
     grid-template-columns:1fr;
+    gap:14px;
   }
 
-  .gif-framework-challenge-left{
-    display:contents;
+  .challenge-box{
+    min-height:80px;
+    padding:22px;
+    font-size:1rem;
   }
-
-  .gif-framework-challenge h2{
-    order:1;
-  }
-
-  .gif-framework-challenge-right{
-    order:2;
-  }
-
-  .gif-framework-challenge p{
-    order:3;
-  }
-
 }
-</style>
+  </STYLE>
 
 
 
@@ -1774,10 +1736,10 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 }
 .who-serve-head h2{
   margin:0 0 14px;
-  font-size:clamp(2rem, 4vw, 3.2rem);
+  font-size:clamp(2rem, 2vw, 2.2rem);
   line-height:1.05;
   letter-spacing:-0.03em;
-  font-weight:500;
+  font-weight:400;
   color:#111;
 }
 
@@ -1853,10 +1815,10 @@ Griffin also supports the evaluation and implementation of advanced and emerging
 .who-serve-head h2{
   margin:0 0 0px;
   margin-bottom:-24px;
-  font-size:clamp(2rem, 4vw, 3.2rem);
+  font-size:clamp(2rem, 2vw, 2.2rem);
   line-height:1.05;
   letter-spacing:-0.03em;
-  font-weight:500;
+  font-weight:400;
   color:#111;
 }
 .who-serve-head p{
