@@ -1245,28 +1245,7 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 .cap-grid a{
   width: 100%;
 }
-/* Full-width Capabilities dropdown only */
-.topbar-dropdown[data-panel="consulting"]{
-  left: 0 !important;
-  transform: none !important;
-  width: 100% !important;
-  max-width: none !important;
-}
 
-/* Make the teal box full width */
-.topbar-dropdown[data-panel="consulting"] .topbar-dropdown__inner{
-  width: 100% !important;
-  max-width: none !important;
-
-  padding: 36px 38px !important; /* 🔥 fixed edge padding */
-}
-
-.topbar-dropdown[data-panel="consulting"] .capabilities-columns{
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  gap: 80px;
-}
 
 /* Capabilities responsive layout */
 @media (max-width: 1600px){

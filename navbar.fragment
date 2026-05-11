@@ -71,44 +71,30 @@
   <!-- DROPDOWNS -->
   <div class="topbar-dropdowns">
     <div class="topbar-dropdown" data-panel="consulting">
-      <div class="topbar-dropdown__inner">
-        <div class="topbar-dropdown__intro">
-          <!--<div class="topbar-dropdown__eyebrow">Technical Consulting</div>-->
-          <h4 class="topbar-dropdown__title">Technical Consulting</h4>
-          <p class="topbar-dropdown__desc">
-            Griffin delivers specialized technical consulting for complex industrial environments—bringing clarity in high-risk situations, strengthening compliance strategies, and supporting mission-critical decisions with deep subject matter expertise.
-          </p>
-        </div>
+  <div class="topbar-dropdown__inner">
 
-<div class="topbar-dropdown__links capabilities-columns">
+    <div class="topbar-dropdown__intro">
+      <h4 class="topbar-dropdown__title">Capabilities</h4>
 
-  <div class="cap-group">
-    <h5>Technical Advisory</h5>
-    <div class="cap-grid">
-      <a href="#">Advanced NDT Technologies & Application Subject Matter Experts</a>
-      <a href="#">Inspection Program Development & Optimization</a>
-      <a href="#">NDT Level III & Regulatory Code Compliance Advisory</a>
-      <a href="#">Application Specific NDT Procedures & Technology Integration</a>
-      <a href="#">Automation, Robotics & Digital Inspection and Monitoring Systems</a>
-      <a href="#">Technical Training & Workforce Development</a>
+      <p class="topbar-dropdown__desc">
+        Technical and strategic advisory services supporting industrial inspection,
+        asset integrity, advanced NDT environments, and business growth initiatives.
+      </p>
+    </div>
+
+    <div class="topbar-dropdown__links">
+
+      <a href="/technical-advisory.html">
+        Technical Advisory
+      </a>
+
+      <a href="/strategy-business-advisory.html">
+        Strategy &amp; Business Advisory
+      </a>
+
     </div>
   </div>
-
-  <div class="cap-group">
-    <h5>Strategy & Investment Advisory</h5>
-    <div class="cap-grid">
-      <a href="#">Corporate Strategy & Growth Planning</a>
-      <a href="#">M&A Due Diligence & Transaction Support</a>
-      <a href="#">Business Development & Market Strategy</a>
-      <a href="#">Project Management</a>
-      <a href="#">Talent Assessment & Leadership Advisory</a>
-      <a href="#">Capital Strategy & Investment Support</a>
-    </div>
-  </div>
-
 </div>
-      </div>
-    </div>
 
     <div class="topbar-dropdown" data-panel="advisory">
       <div class="topbar-dropdown__inner">
