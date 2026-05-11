@@ -47,7 +47,7 @@
       </div>
 
       <div class="topbar-nav__item">
-        <a href="/about.html" class="topbar-nav__link">Insights</a>
+        <a href="/insights.html" class="topbar-nav__link">Insights</a>
       </div>
 
       <div class="topbar-nav__item has-dd" data-dd="affiliates">
