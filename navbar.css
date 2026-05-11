@@ -8,7 +8,7 @@
   --topbar-text: rgba(0, 32, 46, 0.88);
   --topbar-text-soft: rgba(255,255,255,0.76);
   --topbar-hover: #f00303;
-  --topbar-pad-x: 2rem;
+  --topbar-pad-x: 1rem;
   --topbar-link-gap: 28px;
   --topbar-z: 300;
 
@@ -56,7 +56,7 @@
 .topbar-nav__left{
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   flex: 0 0 auto;
   min-width: 0;
 }
