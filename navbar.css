@@ -1295,12 +1295,15 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 /* ===== DESKTOP: LOGO BLOCK PUSHES AGAINST MENU LINKS ===== */
 
 @media (min-width: 861px){
+  .topbar-nav__menu-btn {
+    display: none;
+  }
 
   .topbar-nav{
     display: grid;
-    grid-template-columns: max-content minmax(0, 1360px);
+    grid-template-columns: max-content minmax(0, 1400px);
     align-items: center;
-    column-gap: clamp(28px, 4vw,52px);
+    column-gap: clamp(28px, 4.6vw,142px);
     position: relative;
   }
 
