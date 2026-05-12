@@ -390,9 +390,6 @@ body{
     --topbar-pad-x: 16px;
   }
 
-  .topbar-nav__logo-box img{
-    height: 36px;
-  }
 
   .topbar-nav__link{
     font-size: 11px;
@@ -429,9 +426,7 @@ body{
     gap: 12px;
   }
 
-  .topbar-nav__logo-box img{
-    height: 34px;
-  }
+
 
   .topbar-dropdowns{
     display: none;
