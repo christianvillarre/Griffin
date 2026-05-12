@@ -12,7 +12,7 @@
   --topbar-link-gap: 28px;
   --topbar-z: 300;
 
-    --content-max: 1400px;
+    --content-max: 1360px;
   --content-start: max(var(--topbar-pad-x), calc((100vw - var(--content-max)) / 2));
   
 
@@ -82,13 +82,13 @@
 }
 
 .topbar-nav__menu-btn:hover{
-  transform: translateY(11px);
+  transform: translateY(14px);
   opacity: 1;
 }
 
 .topbar-nav__menu-btn span{
   display: block;
-  width: 22px;
+  width: 26px;
   height: 3px;
   border-radius: 999px;
   background: rgba(0, 32, 46, 0.88);
@@ -114,7 +114,7 @@
 
 .topbar-nav__links{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--topbar-link-gap);
 
   padding-left: var(--content-start);
@@ -1197,7 +1197,7 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     transform: translateX(-50%);
     
     width: min(100%, var(--content-max));
-    justify-content: center;
+    justify-content: flex-start;
 
     padding-left: 0 !important;
     margin-left: 0 !important;
@@ -1295,4 +1295,39 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 
 .topbar-nav__logo-box img{
   display:block;
+}
+
+/* ===== DESKTOP: LOGO BLOCK PUSHES AGAINST MENU LINKS ===== */
+
+@media (min-width: 861px){
+
+  .topbar-nav{
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1360px);
+    align-items: center;
+    column-gap: clamp(28px, 4vw,52px);
+    position: relative;
+  }
+
+  .topbar-nav__left{
+    min-width: max-content;
+    margin-right: 0 !important;
+  }
+
+  .topbar-nav__links{
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+
+    width: 100%;
+    max-width: 1360px;
+
+    justify-content: flex-start;
+
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+
+    min-width: 0;
+    overflow: hidden;
+  }
 }
