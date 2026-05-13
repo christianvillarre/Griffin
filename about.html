@@ -19,7 +19,7 @@
       --red:#F00303;
       --muted:rgba(17,17,17,0.72);
       --line:#e8e8e8;
-      --page-max:1200px;
+      --page-max:1365px;
     }
 
     *{ box-sizing:border-box; }
@@ -708,29 +708,178 @@
     <main>
 
       <!-- ABOUT HERO -->
-      <section class="service-top-image" id="about">
-        <img src="/images/stock8.jpeg" alt="About Griffin Integrity">
+<section class="expertise-section about-hero-replace">
+  
+  <div class="simple-shell">
+    <div class="about-hero-image">
+      <img src="/images/stock36.jpeg" alt="Griffin Integrity Solutions">
+    </div>
+    <div class="section-head who-serve-head light">
+      <div>
+        <!--<p class="simple-eyebrow">About</p>-->
+        <h2>About Griffin Integrity Solutions</h2>
+      </div>
 
-        <div class="service-top-image__title">
-          <p class="service-eyebrow">About</p>
-          <h1>Built on Technical Discipline, Driven by Integrity</h1>
-        </div>
-      </section>
+      <div>
+        <p>
+          Griffin Integrity Solutions is an independent advisory and technical consultancy serving the energy and heavy industrial sectors across the Testing, Inspection, Certification, and Compliance (TICC) landscape.<br><br>
 
-      <!-- FULL WIDTH DESCRIPTION WITH BLUEBG3 -->
-      <section class="service-split-section about-intro-band">
-        <div class="about-intro-band__inner">
-          <div class="service-split-content about-intro-band__content">
-            <p class="service-subtitle-dark">
-              Griffin Integrity delivers dependable inspection consulting and technical
-              support with a focus on clarity, accountability, and real-world execution.
-              We help clients strengthen programs, improve documentation, and make
-              confident decisions in complex operating environments.
-            </p>
-          </div>
-        </div>
-      </section>
+The firm combines deep industry experience, advanced technical expertise, and strategic insight across the NDT and asset integrity ecosystem—helping organizations convert inspection and integrity programs into measurable operational performance and financial return.<br><br>
 
+Operating through a curated network of senior industry professionals and subject matter experts with decades of leadership and technical experience across the TICC and asset integrity sectors, Griffin advises C-level executives, owner-operators, and investors on complex technical, operational, and capital allocation decisions in high-consequence industrial operating environments.<br><br>
+
+Griffin supports the evaluation, selection, and implementation of advanced NDT technologies and inspection methodologies—including permanently installed asset condition and structural health monitoring systems—ensuring these investments deliver practical performance gains, not just theoretical capability.<br><br>
+
+Griffin operates at the intersection of engineering, operations, and capital strategy—where inspection decisions directly impact risk, performance, and enterprise value.
+
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+<style>
+  /* ================= ABOUT TOP REPLACEMENT ================= */
+.about-hero-replace{
+  background:#063b58;
+  color:#fff;
+  padding: clamp(120px, 16vw, 140px) 0 clamp(70px, 8vw, 110px);
+}
+
+.simple-shell{
+  width:min(1380px, calc(100% - 40px));
+  margin:0 auto;
+}
+
+.section-head{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1fr);
+  gap:clamp(36px, 6vw, 90px);
+  align-items:start;
+  border-top:1px solid rgba(255,255,255,.35);
+  padding-top:32px;
+}
+
+.section-head.light,
+.section-head.light h2,
+.section-head.light p{
+  color:rgba(255,255,255,.88) !important;
+}
+
+.simple-eyebrow{
+  margin:0 0 16px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.58) !important;
+}
+
+.section-head h2{
+  margin:0 0 14px;
+  font-size:clamp(2rem, 2vw, 2.2rem);
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  font-weight:400;
+  color:#ffffff;
+}
+
+.section-head p{
+  margin:0;
+  font-size: 1.22rem !important;
+  line-height:1.2;
+  color:#444;
+  max-width:60ch;
+  margin-bottom: 2rem;
+}
+
+.split-feature-link{
+  margin-top:28px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.split-feature-link svg{
+  width:20px;
+  height:20px;
+  transition:transform .25s ease;
+}
+
+.split-feature-link:hover svg{
+  transform:translate(3px, -3px);
+}
+
+@media(max-width:900px){
+  .section-head{
+    grid-template-columns:1fr;
+  }
+
+  .section-head h2{
+    max-width:11ch;
+  }
+
+  .section-head p{
+    max-width:100%;
+  }
+}
+
+@media(max-width:700px){
+  .simple-shell{
+    width:calc(100% - 24px);
+  }
+
+  .about-hero-replace{
+    padding-top:110px;
+  }
+}
+</style>
+<style>
+  .about-hero-image{
+  width:100%;
+  height:400px;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:42px;
+}
+
+.about-hero-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* optional darker overlay */
+.about-hero-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.08) 0%,
+    rgba(0,0,0,.18) 100%
+  );
+}
+
+@media(max-width:900px){
+  .about-hero-image{
+    height:320px;
+    margin-bottom:30px;
+  }
+}
+
+@media(max-width:700px){
+  .about-hero-image{
+    height:240px;
+  }
+}
+</style>
       <!-- 2 GRID TITLE TEXT -->
       <section class="about-two-grid">
         <div class="page-wrap">
