@@ -797,24 +797,24 @@
 <section class="expertise-section">
   <div class="simple-shell">
 
-    <div class="about-intro-full">
+   <div class="about-intro-full">
 
   <p class="about-intro-text">
     Deep industry experience. Advanced technical insight. Griffin helps organizations transform asset integrity and inspection programs into measurable operational and financial performance.
+
+    <a href="/about.html" class="about-inline-link light">
+      <span>Read More</span>
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 17L17 7M17 7H9M17 7V15"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+      </svg>
+    </a>
   </p>
-
-  <a href="/about.html" class="split-feature-link light">
-    <span>About Griffin</span>
-
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 17L17 7M17 7H9M17 7V15"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
-    </svg>
-  </a>
 
 </div>
     <style>
@@ -963,6 +963,54 @@
   .about-intro-text{
     font-size:1.15rem !important;
     line-height:1.5 !important;
+  }
+
+}
+.about-inline-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  margin-left:14px;
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:1.25rem;
+  font-weight:600;
+  letter-spacing:-0.01em;
+
+  white-space:nowrap;
+
+  border-bottom:1px solid rgba(255,255,255,.75);
+  padding-bottom:0px;
+
+  opacity:.98;
+  transition:opacity .25s ease, transform .25s ease;
+  transform: translateY(-0.2rem);
+}
+
+.about-inline-link svg{
+  width:18px;
+  height:18px;
+  transition:transform .25s ease;
+}
+
+.about-inline-link:hover{
+  opacity:1;
+}
+
+.about-inline-link:hover svg{
+  transform:translate(2px,-2px);
+}
+
+@media(max-width:760px){
+
+  .about-inline-link{
+    display:flex;
+    width:fit-content;
+    margin-left:0;
+    margin-top:18px;
   }
 
 }
