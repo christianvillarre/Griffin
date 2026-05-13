@@ -797,29 +797,26 @@
 <section class="expertise-section">
   <div class="simple-shell">
 
-    <div class="section-head who-serve-head light">
-      <div>
-       
-        <h2>About Griffin Integrity Solutions</h2>
-      </div>
+    <div class="about-intro-full">
 
-      <div>
-        <p>
-         Deep industry experience. Advanced technical insight. Griffin helps organizations transform asset integrity and inspection programs into measurable operational and financial performance.
-         </p>
-         <a href="/about.html" class="split-feature-link light">
-            <span>About Griffin</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17L17 7M17 7H9M17 7V15"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </a>
-      </div>
-    </div>
+  <p class="about-intro-text">
+    Deep industry experience. Advanced technical insight. Griffin helps organizations transform asset integrity and inspection programs into measurable operational and financial performance.
+  </p>
+
+  <a href="/about.html" class="split-feature-link light">
+    <span>About Griffin</span>
+
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17L17 7M17 7H9M17 7V15"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+</div>
     <style>
       .light {
         color: rgba(255, 255, 255, 0.88)!important;
@@ -862,7 +859,7 @@
   background:#063b58;
   color:#fff;
   padding:clamp(10px, 10vw, 0px) 0;
-  padding-top: 3rem;
+  padding-top: 1rem;
 }
 
 /* make headings work on dark */
@@ -931,7 +928,45 @@
   }
 }
 </style>
+<style>
+  .about-intro-full{
+  width:100%;
 
+  padding-bottom:30px;
+}
+
+.about-intro-text{
+  margin:0;
+
+  width:100%;
+  max-width:none !important;
+
+  font-size:clamp(1.25rem, 1.5vw, 2rem) !important;
+  line-height:1.35 !important;
+  letter-spacing:-0.02em;
+
+  color:rgba(255,255,255,.92) !important;
+  font-weight:300;
+}
+
+.about-intro-full .split-feature-link{
+  margin-top:28px;
+}
+
+/* mobile */
+@media(max-width:760px){
+
+  .about-intro-full{
+    padding-top:24px;
+  }
+
+  .about-intro-text{
+    font-size:1.15rem !important;
+    line-height:1.5 !important;
+  }
+
+}
+</style>
 
 <section class="gif-framework-section">
   <div class="gif-framework-inner">
