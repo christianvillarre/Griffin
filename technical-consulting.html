@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Technical Consulting | Griffin Integrity Solutions</title>
+  <title>Capabilities | Griffin Integrity Solutions</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +21,12 @@
       --red:#F00303;
       --muted:rgba(17,17,17,0.72);
       --line:#e8e8e8;
-      --page-max:1200px;
+      --page-max:1360px;
     }
 
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; }
+
     body{
       font-family:'Zalando Sans', sans-serif;
       background:var(--bg);
@@ -74,7 +75,6 @@
       transform: translateX(3px);
     }
 
-    /* ================= TOP IMAGE ================= */
     .service-top-image{
       width: 100%;
       height: clamp(340px, 40vw, 40vh);
@@ -93,7 +93,6 @@
       display: block;
     }
 
-    /* ================= SPLIT HERO ================= */
     .service-split-section{
       width: 100%;
       background: linear-gradient(
@@ -132,35 +131,6 @@
       background: #fff;
     }
 
-    .breadcrumb{
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding-bottom: 20px;
-      margin: 0;
-    }
-
-    .breadcrumb a{
-      color: #cccccc;
-      text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.2s ease, color 0.2s ease;
-    }
-
-    .breadcrumb a:hover{
-      opacity: 1;
-      color: var(--red);
-    }
-
-    .breadcrumb-sep{
-      opacity: 0.4;
-    }
-
     .service-title-box{
       margin: 0;
       font-size: clamp(2.2rem, 3vw, 3.6rem);
@@ -174,14 +144,13 @@
 
     .service-subtitle-dark{
       margin: 0;
-      max-width: 44ch;
+      max-width: 46ch;
       font-size: clamp(1rem, 1.3vw, 1.2rem);
       line-height: 1.8;
       color: rgba(17,17,17,0.74);
       font-weight: 300;
     }
 
-    /* ================= INTRO ================= */
     .service-intro{
       width: 100%;
       background: #fff;
@@ -206,7 +175,6 @@
       padding-left: 24px;
     }
 
-    /* ================= BODY COPY ================= */
     .help-section{
       background:#fff;
     }
@@ -240,7 +208,6 @@
       margin: 0;
     }
 
-    /* ================= PILLAR CARDS ================= */
     .pillar-grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -324,10 +291,9 @@
       line-height:1.65;
     }
 
-    /* ================= HOW WE HELP ================= */
     .help-grid{
       display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap:0;
       margin-bottom: 4rem;
     }
@@ -382,7 +348,6 @@
       transition: color .25s ease;
     }
 
-    /* ================= SPECIALIZATION SPLIT ================= */
     .feature-split-section{
       background:#ffffff;
       padding: clamp(12px, 2vw, 40px) 0 4rem;
@@ -440,7 +405,7 @@
       letter-spacing: -0.03em;
       font-weight: 300;
       color: #111;
-      max-width: 16ch;
+      max-width: 18ch;
     }
 
     .feature-split__content p{
@@ -475,7 +440,6 @@
       color:var(--red);
     }
 
-    /* ================= RELATED AREAS ================= */
     .insight-grid-section{
       background:#ffffff;
       color:#111111;
@@ -567,7 +531,6 @@
       height: 26px;
     }
 
-    /* ================= CTA ================= */
     .advisor-cta-section{
       padding: 0 0 5rem;
       background: #fff;
@@ -591,7 +554,7 @@
       letter-spacing: -0.03em;
       font-weight: 300;
       color: #111;
-      max-width: 18ch;
+      max-width: 22ch;
     }
 
     .advisor-cta__button{
@@ -627,7 +590,6 @@
       height: 18px;
     }
 
-    /* ================= RESPONSIVE ================= */
     @media (max-width: 1180px){
       .help-grid{
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -703,119 +665,264 @@
     }
   </style>
 </head>
+
 <body>
 
   <div id="site-navbar"></div>
 
   <div id="scroll-container">
     <main>
-      <!--<section class="service-top-image">
-        <img src="/images/stock11.jpeg" alt="NDT consulting support">
-      </section>-->
-      
 
-      <section class="service-split-section">
-        <div class="service-split-card">
-          <div class="service-split-title">
-       
-            <h1 class="service-title-box">
-              Capabilities
-            </h1>
-          </div>
+      <div class="hero-spacer">
+  <section class="service-top-image">
+    <img src="/images/stock48.jpeg" alt="Griffin Integrity capabilities">
+  </section>
 
-          <div class="service-split-content">
-            <p class="service-subtitle-dark">
-              Deep technical execution, Level III leadership, written practice support,
-              training systems, and advanced inspection technology guidance—brought together
-              under one technical consulting platform.
-            </p>
+</div>
 
-            <a href="#technical-pillars" class="page-link">
-              <span>Explore Technical Consulting</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-                <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
+<section class="service-split-section">
+  <div class="service-split-card">
+    <div class="service-split-title">
+      <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Capabilities</span>
+      </nav>
 
+      <h1 class="service-title-box">
+        Capabilities
+      </h1>
+    </div>
+
+    <div class="service-split-content">
+      <p class="service-subtitle-dark">
+        Independent advisory, technical leadership, and strategic guidance for organizations operating across complex industrial and asset integrity environments.
+      </p>
+
+      <a href="#capability-pillars" class="page-link">
+        <span>Contact a Griffin Advisor</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+          <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+  <style>
+    .hero-spacer{
+  padding-top: 7rem;
+}
+
+.service-top-image{
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto 2rem;
+  height: clamp(320px, 45vw, 400px);
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+}
+
+.service-top-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+
+}
+
+.service-split-section{
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #063959 0%,
+    #063959 calc(50% - 168px),
+    #ffffff calc(50% - 168px),
+    #ffffff 100%
+  );
+}
+
+.service-split-card{
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 36% 64%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.service-split-title{
+  padding: clamp(1.75rem, 3vw, 3rem);
+  background: #063959;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(220px, 20vw, 320px);
+}
+
+.service-split-content{
+  padding: clamp(1.75rem, 3vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff;
+}
+
+.service-title-box{
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3.3rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+  color: #fff;
+  max-width: 10ch;
+  text-wrap: balance;
+}
+
+.service-subtitle-dark{
+  margin: 0;
+  max-width: 40ch;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.75;
+  color: rgba(17,17,17,0.72);
+  font-weight: 300;
+}
+
+.breadcrumb{
+  position: static;
+  transform: none;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+.breadcrumb a{
+  color: #cccccc;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb a:hover{
+  opacity: 1;
+  color: var(--red);
+}
+
+.breadcrumb-sep{
+  opacity: 0.4;
+}
+
+.breadcrumb-current{
+  color: #999;
+  pointer-events: none;
+}
+
+@media (max-width: 900px){
+  .service-split-section{
+    background: #ffffff;
+  }
+
+  .service-split-card{
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .service-split-title,
+  .service-split-content{
+    min-height: auto;
+  }
+
+  .service-title-box{
+    max-width: none;
+  }
+}
+  </style>
       <section class="service-intro">
         <div class="page-wrap">
           <div class="service-intro__inner">
             <h2>
-              Griffin’s Technical Consulting platform is the engineering authority layer of the business—combining independent NDT leadership, procedural rigor, field-aligned program support, and advanced technology guidance to help clients strengthen compliance, improve execution, and make high-consequence decisions with greater confidence.
+              Griffin Integrity Solutions brings together deep technical expertise, operational insight, and strategic advisory support to help industrial organizations strengthen performance, reduce uncertainty, and make more informed decisions across inspection, integrity, compliance, growth, and investment initiatives.
             </h2>
           </div>
         </div>
       </section>
 
-      <section class="help-section" id="technical-overview">
+      <section class="help-section" id="capabilities-overview">
         <div class="page-wrap">
           <div class="help-text-block">
             <p>
-              Technical Consulting is where Griffin’s core authority lives. It brings together the expertise, systems thinking, and program-level support required to guide inspection operations in complex industrial environments. This includes Level III consulting, subject matter expertise, written practice development, qualification structure, training support, and technical program oversight—each designed to improve clarity, defensibility, and consistency across the inspection function.
+              Operating through a network of senior industry professionals, technical specialists, and strategic advisors, Griffin supports owner-operators, service providers, investors, and industrial leadership teams through both technical execution challenges and broader business-critical decisions.
               <br><br>
-              Within that same consulting framework, advanced inspection technologies serve as a focused specialization rather than a separate service line. Automation, robotics, advanced imaging, and technology program development are positioned as an innovation layer inside the broader technical offering—helping clients evaluate new tools, integrate emerging systems responsibly, and modernize inspection workflows without losing alignment with standards, procedures, or field realities.
+              The firm’s capabilities are organized around two core advisory pillars: Technical Advisory and Strategy &amp; Business Advisory. Together, these pillars allow Griffin to help clients address complex inspection, asset integrity, technology, workforce, growth, transaction, and investment decisions with a practical, experience-driven perspective.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="help-section" id="technical-pillars">
+      <section class="help-section" id="capability-pillars">
         <div class="page-wrap">
           <div class="help-head">
-            <h2>Technical Consulting Structure</h2>
+            <h2>Capability Pillars</h2>
           </div>
 
           <div class="pillar-grid">
             <article class="pillar-card">
               <p class="pillar-label">Pillar 01</p>
-              <h3>Technical Advisory &amp; NDT Leadership</h3>
+              <h3>Technical Advisory</h3>
               <p>
-                This is the core engineering authority layer—focused on technical execution,
-                standards alignment, procedural strength, and trusted expert support across
-                inspection programs and personnel systems.
+                Griffin’s Technical Advisory platform delivers engineering leadership, inspection expertise, advanced technology integration, and workforce development support for organizations operating in high-consequence industrial environments.
               </p>
               <ul class="pillar-list">
-                <li>NDT Level III Consulting &amp; Support</li>
-                <li>Advanced NDT Subject Matter Experts</li>
-                <li>Written Practice Review &amp; Development</li>
-                <li>Training Programs</li>
-                <li>Technology Programs &amp; Procedures</li>
+                <li>Advanced NDT Technologies &amp; Application Subject Matter Experts</li>
+                <li>Inspection Program Development &amp; Optimization</li>
+                <li>NDT Level III &amp; Regulatory Code Compliance Advisory</li>
+                <li>Application Specific NDT Procedures &amp; Technology Integration</li>
+                <li>Automation, Robotics &amp; Integrated 3D Digital Imaging Systems</li>
+                <li>Integrated IDMS, Analytics, and Reporting Software</li>
+                <li>Automated Asset Integrity and Structural Health Monitoring Systems</li>
+                <li>Technical Training &amp; Workforce Development</li>
               </ul>
             </article>
 
             <article class="pillar-card">
               <p class="pillar-label">Pillar 02</p>
-              <h3>Advanced Inspection Technologies</h3>
+              <h3>Strategy &amp; Business Advisory</h3>
               <p>
-                This is a specialization inside Technical Consulting—an innovation layer that
-                extends the core offer through advanced systems, integration strategy, and modern
-                inspection technology guidance.
+                Griffin’s Strategy &amp; Business Advisory platform helps organizations navigate growth, operational planning, investment decisions, and organizational development across the industrial and asset integrity sectors.
               </p>
               <ul class="pillar-list">
-                <li>Automation, Robotics, and Advanced Imaging Systems</li>
-                <li>Advanced NDT Technology Programs</li>
-                <li>Evaluation of emerging inspection platforms</li>
-                <li>Technology implementation support</li>
-                <li>Field practicality + standards alignment</li>
+                <li>Corporate Strategy &amp; Growth Planning</li>
+                <li>M&amp;A Due Diligence &amp; Transaction Support</li>
+                <li>Business Development &amp; Market Strategy</li>
+                <li>Project Management</li>
+                <li>Talent Assessment &amp; Leadership Advisory</li>
+                <li>Capital Strategy &amp; Investment Support</li>
               </ul>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="help-section" id="how-we-help">
+      <section class="help-section" id="areas-of-support">
         <div class="page-wrap">
           <div class="help-head">
-            <h2>How We Help Clients</h2>
+            <h2>Areas of Advisory Support</h2>
           </div>
 
           <div class="help-grid">
             <article class="help-card">
               <h3 class="help-card__title">
-                Level III Consulting &amp; Support
+                Technical Program Optimization
                 <span class="help-arrow">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -823,83 +930,7 @@
                 </span>
               </h3>
               <p class="help-copy">
-                Provide senior technical oversight for procedures, approvals, compliance alignment,
-                and high-stakes inspection decisions where independent Level III authority matters.
-              </p>
-            </article>
-
-            <article class="help-card">
-              <h3 class="help-card__title">
-                Advanced NDT Subject Matter Experts
-                <span class="help-arrow">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </h3>
-              <p class="help-copy">
-                Bring in specialized expertise to support complex methods, difficult applications,
-                technical troubleshooting, and program-level decision-making across advanced NDT environments.
-              </p>
-            </article>
-
-            <article class="help-card">
-              <h3 class="help-card__title">
-                Written Practice Review &amp; Development
-                <span class="help-arrow">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </h3>
-              <p class="help-copy">
-                Develop and refine written practices so qualification systems, documentation,
-                and employer-based requirements are clear, defensible, and operationally sound.
-              </p>
-            </article>
-
-            <article class="help-card">
-              <h3 class="help-card__title">
-                Training Programs
-                <span class="help-arrow">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </h3>
-              <p class="help-copy">
-                Structure training systems that strengthen workforce readiness, improve consistency,
-                and support progression from qualification through real-world field execution.
-              </p>
-            </article>
-
-            <article class="help-card">
-              <h3 class="help-card__title">
-                Technology Programs &amp; Procedures
-                <span class="help-arrow">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </h3>
-              <p class="help-copy">
-                Build or refine technical programs around specific inspection methods,
-                procedural workflows, reporting expectations, and implementation standards.
-              </p>
-            </article>
-
-            <article class="help-card">
-              <h3 class="help-card__title">
-                Automation, Robotics &amp; Advanced Imaging
-                <span class="help-arrow">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </h3>
-              <p class="help-copy">
-                Support the evaluation and integration of advanced systems that improve safety,
-                reach, repeatability, and inspection visibility in demanding environments.
+                Improve inspection program structure, reporting workflows, qualification systems, and long-term technical consistency.
               </p>
             </article>
 
@@ -913,14 +944,13 @@
                 </span>
               </h3>
               <p class="help-copy">
-                Help clients evaluate emerging tools through a practical lens—balancing innovation,
-                code alignment, operational readiness, and long-term program fit.
+                Support the evaluation and implementation of robotics, automation, advanced imaging, digital inspection technologies, and integrated reporting platforms.
               </p>
             </article>
 
             <article class="help-card">
               <h3 class="help-card__title">
-                Program Reliability &amp; Continuous Improvement
+                Regulatory &amp; Compliance Guidance
                 <span class="help-arrow">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -928,57 +958,98 @@
                 </span>
               </h3>
               <p class="help-copy">
-                Improve inspection consistency, decision quality, and documentation performance
-                across the full technical consulting environment—not just individual tasks.
+                Provide independent advisory support for Level III oversight, written practices, procedural alignment, and compliance strategy.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Corporate Growth Strategy
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <p class="help-copy">
+                Support leadership teams with expansion planning, market positioning, operational scaling, and long-term business strategy.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Transaction &amp; Investment Support
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <p class="help-copy">
+                Deliver technical and operational insight during acquisitions, investment evaluations, capital planning, and strategic partnerships.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Workforce &amp; Leadership Development
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+              <p class="help-copy">
+                Help organizations strengthen technical leadership, workforce readiness, succession planning, and organizational capability.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="feature-split-section" id="advanced-technologies">
+      <section class="feature-split-section" id="integrated-perspective">
         <div class="page-wrap">
           <div class="feature-split">
             <div class="feature-split__media">
-              <img src="/images/stock4.jpeg" alt="Advanced inspection technology and technical program support">
+              <img src="/images/stock4.jpeg" alt="Integrated technical and strategic advisory support">
             </div>
 
             <div class="feature-split__content">
-              <p class="feature-split__eyebrow">Specialization Inside Technical Consulting</p>
-              <h2>Advanced Inspection Technologies</h2>
+              <p class="feature-split__eyebrow">Integrated Advisory Perspective</p>
+              <h2>Technical Insight Aligned With Business Strategy</h2>
               <p>
-                Advanced inspection technologies are positioned as a focused vertical within
-                Technical Consulting—not as a separate page or disconnected offer. This allows
-                Griffin to bring innovation into the conversation while keeping implementation
-                grounded in technical authority, standards, procedure integrity, and field execution.
+                What differentiates Griffin is the ability to bridge technical execution with business strategy. Inspection programs, integrity systems, technology investments, workforce planning, and operational performance do not exist independently — they directly impact financial outcomes, operational reliability, growth potential, and long-term organizational value.
+              </p>
+              <p>
+                Griffin helps clients align technical decision-making with broader operational and business objectives through a practical, industry-experienced advisory approach.
               </p>
               <ul class="feature-split__list">
-                <li>Automation and robotics evaluation</li>
-                <li>Advanced imaging systems guidance</li>
-                <li>Technology program development</li>
-                <li>Procedure alignment for new tools</li>
-                <li>Integration strategy for operational adoption</li>
+                <li>Technical and strategic advisory integration</li>
+                <li>Operational performance alignment</li>
+                <li>Technology investment evaluation</li>
+                <li>Inspection and integrity program modernization</li>
+                <li>Organizational and workforce support</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="insight-grid-section" id="related-areas">
+      <section class="insight-grid-section" id="core-focus-areas">
         <div class="page-wrap">
           <div class="help-head">
-            <h2>Related Technical Focus Areas</h2>
+            <h2>Core Focus Areas</h2>
           </div>
 
           <div class="insight-grid-cards">
             <article class="insight-card">
               <div class="insight-card-box">
                 <div class="insight-card-media">
-                  <img src="/images/stock1.jpeg" alt="NDT leadership and consulting">
+                  <img src="/images/stock1.jpeg" alt="Technical leadership and advisory support">
                 </div>
                 <div class="insight-card-body">
                   <span class="insight-card-title">
-                    NDT Leadership
+                    Technical Leadership
                     <span class="title-arrow">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -986,7 +1057,7 @@
                     </span>
                   </span>
                   <p class="insight-card-text">
-                    Independent technical direction, oversight, and decision support for organizations that need senior inspection authority.
+                    Independent technical oversight, advanced inspection expertise, and engineering-aligned advisory support for complex industrial environments.
                   </p>
                 </div>
               </div>
@@ -995,11 +1066,11 @@
             <article class="insight-card">
               <div class="insight-card-box">
                 <div class="insight-card-media">
-                  <img src="/images/stock2.jpeg" alt="Written practices and program systems">
+                  <img src="/images/stock2.jpeg" alt="Operational performance and program optimization">
                 </div>
                 <div class="insight-card-body">
                   <span class="insight-card-title">
-                    Program Systems
+                    Operational Performance
                     <span class="title-arrow">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1007,7 +1078,7 @@
                     </span>
                   </span>
                   <p class="insight-card-text">
-                    Written practices, training frameworks, qualification systems, and procedural clarity that strengthen program integrity.
+                    Program optimization, workflow improvement, reporting systems, and execution strategies designed to strengthen operational reliability.
                   </p>
                 </div>
               </div>
@@ -1016,11 +1087,11 @@
             <article class="insight-card">
               <div class="insight-card-box">
                 <div class="insight-card-media">
-                  <img src="/images/stock3.jpeg" alt="Automation and advanced imaging support">
+                  <img src="/images/stock3.jpeg" alt="Strategy and business growth advisory">
                 </div>
                 <div class="insight-card-body">
                   <span class="insight-card-title">
-                    Technology Integration
+                    Strategy &amp; Growth
                     <span class="title-arrow">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1028,7 +1099,7 @@
                     </span>
                   </span>
                   <p class="insight-card-text">
-                    Advanced imaging, robotics, and automation support introduced through a disciplined technical consulting framework.
+                    Strategic planning, investment support, organizational development, and business advisory for industrial service organizations and stakeholders.
                   </p>
                 </div>
               </div>
@@ -1041,7 +1112,7 @@
         <div class="page-wrap">
           <div class="advisor-cta">
             <div class="advisor-cta__content">
-              <h2>Connect with Griffin’s Technical Consulting Team</h2>
+              <h2>Let’s Discuss Your Technical or Strategic Objectives</h2>
             </div>
 
             <a href="mailto:you@example.com" class="advisor-cta__button">
