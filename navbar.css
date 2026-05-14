@@ -1292,40 +1292,34 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   display:block;
 }
 
-/* ===== DESKTOP: LOGO BLOCK PUSHES AGAINST MENU LINKS ===== */
+/* wide screen: keep your current centered nav */
 
-@media (min-width: 861px){
-  .topbar-nav__menu-btn {
-    display: none;
-  }
+/* when screen gets tight: stop absolute centering */
+@media (min-width: 861px) and (max-width: 1840px){
 
   .topbar-nav{
     display: grid;
-    grid-template-columns: max-content minmax(0, 1400px);
-    align-items: center;
-    column-gap: clamp(28px, 4.6vw,142px);
-    position: relative;
-  }
-
-  .topbar-nav__left{
-    min-width: max-content;
-    margin-right: 0 !important;
+    grid-template-columns: auto 1fr;
+    column-gap: clamp(52px, 2vw, 90px);
   }
 
   .topbar-nav__links{
     position: static !important;
     left: auto !important;
+    right: auto !important;
     transform: none !important;
 
-    width: 100%;
-    max-width: 1360px;
+    width: auto !important;
+    max-width: none !important;
 
     justify-content: flex-start;
-
     padding-left: 0 !important;
     margin-left: 0 !important;
+  }
+}
 
-    min-width: 0;
-    overflow: hidden;
+@media (min-width: 861px) {
+  .topbar-nav__menu-btn {
+    display: none;
   }
 }
