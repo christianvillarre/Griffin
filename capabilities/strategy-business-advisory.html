@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Strategy & Business Advisory | Griffin Integrity Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+  <link rel="stylesheet" href="/navbar.css" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --navy-2:#0d1d27;
+      --blue:#063959;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1360px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .page-link{
+      margin-top:24px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      width:fit-content;
+      color:var(--red);
+      text-decoration:none;
+      font-size:clamp(1rem, 1.2vw, 1.125rem);
+      font-weight:700;
+      letter-spacing:0.01em;
+      transition:color .2s ease, transform .2s ease;
+    }
+
+    .page-link svg{
+      width:18px;
+      height:18px;
+      transition:transform .2s ease;
+    }
+
+    .page-link:hover{
+      transform:translateX(2px);
+    }
+
+    .page-link:hover svg{
+      transform:translateX(3px);
+    }
+
+    .hero-spacer{
+      padding-top:7rem;
+    }
+
+    .service-top-image{
+      width:min(1400px, calc(100% - 40px));
+      margin:0 auto 2rem;
+      height:clamp(320px, 45vw, 400px);
+      position:relative;
+      overflow:hidden;
+      background:#ffffff;
+      box-shadow:0 20px 40px -20px rgba(0,0,0,0.45);
+    }
+
+    .service-top-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .service-split-section{
+      width:100%;
+      background:linear-gradient(
+        to right,
+        #063959 0%,
+        #063959 calc(50% - 168px),
+        #ffffff calc(50% - 168px),
+        #ffffff 100%
+      );
+    }
+
+    .service-split-card{
+      width:min(1200px, 100%);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:36% 64%;
+      background:#fff;
+      overflow:hidden;
+    }
+
+    .service-split-title{
+      padding:clamp(1.75rem, 3vw, 3rem);
+      background:#063959;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:clamp(220px, 20vw, 320px);
+    }
+
+    .service-split-content{
+      padding:clamp(1.75rem, 3vw, 3rem);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:#fff;
+    }
+
+    .service-title-box{
+      margin:0;
+      font-size:clamp(2rem, 3vw, 3.3rem);
+      line-height:.94;
+      letter-spacing:-.045em;
+      font-weight:400;
+      color:#fff;
+      max-width:12ch;
+      text-wrap:balance;
+    }
+
+    .service-subtitle-dark{
+      margin:0;
+      max-width:44ch;
+      font-size:clamp(1rem, 1.3vw, 1.2rem);
+      line-height:1.75;
+      color:rgba(17,17,17,0.72);
+      font-weight:300;
+    }
+
+    .breadcrumb{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      padding-bottom:20px;
+      margin:0;
+    }
+
+    .breadcrumb a{
+      color:#cccccc;
+      text-decoration:none;
+      opacity:.7;
+    }
+
+    .breadcrumb-sep{
+      opacity:.4;
+    }
+
+    .breadcrumb-current{
+      color:#999;
+      pointer-events:none;
+    }
+
+    .service-intro{
+      width:100%;
+      background:#fff;
+      padding:clamp(84px, 10vw, 110px) 2rem 2rem;
+    }
+
+    .service-intro h2{
+      margin:0;
+      font-size:clamp(1.6rem, 2.5vw, 2.6rem);
+      line-height:1.2;
+      letter-spacing:-.04em;
+      font-weight:300;
+      color:var(--ink);
+      max-width:56ch;
+      border-left:8px solid var(--red);
+      padding-left:24px;
+    }
+
+    .help-section{
+      background:#fff;
+    }
+
+    .help-head{
+      margin-bottom:clamp(24px, 3vw, 42px);
+      border-top:1px solid #111;
+    }
+
+    .help-head h2{
+      margin:24px 0 0;
+      font-size:clamp(1.8rem, 2vw, 2.2rem);
+      line-height:.96;
+      letter-spacing:-.035em;
+      font-weight:300;
+      max-width:28ch;
+    }
+
+    .help-text-block{
+      width:100%;
+      margin-bottom:4rem;
+      column-count:2;
+      column-gap:60px;
+      font-size:clamp(1.05rem, 1.15vw, 1.22rem);
+      line-height:1.75;
+      color:rgba(17,17,17,0.8);
+    }
+
+    .help-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:0;
+      margin-bottom:4rem;
+    }
+
+    .help-card{
+      padding:28px 26px 30px;
+      min-height:250px;
+      transition:background .25s ease;
+    }
+
+    .help-card:hover{
+      background:#77777712;
+    }
+
+    .help-card:hover .help-arrow{
+      color:var(--red);
+      transform:translateX(4px);
+    }
+
+    .help-card__title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 18px;
+      font-size:clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height:1.2;
+      font-weight:600;
+      color:#111;
+    }
+
+    .help-arrow{
+      width:22px;
+      height:22px;
+      transition:.25s ease;
+    }
+
+    .help-copy{
+      margin:0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,0.78);
+    }
+
+    .feature-split-section{
+      background:#ffffff;
+      padding:2rem 0 4rem;
+    }
+
+    .feature-split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:clamp(32px, 4vw, 40px);
+      align-items:flex-start;
+      max-width:1200px;
+      margin:0 auto;
+      padding:2rem;
+    }
+
+    .feature-split__media img{
+      width:100%;
+      max-height:420px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .feature-split__content{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      justify-content:center;
+    }
+
+    .feature-split__eyebrow{
+      margin:0;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
+    .feature-split__content h2{
+      margin:0;
+      font-size:clamp(1.7rem, 2.2vw, 2.6rem);
+      line-height:1.03;
+      letter-spacing:-.03em;
+      font-weight:300;
+      color:#111;
+      max-width:18ch;
+    }
+
+    .feature-split__content p{
+      margin:0;
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(17,17,17,0.75);
+    }
+
+    .feature-split__list{
+      list-style:none;
+      padding:0;
+      margin:8px 0 0;
+      display:grid;
+      gap:12px;
+    }
+
+    .feature-split__list li{
+      position:relative;
+      padding-left:18px;
+      font-size:15px;
+      line-height:1.65;
+      color:rgba(17,17,17,0.82);
+    }
+
+    .feature-split__list li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:var(--red);
+    }
+
+    .insight-grid-section{
+      background:#ffffff;
+      padding:1rem 0 4.5rem;
+    }
+
+    .insight-grid-cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:0;
+    }
+
+    .insight-card-box{
+      width:100%;
+      background:#ffffff;
+      padding:1rem;
+      transition:background-color .3s ease;
+      cursor:pointer;
+    }
+
+    .insight-card-box:hover{
+      background:var(--navy);
+    }
+
+    .insight-card-media{
+      width:100%;
+      height:220px;
+      overflow:hidden;
+      margin-bottom:1.5rem;
+    }
+
+    .insight-card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .insight-card-title{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      font-size:clamp(18px, 1.2vw, 22px);
+      line-height:1.15;
+      font-weight:600;
+      color:#111;
+      transition:.3s ease;
+    }
+
+    .insight-card-text{
+      margin-top:12px;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,0.78);
+      transition:.3s ease;
+    }
+
+    .insight-card-box:hover .insight-card-title,
+    .insight-card-box:hover .insight-card-text{
+      color:#fff;
+    }
+
+    .advisor-cta-section{
+      padding:0 0 5rem;
+      background:#fff;
+    }
+
+    .advisor-cta{
+      max-width:1200px;
+      margin:0 auto;
+      padding:3rem 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:2rem;
+      border-top:1px solid rgba(17,17,17,0.08);
+    }
+
+    .advisor-cta__content h2{
+      margin:0;
+      font-size:clamp(1.5rem, 2vw, 2.4rem);
+      line-height:1.05;
+      font-weight:300;
+      max-width:22ch;
+    }
+
+    .advisor-cta__button{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      min-height:56px;
+      padding:0 24px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:600;
+      border:1px solid #111;
+      transition:.3s ease;
+    }
+
+    .advisor-cta__button:hover{
+      background:var(--navy);
+      border-color:var(--navy);
+    }
+
+    @media (max-width:1180px){
+      .help-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width:900px){
+      .service-split-section{
+        background:#fff;
+      }
+
+      .service-split-card{
+        grid-template-columns:1fr;
+      }
+
+      .feature-split{
+        grid-template-columns:1fr;
+      }
+
+      .insight-grid-cards{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:768px){
+      .help-text-block{
+        column-count:1;
+      }
+
+      .advisor-cta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width:700px){
+      .page-wrap{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .service-top-image{
+        width:calc(100% - 24px);
+      }
+
+      .help-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="site-navbar"></div>
+
+  <div id="scroll-container">
+    <main>
+
+      <div class="hero-spacer">
+        <section class="service-top-image">
+          <img src="/images/stock34.jpeg" alt="Strategy & Business Advisory">
+        </section>
+      </div>
+
+      <section class="service-split-section">
+        <div class="service-split-card">
+
+          <div class="service-split-title">
+            <nav class="breadcrumb">
+              <a href="/">Home</a>
+              <span class="breadcrumb-sep">›</span>
+              <a href="/capabilities.html">Capabilities</a>
+              <span class="breadcrumb-sep">›</span>
+              <span class="breadcrumb-current">Strategy & Business Advisory</span>
+            </nav>
+
+            <h1 class="service-title-box">
+              Strategy & Business Advisory
+            </h1>
+          </div>
+
+          <div class="service-split-content">
+            <p class="service-subtitle-dark">
+              Strategic guidance for industrial organizations navigating growth, investment, operational alignment, leadership decisions, and long-term business performance.
+            </p>
+
+            <a href="#strategy-business-services" class="page-link">
+              <span>Explore Advisory Services</span>
+
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M184 112 L328 256 L184 400"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="52"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="service-intro">
+        <div class="page-wrap">
+          <h2>
+            Griffin Integrity Solutions helps organizations align technical capability, operational strategy, and business decision-making to support sustainable growth, investment readiness, and long-term performance.
+          </h2>
+        </div>
+      </section>
+
+      <section class="help-section" id="strategy-overview">
+        <div class="page-wrap">
+
+          <div class="help-text-block">
+            <p>
+              Griffin’s Strategy & Business Advisory platform supports industrial organizations, owner-operators, investors, and service providers with practical guidance across growth planning, market positioning, operational alignment, and strategic execution.
+              <br><br>
+              Through deep industry experience and executive-level perspective, Griffin helps clients navigate complex business decisions involving expansion, acquisitions, leadership structure, project execution, and capital strategy within high-consequence industrial environments.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="help-section" id="strategy-business-services">
+        <div class="page-wrap">
+
+          <div class="help-head">
+            <h2>Strategy & Business Advisory Services</h2>
+          </div>
+
+          <div class="help-grid">
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Corporate Strategy & Growth Planning
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+
+              <p class="help-copy">
+                Strategic advisory support focused on long-term growth, operational positioning, market expansion, and scalable business planning.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                M&A Due Diligence & Transaction Support
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+
+              <p class="help-copy">
+                Independent operational and technical insight supporting acquisitions, investment evaluations, transaction readiness, and strategic risk assessment.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Business Development & Market Strategy
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+
+              <p class="help-copy">
+                Market-focused strategy development designed to strengthen positioning, identify opportunities, and support sustainable commercial growth.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Project Management
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+
+              <p class="help-copy">
+                Advisory support for project planning, coordination, execution oversight, and alignment between operational objectives and stakeholder expectations.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Talent Assessment & Leadership Advisory
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+
+              <p class="help-copy">
+                Guidance on leadership structure, organizational capability, technical talent evaluation, and long-term workforce alignment.
+              </p>
+            </article>
+
+            <article class="help-card">
+              <h3 class="help-card__title">
+                Capital Strategy & Investment Support
+                <span class="help-arrow">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </h3>
+
+              <p class="help-copy">
+                Strategic support for investment evaluation, capital allocation decisions, operational scalability, and long-term value creation initiatives.
+              </p>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <section class="feature-split-section">
+        <div class="page-wrap">
+
+          <div class="feature-split">
+
+            <div class="feature-split__media">
+              <img src="/images/stock51.jpeg" alt="Industrial business strategy">
+            </div>
+
+            <div class="feature-split__content">
+
+              <p class="feature-split__eyebrow">
+                Strategic Industry Perspective
+              </p>
+
+              <h2>
+                Aligning Technical Capability With Business Performance
+              </h2>
+
+              <p>
+                Griffin helps organizations bridge the gap between operational execution and executive-level strategy. Our advisory approach combines technical industry understanding with practical business insight to help clients make informed decisions with confidence.
+              </p>
+
+              <p>
+                From growth planning and acquisitions to organizational structure and capital strategy, we focus on solutions that create measurable operational and financial value.
+              </p>
+
+              <ul class="feature-split__list">
+                <li>Executive-level strategic guidance</li>
+                <li>Operational and commercial alignment</li>
+                <li>Growth and expansion planning</li>
+                <li>Investment and acquisition support</li>
+                <li>Long-term organizational positioning</li>
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <section class="insight-grid-section">
+        <div class="page-wrap">
+
+          <div class="help-head">
+            <h2>Core Strategic Focus Areas</h2>
+          </div>
+
+          <div class="insight-grid-cards">
+
+            <article class="insight-card">
+              <div class="insight-card-box">
+
+                <div class="insight-card-media">
+                  <img src="/images/stock52.jpeg" alt="Corporate growth strategy">
+                </div>
+
+                <div class="insight-card-body">
+                  <span class="insight-card-title">
+                    Growth Strategy
+                  </span>
+
+                  <p class="insight-card-text">
+                    Strategic planning support focused on sustainable expansion, operational scalability, and long-term market positioning.
+                  </p>
+                </div>
+
+              </div>
+            </article>
+
+            <article class="insight-card">
+              <div class="insight-card-box">
+
+                <div class="insight-card-media">
+                  <img src="/images/stock53.jpeg" alt="Investment and acquisition support">
+                </div>
+
+                <div class="insight-card-body">
+                  <span class="insight-card-title">
+                    Investment & Transactions
+                  </span>
+
+                  <p class="insight-card-text">
+                    Advisory support for acquisitions, capital strategy, investment evaluation, and operational due diligence.
+                  </p>
+                </div>
+
+              </div>
+            </article>
+
+            <article class="insight-card">
+              <div class="insight-card-box">
+
+                <div class="insight-card-media">
+                  <img src="/images/stock54.jpeg" alt="Leadership and operational alignment">
+                </div>
+
+                <div class="insight-card-body">
+                  <span class="insight-card-title">
+                    Leadership & Execution
+                  </span>
+
+                  <p class="insight-card-text">
+                    Organizational alignment, project execution guidance, and leadership advisory designed to strengthen operational performance.
+                  </p>
+                </div>
+
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <section class="advisor-cta-section">
+        <div class="page-wrap">
+
+          <div class="advisor-cta">
+
+            <div class="advisor-cta__content">
+              <h2>
+                Let’s Discuss Your Strategic Advisory Needs
+              </h2>
+            </div>
+
+            <a href="mailto:you@example.com" class="advisor-cta__button">
+              Contact a Griffin Advisor
+            </a>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="/navbar.js"></script>
+  <script src="/load-navbar.js"></script>
+
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+
+  <script>
+    (() => {
+      const lenis = new Lenis({
+        autoRaf: true,
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.1,
+        anchors: {
+          offset: 110
+        }
+      });
+
+      window.lenis = lenis;
+    })();
+  </script>
+
+</body>
+</html>
