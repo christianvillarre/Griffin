@@ -580,25 +580,37 @@
  <div id="scroll-container">
   <main id="site">
 
-<section class="simple-hero-section">
-  <div class="simple-shell">
+<section class="hero-slider-section">
+  <div class="hero-slider-images">
+    <article class="hero-slide active">
+      <img src="/images/stock42.jpeg" alt="">
+    </article>
 
-    <div class="simple-hero-grid">
+    <article class="hero-slide">
+      <img src="/images/stock36.jpeg" alt="">
+    </article>
 
-      <!-- LEFT -->
-      <div class="simple-hero-title-wrap">
-        <h1 class="simple-hero-title">
-          Maximizing the Value of Every Inspection Dollar
-        </h1>
-      </div>
+    <article class="hero-slide">
+      <img src="/images/stock40.jpeg" alt="">
+    </article>
 
-      <!-- RIGHT -->
-      <div class="simple-hero-copy">
+    <article class="hero-slide">
+      <img src="/images/stock34.jpeg" alt="">
+    </article>
+  </div>
+
+  <div class="hero-slider-shell">
+    <div class="hero-info-bar">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Griffin Integrity Solutions</p>
+
+        <h1>Maximizing the Value of Every Inspection Dollar</h1>
+
         <p>
-          Strategic advisory across asset integrity and capital project inspection programs—helping asset owners, industry executives, and investors align inspection strategy, NDT technology adoption, and capital allocation to measurable operational and financial outcomes in high-consequence industries.
+          Strategic advisory across asset integrity and capital project inspection programs—helping asset owners, industry executives, and investors align inspection strategy, NDT technology adoption, and capital allocation to measurable operational and financial outcomes.
         </p>
 
-        <a href="/capabilities" class="simple-link">
+        <a href="/capabilities.html" class="hero-link">
           <span>Explore Capabilities</span>
           <svg viewBox="0 0 24 24">
             <path d="M7 17L17 7M17 7H9M17 7V15"
@@ -611,156 +623,308 @@
         </a>
       </div>
 
-    </div>
+      <div class="hero-slider-bottom">
+        <div class="hero-tabs">
+          <button class="hero-tab active" data-slide="0"></button>
+          <button class="hero-tab" data-slide="1"></button>
+          <button class="hero-tab" data-slide="2"></button>
+          <button class="hero-tab" data-slide="3"></button>
+        </div>
 
-  </div>
-</section>
+        <div class="hero-arrows">
+          <button class="hero-arrow hero-prev" type="button" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" style="transform:scaleX(-1);">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-<section class="slider-blue-section">
-  <div class="simple-shell">
-
-    <!-- TOP ROW -->
-    <div class="tabs-row">
-
-      <div class="simple-tabs">
-  <button class="simple-tab active" data-slide="0"></button>
-  <button class="simple-tab" data-slide="1"></button>
-  <button class="simple-tab" data-slide="2"></button>
-  <button class="simple-tab" data-slide="3"></button>
-</div>
-
-      <div class="simple-slider-controls">
-        <button class="slider-arrow prev">
-        <svg viewBox="0 0 24 24" aria-hidden="true" style="transform: scaleX(-1);">
-  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-        </button>
-
-        <button class="slider-arrow next">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-        </button>
+          <button class="hero-arrow hero-next" type="button" aria-label="Next image">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
-
     </div>
-
-    <!-- IMAGE + TEXT -->
-    <div class="simple-slider-block">
-
-      <article class="simple-slide active">
-        <div class="simple-img-wrap"><img src="/images/stock42.jpeg"></div>
-        <h3>Technical consulting for operators and teams navigating complex inspection programs</h3>
-      </article>
-
-      <article class="simple-slide">
-        <div class="simple-img-wrap"><img src="/images/stock36.jpeg"></div>
-        <h3>Business advisory for companies scaling industrial services and technical capabilities</h3>
-      </article>
-
-      <article class="simple-slide">
-        <div class="simple-img-wrap"><img src="/images/stock40.jpeg"></div>
-        <h3>Industry insight for organizations operating in high-risk, asset-intensive environments</h3>
-      </article>
-
-      <article class="simple-slide">
-        <div class="simple-img-wrap"><img src="/images/stock34.jpeg"></div>
-        <h3>Support for investors, operators, and service providers making high-stakes decisions</h3>
-      </article>
-
-    </div>
-
   </div>
 </section>
+
 <style>
-  /* =========================
-   FULL BLUE SLIDER SECTION
-========================= */
-.slider-blue-section{
-  background: #063b58;
-  color:#fff;
-  padding:18px 0 80px;
-  padding-bottom: 0px;
+.hero-slider-section{
+  position:relative;
+  width:100%;
+  height:68vh;
+  min-height:680px;
+  margin-top:80px;
+  overflow:hidden;
+  background:#063b58;
 }
 
-/* top row */
-.slider-blue-section .tabs-row{
+.hero-slider-images,
+.hero-slide{
+  position:absolute;
+  inset:0;
+}
+
+.hero-slider-images{
+  overflow:hidden;
+}
+
+.hero-slide{
+  clip-path:inset(0 100% 0 0);
+  z-index:1;
+}
+
+.hero-slide.active{
+  clip-path:inset(0 0 0 0);
+  z-index:3;
+}
+
+.hero-slide.leaving{
+  clip-path:inset(0 0 0 0);
+  z-index:2;
+}
+
+.hero-slide.entering{
+  clip-path:inset(0 0 0 0);
+  z-index:4;
+  animation:heroReveal 1.05s cubic-bezier(.77,0,.18,1) forwards;
+}
+
+@keyframes heroReveal{
+  from{ clip-path:inset(0 100% 0 0); }
+  to{ clip-path:inset(0 0 0 0); }
+}
+
+.hero-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.04);
+}
+
+.hero-slider-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.42),
+    rgba(0,0,0,.12) 55%,
+    rgba(0,0,0,.24)
+  );
+}
+
+.hero-slider-shell{
+  position:relative;
+  z-index:6;
+  width:min(1400px, calc(100% - 48px));
+  height:100%;
+  margin:0 auto;
   display:flex;
+  align-items:flex-end;
+}
+
+.hero-info-bar{
+  width:min(620px, 100%);
+  min-height:620px;
+  max-height:calc(100% - 24px);
+  background:#063b58;
+  color:#fff;
+  padding:48px 44px 34px;
+  display:flex;
+  flex-direction:column;
   justify-content:space-between;
+}
+
+.hero-eyebrow{
+  margin:0 0 18px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.58);
+}
+
+.hero-info-bar h1{
+  margin:0 0 24px;
+  font-size:clamp(2.45rem, 4.2vw, 4rem);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-weight:500;
+}
+
+.hero-info-bar p{
+  margin:0 0 26px;
+  font-size:1.02rem;
+  line-height:1.45;
+  color:rgba(255,255,255,.78);
+}
+
+.hero-link{
+  display:inline-flex;
   align-items:center;
-  margin-bottom:22px;
+  gap:10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  border-bottom:1px solid rgba(255,255,255,.75);
+  padding-bottom:4px;
+}
+
+.hero-link svg{
+  width:18px;
+  height:18px;
+}
+
+.hero-slider-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   gap:24px;
-  flex-wrap:wrap;
+  padding-top:36px;
 }
 
-/* tabs */
-.slider-blue-section .simple-tab{
-  border:1px solid rgba(255,255,255,.3);
+.hero-tabs{
+  display:flex;
+  gap:10px;
+  width:220px;
+}
+
+.hero-tab{
+  appearance:none;
+  flex:1;
+  height:5px;
+  border:0;
+  padding:0;
+  background:rgba(255,255,255,.45);
+  cursor:pointer;
+}
+
+.hero-tab.active{
+  background:#f00303;
+}
+
+.hero-arrows{
+  display:flex;
+  gap:10px;
+}
+
+.hero-arrow{
+  width:46px;
+  height:46px;
+  border:1px solid rgba(255,255,255,.35);
   background:transparent;
   color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.25s ease;
 }
 
-.slider-blue-section .simple-tab:hover,
-.slider-blue-section .simple-tab.active{
+.hero-arrow:hover{
   background:#fff;
-  color:var(--accent);
-  border-color:#fff;
+  color:#063b58;
 }
 
-/* arrows */
-.slider-blue-section .slider-arrow{
-  border:1px solid rgba(255,255,255,.3);
-  background:transparent;
-  color:#fff;
-  height: 40px;
+.hero-arrow svg{
+  width:18px;
+  height:18px;
 }
 
-.slider-blue-section .slider-arrow:hover{
-  background:#fff;
-  color:var(--accent);
-}
+@media(max-width:900px){
+  .hero-slider-section{
+    height:auto;
+    min-height:760px;
+    margin-top:72px;
+  }
 
-/* image */
-.slider-blue-section .simple-slide img{
-  border:none;
-}
+  .hero-slider-shell{
+    width:100%;
+    align-items:flex-end;
+    padding:0 18px;
+  }
 
-/* text under image */
-.slider-blue-section .simple-slide h3{
-  color:#fff;
-}
+  .hero-info-bar{
+    width:100%;
+    min-height:auto;
+    max-height:none;
+    padding:34px 24px 26px;
+  }
 
-.slider-blue-section .simple-slide p{
-  color:rgba(255,255,255,.85);
+  .hero-info-bar h1{
+    font-size:clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-slider-bottom{
+    flex-wrap:wrap;
+  }
+
+  .hero-tabs{
+    width:180px;
+  }
 }
 </style>
 
 <script>
 (() => {
-  const slides = document.querySelectorAll('.simple-slide');
-  const tabs = document.querySelectorAll('.simple-tab');
-  const next = document.querySelector('.next');
-  const prev = document.querySelector('.prev');
+  const section = document.querySelector('.hero-slider-section');
+  if (!section) return;
+
+  const slides = section.querySelectorAll('.hero-slide');
+  const tabs = section.querySelectorAll('.hero-tab');
+  const next = section.querySelector('.hero-next');
+  const prev = section.querySelector('.hero-prev');
+
+  if (!slides.length) return;
 
   let index = 0;
+  let isAnimating = false;
   let interval;
 
   function show(i){
-    index = (i + slides.length) % slides.length;
+    if (isAnimating) return;
 
-    slides.forEach((s, idx) => {
-      s.classList.toggle('active', idx === index);
+    const oldIndex = index;
+    const newIndex = (i + slides.length) % slides.length;
+    if (newIndex === oldIndex) return;
+
+    isAnimating = true;
+    index = newIndex;
+
+    slides[oldIndex].classList.add('leaving');
+    slides[newIndex].classList.add('entering');
+
+    tabs.forEach((tab, idx) => {
+      tab.classList.toggle('active', idx === newIndex);
     });
 
-    tabs.forEach((t, idx) => {
-      t.classList.toggle('active', idx === index);
-    });
+    setTimeout(() => {
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('active', 'leaving', 'entering');
+        if (idx === newIndex) slide.classList.add('active');
+      });
+
+      isAnimating = false;
+    }, 1050);
   }
 
   function startAuto(){
-    interval = setInterval(() => {
-      show(index + 1);
-    }, 8000); // 8 seconds
+    interval = setInterval(() => show(index + 1), 8000);
   }
 
   function resetAuto(){
@@ -768,7 +932,6 @@
     startAuto();
   }
 
-  // tab clicks
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => {
       show(i);
@@ -776,80 +939,22 @@
     });
   });
 
-  // arrows
-  next.addEventListener('click', () => {
+  next?.addEventListener('click', () => {
     show(index + 1);
     resetAuto();
   });
 
-  prev.addEventListener('click', () => {
+  prev?.addEventListener('click', () => {
     show(index - 1);
     resetAuto();
   });
 
-  show(0);
+  slides[0].classList.add('active');
+  tabs[0]?.classList.add('active');
   startAuto();
 })();
 </script>
 
-
-
-<section class="expertise-section">
-  <div class="simple-shell">
-
-   <div class="about-intro-full">
-
-  <p class="about-intro-text">
-    Deep industry experience. Advanced technical insight. Griffin helps organizations transform asset integrity and inspection programs into measurable operational and financial performance.
-
-    <a href="/about.html" class="about-inline-link light">
-      <span>Read More</span>
-
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M7 17L17 7M17 7H9M17 7V15"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.2"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </p>
-
-</div>
-    <style>
-      .light {
-        color: rgba(255, 255, 255, 0.88)!important;
-        border-color: rgba(255, 255, 255, 0.439) !important;
-      }
-    </style>
-    <!-- EXPERTISE GRID
-    <div class="expertise-grid">
-
-      <div class="expertise-item">
-        <div class="expertise-number">60+</div>
-        <p>Years of combined leadership across engineering, inspection, integrity, and operations.</p>
-      </div>
-
-      <div class="expertise-item">
-        <div class="expertise-number">14+</div>
-        <p>Countries where global teams and service delivery were directed and scaled.</p>
-      </div>
-
-      <div class="expertise-item">
-        <div class="expertise-number">$100M+</div>
-        <p>P&amp;L responsibility managed across multinational business units.</p>
-      </div>
-
-      <div class="expertise-item">
-        <div class="expertise-number">$250M+</div>
-        <p>Capital programs led across pipeline, LNG, and infrastructure initiatives.</p>
-      </div>
-
-    </div> -->
-
-  </div>
-</section>
 
 <style>
   /* =========================
