@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oil & Gas | Griffin Integrity Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.18/dist/lenis.css">
+  <link rel="stylesheet" href="/navbar.css" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --blue:#063959;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1360px;
+    }
+
+    *{box-sizing:border-box;}
+
+    html,body{
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .advisor-cta__button{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      min-height:56px;
+      padding:0 24px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:600;
+      letter-spacing:.02em;
+      border:1px solid #111;
+      transition:.3s ease;
+    }
+
+    .advisor-cta__button:hover{
+      background:var(--navy);
+      border-color:var(--navy);
+      transform:translateY(-1px);
+    }
+
+    .advisor-cta__icon svg{
+      width:18px;
+      height:18px;
+    }
+
+    /* ================= HERO ================= */
+
+    .capabilities-hero{
+      position:relative;
+      min-height:clamp(620px, 78vh, 820px);
+      padding:clamp(108px, 10vw, 145px) 0 clamp(58px, 6vw, 82px);
+      background:#ffffff;
+      overflow:hidden;
+      margin-bottom:5rem;
+    }
+
+    .capabilities-hero__wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:clamp(36px, 5vw, 80px);
+      align-items:stretch;
+      min-height:calc(
+        clamp(620px, 78vh, 820px)
+        - clamp(108px, 10vw, 145px)
+        - clamp(58px, 6vw, 82px)
+      );
+    }
+
+    .capabilities-hero__left{
+      max-width:620px;
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .capabilities-hero h1{
+      margin:0;
+      max-width:14ch;
+      font-size: clamp(3.25rem, 4.2vw, 2.85rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      font-weight:200;
+      color:var(--navy);
+    }
+
+    .capabilities-hero__content{
+      margin-top:clamp(64px, 10vw, 130px);
+    }
+
+    .capabilities-hero__content p{
+      margin:0 0 24px;
+      max-width:48ch;
+      font-size:clamp(1rem, 1.05vw, 1.02rem);
+      line-height:1.75;
+      color:rgba(17,17,17,.83);
+      font-weight:400;
+    }
+
+    .capabilities-hero__image{
+      position:absolute;
+      top:0;
+      right:0;
+      width:50vw;
+      height:100%;
+      overflow:hidden;
+      background:var(--navy);
+    }
+
+    .capabilities-hero__image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        90deg,
+        rgba(255,255,255,.18) 0%,
+        rgba(255,255,255,.02) 38%,
+        rgba(0,0,0,.16) 100%
+      );
+    }
+
+    .capabilities-hero__image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .hero-back-link{
+      width:fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 28px;
+      text-decoration:none;
+      color:rgba(17,17,17,.56);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      transition:.2s ease;
+    }
+
+    .hero-back-link:hover{
+      color:var(--red);
+      transform:translateX(-2px);
+    }
+
+    .hero-back-icon svg{
+      width:16px;
+      height:16px;
+    }
+
+    /* ================= INTRO ================= */
+
+    .industry-intro{
+      background:#fff;
+      padding:1rem 0 5rem;
+    }
+
+    .help-head{
+      margin-bottom:clamp(24px, 3vw, 42px);
+      border-top:1px solid #111;
+    }
+
+    .help-head h2{
+      margin:24px 0 0;
+      font-size:clamp(1.8rem, 2vw, 2.2rem);
+      line-height:.96;
+      letter-spacing:-.035em;
+      font-weight:300;
+      max-width:28ch;
+    }
+
+    .intro-copy{
+      max-width:980px;
+      font-size:clamp(1.15rem, 1.55vw, 1.75rem);
+      line-height:1.35;
+      letter-spacing:-.025em;
+      font-weight:300;
+      color:rgba(17,17,17,.82);
+      border-left:8px solid var(--red);
+      padding-left:24px;
+      margin:0;
+    }
+
+    /* ================= SEGMENTS ================= */
+
+    .segment-section{
+      background:#fff;
+      padding:0 0 5.5rem;
+    }
+
+    .segment-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:24px;
+    }
+
+    .segment-card{
+      background:#fff;
+      border:1px solid rgba(17,17,17,.08);
+      padding:clamp(24px, 3vw, 34px);
+      transition:.25s ease;
+    }
+
+    .segment-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 40px rgba(0,0,0,.08);
+      border-color:rgba(17,17,17,.16);
+    }
+
+    .segment-label{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 18px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
+    .segment-label::before{
+      content:"";
+      width:30px;
+      height:1px;
+      background:var(--red);
+      display:block;
+    }
+
+    .segment-card h3{
+      margin:0 0 14px;
+      font-size:clamp(1.55rem, 2vw, 2.15rem);
+      line-height:1.02;
+      letter-spacing:-.035em;
+      font-weight:400;
+      color:#111;
+    }
+
+    .segment-card p{
+      margin:0 0 22px;
+      font-size:16px;
+      line-height:1.7;
+      color:rgba(17,17,17,.74);
+    }
+
+    .segment-card ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:11px;
+    }
+
+    .segment-card li{
+      position:relative;
+      padding-left:18px;
+      font-size:15px;
+      line-height:1.55;
+      color:rgba(17,17,17,.82);
+    }
+
+    .segment-card li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:var(--red);
+    }
+
+    /* ================= DETAIL ROWS ================= */
+
+    .detail-section{
+      background:#ffffff;
+      padding:1rem 0 5rem;
+    }
+
+    .detail-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:clamp(32px, 4vw, 56px);
+      align-items:center;
+      padding:3rem 0;
+      border-top:1px solid rgba(17,17,17,.08);
+    }
+
+    .detail-row:nth-child(even) .detail-media{
+      order:2;
+    }
+
+    .detail-media{
+      min-height:360px;
+      overflow:hidden;
+      background:#ddd;
+    }
+
+    .detail-media img{
+      width:100%;
+      height:100%;
+      min-height:360px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .detail-content .eyebrow{
+      margin:0 0 14px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
+    .detail-content h2{
+      margin:0 0 18px;
+      font-size:clamp(2rem, 3vw, 3.4rem);
+      line-height:.96;
+      letter-spacing:-.055em;
+      font-weight:300;
+      color:var(--navy);
+      max-width:12ch;
+    }
+
+    .detail-content p{
+      margin:0 0 22px;
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(17,17,17,.75);
+      max-width:58ch;
+    }
+
+    .detail-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:12px;
+    }
+
+    .detail-list li{
+      position:relative;
+      padding-left:20px;
+      font-size:15px;
+      line-height:1.65;
+      color:rgba(17,17,17,.82);
+    }
+
+    .detail-list li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.68em;
+      width:7px;
+      height:7px;
+      background:var(--red);
+      border-radius:50%;
+    }
+
+    /* ================= SUPPORT GRID ================= */
+
+    .support-section{
+      background:#fff;
+      padding:1rem 0 5rem;
+    }
+
+    .support-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:0;
+      margin-bottom:4rem;
+    }
+
+    .support-card{
+      padding:28px 26px 30px;
+      min-height:250px;
+      transition:.25s ease;
+    }
+
+    .support-card:hover{
+      background:#77777712;
+    }
+
+    .support-card h3{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 18px;
+      font-size:clamp(1.05rem, 1.15vw, 1.25rem);
+      line-height:1.2;
+      font-weight:600;
+      color:#111;
+    }
+
+    .support-card p{
+      margin:0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,.78);
+    }
+
+    .support-arrow{
+      width:22px;
+      height:22px;
+      transition:.25s ease;
+    }
+
+    .support-card:hover .support-arrow{
+      color:var(--red);
+      transform:translateX(4px);
+    }
+
+    /* ================= CTA ================= */
+
+    .advisor-cta-section{
+      padding:0 0 5rem;
+      background:#fff;
+    }
+
+    .advisor-cta{
+      max-width:1360px;
+      margin:0 auto;
+      padding:3rem 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:2rem;
+      border-top:1px solid rgba(17,17,17,.08);
+    }
+
+    .advisor-cta__content h2{
+      margin:0;
+      font-size:clamp(1.5rem, 2vw, 2.4rem);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      font-weight:300;
+      color:#111;
+      max-width:24ch;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:980px){
+      .segment-grid,
+      .support-grid{
+        grid-template-columns:1fr;
+      }
+
+      .detail-row{
+        grid-template-columns:1fr;
+      }
+
+      .detail-row:nth-child(even) .detail-media{
+        order:0;
+      }
+    }
+
+    @media(max-width:900px){
+      .capabilities-hero{
+        padding-bottom:0;
+      }
+
+      .capabilities-hero__wrap{
+        grid-template-columns:1fr;
+        min-height:auto;
+        gap:42px;
+      }
+
+      .capabilities-hero__left{
+        max-width:720px;
+        min-height:520px;
+      }
+
+      .capabilities-hero__image{
+        position:relative;
+        width:calc(100% + 40px);
+        height:clamp(300px, 48vw, 460px);
+        margin-left:-20px;
+        right:auto;
+      }
+    }
+
+    @media(max-width:768px){
+      .advisor-cta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media(max-width:600px){
+      .page-wrap{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .capabilities-hero{
+        padding-top:110px;
+      }
+
+      .capabilities-hero__left{
+        min-height:auto;
+      }
+
+      .capabilities-hero h1{
+        font-size:clamp(2.65rem, 13vw, 4rem);
+      }
+
+      .capabilities-hero__content{
+        margin-top:54px;
+      }
+
+      .capabilities-hero__image{
+        width:calc(100% + 24px);
+        margin-left:-12px;
+      }
+
+      .detail-media,
+      .detail-media img{
+        min-height:280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="site-navbar"></div>
+
+  <div id="scroll-container">
+    <main>
+
+      <section class="capabilities-hero">
+        <div class="page-wrap capabilities-hero__wrap">
+          <div class="capabilities-hero__left">
+            <div class="capabilities-hero__top">
+
+              <a href="/industries.html" class="hero-back-link">
+                <span class="hero-back-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                    <path d="M328 112 L184 256 L328 400"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="42"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Industries</span>
+              </a>
+
+              <h1>Power Generation</h1>
+            </div>
+
+            <div class="capabilities-hero__content">
+              <p>
+            Griffin Integrity Solutions supports power generation organizations with inspection strategy, outage readiness, asset integrity advisory, advanced NDT guidance, compliance alignment, and reliability-focused decision support across critical plant systems and components.
+            </p>
+
+              <a href="/contact.html" class="advisor-cta__button">
+                <span class="advisor-cta__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Contact Us</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="capabilities-hero__image">
+            <img src="/images/stock28.jpeg" alt="Oil and gas inspection and asset integrity advisory">
+          </div>
+        </div>
+      </section>
+
+<section class="industry-intro">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Power Generation Advisory Support</h2>
+    </div>
+
+    <p class="intro-copy">
+      From fossil generation and combined-cycle facilities to nuclear, renewables, balance-of-plant systems, pressure equipment, rotating assets, and critical components, Griffin helps power organizations align inspection programs, outage planning, NDT technology, reliability goals, and capital decisions with measurable operational performance.
+    </p>
+  </div>
+</section>
+
+<section class="segment-section">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Power Generation Segments</h2>
+    </div>
+
+    <div class="segment-grid">
+
+      <article class="segment-card">
+        <p class="segment-label">Segment 01</p>
+        <h3>Fossil &amp; Combined Cycle</h3>
+        <p>
+          Inspection and integrity advisory for boilers, HRSGs, turbines, piping systems, pressure equipment, and balance-of-plant assets.
+        </p>
+        <ul>
+          <li>Outage inspection planning</li>
+          <li>Boiler, HRSG, and piping integrity support</li>
+          <li>Advanced NDT technology selection</li>
+          <li>Reliability and inspection cost optimization</li>
+        </ul>
+      </article>
+
+      <article class="segment-card">
+        <p class="segment-label">Segment 02</p>
+        <h3>Nuclear</h3>
+        <p>
+          Technical guidance for high-consequence inspection environments where compliance, documentation, procedure discipline, and technical defensibility are critical.
+        </p>
+        <ul>
+          <li>Inspection procedure and program review</li>
+          <li>Code and compliance alignment</li>
+          <li>Critical component inspection support</li>
+          <li>NDT qualification and technical oversight</li>
+        </ul>
+      </article>
+
+      <article class="segment-card">
+        <p class="segment-label">Segment 03</p>
+        <h3>Renewables &amp; Energy Infrastructure</h3>
+        <p>
+          Advisory support for emerging energy assets, structural inspection, condition monitoring, reliability planning, and technology evaluation.
+        </p>
+        <ul>
+          <li>Structural and mechanical inspection strategy</li>
+          <li>Monitoring and reporting systems</li>
+          <li>Asset condition visibility</li>
+          <li>Technology and vendor evaluation</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="page-wrap">
+
+    <div class="detail-row">
+      <div class="detail-media">
+        <img src="/images/stock43.jpeg" alt="Fossil and combined cycle power generation inspection support">
+      </div>
+
+      <div class="detail-content">
+        <p class="eyebrow">Fossil &amp; Combined Cycle</p>
+        <h2>Outage Readiness &amp; Plant Reliability</h2>
+        <p>
+          Power generation facilities require inspection programs that support uptime, safety, outage execution, and long-term asset performance. Griffin helps organizations evaluate inspection scope, improve outage readiness, and apply advanced NDT methods where they create practical operational value.
+        </p>
+
+        <ul class="detail-list">
+          <li>Boiler, HRSG, turbine, and balance-of-plant inspection planning</li>
+          <li>High-energy piping, pressure vessel, and component integrity support</li>
+          <li>Outage inspection readiness and technical oversight</li>
+          <li>Inspection scope optimization and reliability alignment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-media">
+        <img src="/images/stock44.jpeg" alt="Nuclear power inspection and compliance support">
+      </div>
+
+      <div class="detail-content">
+        <p class="eyebrow">Nuclear</p>
+        <h2>Compliance-Driven Inspection Support</h2>
+        <p>
+          Nuclear environments demand disciplined inspection programs, technically defensible procedures, qualified personnel, and strong documentation control. Griffin supports organizations with advisory guidance that strengthens inspection quality, compliance alignment, and decision confidence.
+        </p>
+
+        <ul class="detail-list">
+          <li>Inspection program and procedure review</li>
+          <li>Code, standard, and documentation alignment</li>
+          <li>NDT Level III and technical qualification support</li>
+          <li>Critical component inspection strategy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-media">
+        <img src="/images/stock46.jpeg" alt="Renewable energy infrastructure inspection support">
+      </div>
+
+      <div class="detail-content">
+        <p class="eyebrow">Renewables &amp; Energy Infrastructure</p>
+        <h2>Condition Monitoring &amp; Asset Visibility</h2>
+        <p>
+          Renewable and emerging energy assets require practical inspection strategies that improve condition visibility, support lifecycle planning, and guide technology adoption. Griffin helps organizations evaluate monitoring tools, inspection methods, reporting systems, and vendor capabilities.
+        </p>
+
+        <ul class="detail-list">
+          <li>Structural and mechanical inspection planning</li>
+          <li>Asset condition monitoring and reporting strategy</li>
+          <li>Advanced inspection technology and vendor evaluation</li>
+          <li>Reliability planning and lifecycle support</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="support-section">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>How Griffin Supports Power Generation Organizations</h2>
+    </div>
+
+    <div class="support-grid">
+
+      <article class="support-card">
+        <h3>Outage Inspection Planning</h3>
+        <p>
+          Improve outage readiness, inspection scope, execution planning, and technical oversight across critical plant systems.
+        </p>
+      </article>
+
+      <article class="support-card">
+        <h3>Advanced NDT Selection</h3>
+        <p>
+          Evaluate inspection technologies based on application fit, reliability impact, field readiness, and expected operational value.
+        </p>
+      </article>
+
+      <article class="support-card">
+        <h3>Compliance &amp; Procedure Advisory</h3>
+        <p>
+          Support inspection procedures, written practices, qualification systems, and alignment with applicable codes and standards.
+        </p>
+      </article>
+
+      <article class="support-card">
+        <h3>Critical Component Integrity</h3>
+        <p>
+          Support inspection strategies for pressure equipment, piping, turbines, boilers, HRSGs, and other critical plant assets.
+        </p>
+      </article>
+
+      <article class="support-card">
+        <h3>Monitoring &amp; Reporting Systems</h3>
+        <p>
+          Guide condition monitoring, reporting workflows, IDMS integration, analytics, and asset condition visibility.
+        </p>
+      </article>
+
+      <article class="support-card">
+        <h3>Reliability &amp; Capital Alignment</h3>
+        <p>
+          Connect inspection decisions to reliability goals, outage priorities, operational risk, and capital investment planning.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+      <section class="advisor-cta-section">
+        <div class="page-wrap">
+          <div class="advisor-cta">
+            <div class="advisor-cta__content">
+              <h2>Let’s Discuss Your Oil &amp; Gas Inspection Needs</h2>
+            </div>
+
+            <a href="/contact.html" class="advisor-cta__button">
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact a Griffin Advisor</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="/navbar.js"></script>
+  <script src="/load-navbar.js"></script>
+
+  <script src="https://unpkg.com/lenis@1.3.18/dist/lenis.min.js"></script>
+  <script>
+    (() => {
+      const lenis = new Lenis({
+        autoRaf:true,
+        smoothWheel:true,
+        syncTouch:false,
+        lerp:0.1,
+        anchors:{ offset:110 }
+      });
+
+      window.lenis = lenis;
+    })();
+  </script>
+
+  <div id="contact-drawer-root"></div>
+  <script src="/contact-drawer.js"></script>
+
+</body>
+</html>
