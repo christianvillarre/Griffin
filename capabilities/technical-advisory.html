@@ -571,7 +571,7 @@
     }
 
     .advisor-cta{
-      max-width:1200px;
+      max-width:1360px;
       margin:0 auto;
       padding:3rem 0;
       display:flex;
@@ -711,53 +711,241 @@
   <div id="scroll-container">
     <main>
 
-      <div class="hero-spacer">
-        <section class="service-top-image">
-          <img src="/images/stock49.jpeg" alt="Technical Advisory">
-        </section>
+<section class="capabilities-hero technical-hero">
+  <div class="page-wrap capabilities-hero__wrap">
+    <div class="capabilities-hero__left">
+      <div class="capabilities-hero__top">
+
+        <a href="/capabilities.html" class="hero-back-link">
+          <span class="hero-back-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+              <path d="M328 112 L184 256 L328 400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="42"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+
+          <span>Capabilities</span>
+        </a>
+
+        <h1>Technical Advisory</h1>
+
+
       </div>
 
-      <section class="service-split-section">
-        <div class="service-split-card">
-          <div class="service-split-title">
-            <nav class="breadcrumb">
-              <a href="/">Home</a>
-              <span class="breadcrumb-sep">›</span>
-              <a href="/capabilities.html">Capabilities</a>
-              <span class="breadcrumb-sep">›</span>
-              <span class="breadcrumb-current">Technical Advisory</span>
-            </nav>
+      <div class="capabilities-hero__content">
+        <p>
+          Griffin Integrity Solutions provides technical advisory support for organizations navigating complex inspection programs, NDT technologies, compliance requirements, integrity systems, and operational execution challenges across high-consequence industrial environments.
+        </p>
 
-            <h1 class="service-title-box">
-              Technical Advisory
-            </h1>
-          </div>
-
-          <div class="service-split-content">
-            <p class="service-subtitle-dark">
-              Independent technical guidance for inspection, asset integrity, NDT technology, compliance, and high-consequence industrial decision-making.
-            </p>
-
-            <a href="#technical-advisory-services" class="page-link">
-              <span>Explore Technical Support</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
-                <path d="M184 112 L328 256 L184 400" fill="none" stroke="currentColor" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+        <a href="mailto:you@example.com" class="advisor-cta__button">
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact Us</span>
             </a>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
 
-      <section class="service-intro">
-        <div class="page-wrap">
-          <div class="service-intro__inner">
-            <h2>
-              Griffin Integrity Solutions provides technical advisory support for organizations that need experienced, independent guidance across inspection programs, NDT technologies, asset integrity systems, procedural compliance, and field execution.
-            </h2>
-          </div>
-        </div>
-      </section>
+    <div class="capabilities-hero__image">
+      <img src="/images/stock39.jpeg" alt="Technical advisory and industrial inspection support">
+    </div>
+  </div>
+</section>
 
+<style>
+  /* ================= SHARED HERO STYLE ================= */
+
+.hero-spacer,
+.service-top-image,
+.service-split-section,
+.service-intro{
+  display:none !important;
+}
+
+.capabilities-hero{
+  position:relative;
+  min-height:clamp(620px, 78vh, 820px);
+  padding:clamp(108px, 10vw, 145px) 0 clamp(58px, 6vw, 82px);
+  background:#ffffff;
+  overflow:hidden;
+  margin-bottom:5rem;
+}
+
+.capabilities-hero__wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(36px, 5vw, 80px);
+  align-items:stretch;
+  min-height:calc(
+    clamp(620px, 78vh, 820px)
+    - clamp(108px, 10vw, 145px)
+    - clamp(58px, 6vw, 82px)
+  );
+}
+
+.capabilities-hero__left{
+  max-width:620px;
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.capabilities-hero h1{
+  margin: 0;
+  max-width: 18ch;
+  font-size: clamp(3.25rem, 4.2vw, 2.85rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  font-weight: 200;
+  color: var(--navy);
+}
+
+.capabilities-subheadline{
+  margin:26px 0 0;
+  max-width:16ch;
+  font-size:clamp(1.9rem, 2.4vw, 2.65rem);
+  line-height:1.02;
+  letter-spacing:-0.045em;
+  font-weight:300;
+  color:rgba(17,17,17,0.78);
+}
+
+.capabilities-hero__content{
+  margin-top:clamp(64px, 10vw, 130px);
+}
+
+.capabilities-hero__content p{
+  margin: 0;
+  max-width: 48ch;
+  font-size: clamp(1rem, 1.05vw, 1.02rem);
+  line-height: 1.75;
+  color: rgba(17, 17, 17, 0.833);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.capabilities-hero__image{
+  position:absolute;
+  top:0;
+  right:0;
+  width:50vw;
+  height:100%;
+  overflow:hidden;
+  background:var(--navy);
+}
+
+.capabilities-hero__image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.02) 38%,
+    rgba(0,0,0,0.12) 100%
+  );
+}
+
+.capabilities-hero__image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.hero-back-link{
+  width:fit-content;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 28px;
+  text-decoration:none;
+  color:rgba(17,17,17,0.56);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:color .2s ease, transform .2s ease;
+}
+
+.hero-back-link:hover{
+  color:var(--red);
+  transform:translateX(-2px);
+}
+
+.hero-back-icon{
+  display:inline-flex;
+}
+
+.hero-back-icon svg{
+  width:16px;
+  height:16px;
+}
+
+@media (max-width:900px){
+
+  .capabilities-hero{
+    padding-bottom:0;
+  }
+
+  .capabilities-hero__wrap{
+    grid-template-columns:1fr;
+    min-height:auto;
+    gap:42px;
+  }
+
+  .capabilities-hero__left{
+    max-width:720px;
+    min-height:520px;
+  }
+
+  .capabilities-hero__image{
+    position:relative;
+    width:calc(100% + 40px);
+    height:clamp(300px, 48vw, 460px);
+    margin-left:-20px;
+    right:auto;
+  }
+}
+
+@media (max-width:600px){
+
+  .capabilities-hero{
+    padding-top:110px;
+  }
+
+  .capabilities-hero__left{
+    min-height:auto;
+  }
+
+  .capabilities-hero h1{
+    font-size:clamp(2.65rem, 13vw, 4rem);
+  }
+
+  .capabilities-subheadline{
+    font-size:clamp(1.7rem, 10vw, 2.5rem);
+  }
+
+  .capabilities-hero__content{
+    margin-top:54px;
+  }
+
+  .capabilities-hero__image{
+    width:calc(100% + 24px);
+    margin-left:-12px;
+  }
+}
+</style>
+<!--
       <section class="help-section" id="technical-overview">
         <div class="page-wrap">
           <div class="help-text-block">
@@ -768,7 +956,7 @@
             </p>
           </div>
         </div>
-      </section>
+      </section>-->
 
       <section class="help-section" id="technical-advisory-services">
   <div class="page-wrap">
@@ -777,130 +965,121 @@
       <h2>Technical Advisory Services</h2>
     </div>
 
-    <div class="help-grid">
+<div class="help-grid">
 
-      <article class="help-card">
-        <h3 class="help-card__title">
-          Advanced NDT Technologies &amp; Application SMEs
-          <span class="help-arrow">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </h3>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Advanced NDT Technologies &amp; Application Subject Matter Experts
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Independent expertise supporting the evaluation, selection, and application of advanced NDT technologies across complex industrial environments.
+    </p>
+  </article>
 
-        <p class="help-copy">
-          Independent subject matter expertise supporting the evaluation, application, and implementation of advanced NDT technologies across complex industrial environments.
-        </p>
-      </article>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Inspection Program Development &amp; Optimization
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Support for building, improving, and optimizing inspection programs, workflows, documentation, reporting systems, and execution standards.
+    </p>
+  </article>
 
-      <article class="help-card">
-        <h3 class="help-card__title">
-          Inspection Program Development &amp; Optimization
-          <span class="help-arrow">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </h3>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      NDT Level III &amp; Regulatory Code Compliance Advisory
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Advisory support for written practices, personnel qualification systems, technical procedures, and alignment with applicable codes and standards.
+    </p>
+  </article>
 
-        <p class="help-copy">
-          Support for building, improving, and optimizing inspection programs, workflows, reporting systems, and technical execution standards.
-        </p>
-      </article>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Application Specific NDT Procedures &amp; Technology Integration
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Development and review of application-specific NDT procedures with practical integration of modern inspection technologies.
+    </p>
+  </article>
 
-      <article class="help-card">
-        <h3 class="help-card__title">
-          NDT Level III &amp; Regulatory Code Compliance
-          <span class="help-arrow">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </h3>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Automation, Robotics &amp; Integrated 3D Digital Imaging Systems
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Guidance across automation, robotics, integrated 3D digital imaging, and advanced inspection delivery platforms.
+    </p>
+  </article>
 
-        <p class="help-copy">
-          Advisory support for written practices, qualification systems, technical procedures, and alignment with applicable industry codes and standards.
-        </p>
-      </article>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Integrated IDMS, Analytics, and Reporting Software
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Support for IDMS platforms, analytics workflows, inspection data management, reporting software, and digital integrity systems.
+    </p>
+  </article>
 
-      <article class="help-card">
-        <h3 class="help-card__title">
-          Application Specific Procedures &amp; Technology Integration
-          <span class="help-arrow">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </h3>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Automated Asset Integrity &amp; Structural Health Monitoring Systems
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Advisory support for automated monitoring systems that improve visibility, reliability, and long-term asset integrity decision-making.
+    </p>
+  </article>
 
-        <p class="help-copy">
-          Development and review of application-specific NDT procedures combined with practical integration of modern inspection technologies.
-        </p>
-      </article>
+  <article class="help-card">
+    <h3 class="help-card__title">
+      Technical Training &amp; Workforce Development
+      <span class="help-arrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </h3>
+    <p class="help-copy">
+      Training and workforce development support to strengthen technical competency, field readiness, and inspection program consistency.
+    </p>
+  </article>
 
-      <article class="help-card">
-        <h3 class="help-card__title">
-          Automation, Robotics &amp; Digital Imaging Systems
-          <span class="help-arrow">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </h3>
-
-        <p class="help-copy">
-          Guidance across automation systems, robotics, integrated 3D digital imaging technologies, and advanced inspection delivery platforms.
-        </p>
-      </article>
-
-      <article class="help-card">
-        <h3 class="help-card__title">
-          IDMS, Monitoring Systems &amp; Workforce Development
-          <span class="help-arrow">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </h3>
-
-        <p class="help-copy">
-          Support for integrated IDMS platforms, analytics and reporting software, structural health monitoring systems, and technical workforce development initiatives.
-        </p>
-      </article>
-
-    </div>
-
+</div>
   </div>
 </section>
 
@@ -998,106 +1177,79 @@
         </div>
       </section>-->
 
-      <section class="feature-split-section" id="technical-perspective">
-        <div class="page-wrap">
-          <div class="feature-split">
-            <div class="feature-split__media">
-              <img src="/images/stock4.jpeg" alt="Technical advisory and inspection program support">
-            </div>
-
-            <div class="feature-split__content">
-              <p class="feature-split__eyebrow">Practical Technical Perspective</p>
-              <h2>Technical Insight Aligned With Field Execution</h2>
-              <p>
-                Griffin helps clients bridge the gap between technical requirements and real-world execution. From NDT program structure to technology adoption and compliance alignment, our advisory support is designed to help teams make better technical decisions with greater confidence.
-              </p>
-              <p>
-                We focus on solutions that are practical, defensible, and usable in the field — not just theoretically correct on paper.
-              </p>
-              <ul class="feature-split__list">
-                <li>Technical decision support</li>
-                <li>Inspection and integrity program modernization</li>
-                <li>Technology investment evaluation</li>
-                <li>Procedure and documentation discipline</li>
-                <li>Field-aware execution guidance</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
+    
       <section class="insight-grid-section" id="technical-focus-areas">
-        <div class="page-wrap">
-          <div class="help-head">
-            <h2>Core Technical Focus Areas</h2>
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Related Industries</h2>
+    </div>
+
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock28.jpeg" alt="Oil and gas technical advisory">
           </div>
-
-          <div class="insight-grid-cards">
-            <article class="insight-card">
-              <div class="insight-card-box">
-                <div class="insight-card-media">
-                  <img src="/images/stock1.jpeg" alt="Advanced NDT technology advisory">
-                </div>
-                <div class="insight-card-body">
-                  <span class="insight-card-title">
-                    Advanced NDT
-                    <span class="title-arrow">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </span>
-                  </span>
-                  <p class="insight-card-text">
-                    Independent guidance across advanced inspection technologies, application fit, implementation planning, and performance expectations.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            <article class="insight-card">
-              <div class="insight-card-box">
-                <div class="insight-card-media">
-                  <img src="/images/stock2.jpeg" alt="Inspection program optimization">
-                </div>
-                <div class="insight-card-body">
-                  <span class="insight-card-title">
-                    Program Optimization
-                    <span class="title-arrow">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </span>
-                  </span>
-                  <p class="insight-card-text">
-                    Inspection program structure, reporting workflows, qualification systems, and execution standards designed for consistency and defensibility.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            <article class="insight-card">
-              <div class="insight-card-box">
-                <div class="insight-card-media">
-                  <img src="/images/stock3.jpeg" alt="Compliance and technical documentation">
-                </div>
-                <div class="insight-card-body">
-                  <span class="insight-card-title">
-                    Compliance &amp; Documentation
-                    <span class="title-arrow">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </span>
-                  </span>
-                  <p class="insight-card-text">
-                    Written practices, procedures, technical documentation, reporting quality, and compliance alignment for inspection-driven organizations.
-                  </p>
-                </div>
-              </div>
-            </article>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Oil &amp; Gas
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Technical advisory support for inspection programs, asset integrity, NDT application, compliance, and reliability across upstream, midstream, downstream, and petrochemical environments.
+            </p>
           </div>
         </div>
-      </section>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock43.jpeg" alt="Power generation technical advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Power Generation
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Guidance for inspection planning, outage support, component integrity, monitoring technologies, and risk-based decision-making across power generation assets and facilities.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock46.jpeg" alt="Aerospace technical advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Aerospace
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Advisory support for advanced inspection methods, NDT program quality, technical documentation, compliance alignment, and high-reliability inspection standards.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
       <section class="advisor-cta-section" id="connect-advisor">
         <div class="page-wrap">

@@ -412,7 +412,7 @@
     }
 
     .advisor-cta{
-      max-width:1200px;
+      max-width:1360px;
       margin:0 auto;
       padding:3rem 0;
       display:flex;
@@ -508,59 +508,276 @@
   <div id="scroll-container">
     <main>
 
-      <div class="hero-spacer">
-        <section class="service-top-image">
-          <img src="/images/stock34.jpeg" alt="Strategy & Business Advisory">
-        </section>
+<section class="capabilities-hero technical-hero">
+  <div class="page-wrap capabilities-hero__wrap">
+    <div class="capabilities-hero__left">
+      <div class="capabilities-hero__top">
+
+        <a href="/capabilities.html" class="hero-back-link">
+          <span class="hero-back-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+              <path d="M328 112 L184 256 L328 400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="42"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+          </span>
+
+          <span>Capabilities</span>
+        </a>
+
+        <h1>Strategy & Business Advisory</h1>
+
+
       </div>
 
-      <section class="service-split-section">
-        <div class="service-split-card">
+      <div class="capabilities-hero__content">
+        <p>
+          Griffin Integrity Solutions provides technical advisory support for organizations navigating complex inspection programs, NDT technologies, compliance requirements, integrity systems, and operational execution challenges across high-consequence industrial environments.
+        </p>
 
-          <div class="service-split-title">
-            <nav class="breadcrumb">
-              <a href="/">Home</a>
-              <span class="breadcrumb-sep">›</span>
-              <a href="/capabilities.html">Capabilities</a>
-              <span class="breadcrumb-sep">›</span>
-              <span class="breadcrumb-current">Strategy & Business Advisory</span>
-            </nav>
-
-            <h1 class="service-title-box">
-              Strategy & Business Advisory
-            </h1>
-          </div>
-
-          <div class="service-split-content">
-            <p class="service-subtitle-dark">
-              Strategic guidance for industrial organizations navigating growth, investment, operational alignment, leadership decisions, and long-term business performance.
-            </p>
-
-            <a href="#strategy-business-services" class="page-link">
-              <span>Explore Advisory Services</span>
-
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M184 112 L328 256 L184 400"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="52"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-              </svg>
+        <a href="mailto:you@example.com" class="advisor-cta__button">
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact Us</span>
             </a>
-          </div>
 
-        </div>
-      </section>
+            <style>
+              .advisor-cta__button{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 0 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid #111;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
 
-      <section class="service-intro">
-        <div class="page-wrap">
-          <h2>
-            Griffin Integrity Solutions helps organizations align technical capability, operational strategy, and business decision-making to support sustainable growth, investment readiness, and long-term performance.
-          </h2>
-        </div>
-      </section>
+    .advisor-cta__button:hover{
+      background: var(--navy);
+      border-color: var(--navy);
+      transform: translateY(-1px);
+    }
 
+    .advisor-cta__icon{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .advisor-cta__icon svg{
+      width: 18px;
+      height: 18px;
+    }
+            </style>
+      </div>
+    </div>
+
+    <div class="capabilities-hero__image">
+      <img src="/images/stock34.jpeg" alt="Technical advisory and industrial inspection support">
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ================= SHARED HERO STYLE ================= */
+
+.hero-spacer,
+.service-top-image,
+.service-split-section,
+.service-intro{
+  display:none !important;
+}
+
+.capabilities-hero{
+  position:relative;
+  min-height:clamp(620px, 78vh, 820px);
+  padding:clamp(108px, 10vw, 145px) 0 clamp(58px, 6vw, 82px);
+  background:#ffffff;
+  overflow:hidden;
+  margin-bottom:5rem;
+}
+
+.capabilities-hero__wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(36px, 5vw, 80px);
+  align-items:stretch;
+  min-height:calc(
+    clamp(620px, 78vh, 820px)
+    - clamp(108px, 10vw, 145px)
+    - clamp(58px, 6vw, 82px)
+  );
+}
+
+.capabilities-hero__left{
+  max-width:620px;
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.capabilities-hero h1{
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(3.25rem, 4.2vw, 2.85rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  font-weight: 200;
+  color: var(--navy);
+}
+
+.capabilities-subheadline{
+  margin:26px 0 0;
+  max-width:16ch;
+  font-size:clamp(1.9rem, 2.4vw, 2.65rem);
+  line-height:1.02;
+  letter-spacing:-0.045em;
+  font-weight:300;
+  color:rgba(17,17,17,0.78);
+}
+
+.capabilities-hero__content{
+  margin-top:clamp(64px, 10vw, 130px);
+}
+
+.capabilities-hero__content p{
+  margin: 0;
+  max-width: 48ch;
+  font-size: clamp(1rem, 1.05vw, 1.02rem);
+  line-height: 1.75;
+  color: rgba(17, 17, 17, 0.833);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.capabilities-hero__image{
+  position:absolute;
+  top:0;
+  right:0;
+  width:50vw;
+  height:100%;
+  overflow:hidden;
+  background:var(--navy);
+}
+
+.capabilities-hero__image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.02) 38%,
+    rgba(0,0,0,0.12) 100%
+  );
+}
+
+.capabilities-hero__image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.hero-back-link{
+  width:fit-content;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 28px;
+  text-decoration:none;
+  color:rgba(17,17,17,0.56);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:color .2s ease, transform .2s ease;
+}
+
+.hero-back-link:hover{
+  color:var(--red);
+  transform:translateX(-2px);
+}
+
+.hero-back-icon{
+  display:inline-flex;
+}
+
+.hero-back-icon svg{
+  width:16px;
+  height:16px;
+}
+
+@media (max-width:900px){
+
+  .capabilities-hero{
+    padding-bottom:0;
+  }
+
+  .capabilities-hero__wrap{
+    grid-template-columns:1fr;
+    min-height:auto;
+    gap:42px;
+  }
+
+  .capabilities-hero__left{
+    max-width:720px;
+    min-height:520px;
+  }
+
+  .capabilities-hero__image{
+    position:relative;
+    width:calc(100% + 40px);
+    height:clamp(300px, 48vw, 460px);
+    margin-left:-20px;
+    right:auto;
+  }
+}
+
+@media (max-width:600px){
+
+  .capabilities-hero{
+    padding-top:110px;
+  }
+
+  .capabilities-hero__left{
+    min-height:auto;
+  }
+
+  .capabilities-hero h1{
+    font-size:clamp(2.65rem, 13vw, 4rem);
+  }
+
+  .capabilities-subheadline{
+    font-size:clamp(1.7rem, 10vw, 2.5rem);
+  }
+
+  .capabilities-hero__content{
+    margin-top:54px;
+  }
+
+  .capabilities-hero__image{
+    width:calc(100% + 24px);
+    margin-left:-12px;
+  }
+}
+</style>
+<!--
       <section class="help-section" id="strategy-overview">
         <div class="page-wrap">
 
@@ -573,7 +790,7 @@
           </div>
 
         </div>
-      </section>
+      </section>-->
 
       <section class="help-section" id="strategy-business-services">
         <div class="page-wrap">
@@ -709,142 +926,99 @@
         </div>
       </section>
 
-      <section class="feature-split-section">
-        <div class="page-wrap">
 
-          <div class="feature-split">
+      <section class="insight-grid-section" id="technical-focus-areas">
+  <div class="page-wrap">
+    <div class="help-head">
+      <h2>Related Industries</h2>
+    </div>
 
-            <div class="feature-split__media">
-              <img src="/images/stock51.jpeg" alt="Industrial business strategy">
-            </div>
-
-            <div class="feature-split__content">
-
-              <p class="feature-split__eyebrow">
-                Strategic Industry Perspective
-              </p>
-
-              <h2>
-                Aligning Technical Capability With Business Performance
-              </h2>
-
-              <p>
-                Griffin helps organizations bridge the gap between operational execution and executive-level strategy. Our advisory approach combines technical industry understanding with practical business insight to help clients make informed decisions with confidence.
-              </p>
-
-              <p>
-                From growth planning and acquisitions to organizational structure and capital strategy, we focus on solutions that create measurable operational and financial value.
-              </p>
-
-              <ul class="feature-split__list">
-                <li>Executive-level strategic guidance</li>
-                <li>Operational and commercial alignment</li>
-                <li>Growth and expansion planning</li>
-                <li>Investment and acquisition support</li>
-                <li>Long-term organizational positioning</li>
-              </ul>
-
-            </div>
-
+    <div class="insight-grid-cards">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock28.jpeg" alt="Oil and gas technical advisory">
           </div>
-
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Oil &amp; Gas
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Technical advisory support for inspection programs, asset integrity, NDT application, compliance, and reliability across upstream, midstream, downstream, and petrochemical environments.
+            </p>
+          </div>
         </div>
-      </section>
+      </article>
 
-      <section class="insight-grid-section">
-        <div class="page-wrap">
-
-          <div class="help-head">
-            <h2>Core Strategic Focus Areas</h2>
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock43.jpeg" alt="Power generation technical advisory">
           </div>
-
-          <div class="insight-grid-cards">
-
-            <article class="insight-card">
-              <div class="insight-card-box">
-
-                <div class="insight-card-media">
-                  <img src="/images/stock52.jpeg" alt="Corporate growth strategy">
-                </div>
-
-                <div class="insight-card-body">
-                  <span class="insight-card-title">
-                    Growth Strategy
-                  </span>
-
-                  <p class="insight-card-text">
-                    Strategic planning support focused on sustainable expansion, operational scalability, and long-term market positioning.
-                  </p>
-                </div>
-
-              </div>
-            </article>
-
-            <article class="insight-card">
-              <div class="insight-card-box">
-
-                <div class="insight-card-media">
-                  <img src="/images/stock53.jpeg" alt="Investment and acquisition support">
-                </div>
-
-                <div class="insight-card-body">
-                  <span class="insight-card-title">
-                    Investment & Transactions
-                  </span>
-
-                  <p class="insight-card-text">
-                    Advisory support for acquisitions, capital strategy, investment evaluation, and operational due diligence.
-                  </p>
-                </div>
-
-              </div>
-            </article>
-
-            <article class="insight-card">
-              <div class="insight-card-box">
-
-                <div class="insight-card-media">
-                  <img src="/images/stock54.jpeg" alt="Leadership and operational alignment">
-                </div>
-
-                <div class="insight-card-body">
-                  <span class="insight-card-title">
-                    Leadership & Execution
-                  </span>
-
-                  <p class="insight-card-text">
-                    Organizational alignment, project execution guidance, and leadership advisory designed to strengthen operational performance.
-                  </p>
-                </div>
-
-              </div>
-            </article>
-
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Power Generation
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Guidance for inspection planning, outage support, component integrity, monitoring technologies, and risk-based decision-making across power generation assets and facilities.
+            </p>
           </div>
-
         </div>
-      </section>
+      </article>
 
-      <section class="advisor-cta-section">
+      <article class="insight-card">
+        <div class="insight-card-box">
+          <div class="insight-card-media">
+            <img src="/images/stock46.jpeg" alt="Aerospace technical advisory">
+          </div>
+          <div class="insight-card-body">
+            <span class="insight-card-title">
+              Aerospace
+              <span class="title-arrow">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+            <p class="insight-card-text">
+              Advisory support for advanced inspection methods, NDT program quality, technical documentation, compliance alignment, and high-reliability inspection standards.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+      <section class="advisor-cta-section" id="connect-advisor">
         <div class="page-wrap">
-
           <div class="advisor-cta">
-
             <div class="advisor-cta__content">
-              <h2>
-                Let’s Discuss Your Strategic Advisory Needs
-              </h2>
+              <h2>Let’s Discuss Your Business Advisory Needs</h2>
             </div>
 
             <a href="mailto:you@example.com" class="advisor-cta__button">
-              Contact a Griffin Advisor
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact a Griffin Advisor</span>
             </a>
-
           </div>
-
         </div>
       </section>
-
     </main>
   </div>
 

@@ -602,7 +602,7 @@
   <div class="hero-slider-shell">
     <div class="hero-info-bar">
       <div class="hero-copy">
-        <p class="hero-eyebrow">Griffin Integrity Solutions</p>
+        <!--<p class="hero-eyebrow">Griffin Integrity Solutions</p>-->
 
         <h1>Maximizing the Value of Every Inspection Dollar</h1>
 
@@ -663,7 +663,7 @@
 .hero-slider-section{
   position:relative;
   width:100%;
-  height:68vh;
+  height:600px;
   min-height:680px;
   margin-top:80px;
   overflow:hidden;
@@ -792,7 +792,7 @@
 
 .hero-slider-bottom{
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:space-between;
   gap:24px;
   padding-top:36px;
@@ -846,36 +846,183 @@
   height:18px;
 }
 
-@media(max-width:900px){
+/* medium screens: keep layout, shrink text */
+@media(max-width:1200px){
   .hero-slider-section{
-    height:auto;
-    min-height:760px;
-    margin-top:72px;
-  }
-
-  .hero-slider-shell{
-    width:100%;
-    align-items:flex-end;
-    padding:0 18px;
+    min-height:620px;
   }
 
   .hero-info-bar{
-    width:100%;
-    min-height:auto;
-    max-height:none;
-    padding:34px 24px 26px;
+    width:min(540px, 100%);
+    min-height:560px;
+    padding:40px 36px 30px;
   }
 
   .hero-info-bar h1{
-    font-size:clamp(2rem, 10vw, 3rem);
+    font-size:clamp(2.15rem, 4vw, 3.25rem);
   }
 
-  .hero-slider-bottom{
-    flex-wrap:wrap;
+  .hero-info-bar p{
+    font-size:.95rem;
+    line-height:1.4;
+  }
+}
+
+@media(max-width:980px){
+  .hero-slider-section{
+    min-height:580px;
+  }
+
+  .hero-info-bar{
+    width:min(480px, 100%);
+    min-height:510px;
+    padding:34px 30px 26px;
+  }
+
+  .hero-info-bar h1{
+    font-size:clamp(1.9rem, 4.5vw, 2.75rem);
+  }
+
+  .hero-info-bar p{
+    font-size:.9rem;
   }
 
   .hero-tabs{
     width:180px;
+  }
+
+  .hero-arrow{
+    width:42px;
+    height:42px;
+  }
+}
+
+/* small screens: image on top, content row underneath */
+@media(max-width:760px){
+  .hero-slider-section{
+    height:auto;
+    min-height:0;
+    margin-top:72px;
+    overflow:visible;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .hero-slider-section::after{
+    height:360px;
+    bottom:auto;
+    background:linear-gradient(
+      180deg,
+      rgba(0,0,0,.18),
+      rgba(0,0,0,.38)
+    );
+  }
+
+  .hero-slider-images{
+    position:relative;
+    height:360px;
+    inset:auto;
+  }
+
+  .hero-slide{
+    position:absolute;
+    inset:0;
+  }
+
+  .hero-slider-shell{
+    width:100%;
+    height:auto;
+    display:block;
+    padding:0;
+    margin:0;
+  }
+
+  .hero-info-bar{
+    width:100%;
+    min-height:0;
+    max-height:none;
+    padding:28px 22px 24px;
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:22px;
+    align-items:end;
+  }
+
+  .hero-copy{
+    min-width:0;
+  }
+
+  .hero-eyebrow{
+    font-size:10px;
+    margin-bottom:12px;
+  }
+
+  .hero-info-bar h1{
+    max-width:12ch;
+    font-size:clamp(1.75rem, 8vw, 2.45rem);
+    margin-bottom:16px;
+  }
+
+  .hero-info-bar p{
+    font-size:.88rem;
+    line-height:1.38;
+    margin-bottom:18px;
+  }
+
+  .hero-slider-bottom{
+    padding-top:0;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:flex-end;
+    gap:14px;
+  }
+
+  .hero-tabs{
+    width:150px;
+  }
+
+  .hero-arrow{
+    width:40px;
+    height:40px;
+  }
+}
+
+/* extra small: stack controls under text */
+@media(max-width:520px){
+  .hero-slider-images{
+    height:320px;
+  }
+
+  .hero-slider-section::after{
+    height:320px;
+  }
+
+  .hero-info-bar{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    padding:26px 18px 22px;
+  }
+
+  .hero-info-bar h1{
+    max-width:100%;
+    font-size:clamp(1.65rem, 9vw, 2.25rem);
+  }
+
+  .hero-info-bar p{
+    font-size:.85rem;
+  }
+
+  .hero-slider-bottom{
+    width:100%;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:14px;
+  }
+
+  .hero-tabs{
+    width:160px;
   }
 }
 </style>
@@ -1896,7 +2043,7 @@ padding-left:72px;
 
 
 
-<section class="simple-section section-lightgray who-serve-section">
+<section class="simple-section who-serve-section">
   <div class="simple-shell">
     <div class="section-head who-serve-head">
       <h2>Industries</h2>

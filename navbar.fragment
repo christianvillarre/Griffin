@@ -29,7 +29,7 @@
       </div>
 
       <div class="topbar-nav__item has-dd" data-dd="consulting">
-        <a href="/technical-consulting.html" class="topbar-nav__link">
+        <a href="/capabilities.html" class="topbar-nav__link">
           Capabilities
           <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
