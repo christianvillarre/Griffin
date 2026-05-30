@@ -1086,11 +1086,9 @@
 
 
 <div class="gif-framework-challenge">
+  
   <div class="gif-framework-challenge-head">
     <h2>The Challenge: Why this Matters</h2>
-
-    <p>
-      Griffin Integrity works with operators, engineers, executives, and investors to bring structure and discipline to inspection and asset integrity programs—aligning strategy, technology, and capital decisions to measurable operational performance and financial returns.
   </div>
 
   <div class="gif-framework-challenge-boxes">
@@ -1099,6 +1097,11 @@
     <div class="challenge-box">Technology adoption often adds complexity and cost, rather than clarity and value.</div>
     <div class="challenge-box">The issue is not inspection volume—it is program design, alignment, and execution discipline.</div>
   </div>
+
+  <p class="gif-framework-challenge-description">
+    Griffin Integrity works with operators, engineers, executives, and investors to bring structure and discipline to inspection and asset integrity programs—aligning strategy, technology, and capital decisions to measurable operational performance and financial returns.
+  </p>
+
 </div>
 
 
@@ -1109,7 +1112,12 @@
   const frameworkTabs = document.querySelectorAll('.gif-framework-tab');
 
   frameworkTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('mouseenter', () => {
+      frameworkTabs.forEach(item => item.classList.remove('active'));
+      tab.classList.add('active');
+    });
+
+    tab.addEventListener('focus', () => {
       frameworkTabs.forEach(item => item.classList.remove('active'));
       tab.classList.add('active');
     });
@@ -1651,11 +1659,12 @@
 }
 
 .gif-framework-challenge-head{
-  display:grid;
+  display:block;
+  margin-bottom:34px;
   grid-template-columns:minmax(0,.7fr) minmax(0,1fr);
   gap:48px;
   align-items:start;
-  margin-bottom:34px;
+  
 }
 
 .gif-framework-challenge h2{
@@ -1681,6 +1690,7 @@
   grid-template-columns:repeat(4, minmax(0,1fr));
   gap:18px;
   width:100%;
+  margin-bottom: 32px;
 }
 
 .challenge-box{
@@ -1763,6 +1773,14 @@ padding-left:72px;
     height:24px;
   }
 
+}
+
+.gif-framework-challenge-description{
+  margin-top:32px;
+  max-width:900px;
+  font-size:1.2rem;
+  line-height:1.7;
+  color:#444;
 }
   </STYLE>
 
