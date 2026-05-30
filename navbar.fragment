@@ -28,12 +28,12 @@
         <a href="/about.html" class="topbar-nav__link">About</a>
       </div>
 
-      <div class="topbar-nav__item has-dd" data-dd="consulting">
+      <div class="topbar-nav__item" data-dd="consulting">
         <a href="/capabilities.html" class="topbar-nav__link">
           Capabilities
-          <svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
+          <!--<svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          </svg>-->
         </a>
       </div>
 
