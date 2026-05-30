@@ -917,7 +917,7 @@
     <div class="pillar-grid">
 
       <!-- PILLAR 1 -->
-      <article class="pillar-card">
+      <article class="pillar-card" data-url="/capabilities/business-investment-advisory.html">
 
         <div class="pillar-top">
           <p class="pillar-label">Pillar One</p>
@@ -925,41 +925,41 @@
           <h3>Business & Investment Advisory</h3>
 
           <p class="pillar-intro">
-            Strategic advisory supporting growth, investment decisions, and organizational and customer alignment across the TICC and asset integrity landscape.
+            Strategic advisory supporting growth, investment decisions, organizational efficiencies, and commercial alignment across the TICC and asset integrity landscape.
           </p>
         </div>
 
-        <div class="pillar-services">
+        <a href="/capabilities/business-investment-advisory.html" div class="pillar-services">
           <div class="pillar-service">
             <span>Strategy & Corporate Development</span>
-            <p>Advisory on corporate strategy, growth initiatives, and organizational alignment.</p>
+            <p>Advisory on corporate strategy, growth initiatives, and organizational alignment to market opportunities within the TICC and asset integrity landscape.</p>
           </div>
 
           <div class="pillar-service">
             <span>Market Positioning, Commercial Strategy & Business Development</span>
-            <p>Positioning, go-to-market strategy, and business development alignment.</p>
+            <p>Positioning, go-to-market strategy, and focused business development alignment to drive sustainable growth, competitive differentiation, revenue performance, and expand market share.</p>
           </div>
 
           <div class="pillar-service">
             <span>Leadership Advisory & Talent Acquisition</span>
-            <p>Leadership and technical talent alignment with strategic objectives.</p>
+            <p>Assessment and alignment of leadership teams and technical talent with strategic objectives, operational demands, and growth plans.</p>
           </div>
 
           <div class="pillar-service">
             <span>Mergers & Acquisition Support</span>
-            <p>Acquisition strategy, technical due diligence, and Day-1 readiness support.</p>
+            <p>End-to-end advisory across acquisition strategy, target pipeline development, technical due diligence, TICC program and technology assessment, personnel evaluation, and Day-1 readiness.</p>
           </div>
 
           <div class="pillar-service">
             <span>Capital Strategy & Investment Evaluation</span>
-            <p>Evaluation of capital allocation, investment opportunities, and technology decisions.</p>
+            <p>Evaluation of capital allocation strategies, investment opportunities, and technology adoption decisions—ensuring alignment with risk, return, and long-term value creation.</p>
           </div>
 
           <div class="pillar-service">
             <span>Integrated Financial Planning & Reporting Systems</span>
-            <p>Planning, reporting, forecasting, and performance visibility systems.</p>
+            <p>Advisory on financial visibility, performance tracking, and reporting frameworks that connect operational execution with strategic and investment outcomes.</p>
           </div>
-        </div>
+        </a>
 
         <a href="/capabilities/business-investment-advisory.html" class="pillar-cta">
           <span>Explore Business Advisory</span>
@@ -973,7 +973,7 @@
       </article>
 
       <!-- PILLAR 2 -->
-      <article class="pillar-card">
+      <article class="pillar-card" data-url="/capabilities/technical-ticc-advisory.html">
 
         <div class="pillar-top">
           <p class="pillar-label">Pillar Two</p>
@@ -981,19 +981,19 @@
           <h3>Technical & TICC Advisory</h3>
 
           <p class="pillar-intro">
-            Independent technical advisory across advanced NDT technologies, TICC program design, and emerging comprehensive inspection systems—ensuring technology and program decisions translate into measurable operational and financial outcomes.
+            Strategic advisory for the evaluation, selection, integration, and optimization of advanced NDT technologies supporting TICC programs across complex industrial operating environments.
           </p>
         </div>
 
-        <div class="pillar-services">
+        <a href="/capabilities/technical-ticc-advisory.html" class="pillar-services">
           <div class="pillar-service">
             <span>Advanced NDT Technologies & TICC Programs</span>
-            <p>Technology selection, program design, and advisory for inspection performance.</p>
+            <p>Strategic advisory for the evaluation, selection, integration, and optimization of advanced NDT technologies supporting TICC programs across complex industrial operating environments.</p>
           </div>
 
           <div class="pillar-service">
             <span>NDT Level III Consulting & Regulatory Compliance</span>
-            <p>Procedure review, compliance support, and technical oversight for NDT programs.</p>
+            <p>Evaluation and optimization of written practices, technical procedures, and personnel qualification frameworks—ensuring alignment with applicable codes, standards, and ISO 9712 requirements</p>
           </div>
 
           <div class="pillar-service">
@@ -1003,19 +1003,19 @@
 
           <div class="pillar-service">
             <span>Project Management & Technical Execution Advisory</span>
-            <p>Execution planning, technical coordination, and project delivery guidance.</p>
+            <p>Advisory on structuring, scaling, and optimizing plant and pipeline TICC and reliability programs, including workflows, documentation standards, reporting systems, and execution models.</p>
           </div>
 
           <div class="pillar-service">
             <span>Advanced NDT Training & Workforce Development Programs</span>
-            <p>Training and workforce development for inspection teams and technical personnel.</p>
+            <p>Strategic development of workforce capabilities, training frameworks, and certification programs aligned with advanced technologies and evolving industry requirements.</p>
           </div>
 
           <div class="pillar-service">
             <span>Automation, Robotics & Integrated 3D Imaging Technologies</span>
-            <p>Advisory on robotics, automation, 3D imaging, and integrated inspection systems.</p>
+            <p>Guidance on the adoption and integration of automation, robotics, advanced imaging, and digital inspection platforms—focused on practical deployment and measurable performance improvement.</p>
           </div>
-        </div>
+        </a>
 
         <a href="/capabilities/technical-ticc-advisory.html" class="pillar-cta">
           <span>Explore Technical Advisory</span>
@@ -1032,8 +1032,32 @@
 
   </div>
 </section>
+<script>
+document.querySelectorAll('.pillar-card').forEach(card => {
 
+  card.addEventListener('click', (e) => {
+
+    if (
+      e.target.closest('.pillar-service') ||
+      e.target.closest('.pillar-cta')
+    ) {
+      return;
+    }
+
+    window.location.href = card.dataset.url;
+  });
+
+});
+</script>
 <style>
+  .pillar-services{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+  .pillar-card{
+  cursor:pointer;
+}
 .pillar-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1257,6 +1281,118 @@
 }
 </style>
 
+
+<section class="inspection-future-section">
+  <div class="page-wrap">
+
+    <div class="inspection-future-grid">
+
+      <div class="inspection-future-left">
+        <p class="inspection-eyebrow">Industry Outlook</p>
+
+        <h2>
+          Inspection 4.0:<br>
+          The Road Ahead
+        </h2>
+      </div>
+
+      <div class="inspection-future-right">
+
+        <p>
+          Inspection 4.0 represents the next evolution of the Testing, Inspection, Certification, and Compliance (TICC) industry—driven by the convergence of advanced NDT technologies, automation, robotics, permanently installed monitoring systems, artificial intelligence, cloud-based analytics, and digitally connected inspection platforms.
+        </p>
+
+        <p>
+          These technologies are rapidly transforming how industrial assets are inspected, monitored, and managed across both in-service asset integrity programs and capital project environments. Potential benefits include improved reliability, enhanced risk visibility, greater operational efficiency, and reduced lifecycle costs through more targeted and data-driven inspection strategies that can significantly reduce reliance on conventional inspection methods and associated program spend.
+        </p>
+
+        <p>
+          However, realizing measurable value requires more than technology adoption alone. Organizations must determine where these solutions provide practical operational benefit, how they integrate into existing TICC and reliability programs, and whether they align with operational objectives, workforce capabilities, and capital priorities.
+        </p>
+
+        <p>
+          Griffin helps organizations navigate this transition through independent advisory on technology evaluation, implementation strategy, and program integration—ensuring Inspection 4.0 initiatives deliver measurable operational performance, risk reduction, cost efficiency, and long-term financial value.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.inspection-future-section{
+  padding:clamp(80px,8vw,140px) 0;
+  background:#0d1d27;
+  margin-top:4rem;
+}
+
+.inspection-future-grid{
+  display:grid;
+  grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr);
+  gap:clamp(50px,6vw,100px);
+  align-items:start;
+}
+
+.inspection-future-left{
+  position:sticky;
+  top:120px;
+}
+
+.inspection-eyebrow{
+  margin:0 0 20px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+
+.inspection-future-left h2{
+  margin:0;
+  font-size:clamp(2.8rem,5vw,3rem);
+  line-height:.9;
+  letter-spacing:-.06em;
+  font-weight:250;
+  color:#fff;
+}
+
+.inspection-future-right{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.inspection-future-right p{
+  margin:0;
+  font-size:clamp(1rem,1.05vw,1.08rem);
+  line-height:1.9;
+  color:rgba(255,255,255,.75);
+}
+
+.inspection-future-right p:last-child{
+  color:#fff;
+  font-weight:500;
+}
+
+@media(max-width:980px){
+
+  .inspection-future-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .inspection-future-left{
+    position:relative;
+    top:auto;
+  }
+
+  .inspection-future-left h2{
+    font-size:clamp(2.4rem,10vw,4rem);
+  }
+}
+</style>
 
       <section class="insight-grid-section" id="technical-focus-areas">
   <div class="page-wrap">
