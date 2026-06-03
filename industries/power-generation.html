@@ -811,6 +811,171 @@
         </div>
       </section>
 
+      <footer class="site-footer">
+  <div class="footer-shell">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <img src="/images/GriffinText.png" alt="Griffin Integrity" class="footer-logo">
+
+        <p class="footer-desc">
+          Independent technical consulting and advisory supporting inspection,
+          asset integrity, technology selection, and industrial strategy across high-consequence environments.
+        </p>
+
+        <div class="footer-contact">
+          <a href="tel:+12813976614">281-397-6614</a>
+          <a href="mailto:info@griffinintegrity.com">info@griffinintegrity.com</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-heading">Company</p>
+        <ul>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/capabilities.html">Capabilities</a></li>
+          <li><a href="/industries.html">Industries</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-heading">Resources</p>
+        <ul>
+          <li><a href="/insights.html">Insights</a></li>
+          <li><a href="/network.html">Network</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Griffin Integrity. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer{
+  background:#063b58;
+  color:#fff;
+  padding:64px 0 32px;
+}
+
+.footer-shell{
+  width:min(1400px, calc(100% - 48px));
+  margin:0 auto;
+}
+
+/* GRID */
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:56px;
+  margin-bottom:48px;
+}
+
+/* LOGO */
+.footer-logo{
+  width:180px;
+  margin-bottom:18px;
+}
+
+/* TEXT */
+.footer-desc{
+  margin:0 0 22px;
+  max-width:42ch;
+  color:rgba(255,255,255,.7);
+  line-height:1.6;
+  font-size:.95rem;
+}
+
+/* CONTACT */
+.footer-contact{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.footer-contact a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  font-size:.95rem;
+}
+
+.footer-contact a:hover{
+  text-decoration:underline;
+}
+
+/* HEADINGS */
+.footer-heading{
+  margin:0 0 14px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+
+/* LINKS */
+.footer-col ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-col li{
+  margin-bottom:10px;
+}
+
+.footer-col a{
+  text-decoration:none;
+  color:#fff;
+  font-size:.95rem;
+  font-weight:500;
+  position:relative;
+}
+
+.footer-col a:hover{
+  text-decoration:underline;
+}
+
+/* BOTTOM */
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:18px;
+}
+
+.footer-bottom p{
+  margin:0;
+  font-size:.85rem;
+  color:rgba(255,255,255,.5);
+}
+
+/* MOBILE */
+@media (max-width: 900px){
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+  }
+}
+
+@media (max-width: 600px){
+  .footer-shell{
+    width:min(100%, calc(100% - 0px));
+    padding: 0rem 1.5rem;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+
     </main>
   </div>
 
