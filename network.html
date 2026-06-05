@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Network | Griffin Integrity Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/navbar.css" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --navy-2:#0d1d27;
+      --red:#F00303;
+      --muted:rgba(17,17,17,0.72);
+      --line:#e8e8e8;
+      --page-max:1360px;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;}
+
+    body{
+      font-family:'Zalando Sans',sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .network-hero{
+      position:relative;
+      min-height:clamp(620px,78vh,820px);
+      padding:clamp(108px,10vw,145px) 0 clamp(58px,6vw,82px);
+      background:#fff;
+      overflow:hidden;
+      margin-bottom:5rem;
+    }
+
+    .network-hero__wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:clamp(36px,5vw,80px);
+      align-items:stretch;
+      min-height:calc(clamp(620px,78vh,820px) - clamp(108px,10vw,145px) - clamp(58px,6vw,82px));
+    }
+
+    .network-hero__left{
+      max-width:620px;
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .hero-back-link{
+      width:fit-content;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 24px;
+      text-decoration:none;
+      color:rgba(17,17,17,.56);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      transition:.2s ease;
+    }
+
+    .hero-back-link:hover{
+      color:var(--red);
+      transform:translateX(-2px);
+    }
+
+    .hero-back-icon svg{
+      width:16px;
+      height:16px;
+    }
+
+    .network-hero h1{
+      margin:0;
+      max-width:18ch;
+      font-size:clamp(3.25rem,4.2vw,2.85rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      font-weight:200;
+      color:var(--navy);
+    }
+
+    .network-hero__content{
+      margin-top:clamp(64px,10vw,130px);
+    }
+
+    .network-hero__content p{
+      margin:0 0 24px;
+      max-width:48ch;
+      font-size:clamp(1rem,1.05vw,1.02rem);
+      line-height:1.75;
+      color:rgba(17,17,17,.833);
+      font-weight:400;
+    }
+
+    .network-hero__image{
+      position:absolute;
+      top:0;
+      right:0;
+      width:50vw;
+      height:100%;
+      overflow:hidden;
+      background:var(--navy);
+    }
+
+    .network-hero__image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.02) 38%, rgba(0,0,0,.12) 100%);
+      pointer-events:none;
+    }
+
+    .network-hero__image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+
+    .advisor-cta__button{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      min-height:56px;
+      padding:0 24px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:600;
+      letter-spacing:.02em;
+      border:1px solid #111;
+      transition:.3s ease;
+    }
+
+    .advisor-cta__button:hover{
+      background:var(--navy);
+      border-color:var(--navy);
+      transform:translateY(-1px);
+    }
+
+    .advisor-cta__icon{
+      display:inline-flex;
+    }
+
+    .advisor-cta__icon svg{
+      width:18px;
+      height:18px;
+    }
+
+    .network-intro{
+      padding:0 0 3rem;
+      background:#fff;
+    }
+
+    .help-head{
+      margin-bottom:clamp(24px,3vw,42px);
+      border-top:1px solid #11111122;
+    }
+
+    .help-head h2{
+      margin:24px 0 0;
+      font-size:clamp(1.8rem,2vw,2.2rem);
+      line-height:.96;
+      letter-spacing:-.035em;
+      font-weight:300;
+      max-width:30ch;
+    }
+
+    .network-copy{
+      max-width:900px;
+    }
+
+    .network-copy p{
+      margin:0;
+      font-size:clamp(1.05rem,1.15vw,1.12rem);
+      line-height:1.75;
+      color:rgba(17,17,17,.8);
+    }
+
+    .affiliate-section{
+      padding:1rem 0 6rem;
+      background:#fff;
+    }
+
+    .affiliate-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:40px;
+    }
+
+    .affiliate-card{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      min-height:240px;
+      padding:48px;
+      border:1px solid rgba(17,17,17,.08);
+      background:#fff;
+      color:inherit;
+      text-decoration:none;
+      transition:.35s ease;
+    }
+
+    .affiliate-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(17,17,17,.18);
+      box-shadow:0 20px 50px rgba(0,0,0,.06);
+    }
+
+    .affiliate-logo{
+      flex:0 0 150px;
+      height:105px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#f7f7f7;
+      padding:18px;
+    }
+
+    .affiliate-logo img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .affiliate-content h3{
+      margin:0 0 14px;
+      font-size:clamp(1.5rem,1.9vw,2rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      font-weight:400;
+      color:var(--navy);
+    }
+
+    .affiliate-service{
+      margin:0 0 12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#777;
+      line-height:1.5;
+    }
+
+    .affiliate-content p{
+      margin:0;
+      font-size:15px;
+      line-height:1.7;
+      color:rgba(17,17,17,.78);
+    }
+
+    .advisor-cta-section{
+      padding:0 0 5rem;
+      background:#fff;
+    }
+
+    .advisor-cta{
+      max-width:1360px;
+      margin:0 auto;
+      padding:3rem 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:2rem;
+      border-top:1px solid rgba(17,17,17,.08);
+    }
+
+    .advisor-cta__content h2{
+      margin:0;
+      font-size:clamp(1.5rem,2vw,2.4rem);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      font-weight:300;
+      color:#111;
+      max-width:24ch;
+    }
+
+    .site-footer{
+      background:#063b58;
+      color:#fff;
+      padding:64px 0 32px;
+    }
+
+    .footer-shell{
+      width:min(1400px, calc(100% - 48px));
+      margin:0 auto;
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:56px;
+      margin-bottom:48px;
+    }
+
+    .footer-logo{
+      width:180px;
+      margin-bottom:18px;
+    }
+
+    .footer-desc{
+      margin:0 0 22px;
+      max-width:42ch;
+      color:rgba(255,255,255,.7);
+      line-height:1.6;
+      font-size:.95rem;
+    }
+
+    .footer-contact{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .footer-contact a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+      font-size:.95rem;
+    }
+
+    .footer-heading{
+      margin:0 0 14px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.5);
+    }
+
+    .footer-col ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .footer-col li{
+      margin-bottom:10px;
+    }
+
+    .footer-col a{
+      text-decoration:none;
+      color:#fff;
+      font-size:.95rem;
+      font-weight:500;
+    }
+
+    .footer-col a:hover,
+    .footer-contact a:hover{
+      text-decoration:underline;
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.1);
+      padding-top:18px;
+    }
+
+    .footer-bottom p{
+      margin:0;
+      font-size:.85rem;
+      color:rgba(255,255,255,.5);
+    }
+
+    @media(max-width:980px){
+      .affiliate-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:900px){
+      .network-hero{
+        padding-bottom:0;
+      }
+
+      .network-hero__wrap{
+        grid-template-columns:1fr;
+        min-height:auto;
+        gap:42px;
+      }
+
+      .network-hero__left{
+        max-width:720px;
+        min-height:520px;
+      }
+
+      .network-hero__image{
+        position:relative;
+        width:calc(100% + 40px);
+        height:clamp(300px,48vw,460px);
+        margin-left:-20px;
+        right:auto;
+      }
+
+      .advisor-cta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr 1fr;
+        gap:36px;
+      }
+    }
+
+    @media(max-width:700px){
+      .page-wrap{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .affiliate-card{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:32px;
+      }
+
+      .affiliate-logo{
+        width:100%;
+        justify-content:flex-start;
+      }
+    }
+
+    @media(max-width:600px){
+      .network-hero{
+        padding-top:110px;
+      }
+
+      .network-hero__left{
+        min-height:auto;
+      }
+
+      .network-hero h1{
+        font-size:clamp(2.65rem,13vw,4rem);
+      }
+
+      .network-hero__content{
+        margin-top:54px;
+      }
+
+      .network-hero__image{
+        width:calc(100% + 24px);
+        margin-left:-12px;
+      }
+
+      .footer-shell{
+        width:100%;
+        padding:0 1.5rem;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="site-navbar"></div>
+
+  <main>
+
+    <section class="network-hero">
+      <div class="page-wrap network-hero__wrap">
+
+        <div class="network-hero__left">
+          <div>
+            <a href="/" class="hero-back-link">
+              <span class="hero-back-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+                  <path d="M328 112 L184 256 L328 400" fill="none" stroke="currentColor" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Home</span>
+            </a>
+
+            <h1>Network & Affiliates</h1>
+          </div>
+
+          <div class="network-hero__content">
+            <p>
+              Griffin Integrity Solutions maintains relationships with select technology providers,
+              manufacturers, automation specialists, and technical service organizations that support
+              advanced inspection, monitoring, and asset integrity initiatives across industrial markets.
+            </p>
+
+            <a href="/contact.html" class="advisor-cta__button">
+              <span class="advisor-cta__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Contact Us</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="network-hero__image">
+          <img src="/images/stock7.jpeg" alt="Advanced inspection and asset integrity network">
+        </div>
+
+      </div>
+    </section>
+
+    <section class="network-intro">
+      <div class="page-wrap">
+        <div class="help-head">
+          <h2>Technology & Industry Partners</h2>
+        </div>
+
+        <div class="network-copy">
+          <p>
+            Our affiliate network supports Griffin’s ability to help clients evaluate, source,
+            and implement specialized NDT equipment, automated ultrasonic testing systems,
+            guided wave monitoring technologies, and precision inspection-related products
+            and services.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="affiliate-section">
+      <div class="page-wrap">
+
+        <div class="affiliate-grid">
+
+          <a href="#" class="affiliate-card">
+            <div class="affiliate-logo">
+              <img src="/images/partner-logo3.png" alt="ATCO NDT Automation">
+            </div>
+
+            <div class="affiliate-content">
+              <h3>ATCO NDT Automation</h3>
+              <!--<p class="affiliate-service">NDT Automation</p>-->
+              <p>
+                Advanced automation systems supporting inspection efficiency,
+                repeatability, and deployment of modern NDT technologies.
+              </p>
+            </div>
+          </a>
+
+          <a href="https://www.danatronics.com/" target="_blank" rel="noopener" class="affiliate-card">
+            <div class="affiliate-logo">
+              <img src="/images/danatronics.jpg" alt="Danatronics Corp.">
+            </div>
+
+            <div class="affiliate-content">
+              <h3>Danatronics Corp.</h3>
+              <!--<p class="affiliate-service">Danatronics Ultrasonic Systems</p>-->
+              <p>
+                Portable ultrasonic inspection equipment and advanced NDT instrumentation
+                supporting field inspection, thickness measurement, and ultrasonic testing needs.
+              </p>
+            </div>
+          </a>
+
+          <a href="https://www.guided-ultrasonics.com/monitoring/" target="_blank" rel="noopener" class="affiliate-card">
+            <div class="affiliate-logo">
+              <img src="/images/guidedultrasonics.png" alt="Guided Ultrasonics Ltd.">
+            </div>
+
+            <div class="affiliate-content">
+              <h3>Guided Ultrasonics Ltd.</h3>
+              <!--<p class="affiliate-service">Guided Wave Monitoring Solutions</p>-->
+              <p>
+                Guided wave monitoring technologies designed to support long-term asset condition
+                visibility, integrity management, and remote monitoring applications.
+              </p>
+            </div>
+          </a>
+
+          <a href="https://www.soundndtsolutions.com/" target="_blank" rel="noopener" class="affiliate-card">
+            <div class="affiliate-logo">
+              <img src="/images/partner-logo1.png" alt="Sound NDT Solutions LLC">
+            </div>
+
+            <div class="affiliate-content">
+              <h3>Sound NDT Solutions LLC</h3>
+              <!--<p class="affiliate-service">Automated Ultrasonic Testing Solutions & Advanced NDT Services</p>-->
+              <p>
+                Automated ultrasonic testing solutions and advanced NDT services supporting
+                complex inspection applications across industrial environments.
+              </p>
+            </div>
+          </a>
+
+          <a href="https://topnotchedm.com/" target="_blank" rel="noopener" class="affiliate-card">
+            <div class="affiliate-logo">
+              <img src="/images/partner-logo2.png" alt="Top Notch EDM Services LLC">
+            </div>
+
+            <div class="affiliate-content">
+              <h3>Top Notch EDM Services LLC</h3>
+              <!--<p class="affiliate-service">Precision Machined and Welded NDT Products and Services</p>-->
+              <p>
+                Precision machined and welded products and services supporting specialized NDT,
+                inspection tooling, and technical product requirements.
+              </p>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="advisor-cta-section">
+      <div class="page-wrap">
+        <div class="advisor-cta">
+          <div class="advisor-cta__content">
+            <h2>Connect with Griffin’s Network</h2>
+          </div>
+
+          <a href="/contact.html" class="advisor-cta__button">
+            <span class="advisor-cta__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M4 8l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Contact a Griffin Advisor</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-shell">
+
+        <div class="footer-top">
+
+          <div class="footer-brand">
+            <img src="/images/GriffinText.png" alt="Griffin Integrity" class="footer-logo">
+
+            <p class="footer-desc">
+              Independent technical consulting and advisory supporting inspection,
+              asset integrity, technology selection, and industrial strategy across high-consequence environments.
+            </p>
+
+            <div class="footer-contact">
+              <a href="tel:+12813976614">281-397-6614</a>
+              <a href="mailto:info@griffinintegrity.com">info@griffinintegrity.com</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-heading">Company</p>
+            <ul>
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/capabilities.html">Capabilities</a></li>
+              <li><a href="/industries.html">Industries</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <p class="footer-heading">Resources</p>
+            <ul>
+              <li><a href="/insights.html">Insights</a></li>
+              <li><a href="/network.html">Network</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Griffin Integrity. All rights reserved.</p>
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="/navbar.js"></script>
+  <script src="/load-navbar.js"></script>
+
+  <div id="contact-drawer-root"></div>
+  <script src="/contact-drawer.js"></script>
+
+</body>
+</html>
