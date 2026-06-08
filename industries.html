@@ -70,8 +70,6 @@
       height:18px;
     }
 
-    /* HERO */
-
     .capabilities-hero{
       position:relative;
       min-height:clamp(620px, 78vh, 820px);
@@ -105,7 +103,7 @@
     .capabilities-hero h1{
       margin:0;
       max-width:18ch;
-      font-size:clamp(3.25rem, 4.2vw, 5rem);
+      font-size:clamp(3.25rem, 4.2vw, 2.85rem);
       line-height:.92;
       letter-spacing:-.07em;
       font-weight:200;
@@ -179,9 +177,7 @@
       height:16px;
     }
 
-    /* INTRO */
-
-    .industries-intro{
+    .industry-intro{
       background:#fff;
       padding:1rem 0 5rem;
     }
@@ -212,45 +208,39 @@
       margin:0;
     }
 
-    /* INDUSTRY SECTIONS */
-
-    .industry-page-section{
+    .segment-section{
       background:#fff;
-      padding:1rem 0 5.5rem;
+      padding:0 0 5.5rem;
     }
 
-    .industry-single{
+    .industry-copy{
+      max-width:980px;
+      margin:0 0 34px;
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(17,17,17,.75);
+    }
+
+    .segment-grid{
       display:grid;
-      grid-template-columns:44% 56%;
-      gap:clamp(32px, 4vw, 64px);
-      align-items:center;
-      padding:clamp(3rem, 5vw, 5rem) 0;
-      border-top:1px solid rgba(17,17,17,.08);
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:24px;
     }
 
-    .industry-single--reverse .industry-single__media{
-      order:2;
+    .segment-card{
+      background:#fff;
+      border:1px solid rgba(17,17,17,.08);
+      padding:clamp(24px, 3vw, 34px);
+      transition:.25s ease;
     }
 
-    .industry-single__media{
-      min-height:420px;
-      overflow:hidden;
-      background:#ddd;
+    .segment-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 40px rgba(0,0,0,.08);
+      border-color:rgba(17,17,17,.16);
     }
 
-    .industry-single__media img{
-      width:100%;
-      height:100%;
-      min-height:420px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .industry-single__content{
-      max-width:680px;
-    }
-
-    .industry-eyebrow{
+    .segment-label{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -262,7 +252,7 @@
       color:#777;
     }
 
-    .industry-eyebrow::before{
+    .segment-label::before{
       content:"";
       width:30px;
       height:1px;
@@ -270,85 +260,21 @@
       display:block;
     }
 
-    .industry-single__content h2{
-      margin:0 0 18px;
-      font-size:clamp(2rem, 3vw, 3.4rem);
-      line-height:.96;
-      letter-spacing:-.055em;
-      font-weight:300;
-      color:var(--navy);
-      max-width:13ch;
-    }
-
-    .industry-single__content > p{
-      margin:0 0 28px;
-      font-size:16px;
-      line-height:1.75;
-      color:rgba(17,17,17,.75);
-      max-width:60ch;
-    }
-
-    .industry-mini-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:18px;
-    }
-
-    .industry-mini-grid div{
-      border:1px solid rgba(17,17,17,.08);
-      padding:20px;
-      background:#fff;
-      transition:.25s ease;
-    }
-
-    .industry-mini-grid div:hover{
-      background:#77777712;
-      border-color:rgba(17,17,17,.16);
-    }
-
-    .industry-mini-grid h3{
-      margin:0 0 10px;
-      font-size:18px;
-      line-height:1.1;
-      font-weight:600;
+    .segment-card h3{
+      margin:0 0 14px;
+      font-size:clamp(1.55rem, 2vw, 2.15rem);
+      line-height:1.02;
+      letter-spacing:-.035em;
+      font-weight:400;
       color:#111;
     }
 
-    .industry-mini-grid p{
+    .segment-card p{
       margin:0;
-      font-size:14.5px;
-      line-height:1.65;
-      color:rgba(17,17,17,.72);
+      font-size:16px;
+      line-height:1.7;
+      color:rgba(17,17,17,.74);
     }
-
-    .industry-list-simple{
-      list-style:none;
-      padding:0;
-      margin:0;
-      display:grid;
-      gap:12px;
-    }
-
-    .industry-list-simple li{
-      position:relative;
-      padding-left:20px;
-      font-size:15px;
-      line-height:1.6;
-      color:rgba(17,17,17,.82);
-    }
-
-    .industry-list-simple li::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:.65em;
-      width:7px;
-      height:7px;
-      background:var(--red);
-      border-radius:50%;
-    }
-
-    /* CTA */
 
     .advisor-cta-section{
       padding:0 0 5rem;
@@ -375,8 +301,6 @@
       color:#111;
       max-width:24ch;
     }
-
-    /* FOOTER */
 
     .site-footer{
       background:#063b58;
@@ -458,19 +382,8 @@
       color:rgba(255,255,255,.5);
     }
 
-    /* RESPONSIVE */
-
     @media(max-width:980px){
-      .industry-single,
-      .industry-single--reverse{
-        grid-template-columns:1fr;
-      }
-
-      .industry-single--reverse .industry-single__media{
-        order:0;
-      }
-
-      .industry-mini-grid{
+      .segment-grid{
         grid-template-columns:1fr;
       }
     }
@@ -512,22 +425,11 @@
       }
     }
 
-    @media(max-width:700px){
+    @media(max-width:600px){
       .page-wrap{
         width:min(var(--page-max), calc(100% - 24px));
       }
 
-      .footer-shell{
-        width:min(100%, calc(100% - 0px));
-        padding:0 1.5rem;
-      }
-
-      .footer-top{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media(max-width:600px){
       .capabilities-hero{
         padding-top:110px;
       }
@@ -549,9 +451,13 @@
         margin-left:-12px;
       }
 
-      .industry-single__media,
-      .industry-single__media img{
-        min-height:280px;
+      .footer-shell{
+        width:min(100%, calc(100% - 0px));
+        padding:0 1.5rem;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr;
       }
     }
   </style>
@@ -609,7 +515,7 @@
         </div>
       </section>
 
-      <section class="industries-intro">
+      <section class="industry-intro">
         <div class="page-wrap">
           <div class="help-head">
             <h2>Industries We Support</h2>
@@ -621,105 +527,131 @@
         </div>
       </section>
 
-      <section class="industry-page-section" id="oil-gas">
-        <div class="page-wrap industry-single">
-
-          <div class="industry-single__media">
-            <img src="/images/stock28.jpeg" alt="Oil and gas petrochemical advisory">
-          </div>
-
-          <div class="industry-single__content">
-            <p class="industry-eyebrow">Industry Focus</p>
+      <section class="segment-section" id="oil-gas">
+        <div class="page-wrap">
+          <div class="help-head">
             <h2>Oil &amp; Gas / Petrochemical</h2>
-
-            <p>
-              Griffin supports operators, service providers, and investors across upstream, midstream, downstream, refining, and petrochemical environments with inspection, asset integrity, advanced NDT, compliance, and reliability advisory support.
-            </p>
-
-            <div class="industry-mini-grid">
-              <div>
-                <h3>Upstream</h3>
-                <p>
-                  Inspection and integrity advisory for production assets, wellsite infrastructure, pressure equipment, flowlines, and field operating environments.
-                </p>
-              </div>
-
-              <div>
-                <h3>Midstream</h3>
-                <p>
-                  Advisory support for pipelines, terminals, storage assets, compressor stations, gathering systems, and transmission infrastructure.
-                </p>
-              </div>
-
-              <div>
-                <h3>Downstream</h3>
-                <p>
-                  Technical and strategic support for refineries, petrochemical facilities, process units, turnaround planning, and fixed equipment integrity.
-                </p>
-              </div>
-            </div>
           </div>
 
+          <p class="industry-copy">
+            Griffin supports operators, service providers, and investors across upstream, midstream, downstream, refining, and petrochemical environments with inspection, asset integrity, advanced NDT, compliance, and reliability advisory support.
+          </p>
+
+          <div class="segment-grid">
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Segment 01</p>-->
+              <h3>Upstream</h3>
+              <p>
+                Inspection and integrity advisory for production assets, wellsite infrastructure, pressure equipment, flowlines, and field operating environments.
+              </p>
+            </article>
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Segment 02</p>-->
+              <h3>Midstream</h3>
+              <p>
+                Advisory support for pipelines, terminals, storage assets, compressor stations, gathering systems, and transmission infrastructure.
+              </p>
+            </article>
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Segment 03</p>-->
+              <h3>Downstream</h3>
+              <p>
+                Technical and strategic support for refineries, petrochemical facilities, process units, turnaround planning, and fixed equipment integrity.
+              </p>
+            </article>
+
+          </div>
         </div>
       </section>
 
-      <section class="industry-page-section" id="power-generation">
-        <div class="page-wrap industry-single industry-single--reverse">
-
-          <div class="industry-single__media">
-            <img src="/images/stock43.jpeg" alt="Power generation advisory">
-          </div>
-
-          <div class="industry-single__content">
-            <p class="industry-eyebrow">Industry Focus</p>
+      <section class="segment-section" id="power-generation">
+        <div class="page-wrap">
+          <div class="help-head">
             <h2>Power Generation</h2>
-
-            <p>
-              We help power generation organizations improve inspection planning, outage readiness, component integrity, monitoring strategies, and risk-based decision-making across critical assets and operating facilities.
-            </p>
-
-            <ul class="industry-list-simple">
-              <li>Outage inspection planning and readiness</li>
-              <li>Boiler, HRSG, piping, and component integrity support</li>
-              <li>Advanced NDT and monitoring strategy</li>
-              <li>Reliability and inspection cost optimization</li>
-            </ul>
           </div>
 
+          <p class="industry-copy">
+            We help power generation organizations improve inspection planning, outage readiness, component integrity, monitoring strategies, and risk-based decision-making across critical assets and operating facilities.
+          </p>
+
+          <div class="segment-grid">
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Segment 01</p>-->
+              <h3>Fossil &amp; Combined Cycle</h3>
+              <p>
+                Inspection and integrity advisory for boilers, HRSGs, turbines, piping systems, pressure equipment, and balance-of-plant assets.
+              </p>
+            </article>
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Segment 02</p>-->
+              <h3>Nuclear</h3>
+              <p>
+                Technical guidance for high-consequence inspection environments where compliance, documentation, procedure discipline, and technical defensibility are critical.
+              </p>
+            </article>
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Segment 03</p>-->
+              <h3>Renewables &amp; Energy Infrastructure</h3>
+              <p>
+                Advisory support for emerging energy assets, structural inspection, condition monitoring, reliability planning, and technology evaluation.
+              </p>
+            </article>
+
+          </div>
         </div>
       </section>
 
-      <section class="industry-page-section" id="aerospace-defense">
-        <div class="page-wrap industry-single">
-
-          <div class="industry-single__media">
-            <img src="/images/stock46.jpeg" alt="Aerospace and defense advisory">
-          </div>
-
-          <div class="industry-single__content">
-            <p class="industry-eyebrow">Industry Focus</p>
+      <section class="segment-section" id="aerospace-defense">
+        <div class="page-wrap">
+          <div class="help-head">
             <h2>Aerospace / Defense</h2>
-
-            <p>
-              Griffin provides technical guidance for high-reliability inspection programs, advanced NDT applications, quality systems, compliance alignment, and critical component evaluation in aerospace and defense environments.
-            </p>
-
-            <ul class="industry-list-simple">
-              <li>Critical component inspection support</li>
-              <li>NDT program and procedure review</li>
-              <li>Quality and compliance alignment</li>
-              <li>Technology and vendor evaluation</li>
-            </ul>
           </div>
 
+          <p class="industry-copy">
+            Griffin provides technical guidance for high-reliability inspection programs, advanced NDT applications, quality systems, compliance alignment, and critical component evaluation in aerospace and defense environments.
+          </p>
+
+          <div class="segment-grid">
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Focus 01</p>-->
+              <h3>Inspection Programs</h3>
+              <p>
+                Support for inspection strategy, procedure review, program alignment, technical oversight, and quality-driven inspection execution.
+              </p>
+            </article>
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Focus 02</p>-->
+              <h3>Advanced NDT</h3>
+              <p>
+                Guidance for advanced NDT method selection, technology evaluation, implementation readiness, and high-reliability applications.
+              </p>
+            </article>
+
+            <article class="segment-card">
+              <!--<p class="segment-label">Focus 03</p>-->
+              <h3>Quality &amp; Compliance</h3>
+              <p>
+                Advisory support for documentation, qualification systems, compliance alignment, and critical component evaluation.
+              </p>
+            </article>
+
+          </div>
         </div>
       </section>
 
-      <section class="advisor-cta-section" id="connect-advisor">
+      <section class="advisor-cta-section">
         <div class="page-wrap">
           <div class="advisor-cta">
             <div class="advisor-cta__content">
-              <h2>Let’s discuss how Griffin can support your industry needs.</h2>
+              <h2>Let’s Discuss Your Industry Needs</h2>
             </div>
 
             <a href="/contact.html" class="advisor-cta__button">
