@@ -389,6 +389,7 @@ body{
     --topbar-h: 76px;
     --topbar-link-gap: 16px;
     --topbar-pad-x: 16px;
+    
   }
 
 
@@ -454,6 +455,7 @@ body{
 
   .topbar-nav__logo-box img{
     height: 40px;
+    margin-left: 0rem;
   }
 }
 
