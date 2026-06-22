@@ -81,11 +81,11 @@
 
     <div class="topbar-dropdown__links">
 
-      <a href="/capabilities/technical-advisory.html">
+      <a href="/capabilities/technical-ticc-advisory.html">
         Technical Advisory
       </a>
 
-      <a href="/capabilities/strategy-business-advisory.html">
+      <a href="/capabilities/business-investment-advisory.html">
         Strategy &amp; Business Advisory
       </a>
 
@@ -109,7 +109,7 @@
           <a href="/business-advisory/mergers-acquisitions-support.html">Petrochemical</a>
           <!--<a href="/business-advisory/corporate-development-strategic-planning.html">Pipeline (Transmission)</a>
           <a href="/business-advisory/business-development-client-strategies.html">Fabrication & Construction</a>-->
-          <a href="/business-advisory/capital-acquisition.html">Aerospace/Defense</a>
+          <a href="/business-advisory/capital-acquisition.html">Defense</a>
         </div>
       </div>
     </div>
