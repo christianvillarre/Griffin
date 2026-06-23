@@ -10,26 +10,55 @@
     <p class="contact-kicker">Get in Touch</p>
 
     <h2>
-      Contact a Griffin Integrity Advisor
+      Contact Us
     </h2>
 
     <p class="contact-intro">
       Leave a detailed message about your needs and we’ll get back to you as soon as possible.
     </p>
 
-    <form class="contact-drawer-form">
+<form class="contact-drawer-form" name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="bot-field">
 
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Company">
+  <input type="hidden" name="form-name" value="contact">
 
-      <textarea placeholder="How can we help?"></textarea>
+  <p class="hidden">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field">
+    </label>
+  </p>
 
-      <button type="submit">
-        Send Message
-      </button>
+  <div class="form-row">
+    <input type="text" name="first-name" placeholder="First Name*" required>
+    <input type="text" name="last-name" placeholder="Last Name*" required>
+  </div>
 
-    </form>
+  <div class="form-row">
+    <input type="text" name="job-title" placeholder="Job Title">
+    <input type="text" name="company" placeholder="Company">
+  </div>
+
+  <div class="form-row">
+    <input type="email" name="email" placeholder="Email*" required>
+    <input type="tel" name="phone" placeholder="Phone">
+  </div>
+
+  <select name="area-of-interest" required>
+    <option value="">Area of Interest*</option>
+    <option value="Technical Advisory">Technical Advisory</option>
+    <option value="Business Advisory">Business Advisory</option>
+    <option value="Technical Advisory and Business Advisory">Both</option>
+  </select>
+
+  <textarea name="message" placeholder="Message*" required></textarea>
+
+  <div data-netlify-recaptcha="true"></div>
+
+  <button type="submit">
+    Send Message
+  </button>
+
+</form>
 
   </div>
 </aside>
@@ -216,5 +245,56 @@ body.contact-open .contact-drawer{
   .contact-drawer-inner{
     padding:84px 22px 42px;
   }
+}
+
+.contact-drawer-form select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:16px 18px;
+  font:inherit;
+  outline:none;
+  appearance:none;
+}
+
+.contact-drawer-form select option{
+  color:#063b58;
+  background:#fff;
+}
+
+.hidden{
+  display:none;
+}
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+@media(max-width:600px){
+  .form-row{
+    grid-template-columns:1fr;
+  }
+}
+.contact-drawer-form select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:16px 52px 16px 18px; /* extra right padding */
+  font:inherit;
+  outline:none;
+
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+
+  cursor:pointer;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 18px center;
+  background-size:16px;
 }
 </style>

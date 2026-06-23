@@ -1326,3 +1326,18 @@ box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     display: none;
   }
 }
+
+.topbar-dropdown{
+  position:absolute;
+}
+
+.topbar-dropdown::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-40px;
+  height:40px;
+  background:transparent;
+}
+
