@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy | Griffin Integrity Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/navbar.css" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --blue:#063959;
+      --red:#F00303;
+      --muted:rgba(17,17,17,.72);
+      --line:#e8e8e8;
+      --page-max:1360px;
+    }
+
+    *{box-sizing:border-box;}
+
+    html,body{
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .privacy-hero{
+      padding:clamp(130px, 12vw, 170px) 0 clamp(50px, 7vw, 90px);
+      background:#fff;
+    }
+
+    .privacy-hero h1{
+      margin:0;
+      max-width:12ch;
+      font-size:clamp(3rem, 6vw, 6.5rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      font-weight:200;
+      color:var(--navy);
+    }
+
+    .privacy-hero p{
+      margin:28px 0 0;
+      max-width:62ch;
+      font-size:clamp(1rem, 1.2vw, 1.15rem);
+      line-height:1.7;
+      color:rgba(17,17,17,.75);
+    }
+
+    .privacy-content{
+      padding:1rem 0 6rem;
+      background:#fff;
+    }
+
+    .privacy-layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:clamp(36px, 6vw, 90px);
+      border-top:1px solid #111;
+      padding-top:34px;
+    }
+
+    .privacy-label{
+      margin:0;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
+    .privacy-copy{
+      max-width:850px;
+    }
+
+    .privacy-copy section{
+      padding-bottom:34px;
+      margin-bottom:34px;
+      border-bottom:1px solid rgba(17,17,17,.08);
+    }
+
+    .privacy-copy section:last-child{
+      margin-bottom:0;
+    }
+
+    .privacy-copy h2{
+      margin:0 0 14px;
+      font-size:clamp(1.6rem, 2vw, 2.3rem);
+      line-height:1.05;
+      letter-spacing:-.035em;
+      font-weight:300;
+      color:var(--navy);
+    }
+
+    .privacy-copy p,
+    .privacy-copy li{
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(17,17,17,.76);
+    }
+
+    .privacy-copy p{
+      margin:0 0 16px;
+    }
+
+    .privacy-copy ul{
+      margin:0;
+      padding-left:20px;
+    }
+
+    .privacy-copy a{
+      color:var(--navy);
+      font-weight:600;
+    }
+
+    .site-footer{
+      background:#063b58;
+      color:#fff;
+      padding:64px 0 32px;
+    }
+
+    .footer-shell{
+      width:min(1400px, calc(100% - 48px));
+      margin:0 auto;
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:56px;
+      margin-bottom:48px;
+    }
+
+    .footer-logo{
+      width:180px;
+      margin-bottom:18px;
+    }
+
+    .footer-desc{
+      margin:0 0 22px;
+      max-width:42ch;
+      color:rgba(255,255,255,.7);
+      line-height:1.6;
+      font-size:.95rem;
+    }
+
+    .footer-contact{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .footer-contact a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+      font-size:.95rem;
+    }
+
+    .footer-heading{
+      margin:0 0 14px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.5);
+    }
+
+    .footer-col ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .footer-col li{
+      margin-bottom:10px;
+    }
+
+    .footer-col a{
+      text-decoration:none;
+      color:#fff;
+      font-size:.95rem;
+      font-weight:500;
+    }
+
+    .footer-col a:hover,
+    .footer-contact a:hover{
+      text-decoration:underline;
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.1);
+      padding-top:18px;
+    }
+
+    .footer-bottom p{
+      margin:0;
+      font-size:.85rem;
+      color:rgba(255,255,255,.5);
+    }
+
+    @media(max-width:800px){
+      .privacy-layout{
+        grid-template-columns:1fr;
+        gap:24px;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr 1fr;
+        gap:36px;
+      }
+    }
+
+    @media(max-width:600px){
+      .page-wrap{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .privacy-hero{
+        padding-top:115px;
+      }
+
+      .footer-shell{
+        width:min(100%, calc(100% - 0px));
+        padding:0 1.5rem;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="site-navbar"></div>
+
+  <main>
+
+    <section class="privacy-hero">
+      <div class="page-wrap">
+        <h1>Privacy Policy</h1>
+        <p>
+          Griffin Integrity Solutions LLC respects your privacy. This Privacy Notice explains how we collect, use, and protect information submitted through this website.
+        </p>
+      </div>
+    </section>
+
+    <section class="privacy-content">
+      <div class="page-wrap privacy-layout">
+
+        <p class="privacy-label">Privacy Notice</p>
+
+        <div class="privacy-copy">
+
+          <section>
+            <h2>Effective Date</h2>
+            <p>June 25, 2026</p>
+          </section>
+
+          <section>
+            <h2>Information We Collect</h2>
+            <p>
+              We may collect limited personal information that you voluntarily provide, such as your name, company name, email address, phone number, and the content of messages submitted through website contact forms or email links.
+            </p>
+            <p>
+              We may also receive basic website usage information through hosting providers, analytics tools, security tools, or similar technologies. This may include browser type, device information, pages visited, general location information, IP address, and referring website.
+            </p>
+          </section>
+
+          <section>
+            <h2>How We Use Information</h2>
+            <p>
+              We use information for legitimate business purposes, including to:
+            </p>
+            <ul>
+              <li>Respond to inquiries;</li>
+              <li>Communicate with prospective clients, clients, industry contacts, and affiliates;</li>
+              <li>Evaluate potential consulting engagements;</li>
+              <li>Improve website performance and security;</li>
+              <li>Maintain business records;</li>
+              <li>Comply with applicable legal, regulatory, or contractual obligations.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>No Sale of Personal Information</h2>
+            <p>
+              Griffin Integrity Solutions LLC does not sell personal information and does not sell sensitive personal information.
+            </p>
+          </section>
+
+          <section>
+            <h2>Sharing of Information</h2>
+            <p>
+              We may share limited information with service providers that support website hosting, email, analytics, security, document management, or similar business functions. We may also disclose information when required by law, legal process, contract, or to protect our rights, business interests, or the security of this website.
+            </p>
+          </section>
+
+          <section>
+            <h2>Confidentiality of Business Information</h2>
+            <p>
+              Information submitted through this website should not be considered confidential, proprietary, or protected unless and until Griffin Integrity Solutions LLC has entered into a written agreement with you that expressly provides for confidentiality. Please do not submit confidential technical, commercial, legal, or sensitive business information through a website form.
+            </p>
+          </section>
+
+          <section>
+            <h2>Cookies and Analytics</h2>
+            <p>
+              This website may use cookies, analytics tools, or similar technologies to understand website traffic, improve performance, and maintain security. You may be able to limit cookies through your browser settings.
+            </p>
+          </section>
+
+          <section>
+            <h2>Data Security</h2>
+            <p>
+              We use reasonable administrative, technical, and organizational safeguards appropriate for a small professional consulting business. However, no website, email system, or electronic transmission is completely secure.
+            </p>
+          </section>
+
+          <section>
+            <h2>Data Retention</h2>
+            <p>
+              We retain personal information only as long as reasonably necessary for business, legal, accounting, relationship management, or legitimate professional purposes.
+            </p>
+          </section>
+
+          <section>
+            <h2>Your Choices</h2>
+            <p>
+              You may contact us to request correction, deletion, or limitation of personal information you have provided, subject to applicable legal, contractual, and business recordkeeping requirements.
+            </p>
+          </section>
+
+          <section>
+            <h2>Contact</h2>
+            <p>
+              For privacy-related questions, contact:
+            </p>
+            <p>
+              Griffin Integrity Solutions LLC<br>
+              Email: <a href="mailto:contact@griffinintegrity.com">contact@griffinintegrity.com</a>
+            </p>
+          </section>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <img src="/images/GriffinText.png" alt="Griffin Integrity" class="footer-logo">
+
+          <p class="footer-desc">
+            Independent technical consulting and advisory supporting inspection,
+            asset integrity, technology selection, and industrial strategy across high-consequence environments.
+          </p>
+
+          <div class="footer-contact">
+            <a href="tel:+12813976614">281-397-6614</a>
+            <a href="mailto:info@griffinintegrity.com">info@griffinintegrity.com</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Company</p>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/capabilities.html">Capabilities</a></li>
+            <li><a href="/industries.html">Industries</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Resources</p>
+          <ul>
+            <li><a href="/insights.html">Insights</a></li>
+            <li><a href="/network.html">Network</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Griffin Integrity. All rights reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="/navbar.js"></script>
+  <script src="/load-navbar.js"></script>
+
+  <div id="contact-drawer-root"></div>
+  <script src="/contact-drawer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terms & Conditions | Griffin Integrity Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/navbar.css" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --navy:#052330;
+      --blue:#063959;
+      --red:#F00303;
+      --muted:rgba(17,17,17,.72);
+      --line:#e8e8e8;
+      --page-max:1360px;
+    }
+
+    *{box-sizing:border-box;}
+
+    html,body{
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Zalando Sans', sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    .page-wrap{
+      width:min(var(--page-max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .terms-hero{
+      padding:clamp(130px, 12vw, 170px) 0 clamp(50px, 7vw, 90px);
+      background:#fff;
+    }
+
+    .terms-hero h1{
+      margin:0;
+      max-width:12ch;
+      font-size:clamp(3rem, 6vw, 6.5rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      font-weight:200;
+      color:var(--navy);
+    }
+
+    .terms-hero p{
+      margin:28px 0 0;
+      max-width:68ch;
+      font-size:clamp(1rem, 1.2vw, 1.15rem);
+      line-height:1.7;
+      color:rgba(17,17,17,.75);
+    }
+
+    .terms-content{
+      padding:1rem 0 6rem;
+      background:#fff;
+    }
+
+    .terms-layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:clamp(36px, 6vw, 90px);
+      border-top:1px solid #111;
+      padding-top:34px;
+    }
+
+    .terms-label{
+      margin:0;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
+    .terms-copy{
+      max-width:850px;
+    }
+
+    .terms-copy section{
+      padding-bottom:34px;
+      margin-bottom:34px;
+      border-bottom:1px solid rgba(17,17,17,.08);
+    }
+
+    .terms-copy section:last-child{
+      margin-bottom:0;
+    }
+
+    .terms-copy h2{
+      margin:0 0 14px;
+      font-size:clamp(1.6rem, 2vw, 2.3rem);
+      line-height:1.05;
+      letter-spacing:-.035em;
+      font-weight:300;
+      color:var(--navy);
+    }
+
+    .terms-copy p,
+    .terms-copy li{
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(17,17,17,.76);
+    }
+
+    .terms-copy p{
+      margin:0 0 16px;
+    }
+
+    .terms-copy ul{
+      margin:0;
+      padding-left:20px;
+    }
+
+    .terms-copy a{
+      color:var(--navy);
+      font-weight:600;
+    }
+
+    .site-footer{
+      background:#063b58;
+      color:#fff;
+      padding:64px 0 32px;
+    }
+
+    .footer-shell{
+      width:min(1400px, calc(100% - 48px));
+      margin:0 auto;
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:56px;
+      margin-bottom:48px;
+    }
+
+    .footer-logo{
+      width:180px;
+      margin-bottom:18px;
+    }
+
+    .footer-desc{
+      margin:0 0 22px;
+      max-width:42ch;
+      color:rgba(255,255,255,.7);
+      line-height:1.6;
+      font-size:.95rem;
+    }
+
+    .footer-contact{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .footer-contact a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+      font-size:.95rem;
+    }
+
+    .footer-heading{
+      margin:0 0 14px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.5);
+    }
+
+    .footer-col ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .footer-col li{
+      margin-bottom:10px;
+    }
+
+    .footer-col a{
+      text-decoration:none;
+      color:#fff;
+      font-size:.95rem;
+      font-weight:500;
+    }
+
+    .footer-col a:hover,
+    .footer-contact a:hover{
+      text-decoration:underline;
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.1);
+      padding-top:18px;
+    }
+
+    .footer-bottom p{
+      margin:0;
+      font-size:.85rem;
+      color:rgba(255,255,255,.5);
+    }
+
+    @media(max-width:800px){
+      .terms-layout{
+        grid-template-columns:1fr;
+        gap:24px;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr 1fr;
+        gap:36px;
+      }
+    }
+
+    @media(max-width:600px){
+      .page-wrap{
+        width:min(var(--page-max), calc(100% - 24px));
+      }
+
+      .terms-hero{
+        padding-top:115px;
+      }
+
+      .footer-shell{
+        width:min(100%, calc(100% - 0px));
+        padding:0 1.5rem;
+      }
+
+      .footer-top{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="site-navbar"></div>
+
+  <main>
+
+    <section class="terms-hero">
+      <div class="page-wrap">
+        <h1>Terms &amp; Conditions</h1>
+        <p>
+          This website is owned and operated by Griffin Integrity Solutions LLC, a Texas limited liability company providing professional consulting, advisory, and business support services to clients in the energy, industrial, asset integrity, inspection, NDT, monitoring, compliance, and related markets.
+        </p>
+      </div>
+    </section>
+
+    <section class="terms-content">
+      <div class="page-wrap terms-layout">
+
+        <p class="terms-label">Terms of Use</p>
+
+        <div class="terms-copy">
+
+          <section>
+            <h2>Effective Date</h2>
+            <p>June 25, 2026</p>
+            <p>
+              By using this website, you agree to the following terms.
+            </p>
+          </section>
+
+          <section>
+            <h2>Informational Use Only</h2>
+            <p>
+              The content on this website is provided for general informational and business development purposes only. It does not constitute engineering advice, legal advice, financial advice, investment advice, safety certification, regulatory certification, inspection certification, or a formal technical opinion.
+            </p>
+            <p>
+              Specific consulting services are provided only under a separate written agreement signed by Griffin Integrity Solutions LLC and the client.
+            </p>
+          </section>
+
+          <section>
+            <h2>No Client Relationship Created</h2>
+            <p>
+              Your use of this website, submission of a contact form, or exchange of preliminary communications does not create a client, advisor, fiduciary, confidential, or professional services relationship with Griffin Integrity Solutions LLC. Any engagement must be confirmed through a written agreement defining scope, responsibilities, fees, confidentiality, and other applicable terms.
+            </p>
+          </section>
+
+          <section>
+            <h2>Professional Judgment and Client Responsibility</h2>
+            <p>
+              Griffin Integrity Solutions LLC may provide strategic, technical, commercial, and operational consulting support based on experience and available information. Clients remain responsible for their own business decisions, regulatory compliance, engineering judgments, safety decisions, operational decisions, and use of any recommendations.
+            </p>
+          </section>
+
+          <section>
+            <h2>No Guarantee of Results</h2>
+            <p>
+              Griffin Integrity Solutions LLC does not guarantee any particular business, technical, financial, operational, compliance, inspection, monitoring, reliability, risk reduction, or asset integrity outcome. Results depend on many factors outside Griffin&rsquo;s control, including client decisions, site conditions, available data, personnel, equipment, contractors, market conditions, and regulatory requirements.
+            </p>
+          </section>
+
+          <section>
+            <h2>Industry Relationships and Affiliates</h2>
+            <p>
+              Griffin Integrity Solutions LLC may maintain relationships with selected technology providers, manufacturers, service companies, investors, advisors, contractors, or industry affiliates. References to third-party products, services, technologies, or organizations are provided for informational purposes and do not necessarily constitute an endorsement, warranty, agency relationship, or guarantee.
+            </p>
+            <p>
+              Where appropriate, Griffin Integrity Solutions LLC may disclose potential conflicts of interest, referral arrangements, advisory roles, investment interests, or commercial relationships in connection with a specific engagement.
+            </p>
+          </section>
+
+          <section>
+            <h2>Third-Party Links</h2>
+            <p>
+              This website may include links or references to third-party websites, companies, publications, products, or services. Griffin Integrity Solutions LLC is not responsible for third-party content, privacy practices, representations, warranties, or services.
+            </p>
+          </section>
+
+          <section>
+            <h2>Intellectual Property</h2>
+            <p>
+              Unless otherwise stated, website content, text, graphics, service descriptions, trade names, and related materials are owned by or licensed to Griffin Integrity Solutions LLC. You may view and share website content for ordinary business reference purposes, but you may not copy, modify, republish, or commercially exploit website content without prior written permission.
+            </p>
+          </section>
+
+          <section>
+            <h2>No Warranties</h2>
+            <p>
+              This website and its content are provided &ldquo;as is&rdquo; and &ldquo;as available.&rdquo; Griffin Integrity Solutions LLC makes no warranties, express or implied, regarding website availability, accuracy, completeness, suitability, security, or freedom from errors.
+            </p>
+          </section>
+
+          <section>
+            <h2>Limitation of Liability</h2>
+            <p>
+              To the fullest extent permitted by law, Griffin Integrity Solutions LLC will not be liable for any indirect, incidental, consequential, special, punitive, or exemplary damages arising from use of this website or reliance on website content.
+            </p>
+          </section>
+
+          <section>
+            <h2>Governing Law</h2>
+            <p>
+              These terms are governed by the laws of the State of Texas, without regard to conflict-of-law principles.
+            </p>
+          </section>
+
+          <section>
+            <h2>Changes</h2>
+            <p>
+              Griffin Integrity Solutions LLC may update these terms or its privacy notice from time to time. Updated versions will be posted on this website with a revised effective date.
+            </p>
+          </section>
+
+          <section>
+            <h2>Contact</h2>
+            <p>
+              Questions regarding these Terms of Use may be directed to:
+            </p>
+            <p>
+              Griffin Integrity Solutions LLC<br>
+              Email: <a href="mailto:contact@griffinintegrity.com">contact@griffinintegrity.com</a>
+            </p>
+          </section>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <img src="/images/GriffinText.png" alt="Griffin Integrity" class="footer-logo">
+
+          <p class="footer-desc">
+            Independent technical consulting and advisory supporting inspection,
+            asset integrity, technology selection, and industrial strategy across high-consequence environments.
+          </p>
+
+          <div class="footer-contact">
+            <a href="tel:+12813976614">281-397-6614</a>
+            <a href="mailto:info@griffinintegrity.com">info@griffinintegrity.com</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Company</p>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/capabilities.html">Capabilities</a></li>
+            <li><a href="/industries.html">Industries</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-heading">Resources</p>
+          <ul>
+            <li><a href="/insights.html">Insights</a></li>
+            <li><a href="/network.html">Network</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Griffin Integrity. All rights reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="/navbar.js"></script>
+  <script src="/load-navbar.js"></script>
+
+  <div id="contact-drawer-root"></div>
+  <script src="/contact-drawer.js"></script>
+
+</body>
+</html>
