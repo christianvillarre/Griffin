@@ -105,10 +105,9 @@
 
         <div class="topbar-dropdown__links">
           <a href="/industries/oil-gas.html">Oil & Gas</a>
+          <a href="/business-advisory/corporate-development-strategic-planning.html">Pipeline</a>
+          <a href="/business-advisory/business-development-client-strategies.html">Construction & Fabrication</a>
           <a href="/industries/power-generation.html">Power Generation</a>
-          <a href="/business-advisory/mergers-acquisitions-support.html">Petrochemical</a>
-          <!--<a href="/business-advisory/corporate-development-strategic-planning.html">Pipeline (Transmission)</a>
-          <a href="/business-advisory/business-development-client-strategies.html">Fabrication & Construction</a>-->
           <a href="/business-advisory/capital-acquisition.html">Defense</a>
         </div>
       </div>
