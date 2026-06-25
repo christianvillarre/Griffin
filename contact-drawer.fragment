@@ -38,8 +38,8 @@
   </div>
 
   <div class="form-row">
-    <input type="text" name="job-title" placeholder="Job Title*">
-    <input type="text" name="company" placeholder="Company*">
+    <input type="text" name="job-title" placeholder="Job Title">
+    <input type="text" name="company" placeholder="Company">
   </div>
 
   <div class="form-row">
