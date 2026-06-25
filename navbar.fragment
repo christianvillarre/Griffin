@@ -104,11 +104,11 @@
         </div>
 
         <div class="topbar-dropdown__links">
-          <a href="/industries/oil-gas.html">Oil & Gas</a>
-          <a href="/business-advisory/corporate-development-strategic-planning.html">Pipeline</a>
-          <a href="/business-advisory/business-development-client-strategies.html">Construction & Fabrication</a>
+          <a href="/industries/oil-gas.html">Oil &amp; Gas</a>
+          <a href="/industries/pipeline.html">Pipeline</a>
+          <a href="/industries/construction-fabrication.html">Construction &amp; Fabrication</a>
           <a href="/industries/power-generation.html">Power Generation</a>
-          <a href="/business-advisory/capital-acquisition.html">Defense</a>
+          <a href="/industries/defense.html">Defense</a>
         </div>
       </div>
     </div>
