@@ -134,145 +134,111 @@
   </div>
 
 
-  <!-- MOBILE FULL MENU -->
-  <!-- MOBILE FULL MENU -->
+
+<!-- MOBILE FULL MENU -->
 <div class="topbar-mobile-menu" id="topbarMobileMenu" aria-hidden="true">
+
+  <!-- ================= MAIN MENU ================= -->
   <div class="topbar-mobile-menu__screen is-active" data-screen="main">
+
     <nav class="topbar-mobile-menu__nav" aria-label="Mobile primary navigation">
 
-      <a class="topbar-mobile-menu__item" href="/about.html">About</a>
+      <!-- ABOUT -->
+      <a class="topbar-mobile-menu__item" href="/about.html">
+        About
+      </a>
 
-      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="consulting">
-        <span>Capabilities</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+      <!-- CAPABILITIES -->
+      <div class="topbar-mobile-menu__row">
 
-      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="advisory">
-        <span>Industries</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+        <a class="topbar-mobile-menu__item topbar-mobile-menu__item-link"
+           href="/capabilities.html">
+          <span>Capabilities</span>
+        </a>
 
-      <a class="topbar-mobile-menu__item" href="/insights.html">Insights</a>
+        <button
+          class="topbar-mobile-menu__item-arrow"
+          type="button"
+          data-mobile-open="consulting"
+          aria-label="Open Capabilities">
 
-      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="affiliates">
-        <span>Network</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
 
-      <a class="topbar-mobile-menu__item" href="/contact.html">Contact</a>
+        </button>
+
+      </div>
+
+      <!-- INDUSTRIES -->
+      <a class="topbar-mobile-menu__item" href="/#industries">
+        Industries
+      </a>
+
+      <!-- INSIGHTS -->
+      <a class="topbar-mobile-menu__item" href="/insights.html">
+        Insights
+      </a>
+
+      <!-- NETWORK -->
+      <a class="topbar-mobile-menu__item" href="/network.html">
+        Network
+      </a>
+
+      <!-- CONTACT -->
+      <a class="topbar-mobile-menu__item" href="/contact.html">
+        Contact
+      </a>
+
     </nav>
+
   </div>
 
-  <!-- CAPABILITIES: SECOND PAGE -->
+  <!-- ================= CAPABILITIES ================= -->
+
   <div class="topbar-mobile-menu__screen" data-screen="consulting">
-    <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
+
+    <button
+      class="topbar-mobile-menu__back"
+      type="button"
+      data-mobile-back>
+
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 6l-6 6 6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
       </svg>
+
       <span>Back to menu</span>
+
     </button>
 
-    <nav class="topbar-mobile-menu__nav" aria-label="Capabilities submenu">
+    <nav class="topbar-mobile-menu__nav"
+         aria-label="Capabilities submenu">
 
-      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="technical-advisory">
-        <span>Technical Advisory</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+      <a class="topbar-mobile-menu__item"
+         href="/capabilities/technical-ticc-advisory.html">
+        Technical Advisory
+      </a>
 
-      <button class="topbar-mobile-menu__item has-children" type="button" data-mobile-open="strategy-business-advisory">
-        <span>Strategy &amp; Business Advisory</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+      <a class="topbar-mobile-menu__item"
+         href="/capabilities/business-investment-advisory.html">
+        Strategy &amp; Business Advisory
+      </a>
 
     </nav>
+
   </div>
 
-  <!-- TECHNICAL ADVISORY: THIRD PAGE -->
-  <div class="topbar-mobile-menu__screen" data-screen="technical-advisory">
-    <button class="topbar-mobile-menu__back" type="button" data-mobile-open="consulting">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>Back to capabilities</span>
-    </button>
-
-    <nav class="topbar-mobile-menu__nav" aria-label="Technical Advisory submenu">
-      <a class="topbar-mobile-menu__item is-sub" href="/technical-advisory.html">Technical Advisory Overview</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Advanced NDT Technologies &amp; Application Subject Matter Experts</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Inspection Program Development &amp; Optimization</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">NDT Level III &amp; Regulatory Code Compliance Advisory</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Application Specific NDT Procedures &amp; Technology Integration</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Automation, Robotics &amp; Digital Inspection and Monitoring Systems</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Technical Training &amp; Workforce Development</a>
-    </nav>
-  </div>
-
-  <!-- STRATEGY & BUSINESS ADVISORY: THIRD PAGE -->
-  <div class="topbar-mobile-menu__screen" data-screen="strategy-business-advisory">
-    <button class="topbar-mobile-menu__back" type="button" data-mobile-open="consulting">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>Back to capabilities</span>
-    </button>
-
-    <nav class="topbar-mobile-menu__nav" aria-label="Strategy and Business Advisory submenu">
-      <a class="topbar-mobile-menu__item is-sub" href="/strategy-business-advisory.html">Strategy &amp; Business Advisory Overview</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Corporate Strategy &amp; Growth Planning</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">M&amp;A Due Diligence &amp; Transaction Support</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Business Development &amp; Market Strategy</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Project Management</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Talent Assessment &amp; Leadership Advisory</a>
-      <a class="topbar-mobile-menu__item is-sub" href="#">Capital Strategy &amp; Investment Support</a>
-    </nav>
-  </div>
-
-  <!-- INDUSTRIES -->
-  <div class="topbar-mobile-menu__screen" data-screen="advisory">
-    <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>Back to menu</span>
-    </button>
-
-    <nav class="topbar-mobile-menu__nav" aria-label="Industries submenu">
-      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/mergers-acquisitions-support.html">Oil &amp; Gas/Petrochemical</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/talent-acquisition-assessment.html">Power Generation</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/corporate-development-strategic-planning.html">Pipeline (Transmission)</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/business-development-client-strategies.html">Fabrication &amp; Construction</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/business-advisory/capital-acquisition.html">Aerospace/Defense</a>
-    </nav>
-  </div>
-
-  <!-- NETWORK -->
-  <div class="topbar-mobile-menu__screen" data-screen="affiliates">
-    <button class="topbar-mobile-menu__back" type="button" data-mobile-back>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>Back to menu</span>
-    </button>
-
-    <nav class="topbar-mobile-menu__nav" aria-label="Network submenu">
-      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
-      <a class="topbar-mobile-menu__item is-sub" href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
-    </nav>
-  </div>
 </div>
-
 
 
 
