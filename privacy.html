@@ -252,7 +252,377 @@
 
 <body>
 
-  <div id="site-navbar"></div>
+<!-- SECOND NAVBAR VERSION -->
+<header class="topbar-nav-wrap">
+  <div class="topbar-nav">
+
+    <!-- LEFT CLUSTER -->
+    <div class="topbar-nav__left">
+      <button
+        class="topbar-nav__menu-btn"
+        id="topbarMenuBtn"
+        type="button"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a href="/" class="topbar-nav__logo-box" aria-label="Griffin Integrity home">
+        <img src="/images/Griffin Integrity Logo wt.png" alt="Griffin Integrity" />
+      </a>
+    </div>
+
+    <!-- RIGHT CLUSTER -->
+     
+    <nav class="topbar-nav__links" aria-label="Primary navigation">
+      
+      <div class="topbar-nav__item">
+        <a href="/about.html" class="topbar-nav__link">About</a>
+      </div>
+
+      <div class="topbar-nav__item has-dd" data-dd="consulting">
+        <a href="/capabilities.html" class="topbar-nav__link">
+          Capabilities
+          <!--<svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>-->
+        </a>
+      </div>
+
+      <div class="topbar-nav__item" data-dd="advisory">
+        <a href="/#industries" class="topbar-nav__link">
+          Industries
+          <!--<svg class="topbar-nav__chev" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>-->
+        </a>
+      </div>
+
+      <div class="topbar-nav__item">
+        <a href="/insights.html" class="topbar-nav__link">Insights</a>
+      </div>
+
+      <div class="topbar-nav__item">
+        <a href="/network.html" class="topbar-nav__link">
+          Network
+        </a>
+      </div>
+
+
+      
+
+      <div class="topbar-nav__item">
+        <a href="/contact.html" class="topbar-nav__link">Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- DROPDOWNS -->
+  <div class="topbar-dropdowns">
+    <div class="topbar-dropdown" data-panel="consulting">
+  <div class="topbar-dropdown__inner">
+
+    <div class="topbar-dropdown__intro">
+      <h4 class="topbar-dropdown__title">Capabilities</h4>
+
+      <p class="topbar-dropdown__desc">
+        Technical and strategic advisory services supporting industrial inspection,
+        asset integrity, advanced NDT environments, and business growth initiatives.
+      </p>
+    </div>
+
+    <div class="topbar-dropdown__links">
+
+      <a href="/capabilities/technical-ticc-advisory.html">
+        Technical & TICC Advisory
+      </a>
+
+      <a href="/capabilities/business-investment-advisory.html">
+        Business &amp; Investment Advisory
+      </a>
+
+    </div>
+  </div>
+</div>
+
+    <div class="topbar-dropdown" data-panel="advisory">
+      <div class="topbar-dropdown__inner">
+        <div class="topbar-dropdown__intro">
+          <!--<div class="topbar-dropdown__eyebrow">Advisory Services</div>-->
+          <h4 class="topbar-dropdown__title">Business Advisory Services</h4>
+          <p class="topbar-dropdown__desc">
+            Strategic advisory support for growth, transactions, leadership alignment, and operational execution across the industrial inspection ecosystem.
+          </p>
+        </div>
+
+        <div class="topbar-dropdown__links">
+          <a href="/industries/oil-gas.html">Oil &amp; Gas</a>
+          <a href="/industries/pipeline.html">Pipeline</a>
+          <a href="/industries/construction-fabrication.html">Construction &amp; Fabrication</a>
+          <a href="/industries/power-generation.html">Power Generation</a>
+          <a href="/industries/defense.html">Defense</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar-dropdown" data-panel="affiliates">
+      <div class="topbar-dropdown__inner">
+        <div class="topbar-dropdown__intro">
+          <!--<div class="topbar-dropdown__eyebrow">Affiliate Organizations</div>-->
+          <h4 class="topbar-dropdown__title">Affiliate Organizations</h4>
+          <p class="topbar-dropdown__desc">
+            Our trusted affiliate partners extend our capabilities across specialized disciplines, delivering complementary services and innovative solutions.
+          </p>
+        </div>
+
+        <div class="topbar-dropdown__links">
+          <a href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
+          <a href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
+          <a href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
+          <a href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- MOBILE FULL MENU -->
+<div class="topbar-mobile-menu" id="topbarMobileMenu" aria-hidden="true">
+
+  <!-- ================= MAIN MENU ================= -->
+  <div class="topbar-mobile-menu__screen is-active" data-screen="main">
+
+    <nav class="topbar-mobile-menu__nav" aria-label="Mobile primary navigation">
+
+      <!-- ABOUT -->
+      <a class="topbar-mobile-menu__item" href="/about.html">
+        About
+      </a>
+
+      <!-- CAPABILITIES -->
+      <div class="topbar-mobile-menu__row">
+
+        <a class="topbar-mobile-menu__item topbar-mobile-menu__item-link"
+           href="/capabilities.html">
+          <span>Capabilities</span>
+        </a>
+
+        <button
+          class="topbar-mobile-menu__item-arrow"
+          type="button"
+          data-mobile-open="consulting"
+          aria-label="Open Capabilities">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+
+        </button>
+
+      </div>
+
+      <!-- INDUSTRIES -->
+      <a class="topbar-mobile-menu__item" href="/#industries">
+        Industries
+      </a>
+
+      <!-- INSIGHTS -->
+      <a class="topbar-mobile-menu__item" href="/insights.html">
+        Insights
+      </a>
+
+      <!-- NETWORK -->
+      <a class="topbar-mobile-menu__item" href="/network.html">
+        Network
+      </a>
+
+      <!-- CONTACT -->
+      <a class="topbar-mobile-menu__item" href="/contact.html">
+        Contact
+      </a>
+
+    </nav>
+
+  </div>
+
+  <!-- ================= CAPABILITIES ================= -->
+
+  <div class="topbar-mobile-menu__screen" data-screen="consulting">
+
+    <button
+      class="topbar-mobile-menu__back"
+      type="button"
+      data-mobile-back>
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+
+      <span>Back to menu</span>
+
+    </button>
+
+    <nav class="topbar-mobile-menu__nav"
+         aria-label="Capabilities submenu">
+
+      <a class="topbar-mobile-menu__item"
+         href="/capabilities/technical-ticc-advisory.html">
+        Technical Advisory
+      </a>
+
+      <a class="topbar-mobile-menu__item"
+         href="/capabilities/business-investment-advisory.html">
+        Strategy &amp; Business Advisory
+      </a>
+
+    </nav>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- DESKTOP MENU OVERLAY -->
+<!-- DESKTOP MENU OVERLAY -->
+<div class="topbar-desktop-menu" id="topbarDesktopMenu" aria-hidden="true">
+  <div class="topbar-desktop-menu__inner">
+
+    <!-- LEFT SIDE -->
+    <div class="topbar-desktop-menu__left" role="tablist">
+
+      <button class="topbar-desktop-menu__main is-active" data-desktop-menu="consulting">
+        Capabilities
+      </button>
+
+      <button class="topbar-desktop-menu__main" data-desktop-menu="advisory">
+        Industries
+      </button>
+
+      <button class="topbar-desktop-menu__main" data-desktop-menu="affiliates">
+        Network
+      </button>
+
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/about.html">
+        About
+      </a>
+
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/insights.html">
+        Insights
+      </a>
+
+      <a class="topbar-desktop-menu__main topbar-desktop-menu__main--link" href="/contact.html">
+        Contact
+      </a>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="topbar-desktop-menu__right">
+
+      <!-- ================= -->
+      <!-- CAPABILITIES PANEL -->
+      <!-- ================= -->
+      <div class="topbar-desktop-menu__panel is-active" data-desktop-panel="consulting">
+
+        <h4 class="topbar-desktop-menu__title">Capabilities</h4>
+        <p class="topbar-desktop-menu__desc">
+          Technical and strategic advisory services across industrial inspection, asset integrity, and advanced NDT environments.
+        </p>
+
+        <div class="topbar-desktop-menu__capabilities">
+
+          <!-- COLUMN 1 -->
+          <div class="cap-col">
+            <a href="/technical-advisory.html" class="cap-col__title">
+              Technical Advisory
+            </a>
+
+            <div class="topbar-desktop-menu__links">
+              <a href="#">Advanced NDT Technologies & Application SMEs</a>
+              <a href="#">Inspection Program Development</a>
+              <a href="#">NDT Level III & Compliance</a>
+              <a href="#">Technology Integration</a>
+              <a href="#">Automation & Robotics</a>
+              <a href="#">Training & Workforce</a>
+            </div>
+          </div>
+
+          <!-- COLUMN 2 -->
+          <div class="cap-col">
+            <a href="/strategy-business-advisory.html" class="cap-col__title">
+              Strategy & Business Advisory
+            </a>
+
+            <div class="topbar-desktop-menu__links">
+              <a href="#">Corporate Strategy & Growth</a>
+              <a href="#">M&A Due Diligence</a>
+              <a href="#">Market Strategy</a>
+              <a href="#">Project Management</a>
+              <a href="#">Leadership Advisory</a>
+              <a href="#">Capital Strategy</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ================= -->
+      <!-- INDUSTRIES PANEL -->
+      <!-- ================= -->
+      <div class="topbar-desktop-menu__panel" data-desktop-panel="advisory">
+
+        <h4 class="topbar-desktop-menu__title">Industries</h4>
+        <p class="topbar-desktop-menu__desc">
+          We support operators, investors, and service providers across critical infrastructure, industrial assets, and inspection-driven environments—bringing technical expertise and strategic insight to each sector we serve.
+        </p>
+
+        <div class="topbar-desktop-menu__links">
+          <a href="#">Oil & Gas / Petrochemical</a>
+          <a href="#">Power Generation</a>
+          <a href="#">Pipeline (Transmission)</a>
+          <a href="#">Fabrication & Construction</a>
+          <a href="#">Aerospace / Defense</a>
+        </div>
+      </div>
+
+      <!-- ================= -->
+      <!-- NETWORK PANEL -->
+      <!-- ================= -->
+      <div class="topbar-desktop-menu__panel" data-desktop-panel="affiliates">
+
+        <h4 class="topbar-desktop-menu__title">Network</h4>
+        <p class="topbar-desktop-menu__desc">
+          Our network of trusted partners extends our capabilities across specialized disciplines, enabling integrated solutions, broader reach, and seamless execution across complex projects.
+        </p>
+
+        <div class="topbar-desktop-menu__links">
+          <a href="/affiliates/top-notch-edm.html">Top Notch EDM Services</a>
+          <a href="/affiliates/sound-ndt-solutions.html">Sound NDT Solutions</a>
+          <a href="/affiliates/atco-automated-scanning.html">ATCO Automated Scanning Systems</a>
+          <a href="/affiliates/halo-ndt-technologies.html">Halo NDT Technologies</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</header>
+
+
 
   <main>
 
@@ -421,7 +791,310 @@
   <script src="/navbar.js"></script>
   <script src="/load-navbar.js"></script>
 
-  <div id="contact-drawer-root"></div>
+  <div class="contact-dim"></div>
+
+<aside class="contact-drawer" aria-hidden="true">
+  <button class="contact-drawer-close" type="button" aria-label="Close contact panel">
+    ×
+  </button>
+
+  <div class="contact-drawer-inner">
+
+    <p class="contact-kicker">Get in Touch</p>
+
+    <h2>
+      Contact Us
+    </h2>
+
+    <p class="contact-intro">
+      Leave a detailed message about your needs and we’ll get back to you as soon as possible.
+    </p>
+
+<form class="contact-drawer-form"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-recaptcha="true"
+  netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contact">
+
+  <p class="hidden">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field">
+    </label>
+  </p>
+
+  <div class="form-row">
+    <input type="text" name="first-name" placeholder="First Name*" required>
+    <input type="text" name="last-name" placeholder="Last Name*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="text" name="job-title" placeholder="Job Title">
+    <input type="text" name="company" placeholder="Company">
+  </div>
+
+  <div class="form-row">
+    <input type="email" name="email" placeholder="Email*" required>
+    <input type="tel" name="phone" placeholder="Phone">
+  </div>
+
+  <select name="area-of-interest" required>
+    <option value="">Area of Interest*</option>
+    <option value="Technical Advisory">Technical Advisory</option>
+    <option value="Business Advisory">Business Advisory</option>
+    <option value="Technical Advisory and Business Advisory">Both</option>
+  </select>
+
+  <textarea name="message" placeholder="Message*" required></textarea>
+
+  <div data-netlify-recaptcha="true"></div>
+
+  <button type="submit">
+    Send Message
+  </button>
+
+</form>
+
+  </div>
+</aside>
+
+<style>
+:root{
+  --contact-drawer-w:min(760px, 92vw);
+}
+
+body.contact-open{
+  overflow:hidden;
+}
+
+#scroll-container{
+  transition:
+    transform .72s cubic-bezier(.77,0,.18,1),
+    filter .5s ease;
+
+  will-change:transform;
+}
+
+body.contact-open #scroll-container{
+  transform:translateX(calc(var(--contact-drawer-w) * -1));
+  filter:brightness(.82);
+}
+
+.contact-dim{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.42);
+
+  opacity:0;
+  pointer-events:none;
+
+  z-index:998;
+
+  transition:opacity .45s ease;
+}
+
+body.contact-open .contact-dim{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.contact-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+
+  width:var(--contact-drawer-w);
+  height:100vh;
+
+  background:#063b58;
+  color:#fff;
+
+  z-index:999;
+
+  overflow-y:auto;
+
+  transform:translateX(100%);
+
+  transition:transform .72s cubic-bezier(.77,0,.18,1);
+}
+
+body.contact-open .contact-drawer{
+  transform:translateX(0);
+}
+
+.contact-drawer-close{
+  position:absolute;
+  top:22px;
+  right:22px;
+
+  width:46px;
+  height:46px;
+
+  border:1px solid rgba(255,255,255,.2);
+  background:transparent;
+
+  color:#fff;
+
+  font-size:32px;
+  line-height:1;
+
+  cursor:pointer;
+}
+
+.contact-drawer-close:hover{
+  background:#fff;
+  color:#063b58;
+}
+
+.contact-drawer-inner{
+  padding:
+    84px
+    54px
+    54px;
+}
+
+.contact-kicker{
+  margin:0 0 18px;
+
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.55);
+}
+
+.contact-drawer h2{
+  margin:0 0 22px;
+
+  font-size:clamp(2.3rem, 4vw, 4rem);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-weight:500;
+}
+
+.contact-intro{
+  margin:0 0 34px;
+
+  color:rgba(255,255,255,.72);
+
+  line-height:1.6;
+}
+
+.contact-drawer-form{
+  display:grid;
+  gap:16px;
+}
+
+.contact-drawer-form input,
+.contact-drawer-form textarea{
+  width:100%;
+
+  border:1px solid rgba(255,255,255,.14);
+
+  background:rgba(255,255,255,.06);
+
+  color:#fff;
+
+  padding:16px 18px;
+
+  font:inherit;
+
+  outline:none;
+}
+
+.contact-drawer-form input::placeholder,
+.contact-drawer-form textarea::placeholder{
+  color:rgba(255,255,255,.45);
+}
+
+.contact-drawer-form textarea{
+  min-height:170px;
+  resize:vertical;
+}
+
+.contact-drawer-form button{
+  border:none;
+
+  background:#fff;
+  color:#063b58;
+
+  padding:16px 18px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+@media(max-width:760px){
+
+  body.contact-open #scroll-container{
+    transform:translateX(-42px);
+  }
+
+  .contact-drawer{
+    width:100%;
+  }
+
+  .contact-drawer-inner{
+    padding:84px 22px 42px;
+  }
+}
+
+.contact-drawer-form select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:16px 18px;
+  font:inherit;
+  outline:none;
+  appearance:none;
+}
+
+.contact-drawer-form select option{
+  color:#063b58;
+  background:#fff;
+}
+
+.hidden{
+  display:none;
+}
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+@media(max-width:600px){
+  .form-row{
+    grid-template-columns:1fr;
+  }
+}
+.contact-drawer-form select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:16px 52px 16px 18px; /* extra right padding */
+  font:inherit;
+  outline:none;
+
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+
+  cursor:pointer;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 18px center;
+  background-size:16px;
+}
+</style>
   <script src="/contact-drawer.js"></script>
 
 </body>

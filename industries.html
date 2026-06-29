@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Industries | Griffin Integrity Solutions</title>
+  <title>Industries | Griffin Integrity Solutions LLC</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1630,7 +1630,310 @@
     })();
   </script>
 
-<div id="contact-drawer-root"></div>
+<div class="contact-dim"></div>
+
+<aside class="contact-drawer" aria-hidden="true">
+  <button class="contact-drawer-close" type="button" aria-label="Close contact panel">
+    ×
+  </button>
+
+  <div class="contact-drawer-inner">
+
+    <p class="contact-kicker">Get in Touch</p>
+
+    <h2>
+      Contact Us
+    </h2>
+
+    <p class="contact-intro">
+      Leave a detailed message about your needs and we’ll get back to you as soon as possible.
+    </p>
+
+<form class="contact-drawer-form"
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  data-netlify-recaptcha="true"
+  netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contact">
+
+  <p class="hidden">
+    <label>
+      Don’t fill this out if you’re human:
+      <input name="bot-field">
+    </label>
+  </p>
+
+  <div class="form-row">
+    <input type="text" name="first-name" placeholder="First Name*" required>
+    <input type="text" name="last-name" placeholder="Last Name*" required>
+  </div>
+
+  <div class="form-row">
+    <input type="text" name="job-title" placeholder="Job Title">
+    <input type="text" name="company" placeholder="Company">
+  </div>
+
+  <div class="form-row">
+    <input type="email" name="email" placeholder="Email*" required>
+    <input type="tel" name="phone" placeholder="Phone">
+  </div>
+
+  <select name="area-of-interest" required>
+    <option value="">Area of Interest*</option>
+    <option value="Technical Advisory">Technical Advisory</option>
+    <option value="Business Advisory">Business Advisory</option>
+    <option value="Technical Advisory and Business Advisory">Both</option>
+  </select>
+
+  <textarea name="message" placeholder="Message*" required></textarea>
+
+  <div data-netlify-recaptcha="true"></div>
+
+  <button type="submit">
+    Send Message
+  </button>
+
+</form>
+
+  </div>
+</aside>
+
+<style>
+:root{
+  --contact-drawer-w:min(760px, 92vw);
+}
+
+body.contact-open{
+  overflow:hidden;
+}
+
+#scroll-container{
+  transition:
+    transform .72s cubic-bezier(.77,0,.18,1),
+    filter .5s ease;
+
+  will-change:transform;
+}
+
+body.contact-open #scroll-container{
+  transform:translateX(calc(var(--contact-drawer-w) * -1));
+  filter:brightness(.82);
+}
+
+.contact-dim{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.42);
+
+  opacity:0;
+  pointer-events:none;
+
+  z-index:998;
+
+  transition:opacity .45s ease;
+}
+
+body.contact-open .contact-dim{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.contact-drawer{
+  position:fixed;
+  top:0;
+  right:0;
+
+  width:var(--contact-drawer-w);
+  height:100vh;
+
+  background:#063b58;
+  color:#fff;
+
+  z-index:999;
+
+  overflow-y:auto;
+
+  transform:translateX(100%);
+
+  transition:transform .72s cubic-bezier(.77,0,.18,1);
+}
+
+body.contact-open .contact-drawer{
+  transform:translateX(0);
+}
+
+.contact-drawer-close{
+  position:absolute;
+  top:22px;
+  right:22px;
+
+  width:46px;
+  height:46px;
+
+  border:1px solid rgba(255,255,255,.2);
+  background:transparent;
+
+  color:#fff;
+
+  font-size:32px;
+  line-height:1;
+
+  cursor:pointer;
+}
+
+.contact-drawer-close:hover{
+  background:#fff;
+  color:#063b58;
+}
+
+.contact-drawer-inner{
+  padding:
+    84px
+    54px
+    54px;
+}
+
+.contact-kicker{
+  margin:0 0 18px;
+
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.55);
+}
+
+.contact-drawer h2{
+  margin:0 0 22px;
+
+  font-size:clamp(2.3rem, 4vw, 4rem);
+  line-height:.95;
+  letter-spacing:-.045em;
+  font-weight:500;
+}
+
+.contact-intro{
+  margin:0 0 34px;
+
+  color:rgba(255,255,255,.72);
+
+  line-height:1.6;
+}
+
+.contact-drawer-form{
+  display:grid;
+  gap:16px;
+}
+
+.contact-drawer-form input,
+.contact-drawer-form textarea{
+  width:100%;
+
+  border:1px solid rgba(255,255,255,.14);
+
+  background:rgba(255,255,255,.06);
+
+  color:#fff;
+
+  padding:16px 18px;
+
+  font:inherit;
+
+  outline:none;
+}
+
+.contact-drawer-form input::placeholder,
+.contact-drawer-form textarea::placeholder{
+  color:rgba(255,255,255,.45);
+}
+
+.contact-drawer-form textarea{
+  min-height:170px;
+  resize:vertical;
+}
+
+.contact-drawer-form button{
+  border:none;
+
+  background:#fff;
+  color:#063b58;
+
+  padding:16px 18px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+@media(max-width:760px){
+
+  body.contact-open #scroll-container{
+    transform:translateX(-42px);
+  }
+
+  .contact-drawer{
+    width:100%;
+  }
+
+  .contact-drawer-inner{
+    padding:84px 22px 42px;
+  }
+}
+
+.contact-drawer-form select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:16px 18px;
+  font:inherit;
+  outline:none;
+  appearance:none;
+}
+
+.contact-drawer-form select option{
+  color:#063b58;
+  background:#fff;
+}
+
+.hidden{
+  display:none;
+}
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+@media(max-width:600px){
+  .form-row{
+    grid-template-columns:1fr;
+  }
+}
+.contact-drawer-form select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:16px 52px 16px 18px; /* extra right padding */
+  font:inherit;
+  outline:none;
+
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+
+  cursor:pointer;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 18px center;
+  background-size:16px;
+}
+</style>
 <script src="/contact-drawer.js"></script>
 
 </body>
