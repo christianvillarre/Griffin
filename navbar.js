@@ -285,6 +285,16 @@ if (matchedItem && matchedPanel) {
     });
   });
 
+  mobileMenu?.addEventListener("click", (e) => {
+  const industriesClick = e.target.closest(
+    'a[href*="industries"], button[data-mobile-open="industries"], [data-mobile-open="industries"]'
+  );
+
+  if (!industriesClick) return;
+
+  closeMobileMenu();
+});
+
   mobileBackButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       showMobileScreen("main");
