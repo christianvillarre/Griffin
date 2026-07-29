@@ -49,6 +49,9 @@
   -webkit-backdrop-filter: blur(12px);
   
   border-bottom: 1px solid var(--topbar-border);
+  transition:
+    background-color .45s ease,
+    border-color .45s ease;
 }
 
 /* ===================== LEFT SIDE ===================== */
@@ -92,6 +95,10 @@
   height: 3px;
   border-radius: 999px;
   background: rgba(0, 32, 46, 0.88);
+  transition:
+    background-color .35s ease,
+    transform .22s ease,
+    opacity .18s ease;
 }
 
 /* logo - no box */
@@ -109,6 +116,7 @@
   object-fit: contain;
   margin-bottom: 2px;
   margin-left: 1rem;
+  transition: filter .4s ease;
 }
 
 /* ===================== RIGHT SIDE LINKS ===================== */
