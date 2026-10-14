@@ -15,6 +15,9 @@ const contactDrawer = fs.readFileSync(
   "utf8"
 );
 
+const navbarCss = fs.readFileSync(path.join(rootDir, "navbar.css"), "utf8")
+  .replace(/[ \t]+(?=\r?$)/gm, "");
+
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -40,6 +43,13 @@ function buildHtmlFiles(currentDir) {
     const outputDir = path.dirname(outputPath);
 
     let html = fs.readFileSync(fullPath, "utf8");
+
+    if (relativePath === "index.html") {
+      html = html.replace(
+        '<link rel="stylesheet" href="/navbar.css" />',
+        `<style>${navbarCss}</style>`
+      );
+    }
 
     html = html.replace("<!-- inject:navbar -->", navbar);
     html = html.replace("<!-- inject:contact-drawer -->", contactDrawer);
