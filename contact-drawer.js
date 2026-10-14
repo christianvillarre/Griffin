@@ -2,6 +2,7 @@
   const drawer = document.querySelector(".contact-drawer");
   const dim = document.querySelector(".contact-dim");
   const closeBtn = document.querySelector(".contact-drawer-close");
+  const formFrame = document.querySelector(".contact-form-frame");
 
   if (!drawer) return;
 
@@ -10,6 +11,8 @@
 
   function openContact(){
     if (document.body.classList.contains("contact-open")) return;
+
+    if (formFrame && !formFrame.src) formFrame.src = formFrame.dataset.src;
 
     lockedScrollY = window.scrollY;
     previousBodyTop = document.body.style.top;
@@ -49,5 +52,15 @@
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeContact();
+  });
+
+  window.addEventListener("message", (event) => {
+    if (event.origin !== location.origin || event.source !== formFrame?.contentWindow) return;
+    if (event.data?.type !== "griffin-contact-form-height") return;
+    const height = Number(event.data.height);
+    if (Number.isFinite(height) && height > 0 && height < 5000) {
+      formFrame.style.height = `${height}px`;
+      formFrame.style.minHeight = "0";
+    }
   });
 })();
