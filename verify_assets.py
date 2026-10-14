@@ -7,7 +7,7 @@ root = Path(__file__).resolve().parent
 files = list((root / "src").rglob("*.html")) + list((root / "partials").rglob("*.html"))
 files += [p for p in root.iterdir() if p.suffix in {".css", ".js"}]
 files += [root / path.relative_to(root / "src") for path in (root / "src").rglob("*.html")]
-references = re.compile(r"(?:/)?images/+([^\"'<>?)]+\.(?:webp|png|jpe?g))", re.I)
+references = re.compile(r"(?:/)?images/+([^\"'<>?)]*?\.(?:webp|png|jpe?g))(?=\s|[\"',)]|$)", re.I)
 images = re.compile(r"<img\b[^>]*>", re.I)
 issues = []
 checked = 0

@@ -5,14 +5,32 @@
 
   if (!drawer) return;
 
+  let lockedScrollY = 0;
+  let previousBodyTop = "";
+
   function openContact(){
+    if (document.body.classList.contains("contact-open")) return;
+
+    lockedScrollY = window.scrollY;
+    previousBodyTop = document.body.style.top;
+    window.lenis?.stop();
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.documentElement.classList.add("contact-open");
     document.body.classList.add("contact-open");
     drawer.setAttribute("aria-hidden", "false");
+    drawer.removeAttribute("inert");
   }
 
   function closeContact(){
+    if (!document.body.classList.contains("contact-open")) return;
+
     document.body.classList.remove("contact-open");
+    document.documentElement.classList.remove("contact-open");
+    document.body.style.top = previousBodyTop;
+    window.scrollTo(0, lockedScrollY);
+    window.lenis?.start();
     drawer.setAttribute("aria-hidden", "true");
+    drawer.setAttribute("inert", "");
   }
 
   document.addEventListener("click", (e) => {

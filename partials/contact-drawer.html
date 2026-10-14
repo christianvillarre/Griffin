@@ -1,6 +1,6 @@
 <div class="contact-dim"></div>
 
-<aside class="contact-drawer" aria-hidden="true">
+<aside class="contact-drawer" aria-hidden="true" inert data-lenis-prevent>
   <button class="contact-drawer-close" type="button" aria-label="Close contact panel">
     ×
   </button>
@@ -72,8 +72,16 @@
   --contact-drawer-w:min(760px, 92vw);
 }
 
+html.contact-open{
+  overflow:hidden;
+}
+
 body.contact-open{
   overflow:hidden;
+  position:fixed;
+  left:0;
+  right:0;
+  width:100%;
 }
 
 #scroll-container{
@@ -115,6 +123,7 @@ body.contact-open .contact-dim{
 
   width:var(--contact-drawer-w);
   height:100vh;
+  height:100dvh;
 
   background:#063b58;
   color:#fff;
@@ -122,6 +131,8 @@ body.contact-open .contact-dim{
   z-index:999;
 
   overflow-y:auto;
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
 
   transform:translateX(100%);
 
