@@ -20,13 +20,18 @@
   </url>
 
   <url>
-    <loc>https://griffinintegrity.com/business-investment-advisory.html</loc>
+    <loc>https://griffinintegrity.com/industries.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://griffinintegrity.com/capabilities/business-investment-advisory.html</loc>
     <lastmod>2026-06-29</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://griffinintegrity.com/technical-ticc-advisory.html</loc>
+    <loc>https://griffinintegrity.com/capabilities/technical-ticc-advisory.html</loc>
     <lastmod>2026-06-29</lastmod>
     <priority>0.8</priority>
   </url>

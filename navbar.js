@@ -139,6 +139,7 @@ if (matchedItem && matchedPanel) {
     menuBtn?.setAttribute("aria-label", "Close menu");
     menuBtn?.setAttribute("aria-expanded", "true");
     mobileMenu.setAttribute("aria-hidden", "false");
+    mobileMenu.removeAttribute("inert");
 
     showMobileScreen("main");
     closeAllDropdowns();
@@ -152,6 +153,7 @@ if (matchedItem && matchedPanel) {
     wrap.classList.remove("is-mobile-menu-open");
     document.body.classList.remove("topbar-mobile-lock");
     mobileMenu.setAttribute("aria-hidden", "true");
+    mobileMenu.setAttribute("inert", "");
 
     if (!desktopMenuOpen) {
       menuBtn?.setAttribute("aria-label", "Open menu");
@@ -188,6 +190,7 @@ if (matchedItem && matchedPanel) {
     menuBtn?.setAttribute("aria-label", "Close menu");
     menuBtn?.setAttribute("aria-expanded", "true");
     desktopMenu.setAttribute("aria-hidden", "false");
+    desktopMenu.removeAttribute("inert");
 
     setDesktopActive("consulting");
     closeAllDropdowns();
@@ -200,6 +203,7 @@ if (matchedItem && matchedPanel) {
     desktopMenuOpen = false;
     wrap.classList.remove("is-desktop-menu-open");
     desktopMenu.setAttribute("aria-hidden", "true");
+    desktopMenu.setAttribute("inert", "");
 
     if (!mobileMenuOpen) {
       menuBtn?.setAttribute("aria-label", "Open menu");
