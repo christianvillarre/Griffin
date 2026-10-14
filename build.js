@@ -17,6 +17,7 @@ const contactDrawer = fs.readFileSync(
 
 const navbarCss = fs.readFileSync(path.join(rootDir, "navbar.css"), "utf8")
   .replace(/[ \t]+(?=\r?$)/gm, "");
+const fontCss = fs.readFileSync(path.join(rootDir, "zalando-font.css"), "utf8");
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) {
@@ -45,6 +46,10 @@ function buildHtmlFiles(currentDir) {
     let html = fs.readFileSync(fullPath, "utf8");
 
     if (relativePath === "index.html") {
+      html = html.replace(
+        '<link href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">',
+        `<style>${fontCss}</style>`
+      );
       html = html.replace(
         '<link rel="stylesheet" href="/navbar.css" />',
         `<style>${navbarCss}</style>`

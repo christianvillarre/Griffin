@@ -5,15 +5,15 @@ from PIL import Image
 
 images = Path(__file__).resolve().parent / "images"
 variants = {
-    "business-leaders-digital-network": (960,),
+    "business-leaders-digital-network": (768, 960),
     "digital-city-infrastructure": (960,),
     "technician-inspecting-industrial-valve": (960,),
     "industrial-processing-plant-piping": (960,),
-    "oil-gas-refinery-at-sunset": (480, 640, 960),
-    "drone-surveying-pipeline": (480, 640, 960),
-    "industrial-facility-construction": (480, 640, 960),
-    "aerial-power-generation-plant": (480, 640, 960),
-    "naval-defense-digital-network": (480, 640, 960),
+    "oil-gas-refinery-at-sunset": (360, 480, 640, 960),
+    "drone-surveying-pipeline": (360, 480, 640, 960),
+    "industrial-facility-construction": (360, 480, 640, 960),
+    "aerial-power-generation-plant": (360, 480, 640, 960),
+    "naval-defense-digital-network": (360, 480, 640, 960),
     "griffin-integrity-white-logo": (240, 480, 640),
 }
 
